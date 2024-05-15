@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "halodb-ce81d"
+  },
+  "targets": {
+    "halodb-ce81d": {
+      "hosting": {
+        "halodb-dev": [
+          "halodb-dev"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
