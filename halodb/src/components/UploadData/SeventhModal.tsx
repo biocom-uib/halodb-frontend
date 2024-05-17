@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button, Input, Modal, Form, Slider } from 'antd';
+import { Button, Input, Modal, Form, Slider, DatePicker, TimePicker } from 'antd';
 
 const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
   const nextPage = async () => {
@@ -10,11 +10,11 @@ const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
   }
   return (
   <Modal
-  title="Upload data (7/15)"
+  title="Upload data (7/11)"
   centered
   open={opened}
-  width={1000}
-  styles={{body: {height: 630}}}
+  width={1200}
+  styles={{body: {height: 700}}}
   onOk={async () => await nextPage()}
   onCancel={() => actualSeter(false)}
   footer={[
@@ -29,76 +29,59 @@ const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
     </Button>
   ]}
   >
-       <h2> Gene and genome information </h2>
+       <h2> Metadata on the origin of the sample </h2>
        <Form
           form={form}
-          name="Gene"
+          name="Origin2"
           labelCol={{ span:8  }}
           wrapperCol={{ span: 16  }}
           initialValues={{ remember: true }}
           autoComplete="off"
       >
       <Form.Item
-      name="completeness"
-      label="Completeness"
+      name="dats"
+      label="Sampling date"
       >
-      <Slider defaultValue={0} />
+      <DatePicker />
       </Form.Item>
       <Form.Item
-      name="contamination"
-      label="Level of contamination"
+      name="hocs"
+      label="Hour of collection of the sample"
       >
-      <Slider defaultValue={0} />
+      <TimePicker />
       </Form.Item>
       <Form.Item
-      name="method"
-      label="Method used to estimate completeness and contamination"
+      name="dati"
+      label="Date of isolation"
+      >
+      <DatePicker />
+      </Form.Item>
+      <Form.Item
+      name="datu"
+      label="Date of isolation if unknown"
+      >
+      <DatePicker />
+      </Form.Item>
+      <Form.Item
+      name="tems"
+      label="Temperature of the sample [in celsius degree]"
       >
       <Input />
       </Form.Item>
       <Form.Item
-      name="gsiz"
-      label="Genome size (estimated or actual)"
+      name="phsa"
+      label="pH of the sample"
       >
       <Input />
       </Form.Item>
       <Form.Item
-      name="ggcm"
-      label="GC mol %"
+      name="sals"
+      label="Salinity of the sample"
       >
-      <Slider defaultValue={0} />
-      </Form.Item>
-      <Form.Item
-      name="dnae"
-      label="DNA extraction method"
-      >
-      <Input />
-      </Form.Item>
-      <Form.Item
-      name="asem"
-      label="Assembly"
-      >
-      <Input />
-      </Form.Item>
-      <Form.Item
-      name="seqt"
-      label="Sequencing Technology"
-      >
-      <Input />
-      </Form.Item>
-      <Form.Item
-      name="bins"
-      label="Binning software used and parameters"
-      >
-      <Input />
-      </Form.Item>
-      <Form.Item
-      name="asft"
-      label="Assembly software used and parameters"
-      >
-      <Input />
+      <Slider />
       </Form.Item>
       </Form>
+
     </Modal>
     )    
 }

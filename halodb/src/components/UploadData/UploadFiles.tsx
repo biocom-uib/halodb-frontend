@@ -9,7 +9,7 @@ import { consoleLogger } from '../../utils/logger';
 
 
 const FormModal = ({opened, seter, user, sampleId, sampleIdSeter}) => {
-  const [percentage, setPercentage] = useState({'file_1': 0, 'file_2': 0, 'file_3': 0});
+  const [percentage, setPercentage] = useState({'raw_reads': 0, 'trimmed_reads': 0, 'assembled': 0, 'pgenes': 0});
   const [percentage_1, setPercentage1] = useState(0);
   const [percentage_2, setPercentage2] = useState(0);
   const [percentage_3, setPercentage3] = useState(0);
@@ -34,8 +34,8 @@ const FormModal = ({opened, seter, user, sampleId, sampleIdSeter}) => {
           setPercentage(percentage);
           consoleLogger('percentage', percentCompleted);
           consoleLogger(percentage);
-          setPercentage1(percentage['file_1']);
-          setPercentage2(percentage['file_2']);
+          setPercentage1(percentage['raw_reads']);
+          setPercentage2(percentage['trimmed_reads']);
           setPercentage3(percentage['file_3']);
         }
 			}
@@ -79,24 +79,28 @@ const FormModal = ({opened, seter, user, sampleId, sampleIdSeter}) => {
     <Input defaultValue={sampleId} onInput={(event) => {if (event.target  && event.target['value']) {consoleLogger(event.target['value']); sampleIdSeter(event.target['value'])}}}/>
     </h4>
    
-   <h3> File 1</h3>
-  <Upload data={{'input_type': 'file_1'}} {...props}>
+   <h3> Raw Reads</h3>
+  <Upload data={{'input_type': 'raw_reads'}} {...props}>
     <Button icon={<UploadOutlined />}>Select File</Button>
     <Progress type="circle" size={30} percent={percentage_1} style={{margin: 16}} />
   </Upload>
   
   
-  <h3> File 2</h3>
-  <Upload data={{'input_type': 'file_2'}} {...props}>
+  <h3> Trimmed reads</h3>
+  <Upload data={{'input_type': 'trimmed_reads'}} {...props}>
     <Button icon={<UploadOutlined />}>Select File</Button>
     <Progress type="circle" size={30} percent={percentage_2} style={{margin: 16}} />
   </Upload>
-  <h3> File 3</h3>
-  <Upload data={{'input_type': 'file_3'}} {...props}>
+  <h3> Assembled</h3>
+  <Upload data={{'input_type': 'assembled'}} {...props}>
     <Button icon={<UploadOutlined />}>Select File</Button>
     <Progress type="circle" size={30} percent={percentage_3} style={{margin: 16}} />
   </Upload>
-  
+  <h3> Predicted genes</h3>
+  <Upload data={{'input_type': 'pgenes'}} {...props}>
+    <Button icon={<UploadOutlined />}>Select File</Button>
+    <Progress type="circle" size={30} percent={percentage_3} style={{margin: 16}} />
+  </Upload>
   </Modal>
     )    
 }

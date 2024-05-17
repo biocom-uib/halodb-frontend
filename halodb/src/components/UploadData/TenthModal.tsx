@@ -10,11 +10,11 @@ const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
   }
   return (
   <Modal
-  title="Upload data (10/15)"
+  title="Upload data (10/11)"
   centered
   open={opened}
-  width={1000}
-  styles={{body: {height: 630}}}
+  width={1200}
+  styles={{body: {height: 700}}}
   onOk={async () => await nextPage()}
   onCancel={() => actualSeter(false)}
   footer={[
@@ -29,80 +29,56 @@ const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
     </Button>
   ]}
   >
-       <h2> Basic metabolic traits determined under culture conditions </h2>
+       <h2> Other information details on the organism </h2>
        <Form
           form={form}
-          name="Culture"
+          name="Other"
           labelCol={{ span:8  }}
           wrapperCol={{ span: 16  }}
           initialValues={{ remember: true }}
           autoComplete="off"
       >
+
       <Form.Item
-      name="emet"
-      label="Energy metabolism"
+      name="bios"
+      label="Biosafety level"
       >
-      <Input />
-      </Form.Item>
-      <Form.Item
-      name="orel"
-      label="Relationship to O_2"
-      >
-      <Input />
-      </Form.Item>
-      <Form.Item
-      name="elac"
-      label="Terminal electron acceptor"
-      >
-      <Input />
-      </Form.Item>
-      <Form.Item
-      name="temo"
-      label="Temperature optimum"
-      >
-      <Input />
-      </Form.Item>
-      <Form.Item
-      name="teml"
-      label="Lowest temperature for growth"
-      >
-      <Input />
-      </Form.Item>
-      <Form.Item
-      name="temh"
-      label="Highest temperature for growth"
-      >
-      <Input />
-      </Form.Item>
-      <Form.Item
-      name="temc"
-      label="Temperature category"
-      >
-      <Select defaultValue="Pshychrophyles"  options={[
-        { value: 'Pshychrophyles', label: 'Pshychrophyles' },
-        { value: 'Mesophiles', label: 'Mesophiles' },
-        { value: 'Moderate thermophiles', label: 'Moderate thermophiles' },
-        { value: 'Thermophiles', label: 'Thermophiles' },
-        { value: 'Hyperthermophiles', label: 'Hyperthermophiles' },
+      <Select defaultValue="BSL-1"  options={[
+        { value: 'BSL-1', label: 'BSL-1' },
+        { value: 'BSL-2', label: 'BSL-2' },
+        { value: 'BSL-3', label: 'BSL-3' },
+        { value: 'BSL-4', label: 'BSL-4' },
         ]}/>
       </Form.Item>
       <Form.Item
-      name="phop"
-      label="pH optimum"
+      name="habt"
+      label="Habitat"
       >
-      <Input />
+      <Input/>
       </Form.Item>
       <Form.Item
-      name="phlo"
-      label="Lowest pH for growth"
+      name="bior"
+      label="Biotic relationship"
       >
-      <Input />
+      <Input/>
       </Form.Item>
       <Form.Item
-      name="phhi"
-      label="Highest pH for growth"
+      name="host"
+      label="Symbiosis with the host"
       >
-      <Input />
+      <Input/>
+      </Form.Item>
+      <Form.Item
+      name="path"
+      label="Known pathogenicity"
+      >
+      <Input/>
+      </Form.Item>
+      <Form.Item
+      name="extr"
+      label="Miscellaneous"
+      >
+      <Input/>
       </Form.Item>
       </Form>
       

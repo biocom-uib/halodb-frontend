@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button, Input, Modal, Form } from 'antd';
+import { Button, Input, Modal, Form, Switch } from 'antd';
 
 const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
   const nextPage = async () => {
@@ -10,11 +10,11 @@ const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
   }
   return (
   <Modal
-  title="Upload data (3/15)"
+  title="Upload data (3/11)"
   centered
   open={opened}
-  width={1000}
-  styles={{body: {height: 630}}}
+  width={1200}
+  styles={{body: {height: 700}}}
   onOk={async () => await nextPage()}
   onCancel={() => actualSeter(false)}
   footer={[
@@ -29,7 +29,7 @@ const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
     </Button>
   ]}
   >
-               <h2> Information on the kind of material used for the description </h2>
+             <h2> Information on the kind of material used for the description </h2>
        <Form
           form={form}
           name="Gene"
@@ -39,66 +39,61 @@ const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
           autoComplete="off"
       >
       <Form.Item
-      name="domain"
-      label="Domain name"
+      name="cult"
+      label="Cultered"
+      >
+      <Switch />
+      </Form.Item>
+      <Form.Item
+      name="koma"
+      label="Kind of material"
       >
       <Input />
       </Form.Item>
       <Form.Item
-      name="kingdom"
-      label="Kingdom name"
+      name="typn"
+      label="Designed type material for a new taxon?"
+      >
+      <Switch />
+      </Form.Item>
+      <Form.Item
+      name="otyp"
+      label="Type strain"
       >
       <Input />
       </Form.Item>
       <Form.Item
-      name="phylum"
-      label="Phylum name"
+      name="txnr"
+      label="Taxonumber of the type material"
       >
       <Input />
       </Form.Item>
       <Form.Item
-      name="phylumety"
-      label="Phylumety"
+      name="ccsu"
+      label="Submitted to culture collection"
+      >
+      <Switch />
+      </Form.Item>
+      <Form.Item
+      name="type"
+      label="Designed type strain name"
       >
       <Input />
       </Form.Item>
       <Form.Item
-      name="class"
-      label="Class name"
+      name="coln"
+      label="Strain collection numbers"
       >
       <Input />
       </Form.Item>
       <Form.Item
-      name="classety"
-      label="Class etymology"
-      >
-      <Input />
-      </Form.Item>
-      <Form.Item
-      name="order"
-      label="Order name"
-      >
-      <Input />
-      </Form.Item>
-      <Form.Item
-      name="orderety"
-      label="Order etymology"
-      >
-      <Input />
-      </Form.Item>
-      <Form.Item
-      name="family"
-      label="Family name"
-      >
-      <Input />
-      </Form.Item>
-      <Form.Item
-      name="familyety"
-      label="Family etymology"
+      name="coth"
+      label="Additional comments"
       >
       <Input />
       </Form.Item>
       </Form>
+      
     </Modal>
     )    
 }

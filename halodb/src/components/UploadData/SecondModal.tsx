@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button, Input, Modal, Form, Switch } from 'antd';
+import { Button, Input, Modal, Form, DatePicker } from 'antd';
 
 const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
     const nextPage = async () => {
@@ -10,11 +10,11 @@ const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
     }
     return (
     <Modal
-    title="Upload data (2/15)"
+    title="Upload data (2/11)"
     centered
     open={opened}
-    width={1000}
-    styles={{body: {height: 630}}}
+    width={1200}
+    styles={{body: {height: 700}}}
     onOk={async () => await nextPage()}
     onCancel={() => actualSeter(false)}
     footer={[
@@ -29,65 +29,76 @@ const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
       </Button>
     ]}
     >
-         <h2> Information on the kind of material used for the description </h2>
+    <h2> Information on the submission </h2>
        <Form
           form={form}
-          name="Gene"
+          name="Submission"
           labelCol={{ span:8  }}
           wrapperCol={{ span: 16  }}
           initialValues={{ remember: true }}
           autoComplete="off"
       >
       <Form.Item
-      name="cult"
-      label="Cultered"
+      name="created"
+      label="Submission creation date"
       >
-      <Switch />
+      <DatePicker />
       </Form.Item>
       <Form.Item
-      name="koma"
-      label="Kind of material"
+      name="updated"
+      label="Submission updated date"
       >
-      <Input />
-      </Form.Item>
-      <Form.Item
-      name="typn"
-      label="Designed type material for a new taxon?"
-      >
-      <Switch />
-      </Form.Item>
-      <Form.Item
-      name="otyp"
-      label="Type strain"
-      >
-      <Input />
-      </Form.Item>
-      <Form.Item
-      name="txnt"
-      label="Taxonumber of the type material"
-      >
-      <Input />
-      </Form.Item>
-      <Form.Item
-      name="ccsu"
-      label="Submitted to culture collection"
-      >
-      <Switch />
-      </Form.Item>
-      <Form.Item
-      name="type"
-      label="Designed type strain name"
-      >
-      <Input />
-      </Form.Item>
-      <Form.Item
-      name="coln"
-      label="Strain collection numbers"
-      >
-      <Input />
+      <DatePicker />
       </Form.Item>
       </Form>
-      
+      <h2> Information on the autorship and publications </h2>
+       <Form
+          form={form}
+          name="Autorship"
+          labelCol={{ span:8  }}
+          wrapperCol={{ span: 16  }}
+          initialValues={{ remember: true }}
+          autoComplete="off"
+      >
+     <Form.Item
+      name="auth"
+      label="Authors"
+      >
+      <Input />
+      </Form.Item>
+      <Form.Item
+      name="titl"
+      label="Title"
+      >
+      <Input />
+      </Form.Item>
+      <Form.Item
+      name="jour"
+      label="Journal"
+      >
+      <Input />
+      </Form.Item>
+      <Form.Item
+      name="volume"
+      label="Volume"
+      >
+      <Input />
+      </Form.Item>
+      <Form.Item
+      name="pages"
+      label="Pages"
+      >
+      <Input />
+      </Form.Item>
+      <Form.Item
+      name="doi"
+      label="DOI"
+      >
+      <Input />
+      </Form.Item>
+
+      </Form>
+
     </Modal>
     )    
 }

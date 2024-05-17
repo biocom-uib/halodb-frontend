@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button, Input, Modal, Form, Slider } from 'antd';
+import { Button, Input, Modal, Form, Select } from 'antd';
 
 const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
   const nextPage = async () => {
@@ -10,11 +10,11 @@ const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
   }
   return (
   <Modal
-  title="Upload data (8/15)"
+  title="Upload data (8/11)"
   centered
   open={opened}
-  width={1000}
-  styles={{body: {height: 630}}}
+  width={1200}
+  styles={{body: {height: 700}}}
   onOk={async () => await nextPage()}
   onCancel={() => actualSeter(false)}
   footer={[
@@ -29,60 +29,78 @@ const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
     </Button>
   ]}
   >
-       <h2> Metadata on the origin of the sample </h2>
+       <h2> Basic metabolic traits determined under culture conditions </h2>
        <Form
           form={form}
-          name="Origin"
+          name="Culture"
           labelCol={{ span:8  }}
           wrapperCol={{ span: 16  }}
           initialValues={{ remember: true }}
           autoComplete="off"
       >
       <Form.Item
-      name="coun"
-      label="Country of origin"
+      name="emet"
+      label="Energy metabolism"
       >
       <Input />
       </Form.Item>
       <Form.Item
-      name="regi"
-      label="Region of origin"
+      name="orel"
+      label="Relationship to O_2"
       >
       <Input />
       </Form.Item>
       <Form.Item
-      name="geol"
-      label="Geographic location"
+      name="elac"
+      label="Terminal electron acceptor"
       >
       <Input />
       </Form.Item>
       <Form.Item
-      name="lati"
-      label="Latitude"
+      name="temo"
+      label="Temperature optimum"
       >
       <Input />
       </Form.Item>
       <Form.Item
-      name="long"
-      label="Longitude"
-      >
-      <Slider defaultValue={0} />
-      </Form.Item>
-      <Form.Item
-      name="alti"
-      label="Altitude"
+      name="teml"
+      label="Lowest temperature for growth"
       >
       <Input />
       </Form.Item>
       <Form.Item
-      name="dept"
-      label="Depth"
+      name="temh"
+      label="Highest temperature for growth"
       >
       <Input />
       </Form.Item>
       <Form.Item
-      name="sour"
-      label="Source of sample"
+      name="temc"
+      label="Temperature category"
+      >
+      <Select defaultValue="Pshychrophyles"  options={[
+        { value: 'Pshychrophyles', label: 'Pshychrophyles' },
+        { value: 'Mesophiles', label: 'Mesophiles' },
+        { value: 'Moderate thermophiles', label: 'Moderate thermophiles' },
+        { value: 'Thermophiles', label: 'Thermophiles' },
+        { value: 'Hyperthermophiles', label: 'Hyperthermophiles' },
+        ]}/>
+      </Form.Item>
+      <Form.Item
+      name="phop"
+      label="pH optimum"
+      >
+      <Input />
+      </Form.Item>
+      <Form.Item
+      name="phlo"
+      label="Lowest pH for growth"
+      >
+      <Input />
+      </Form.Item>
+      <Form.Item
+      name="phhi"
+      label="Highest pH for growth"
       >
       <Input />
       </Form.Item>

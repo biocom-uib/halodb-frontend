@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button, Input, Modal, Form, DatePicker } from 'antd';
+import { Button, Input, Modal, Form } from 'antd';
 
 const FormModal = ({opened, actualSeter, nextSeter, form}) => {
     const nextPage = async () => {
@@ -10,11 +10,11 @@ const FormModal = ({opened, actualSeter, nextSeter, form}) => {
     }
     return (
     <Modal
-    title="Upload data (1/15)"
+    title="Upload data (1/11)"
     centered
     open={opened}
-    width={1000}
-    styles={{body: {height: 630}}}
+    width={1200}
+    styles={{body: {height: 700}}}
     onOk={async () => await nextPage()}
     onCancel={() => actualSeter(false)}
     footer={[
@@ -26,69 +26,48 @@ const FormModal = ({opened, actualSeter, nextSeter, form}) => {
       </Button>
     ]}
     >
-           <h2> Information on the submission </h2>
-       <Form
+
+      <h2> Sample Information </h2>
+      <Form
           form={form}
-          name="Submission"
+          name="Sample"
           labelCol={{ span:8  }}
           wrapperCol={{ span: 16  }}
           initialValues={{ remember: true }}
           autoComplete="off"
       >
+
       <Form.Item
-      name="txnr"
-      label="Taxonumber"
+      name="name"
+      label="Sample name"
       >
-      <Input />
+      <Input/>
       </Form.Item>
       <Form.Item
-      name="version"
-      label="Version"
+      name="stype"
+      label="Sample type"
       >
-      <Input />
+      <Input/>
       </Form.Item>
       <Form.Item
-      name="entrydate"
-      label="Date of the entry"
+      name="ssize"
+      label="Sample size"
       >
-      <DatePicker />
+      <Input/>
       </Form.Item>
       <Form.Item
-      name="firstdate"
-      label="First submission date"
+      name="ssizeunit"
+      label="Sample size unity "
       >
-      <DatePicker />
+      <Input/>
       </Form.Item>
       <Form.Item
-      name="draftnumber"
-      label="Draft number"
+      name="keywords"
+      label="Keywords"
       >
-      <DatePicker />
+      <Input/>
       </Form.Item>
       </Form>
-      <h2> Information on the submitter </h2>
-       <Form
-          form={form}
-          name="Gene"
-          labelCol={{ span:8  }}
-          wrapperCol={{ span: 16  }}
-          initialValues={{ remember: true }}
-          autoComplete="off"
-      >
-    
-      <Form.Item
-      name="subm"
-      label="Submitter"
-      >
-      <Input />
-      </Form.Item>
-      <Form.Item
-      name="emsu"
-      label="Email of the submitter"
-      >
-      <Input />
-      </Form.Item>
-     </Form>
     </Modal>
     )    
 }

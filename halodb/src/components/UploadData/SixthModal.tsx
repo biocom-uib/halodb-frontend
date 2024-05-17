@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button, Input, Modal, Form, Select } from 'antd';
+import { Button, Input, Modal, Form, Slider } from 'antd';
 
 const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
   const nextPage = async () => {
@@ -10,11 +10,11 @@ const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
   }
   return (
   <Modal
-  title="Upload data (6/15)"
+  title="Upload data (6/11)"
   centered
   open={opened}
-  width={1000}
-  styles={{body: {height: 630}}}
+  width={1200}
+  styles={{body: {height: 700}}}
   onOk={async () => await nextPage()}
   onCancel={() => actualSeter(false)}
   footer={[
@@ -29,65 +29,62 @@ const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
     </Button>
   ]}
   >
-       <h2> Gene and genome information </h2>
+       <h2> Metadata on the origin of the sample </h2>
        <Form
           form={form}
-          name="Gene"
+          name="Origin"
           labelCol={{ span:8  }}
           wrapperCol={{ span: 16  }}
           initialValues={{ remember: true }}
           autoComplete="off"
       >
-     <Form.Item
-      name="sixteensr"
-      label="16S rRNA gene accession number"
+      <Form.Item
+      name="coun"
+      label="Country of origin"
       >
       <Input />
       </Form.Item>
       <Form.Item
-      name="hkgn"
-      label="Alternative housekeeping genes"
+      name="regi"
+      label="Region of origin"
       >
       <Input />
       </Form.Item>
       <Form.Item
-      name="meca"
-      label="Metagenome accession number"
+      name="geol"
+      label="Geographic location"
       >
       <Input />
       </Form.Item>
       <Form.Item
-      name="gare"
-      label="genome/MAG/SAG accession number [RefSeq]"
+      name="lati"
+      label="Latitude"
       >
       <Input />
       </Form.Item>
       <Form.Item
-      name="gaem"
-      label="genome/MAG/SAG accession number [EMBL]"
+      name="long"
+      label="Longitude"
+      >
+      <Slider defaultValue={0} />
+      </Form.Item>
+      <Form.Item
+      name="alti"
+      label="Altitude"
       >
       <Input />
       </Form.Item>
       <Form.Item
-      name="binn"
-      label="genome/MAG/SAG accession number [other]"
+      name="dept"
+      label="Depth"
       >
       <Input />
       </Form.Item>
       <Form.Item
-      name="url"
-      label="URL"
+      name="sour"
+      label="Source of sample"
       >
       <Input />
-      </Form.Item>
-      <Form.Item
-      name="gsta"
-      label="Genome status"
-      >
-      <Select defaultValue="COMPLETE"  options={[
-        { value: 'COMPLETE', label: 'COMPLETE' },
-        { value: 'PARTIAL', label: 'PARTIAL' },
-        { value: 'DRAFT', label: 'DRAFT' }]}/>
       </Form.Item>
       </Form>
     </Modal>

@@ -5,7 +5,7 @@ import { Form, message } from 'antd';
 import { consoleLogger } from '../utils/logger';
 import FirstModal from './UploadData/FirstModal';
 import SecondModal from './UploadData/SecondModal';
-import ThirdModal from './UploadData/SecondModal';
+import ThirdModal from './UploadData/ThirdModal';
 import FourthModal from './UploadData/FourthModal';
 import FifthModal from './UploadData/FifthModal';
 import SixthModal from './UploadData/SixthModal';
@@ -14,10 +14,6 @@ import EighthModal from './UploadData/EighthModal';
 import NinthModal from './UploadData/NinthModal';
 import TenthModal from './UploadData/TenthModal';
 import EleventhModal from './UploadData/EleventhModal';
-import TwelfthModal from './UploadData/TwelfthModal';
-import ThirteenthModal from './UploadData/ThirteenthModal';
-import FourteenthModal from './UploadData/FourteenthModal';
-import FifteenthModal from './UploadData/FifteenthModal';
 import UploadFiles from './UploadData/UploadFiles';
 
 
@@ -33,10 +29,6 @@ const UploadData = ({firstModal, firstModalSeter, user}) => {
     const [Modal9, setModal9] = useState(false);
     const [Modal10, setModal10] = useState(false);
     const [Modal11, setModal11] = useState(false);
-    const [Modal12, setModal12] = useState(false);
-    const [Modal13, setModal13] = useState(false);
-    const [Modal14, setModal14] = useState(false);
-    const [Modal15, setModal15] = useState(false);
     const [pushedSample, setPushedSample] = useState('');
     const [ModalPushFiles, setModalPushFiles] = useState(false);
     const [form] = Form.useForm();
@@ -52,13 +44,14 @@ const UploadData = ({firstModal, firstModalSeter, user}) => {
           }})
         .then((response) => {{
           consoleLogger('response', response);
-          setModal15(false)
+          setModal11(false)
           setModalPushFiles(true)
           message.success('Data uploaded')
         }})
         .catch((response) => {{
           consoleLogger(response);
-          setModal15(false)
+          setModal11(false)
+          setModalPushFiles(true)
           message.error(response.data)
         }})
       }
@@ -76,11 +69,7 @@ const UploadData = ({firstModal, firstModalSeter, user}) => {
     <EighthModal opened={Modal8} previousSeter={setModal7} actualSeter={setModal8} nextSeter={setModal9} form={form} />
     <NinthModal opened={Modal9} previousSeter={setModal8} actualSeter={setModal9} nextSeter={setModal10} form={form} />
     <TenthModal opened={Modal10} previousSeter={setModal9} actualSeter={setModal10} nextSeter={setModal11} form={form} />
-    <EleventhModal opened={Modal11} previousSeter={setModal10} actualSeter={setModal11} nextSeter={setModal12} form={form} />
-    <TwelfthModal opened={Modal12} previousSeter={setModal11} actualSeter={setModal12} nextSeter={setModal13} form={form} />
-    <ThirteenthModal opened={Modal13} previousSeter={setModal12} actualSeter={setModal13} nextSeter={setModal14} form={form} />
-    <FourteenthModal opened={Modal14} previousSeter={setModal13} actualSeter={setModal14} nextSeter={setModal15} form={form} />
-    <FifteenthModal opened={Modal15} previousSeter={setModal14} actualSeter={setModal15} submit={pushData} form={form} />
+    <EleventhModal opened={Modal11} previousSeter={setModal10} actualSeter={setModal11} submit={pushData} form={form} />
     <UploadFiles opened={ModalPushFiles} seter={setModalPushFiles} user={user} sampleId={pushedSample} sampleIdSeter={setPushedSample} />
     </>
  )

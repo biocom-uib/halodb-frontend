@@ -2,20 +2,16 @@ import React from 'react';
 
 import { Button, Input, Modal, Form, Select, Slider } from 'antd';
 
-const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
-  const nextPage = async () => {
-      await form.validateFields();
-      actualSeter(false);
-      nextSeter(true)
-  }
+const FormModal = ({opened, previousSeter, actualSeter, submit, form}) => {
+
   return (
   <Modal
-  title="Upload data (11/15)"
+  title="Upload data (11/11)"
   centered
   open={opened}
-  width={1000}
-  styles={{body: {height: 630}}}
-  onOk={async () => await nextPage()}
+  width={1200}
+  styles={{body: {height: 700}}}
+  onOk={async () => await submit()}
   onCancel={() => actualSeter(false)}
   footer={[
     <Button key="Cancel" onClick={() => actualSeter(false)}>
@@ -24,63 +20,111 @@ const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
     <Button key="Back" type="primary" onClick={() => {actualSeter(false); previousSeter(true)}}>
     Back
 </Button>,
-    <Button key="Next" type="primary" htmlType='submit' onClick={async () => await nextPage()}>
-     Next
+    <Button key="Next" type="primary" htmlType='submit' onClick={async () => await submit()}>
+     Submit
     </Button>
   ]}
   >
-       <h2> Basic metabolic traits determined under culture conditions </h2>
+       <h2> Sequencing Information </h2>
        <Form
           form={form}
-          name="Culture3"
+          name="Sequencing"
           labelCol={{ span:8  }}
           wrapperCol={{ span: 16  }}
           initialValues={{ remember: true }}
           autoComplete="off"
       >
+
       <Form.Item
-      name="salo"
-      label="Salinity optimum"
+      name="sfrac"
+      label="Sequenced fraction"
       >
-      <Slider />
-      </Form.Item>
-      <Form.Item
-      name="sall"
-      label="Lowest NaCl concentration for growth"
-      >
-      <Input />
-      </Form.Item>
-      <Form.Item
-      name="salh"
-      label="Highest NaCl concentration for growth"
-      >
-      <Input />
-      </Form.Item>
-      <Form.Item
-      name="salw"
-      label="Other salts besides NaCl to be reported"
-      >
-      <Input />
-      </Form.Item>
-      <Form.Item
-      name="salc"
-      label="Salinity category"
-      >
-      <Select defaultValue="Halotolerants"  options={[
-        { value: 'Halotolerants', label: 'Halotolerants' },
-        { value: 'Slight halophiles', label: 'Slight halophiles' },
-        { value: 'Moderate halophiles', label: 'Moderate halophiles' },
-        { value: 'Extreme halophiles', label: 'Extreme halophiles' },
-        { value: 'Oligohaline', label: 'Oligohaline' },
-        { value: 'Mesohaline', label: 'Mesohaline' },
-        { value: 'Polihaline', label: 'Polihaline' },
-        { value: 'Euhaline', label: 'Euhaline' },
-        { value: 'Hyperhaline', label: 'Hyperhaline' },
-        { value: 'Fresh water', label: 'Fresh water' },
-        { value: 'Brackish water', label: 'Brackish water' },
-        { value: 'Saline water', label: 'Saline water' },
-        { value: 'Brine', label: 'Brine' },
+      <Select defaultValue="Genome"  options={[
+        { value: 'Genome', label: 'Genome' },
+        { value: 'MAG', label: 'MAG' },
+        { value: 'SAG', label: 'SAG' },
+        { value: 'Virus', label: 'Virus' },
+        { value: 'Virome', label: 'Virome' },
+        { value: 'Transcriptome', label: 'Transcriptome' },
+        { value: 'Exome', label: 'Exome' },
+        { value: 'Microbiome', label: 'Microbiome' },
+        { value: 'Epigenome', label: 'Epigenome' },
+        { value: 'Metabolome', label: 'Metabolome' },
+        { value: 'Meta-epigenome', label: 'Meta-epigenome' },
+        { value: 'Metagenome', label: 'Metagenome' },
+        { value: 'Metaproteome', label: 'Metaproteome' },
+        { value: 'Metavirome', label: 'Metavirome' },
+        { value: 'Metatranscriptome', label: 'Metatranscriptome' },
+        { value: 'Targeted Sequencing', label: 'Targeted Sequencing' },
+        { value: 'Chromatin Conformation Capture', label: 'Chromatin Conformation Capture' },
+        { value: 'Phageome', label: 'Phageome' },
+        { value: 'Plasmids and Mobile Genetic Elements', label: 'Plasmids and Mobile Genetic Elements' },
         ]}/>
+      </Form.Item>
+      <Form.Item
+      name="target"
+      label="Target nucleic acids"
+      >
+      <Select defaultValue="gDNA"  options={[
+        { value: 'gDNA', label: 'gDNA' },
+        { value: 'Exome', label: 'Exome' },
+        { value: 'mtDNA', label: 'mtDNA' },
+        { value: 'cpDNA', label: 'cpDNA' },
+        { value: 'mRNA', label: 'mRNA' },
+        { value: 'tRNA', label: 'tRNA' },
+        { value: 'ncRNA', label: 'ncRNA' },
+        { value: 'RNA', label: 'RNA' },
+      ]}/>
+      </Form.Item>
+
+
+      <Form.Item
+      name="rreadsnum"
+      label="Raw reads number."
+      >
+      <Input/>
+      </Form.Item>
+      <Form.Item
+      name="treadsnum"
+      label="Trimmed reads number."
+      >
+      <Input/>
+      </Form.Item>
+      <Form.Item
+      name="coverage"
+      label="Coverage"
+      >
+      <Slider/>
+      </Form.Item>
+      <Form.Item
+      name="asize"
+      label="Assembly size in base pairs."
+      >
+      <Input/>
+      </Form.Item>
+      <Form.Item
+      name="contignumber"
+      label="Number of contigs."
+      >
+      <Input/>
+      </Form.Item>
+      <Form.Item
+      name="nagoya"
+      label="Information related to the Nagoya Protocol."
+      >
+      <Input/>
+      </Form.Item>
+      <Form.Item
+      name="sequrl"
+      label="Sequrl."
+      >
+      <Input/>
+      </Form.Item>
+      <Form.Item
+      name="strccol"
+      label="Strain Collection number."
+      >
+      <Input/>
       </Form.Item>
       </Form>
     </Modal>

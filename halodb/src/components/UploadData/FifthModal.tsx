@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button, Input, Modal, Form} from 'antd';
+import { Button, Input, Modal, Form, Slider} from 'antd';
 
 const FifthModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
   const nextPage = async () => {
@@ -13,8 +13,8 @@ const FifthModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
   title="Upload data (5/15)"
   centered
   open={opened}
-  width={1000}
-  styles={{body: {height: 630}}}
+  width={1200}
+  styles={{body: {height: 700}}}
   onOk={async () => await nextPage()}
   onCancel={() => actualSeter(false)}
   footer={[
@@ -29,60 +29,79 @@ const FifthModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
     </Button>
   ]}
   >
-       <h2> Information on the autorship and publications </h2>
+       <h2> Gene and genome information </h2>
        <Form
           form={form}
-          name="Autorship"
+          name="Gene"
           labelCol={{ span:8  }}
           wrapperCol={{ span: 16  }}
           initialValues={{ remember: true }}
           autoComplete="off"
       >
-     <Form.Item
-      name="auth"
-      label="Authors"
+      <Form.Item
+      name="completeness"
+      label="Completeness"
+      >
+      <Slider defaultValue={0} />
+      </Form.Item>
+      <Form.Item
+      name="contamination"
+      label="Level of contamination"
+      >
+      <Slider defaultValue={0} />
+      </Form.Item>
+      <Form.Item
+      name="method"
+      label="Method used to estimate completeness and contamination"
       >
       <Input />
       </Form.Item>
       <Form.Item
-      name="titl"
-      label="Title"
+      name="gsiz"
+      label="Genome size (estimated or actual)"
       >
       <Input />
       </Form.Item>
       <Form.Item
-      name="jour"
-      label="Journal"
+      name="ggcm"
+      label="GC mol %"
+      >
+      <Slider defaultValue={0} />
+      </Form.Item>
+      <Form.Item
+      name="dnae"
+      label="DNA extraction method"
       >
       <Input />
       </Form.Item>
       <Form.Item
-      name="volume"
-      label="Volume"
+      name="asem"
+      label="Assembly"
       >
       <Input />
       </Form.Item>
       <Form.Item
-      name="pages"
-      label="Pages"
+      name="asft"
+      label="Assembly software used and parameters"
+      >
+      <Input />
+      </Form.Item>
+
+      <Form.Item
+      name="seqt"
+      label="Sequencing Technology"
       >
       <Input />
       </Form.Item>
       <Form.Item
-      name="doi"
-      label="DOI"
+      name="bins"
+      label="Binning software used"
       >
       <Input />
       </Form.Item>
       <Form.Item
-      name="coau"
-      label="Corresponding author"
-      >
-      <Input />
-      </Form.Item>
-      <Form.Item
-      name="emau"
-      label="Email of the corresponding author"
+      name="binsparams"
+      label="Parameters used with bins"
       >
       <Input />
       </Form.Item>

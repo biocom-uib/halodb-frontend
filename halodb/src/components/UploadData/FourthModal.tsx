@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button, Input, Modal, Form } from 'antd';
+import { Button, Input, Modal, Form, Select } from 'antd';
 
 const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
   const nextPage = async () => {
@@ -10,11 +10,11 @@ const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
   }
   return (
   <Modal
-  title="Upload data (4/15)"
+  title="Upload data (4/11)"
   centered
   open={opened}
-  width={1000}
-  styles={{body: {height: 630}}}
+  width={1200}
+  styles={{body: {height: 700}}}
   onOk={async () => await nextPage()}
   onCancel={() => actualSeter(false)}
   footer={[
@@ -29,7 +29,7 @@ const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
     </Button>
   ]}
   >
-       <h2> Information on the kind of material used for the description </h2>
+       <h2> Gene and genome information </h2>
        <Form
           form={form}
           name="Gene"
@@ -39,65 +39,56 @@ const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
           autoComplete="off"
       >
      <Form.Item
-      name="gena"
-      label="Genus name"
+      name="sixteensr"
+      label="16S rRNA gene accession number"
       >
       <Input />
       </Form.Item>
       <Form.Item
-      name="gety"
-      label="Genus etymology"
+      name="twentythreesr"
+      label="23S rRNA gene accession number"
       >
       <Input />
       </Form.Item>
       <Form.Item
-      name="gent"
-      label="Type species of the genus"
+      name="seqdepth"
+      label="Sequencing depth"
       >
       <Input />
       </Form.Item>
       <Form.Item
-      name="spep"
-      label="Specific epithet"
+      name="hkgn"
+      label="Alternative housekeeping genes"
       >
       <Input />
       </Form.Item>
       <Form.Item
-      name="spna"
-      label="Species name"
-      >
-      <Input />
-      </Form.Item>
-      
-      <Form.Item
-      name="spty"
-      label="Species etymology"
+      name="meca"
+      label="Metagenome accession number"
       >
       <Input />
       </Form.Item>
       <Form.Item
-      name="baso"
-      label="Basonym"
+      name="gare"
+      label="genome/MAG/SAG accession number [RefSeq]"
+      >
+      <Input />
+      </Form.Item>
+
+      <Form.Item
+      name="binn"
+      label="genome/MAG/SAG accession number [other]"
       >
       <Input />
       </Form.Item>
       <Form.Item
-      name="ssna"
-      label="Subspecies name"
+      name="gsta"
+      label="Genome status"
       >
-      <Input />
-      </Form.Item>
-      <Form.Item
-      name="ssty"
-      label="Subspecies etymology"
-      >
-      <Input />
-      </Form.Item>
-      <Form.Item
-      name="coth"
-      label="Other"
-      >
-      <Input />
+      <Select defaultValue="COMPLETE"  options={[
+        { value: 'COMPLETE', label: 'COMPLETE' },
+        { value: 'PARTIAL', label: 'PARTIAL' },
+        { value: 'DRAFT', label: 'DRAFT' }]}/>
       </Form.Item>
       </Form>
     </Modal>
