@@ -13,6 +13,7 @@ const FormModal = ({opened, seter, user, sampleId, sampleIdSeter}) => {
   const [percentage_1, setPercentage1] = useState(0);
   const [percentage_2, setPercentage2] = useState(0);
   const [percentage_3, setPercentage3] = useState(0);
+  const [percentage_4, setPercentage4] = useState(0);
   const props: UploadProps = {
     name: 'file',
     action: 'https://biocom.uib.es/halodb/upload/test/',
@@ -36,7 +37,8 @@ const FormModal = ({opened, seter, user, sampleId, sampleIdSeter}) => {
           consoleLogger(percentage);
           setPercentage1(percentage['raw_reads']);
           setPercentage2(percentage['trimmed_reads']);
-          setPercentage3(percentage['file_3']);
+          setPercentage3(percentage['assembled']);
+          setPercentage4(percentage['pgenes']);
         }
 			}
       data.append('input_type', options.data['input_type'])
