@@ -42,18 +42,18 @@ const UploadData = ({firstModal, firstModalSeter, user}) => {
             'Content-Type': 'application/json;charset=UTF-8',
             'Authorization': user ? "Bearer " + user.accessToken : null
           }})
-        .then((response) => {{
+        .then((response) => {
           consoleLogger('response', response);
           setModal11(false)
           setModalPushFiles(true)
           message.success('Data uploaded')
-        }})
-        .catch((response) => {{
+        })
+        .catch((response) => {
           consoleLogger(response);
           setModal11(false)
           setModalPushFiles(true)
-          message.error(response.data)
-        }})
+          message.error(response.message)
+        })
       }
 
 

@@ -6,17 +6,18 @@ import type { UploadProps } from 'antd';
 
 import { UploadOutlined } from '@ant-design/icons';
 import { consoleLogger } from '../../utils/logger';
+import { modalHeight, modalWidth } from '../../constants';
 
 
 const FormModal = ({opened, seter, user, sampleId, sampleIdSeter}) => {
-  const [percentage, setPercentage] = useState({'raw_reads': 0, 'trimmed_reads': 0, 'assembled': 0, 'pgenes': 0});
+  const [percentage, setPercentage] = useState({'rreads': 0, 'treads': 0, 'assembled': 0, 'pgenes': 0});
   const [percentage_1, setPercentage1] = useState(0);
   const [percentage_2, setPercentage2] = useState(0);
   const [percentage_3, setPercentage3] = useState(0);
   const [percentage_4, setPercentage4] = useState(0);
   const props: UploadProps = {
     name: 'file',
-    action: 'https://biocom.uib.es/halodb/upload/test/',
+    action: 'https://biocom.uib.es/halodb/upload/sample/',
     headers: {
       "Content-Type": "multipart/form-data",
       'Authorization': user ? "Bearer " + user.accessToken : null
@@ -35,15 +36,15 @@ const FormModal = ({opened, seter, user, sampleId, sampleIdSeter}) => {
           setPercentage(percentage);
           consoleLogger('percentage', percentCompleted);
           consoleLogger(percentage);
-          setPercentage1(percentage['raw_reads']);
-          setPercentage2(percentage['trimmed_reads']);
+          setPercentage1(percentage['rreads']);
+          setPercentage2(percentage['treads']);
           setPercentage3(percentage['assembled']);
           setPercentage4(percentage['pgenes']);
         }
 			}
       data.append('input_type', options.data['input_type'])
       data.append('sampleId', sampleId)
-			axios.post(options.action, data, config).then((res: any) => {
+			axios.post(options.action + sampleId + '/' + options.data['input_type'], data, config).then((res: any) => {
 				options.onSuccess(res.data, options.file)
 			}).catch((err: Error) => {
 				console.log(err)
@@ -67,8 +68,8 @@ const FormModal = ({opened, seter, user, sampleId, sampleIdSeter}) => {
     title="Upload files"
     centered
     open={opened}
-    width={1000}
-    styles={{body: {height: 630}}}
+    width={modalWidth}
+    styles={{body: {height: modalHeight}}}
     onOk={() => seter(false)}
     onCancel={() => seter(false)}
     footer={[
@@ -82,14 +83,14 @@ const FormModal = ({opened, seter, user, sampleId, sampleIdSeter}) => {
     </h4>
    
    <h3> Raw Reads</h3>
-  <Upload data={{'input_type': 'raw_reads'}} {...props}>
+  <Upload data={{'input_type': 'rreads'}} {...props}>
     <Button icon={<UploadOutlined />}>Select File</Button>
     <Progress type="circle" size={30} percent={percentage_1} style={{margin: 16}} />
   </Upload>
   
   
   <h3> Trimmed reads</h3>
-  <Upload data={{'input_type': 'trimmed_reads'}} {...props}>
+  <Upload data={{'input_type': 'treads'}} {...props}>
     <Button icon={<UploadOutlined />}>Select File</Button>
     <Progress type="circle" size={30} percent={percentage_2} style={{margin: 16}} />
   </Upload>
@@ -101,7 +102,7 @@ const FormModal = ({opened, seter, user, sampleId, sampleIdSeter}) => {
   <h3> Predicted genes</h3>
   <Upload data={{'input_type': 'pgenes'}} {...props}>
     <Button icon={<UploadOutlined />}>Select File</Button>
-    <Progress type="circle" size={30} percent={percentage_3} style={{margin: 16}} />
+    <Progress type="circle" size={30} percent={percentage_4} style={{margin: 16}} />
   </Upload>
   </Modal>
     )    

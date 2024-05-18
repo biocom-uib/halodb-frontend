@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Button, Input, Modal, Form, Switch } from 'antd';
+import { modalHeight, modalWidth } from '../../constants';
 
 const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
   const nextPage = async () => {
@@ -13,8 +14,8 @@ const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
   title="Upload data (3/11)"
   centered
   open={opened}
-  width={1200}
-  styles={{body: {height: 700}}}
+  width={modalWidth}
+  styles={{body: {height: modalHeight}}}
   onOk={async () => await nextPage()}
   onCancel={() => actualSeter(false)}
   footer={[
