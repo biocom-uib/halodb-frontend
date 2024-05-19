@@ -53,8 +53,7 @@ const Home = () => {
       method: 'GET',
       headers: {'Authorization': user ? "Bearer " + user.accessToken : null}
     }
-    
-    await axios('https://biocom.uib.es/halodb/user/list/samples', config)
+    await axios('https://biocom.uib.es/halodb/user/list/samples/', config)
     .then((response) => {consoleLogger(response); setData(response.data);})
     .catch((response) => {
       consoleLogger(response);

@@ -44,9 +44,10 @@ const UploadData = ({firstModal, firstModalSeter, user}) => {
           }})
         .then((response) => {
           consoleLogger('response', response);
-          setModal11(false)
-          setModalPushFiles(true)
-          message.success('Data uploaded')
+          setModal11(false);
+          setModalPushFiles(true);
+          setPushedSample(response['data']['sample']['id']);
+          message.success('Data uploaded with sampleId ' + response['data']['sample']['id']);
         })
         .catch((response) => {
           consoleLogger(response);
@@ -59,7 +60,7 @@ const UploadData = ({firstModal, firstModalSeter, user}) => {
 
  return (
     <>
-    <FirstModal opened={firstModal} actualSeter={firstModalSeter} nextSeter={setModal2} form={form} />
+    <FirstModal opened={Modal11} actualSeter={firstModalSeter} nextSeter={setModal2} form={form} />
     <SecondModal opened={Modal2} previousSeter={firstModalSeter} actualSeter={setModal2} nextSeter={setModal3} form={form} />
     <ThirdModal opened={Modal3} previousSeter={setModal2} actualSeter={setModal3} nextSeter={setModal4} form={form} />
     <FourthModal opened={Modal4} previousSeter={setModal3} actualSeter={setModal4} nextSeter={setModal5} form={form} />
@@ -69,7 +70,7 @@ const UploadData = ({firstModal, firstModalSeter, user}) => {
     <EighthModal opened={Modal8} previousSeter={setModal7} actualSeter={setModal8} nextSeter={setModal9} form={form} />
     <NinthModal opened={Modal9} previousSeter={setModal8} actualSeter={setModal9} nextSeter={setModal10} form={form} />
     <TenthModal opened={Modal10} previousSeter={setModal9} actualSeter={setModal10} nextSeter={setModal11} form={form} />
-    <EleventhModal opened={Modal11} previousSeter={setModal10} actualSeter={setModal11} submit={pushData} form={form} />
+    <EleventhModal opened={firstModal} previousSeter={setModal10} actualSeter={setModal11} submit={pushData} form={form} />
     <UploadFiles opened={ModalPushFiles} seter={setModalPushFiles} user={user} sampleId={pushedSample} sampleIdSeter={setPushedSample} />
     </>
  )

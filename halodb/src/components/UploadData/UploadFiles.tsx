@@ -28,7 +28,8 @@ const FormModal = ({opened, seter, user, sampleId, sampleIdSeter}) => {
 			data.append('file', options.file)
 			var config= {
 				"headers": {
-					"content-type": 'multipart/form-data; boundary=----WebKitFormBoundaryqTqJIxvkWFYqvP5s'
+					"content-type": 'multipart/form-data; boundary=----WebKitFormBoundaryqTqJIxvkWFYqvP5s',
+          'Authorization': user ? "Bearer " + user.accessToken : null
 				},
         onUploadProgress: function(progressEvent) {
           var percentCompleted = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
