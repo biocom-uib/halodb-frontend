@@ -1,11 +1,12 @@
 import React, { useState, useRef } from 'react';
  
-import { SearchOutlined } from '@ant-design/icons';
+import { SearchOutlined, DownOutlined } from '@ant-design/icons';
 import type { FilterDropdownProps } from 'antd/es/table/interface';
 import Highlighter from 'react-highlight-words';
-import { Space, Button, Table, Input, GetRef, TableColumnType } from 'antd';
+import { Space, Button, Table, Input, GetRef, TableColumnType, Popconfirm, Dropdown, Tag } from 'antd';
 
 import type { DataType, DataIndex } from '../data/data2';
+import { consoleLogger } from '../utils/logger';
 
 type InputRef = GetRef<typeof Input>;
 const { Column, ColumnGroup } = Table;
@@ -95,8 +96,47 @@ const DataTable = ({data, checkedListSubmission, checkedListAuthorship, checkedL
           //     setTimeout(() => searchInput.current!.select(), 100);
           // }
         },
-        render: (text) =>
-          searchedColumn === dataIndex ? (
+        render: (text, record) => {
+          if (dataIndex === 'name' && record['Sample'] === '<Sample 16>') {
+            return (
+              <Tag color={'volcano'} key={record['Sample']}>
+                {record['Sample'].toUpperCase()}
+              </Tag>
+            );
+          }
+          if (dataIndex === 'name' && record['Sample'] === '<Sample 17>') {
+            return (
+              <button onClick={()=> console.log(record)}>
+                  {"Button Text"}
+              </button>
+
+            )
+          }
+          if (dataIndex === 'name' && record['Sample'] === '<Sample 18>') {
+            return   (
+            <Popconfirm title="Sure to publish?" onConfirm={() => consoleLogger('publish', record)}>
+            <a href="#/">Publish</a>
+          </Popconfirm>
+            )
+          }
+          const items = [
+            { key: '1', label: <button onClick={() => consoleLogger('click')}>
+            {'File 1 - ' + record['Sample']}
+          </button> },
+            { key: '2', label: <button onClick={() => consoleLogger('click')}>
+            {'File 2 - ' + record['Sample']}
+          </button> },
+          ];
+          if (dataIndex === 'files') {
+            return(
+            <Dropdown menu={{items}}>
+            <a href="#/">
+              Files <DownOutlined />
+            </a>
+          </Dropdown>
+            )
+          }
+          const returnValue = searchedColumn === dataIndex ? (
             <Highlighter
               highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
               searchWords={[searchText]}
@@ -105,7 +145,9 @@ const DataTable = ({data, checkedListSubmission, checkedListAuthorship, checkedL
             />
           ) : (
             text
-          ),
+          );
+          return returnValue;
+        },
       });
       const hidden = {
         'Submission': checkedListSubmission.length === 0,
@@ -230,7 +272,9 @@ const DataTable = ({data, checkedListSubmission, checkedListAuthorship, checkedL
     <Column title="Sequrl" dataIndex="sequrl" key="sequrl" hidden={!checkedListSequencing.includes("sequrl")} {...getColumnSearchProps("sequrl")}/>
     <Column title="Strain collection number" dataIndex="strccol" key="strccol" hidden={!checkedListSequencing.includes("strccol")} {...getColumnSearchProps("strccol")}/>
     </ColumnGroup>
-    
+    <ColumnGroup title="Files" hidden={hidden['Files']}>
+    <Column title="Files" dataIndex="files" key="files" hidden={!checkedListFiles.includes("files")} {...getColumnSearchProps("files")}/>
+    </ColumnGroup>
       </Table>
 
     )

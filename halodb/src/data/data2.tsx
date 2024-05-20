@@ -187,8 +187,11 @@ interface DataType {
   contignumber?: number,
   nagoya?: string,
   sequrl?: string,
-  strccol?: string
+  strccol?: string,
+  Sample?: string,
+  files?: string[]
   }
+
 type DataIndex = keyof DataType;
 
 

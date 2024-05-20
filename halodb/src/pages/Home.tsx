@@ -15,6 +15,7 @@ import Group  from '../components/Groups'
 import UploadData from '../components/UploadData';
 import ColumnsSelector from '../components/ColumnsSelector';
 import DataTable from '../components/DataTable';
+import { SERVER_HOST } from '../constants';
 
 
 type LoginFieldType = {
@@ -34,7 +35,6 @@ export interface LoginData {
   message: any
   code: any
 }
-
 const Home = () => {
   const [checkedListSubmission, setCheckedListSubmission] = useState([])
   const [checkedListAuthorship, setCheckedListAuthorship] = useState([])
@@ -45,16 +45,26 @@ const Home = () => {
   const [checkedListOrganism, setCheckedListOrganism] = useState([])
   const [checkedListSample, setCheckedListSample] = useState(PlainOptions['Sample'])
   const [checkedListSequencing, setCheckedListSequencing] = useState([])
-  const [checkedListFiles, setCheckedListFiles] = useState([])
+  const [checkedListFiles, setCheckedListFiles] = useState(PlainOptions['Files'])
   const [data, setData] = useState([]);
 
+  const handleData = (data) => {
+    consoleLogger(data);
+    const rows = data['by_owner'];
+
+    rows.forEach(element => {
+      element['name'] = element['Sample'];
+      element['files'] = 'files';
+    });
+    setData(data['by_owner']);
+  }
   const getData = async() => {
     const config = {
       method: 'GET',
       headers: {'Authorization': user ? "Bearer " + user.accessToken : null}
     }
-    await axios('https://biocom.uib.es/halodb/user/list/samples/', config)
-    .then((response) => {consoleLogger(response); setData(response.data);})
+    await axios(SERVER_HOST + '/user/list/samples/', config)
+    .then((response) => { handleData(response.data);})
     .catch((response) => {
       consoleLogger(response);
       message.error(response.message)
@@ -66,6 +76,7 @@ const Home = () => {
   const [modal, setModal] = useState(false);
 
   const [modalData, setModalData] = useState(false);
+  const [ModalPushFiles, setModalPushFiles] = useState(false);
   const [modalLogin, setModalLogin] = useState(false);
   const [modalSignup, setModalSignup] = useState(false);
   const [user, setUser] = useState<HaloDbUser>(null);
@@ -104,7 +115,7 @@ const Home = () => {
       uid: uid,
     }
     await axios.post(
-      'https://biocom.uib.es/halodb/user/',
+      SERVER_HOST + 'user/',
       values,{
       headers: {
         'Content-Type': 'application/json;charset=UTF-8',
@@ -164,6 +175,14 @@ const Home = () => {
       message.error("Only logged users can upload data")
     }
   }
+  const openUploadPushFiles = () => {
+    if (loggedIn) {
+      setModalPushFiles(true) 
+    }
+    else {
+      message.error("Only logged users can upload data")
+    }
+  }
   const openHandleGroups = () => {
     consoleLogger(loggedIn)
     if (loggedIn) {
@@ -186,6 +205,9 @@ const Home = () => {
       <Button onClick={() => openUploadData()}  type="primary" style={{margin: 10}}>
         Upload Data
       </Button>
+      <Button onClick={() => openUploadPushFiles()}  type="primary" style={{margin: 10}}>
+        Upload Files
+      </Button>
       <Button onClick={() => openHandleGroups()}  type="primary" style={{margin: 10}}>
         Groups
       </Button>
@@ -201,7 +223,7 @@ const Home = () => {
           checkedListSample={checkedListSample} setCheckedListSample={setCheckedListSample}
           checkedListSequencing={checkedListSequencing} setCheckedListSequencing={setCheckedListSequencing}
           checkedListFiles={checkedListFiles} setCheckedListFiles={setCheckedListFiles} />
-      <UploadData firstModal={modalData} firstModalSeter={(value) => setModalData(value)} user={user}/>
+      <UploadData firstModal={modalData} firstModalSeter={(value) => setModalData(value)} user={user} ModalPushFiles={ModalPushFiles} setModalPushFiles={setModalPushFiles}/>
 
 
 

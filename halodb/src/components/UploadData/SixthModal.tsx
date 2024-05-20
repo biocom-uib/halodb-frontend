@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button, Input, Modal, Form, Slider } from 'antd';
+import { Button, Input, Modal, Form } from 'antd';
 import { modalHeight, modalWidth } from '../../constants';
 
 const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
@@ -67,7 +67,7 @@ const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
       name="long"
       label="Longitude"
       >
-      <Slider defaultValue={0} />
+      <Input />
       </Form.Item>
       <Form.Item
       name="alti"

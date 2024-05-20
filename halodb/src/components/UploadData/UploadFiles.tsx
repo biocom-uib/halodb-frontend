@@ -6,7 +6,7 @@ import type { UploadProps } from 'antd';
 
 import { UploadOutlined } from '@ant-design/icons';
 import { consoleLogger } from '../../utils/logger';
-import { modalHeight, modalWidth } from '../../constants';
+import { SERVER_HOST, modalHeight, modalWidth } from '../../constants';
 
 
 const FormModal = ({opened, seter, user, sampleId, sampleIdSeter}) => {
@@ -17,7 +17,7 @@ const FormModal = ({opened, seter, user, sampleId, sampleIdSeter}) => {
   const [percentage_4, setPercentage4] = useState(0);
   const props: UploadProps = {
     name: 'file',
-    action: 'https://biocom.uib.es/halodb/upload/sample/',
+    action: SERVER_HOST + 'upload/sample/',
     headers: {
       "Content-Type": "multipart/form-data",
       'Authorization': user ? "Bearer " + user.accessToken : null
@@ -71,17 +71,18 @@ const FormModal = ({opened, seter, user, sampleId, sampleIdSeter}) => {
     open={opened}
     width={modalWidth}
     styles={{body: {height: modalHeight}}}
-    onOk={() => seter(false)}
-    onCancel={() => seter(false)}
+    onOk={() => {seter(false); sampleIdSeter(null);}}
+    onCancel={() => {seter(false); sampleIdSeter(null);}}
     footer={[
-      <Button key="Cancel" onClick={() => seter(false)}>
+      <Button key="Cancel" onClick={() => {seter(false); sampleIdSeter(null);}}>
         Close
       </Button>
     ]}
   >
     <h4> Sample Identifier 
-    <Input defaultValue={sampleId} onInput={(event) => {if (event.target  && event.target['value']) {consoleLogger(event.target['value']); sampleIdSeter(event.target['value'])}}}/>
+    <Input defaultValue={sampleId} value={sampleId} onInput={(event) => {if (event.target  && event.target['value']) {consoleLogger(event.target['value']); sampleIdSeter(event.target['value'])}}}/>
     </h4>
+
    
    <h3> Raw Reads</h3>
   <Upload data={{'input_type': 'rreads'}} {...props}>

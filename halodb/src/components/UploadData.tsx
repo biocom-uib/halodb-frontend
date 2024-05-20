@@ -15,10 +15,11 @@ import NinthModal from './UploadData/NinthModal';
 import TenthModal from './UploadData/TenthModal';
 import EleventhModal from './UploadData/EleventhModal';
 import UploadFiles from './UploadData/UploadFiles';
+import { SERVER_HOST } from '../constants';
 
 
 
-const UploadData = ({firstModal, firstModalSeter, user}) => {
+const UploadData = ({firstModal, firstModalSeter, user, ModalPushFiles, setModalPushFiles}) => {
     const [Modal2, setModal2] = useState(false);
     const [Modal3, setModal3] = useState(false);
     const [Modal4, setModal4] = useState(false);
@@ -30,13 +31,12 @@ const UploadData = ({firstModal, firstModalSeter, user}) => {
     const [Modal10, setModal10] = useState(false);
     const [Modal11, setModal11] = useState(false);
     const [pushedSample, setPushedSample] = useState('');
-    const [ModalPushFiles, setModalPushFiles] = useState(false);
     const [form] = Form.useForm();
     const pushData = async() => {
         const values = await form.validateFields();
     
         await axios.post(
-          'https://biocom.uib.es/halodb/upload/sample/',
+          SERVER_HOST + 'upload/sample/',
           values,{
           headers: {
             'Content-Type': 'application/json;charset=UTF-8',
@@ -53,14 +53,15 @@ const UploadData = ({firstModal, firstModalSeter, user}) => {
           consoleLogger(response);
           setModal11(false)
           setModalPushFiles(true)
-          message.error(response.message)
+          consoleLogger(response.response)
+          message.error(response.response.data?response.response.data.message:response.message)
         })
       }
 
 
  return (
     <>
-    <FirstModal opened={Modal11} actualSeter={firstModalSeter} nextSeter={setModal2} form={form} />
+    <FirstModal opened={firstModal} actualSeter={firstModalSeter} nextSeter={setModal2} form={form} />
     <SecondModal opened={Modal2} previousSeter={firstModalSeter} actualSeter={setModal2} nextSeter={setModal3} form={form} />
     <ThirdModal opened={Modal3} previousSeter={setModal2} actualSeter={setModal3} nextSeter={setModal4} form={form} />
     <FourthModal opened={Modal4} previousSeter={setModal3} actualSeter={setModal4} nextSeter={setModal5} form={form} />
@@ -70,7 +71,7 @@ const UploadData = ({firstModal, firstModalSeter, user}) => {
     <EighthModal opened={Modal8} previousSeter={setModal7} actualSeter={setModal8} nextSeter={setModal9} form={form} />
     <NinthModal opened={Modal9} previousSeter={setModal8} actualSeter={setModal9} nextSeter={setModal10} form={form} />
     <TenthModal opened={Modal10} previousSeter={setModal9} actualSeter={setModal10} nextSeter={setModal11} form={form} />
-    <EleventhModal opened={firstModal} previousSeter={setModal10} actualSeter={setModal11} submit={pushData} form={form} />
+    <EleventhModal opened={Modal11} previousSeter={setModal10} actualSeter={setModal11} submit={pushData} form={form} />
     <UploadFiles opened={ModalPushFiles} seter={setModalPushFiles} user={user} sampleId={pushedSample} sampleIdSeter={setPushedSample} />
     </>
  )
