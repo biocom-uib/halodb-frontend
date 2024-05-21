@@ -112,20 +112,31 @@ const DataTable = ({data, checkedListSubmission, checkedListAuthorship, checkedL
 
             )
           }
-          if (dataIndex === 'name' && record['Sample'] === '<Sample 18>') {
-            return   (
-            <Popconfirm title="Sure to publish?" onConfirm={() => consoleLogger('publish', record)}>
-            <a href="#/">Publish</a>
-          </Popconfirm>
-            )
+          // consoleLogger(dataIndex, record, text);
+          if (dataIndex === 'action') {
+            if (record['action'] === 'publish') {
+              return(
+              <Popconfirm title="Sure to publish?" onConfirm={() => consoleLogger('publish', record)}>
+              <a href="#/">Publish</a>
+            </Popconfirm>
+              )
+            }
+          
+            return (<>{""}</>)
           }
           const items = [
-            { key: '1', label: <button onClick={() => consoleLogger('click')}>
-            {'File 1 - ' + record['Sample']}
+            { key: '1', label: <button onClick={() => consoleLogger(record['pgenes'])}>
+            {'pgenes: ' + record['pgenesname']}
           </button> },
-            { key: '2', label: <button onClick={() => consoleLogger('click')}>
-            {'File 2 - ' + record['Sample']}
+            { key: '2', label: <button onClick={() => consoleLogger(record['rreads'])}>
+            {'rreads; ' + record['rrname']}
           </button> },
+            { key: '3', label: <button onClick={() => consoleLogger(record['assembled'])}>
+            {'assembled; ' + record['assname']}
+            </button> },
+            { key: '4', label: <button onClick={() => consoleLogger(record['treads'])}>
+            {'treads; ' + record['trname']}
+            </button> },
           ];
           if (dataIndex === 'files') {
             return(
@@ -168,6 +179,7 @@ const DataTable = ({data, checkedListSubmission, checkedListAuthorship, checkedL
         pagination={{ defaultPageSize: 10, showSizeChanger: true, pageSizeOptions: ['10', '20', '30']}}
         bordered
         dataSource={data}>
+      <Column title="action" dataIndex="action" key="action" width="200" {...getColumnSearchProps("action")} />
      <ColumnGroup title="Information on the submission" hidden={hidden['Submission']} >
       <Column title="id" dataIndex="id" key="id" width="2000" hidden={!checkedListSubmission.includes("id")} {...getColumnSearchProps("id")} />
       <Column title="created" dataIndex="created" key="created" hidden={!checkedListSubmission.includes("created")} {...getColumnSearchProps("created")}/>

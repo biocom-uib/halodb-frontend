@@ -189,7 +189,8 @@ interface DataType {
   sequrl?: string,
   strccol?: string,
   Sample?: string,
-  files?: string[]
+  files?: string[],
+  action?: string,
   }
 
 type DataIndex = keyof DataType;

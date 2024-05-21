@@ -50,13 +50,12 @@ const Home = () => {
 
   const handleData = (data) => {
     consoleLogger(data);
-    const rows = data['by_owner'];
+    
 
-    rows.forEach(element => {
-      element['name'] = element['Sample'];
-      element['files'] = 'files';
+    data.forEach(element => {
+      element['action'] = element['access_mode'] === 'readwrite'? 'publish': '';
     });
-    setData(data['by_owner']);
+    setData(data);
   }
   const getData = async() => {
     const config = {
