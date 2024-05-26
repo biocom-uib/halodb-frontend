@@ -2,9 +2,6 @@
 	"folders": [
 		{
 			"path": "../../../.."
-		},
-		{
-			"path": "../../../../../../Projects/CoinPanel/cp-institutional-frontend"
 		}
 	],
 	"settings": {}

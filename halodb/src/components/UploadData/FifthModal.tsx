@@ -1,14 +1,26 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
-import { Button, Input, Modal, Form, Slider} from 'antd';
+import { Button, Input, Modal, Form, Slider, Select} from 'antd';
 import { modalHeight, modalWidth } from '../../constants';
+import { get_table } from '../../utils/get_tables';
+import { consoleLogger } from '../../utils/logger';
 
 const FifthModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
+  const [options, setOptions] = useState([])
   const nextPage = async () => {
       await form.validateFields();
       actualSeter(false);
       nextSeter(true)
   }
+  useEffect(() => {
+    async function getOptions() {
+        const options = await get_table('method');
+        setOptions(options);
+    }
+    getOptions();
+ }, [])
+
+  consoleLogger('options 5Modal', options);
   return (
   <Modal
   title="Upload data (5/15)"
@@ -55,7 +67,7 @@ const FifthModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
       name="method"
       label="Method used to estimate completeness and contamination"
       >
-      <Input />
+      <Select defaultValue=""  options={options}/>
       </Form.Item>
       <Form.Item
       name="gsiz"

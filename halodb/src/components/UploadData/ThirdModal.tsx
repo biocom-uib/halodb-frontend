@@ -43,7 +43,7 @@ const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
       name="cult"
       label="Cultered"
       >
-      <Switch />
+      <Switch defaultChecked={true}/>
       </Form.Item>
       <Form.Item
       name="koma"
@@ -55,7 +55,7 @@ const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
       name="typn"
       label="Designed type material for a new taxon?"
       >
-      <Switch />
+      <Switch defaultChecked={true}/>
       </Form.Item>
       <Form.Item
       name="otyp"
@@ -73,7 +73,7 @@ const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
       name="ccsu"
       label="Submitted to culture collection"
       >
-      <Switch />
+      <Switch defaultChecked={true}/>
       </Form.Item>
       <Form.Item
       name="type"

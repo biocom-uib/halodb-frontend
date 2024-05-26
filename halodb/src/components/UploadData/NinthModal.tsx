@@ -64,7 +64,7 @@ const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
       >
       <Input />
       </Form.Item>
-      <Form.Item
+      {/* <Form.Item
       name="salc"
       label="Salinity category"
       >
@@ -83,7 +83,7 @@ const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
         { value: 'Saline water', label: 'Saline water' },
         { value: 'Brine', label: 'Brine' },
         ]}/>
-      </Form.Item>
+      </Form.Item> */}
       </Form>
     </Modal>
     )    

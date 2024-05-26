@@ -44,7 +44,7 @@ const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
       name="bios"
       label="Biosafety level"
       >
-      <Select defaultValue="BSL-1"  options={[
+      <Select defaultValue=""  options={[
         { value: 'BSL-1', label: 'BSL-1' },
         { value: 'BSL-2', label: 'BSL-2' },
         { value: 'BSL-3', label: 'BSL-3' },

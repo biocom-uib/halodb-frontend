@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Button, Input, Modal, Form, Select, Slider } from 'antd';
 import { modalHeight, modalWidth } from '../../constants';
+import { get_table } from '../../utils/get_tables';
+import { consoleLogger } from '../../utils/logger';
+
 
 const FormModal = ({opened, previousSeter, actualSeter, submit, form}) => {
+  const [optionsFraction, setOptionsFraction] = useState([])
+  const [optionsTarget, setOptionsTarget] = useState([])
+  useEffect(() => {
+    async function getOptions() {
+        const optionsF = await get_table('fraction');
+        setOptionsFraction(optionsF);
+        const optionsT = await get_table('target');
+        setOptionsTarget(optionsT)
+    }
+    getOptions();
+ }, [])
+ consoleLogger('options 11Modal', optionsFraction, optionsTarget);
 
   return (
   <Modal
@@ -40,42 +55,13 @@ const FormModal = ({opened, previousSeter, actualSeter, submit, form}) => {
       name="sfrac"
       label="Sequenced fraction"
       >
-      <Select defaultValue="Genome"  options={[
-        { value: 'Genome', label: 'Genome' },
-        { value: 'MAG', label: 'MAG' },
-        { value: 'SAG', label: 'SAG' },
-        { value: 'Virus', label: 'Virus' },
-        { value: 'Virome', label: 'Virome' },
-        { value: 'Transcriptome', label: 'Transcriptome' },
-        { value: 'Exome', label: 'Exome' },
-        { value: 'Microbiome', label: 'Microbiome' },
-        { value: 'Epigenome', label: 'Epigenome' },
-        { value: 'Metabolome', label: 'Metabolome' },
-        { value: 'Meta-epigenome', label: 'Meta-epigenome' },
-        { value: 'Metagenome', label: 'Metagenome' },
-        { value: 'Metaproteome', label: 'Metaproteome' },
-        { value: 'Metavirome', label: 'Metavirome' },
-        { value: 'Metatranscriptome', label: 'Metatranscriptome' },
-        { value: 'Targeted Sequencing', label: 'Targeted Sequencing' },
-        { value: 'Chromatin Conformation Capture', label: 'Chromatin Conformation Capture' },
-        { value: 'Phageome', label: 'Phageome' },
-        { value: 'Plasmids and Mobile Genetic Elements', label: 'Plasmids and Mobile Genetic Elements' },
-        ]}/>
+      <Select defaultValue=""  options={optionsFraction}/>
       </Form.Item>
       <Form.Item
       name="target"
       label="Target nucleic acids"
       >
-      <Select defaultValue="gDNA"  options={[
-        { value: 'gDNA', label: 'gDNA' },
-        { value: 'Exome', label: 'Exome' },
-        { value: 'mtDNA', label: 'mtDNA' },
-        { value: 'cpDNA', label: 'cpDNA' },
-        { value: 'mRNA', label: 'mRNA' },
-        { value: 'tRNA', label: 'tRNA' },
-        { value: 'ncRNA', label: 'ncRNA' },
-        { value: 'RNA', label: 'RNA' },
-      ]}/>
+      <Select defaultValue=""  options={optionsTarget}/>
       </Form.Item>
 
 

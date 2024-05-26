@@ -45,7 +45,7 @@ const FormModal = ({opened, seter, user, sampleId, sampleIdSeter}) => {
 			}
       data.append('input_type', options.data['input_type'])
       data.append('sampleId', sampleId)
-			axios.post(options.action + sampleId + '/' + options.data['input_type'], data, config).then((res: any) => {
+			axios.put(options.action + sampleId + '/' + options.data['input_type'], data, config).then((res: any) => {
 				options.onSuccess(res.data, options.file)
 			}).catch((err: Error) => {
 				console.log(err)

@@ -3,18 +3,21 @@ import React, { useState, useRef } from 'react';
 import { SearchOutlined, DownOutlined } from '@ant-design/icons';
 import type { FilterDropdownProps } from 'antd/es/table/interface';
 import Highlighter from 'react-highlight-words';
-import { Space, Button, Table, Input, GetRef, TableColumnType, Popconfirm, Dropdown, Tag } from 'antd';
+import { Space, Button, Table, Input, GetRef, TableColumnType, Popconfirm, Dropdown, Tag, Typography, Checkbox } from 'antd';
 
 import type { DataType, DataIndex } from '../data/data2';
 import { consoleLogger } from '../utils/logger';
+import { get_file, publish_sample } from '../utils/get_tables';
 
 type InputRef = GetRef<typeof Input>;
 const { Column, ColumnGroup } = Table;
+const {Text} = Typography;
 
-const DataTable = ({data, checkedListSubmission, checkedListAuthorship, checkedListMaterial, checkedListGene, checkedListOrigin,
+const DataTable = ({data, user, checkedListSubmission, checkedListAuthorship, checkedListMaterial, checkedListGene, checkedListOrigin,
   checkedListMetabolic, checkedListOrganism, checkedListSample, checkedListSequencing, checkedListFiles}) => {
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
+    const [filterTemperature, setFilterTemperature] = useState([]);
     const searchInput = useRef<InputRef>(null);
 
     const handleSearch = (
@@ -31,9 +34,15 @@ const DataTable = ({data, checkedListSubmission, checkedListAuthorship, checkedL
         setSearchText('');
       };
 
+    const optionsTemperature = [
+      {label: 'prova 2', value: 'prova 2'},
+      {label: 'CR30', value: 'CR30'},
+    ]
 
     const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<DataType> => ({
-        filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
+        filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => {
+          
+          return (
           <div style={{ padding: 8 }} onKeyDown={(e) => e.stopPropagation()}>
             <Input
               ref={searchInput}
@@ -82,15 +91,20 @@ const DataTable = ({data, checkedListSubmission, checkedListAuthorship, checkedL
               </Button>
             </Space>
           </div>
-        ),
+        )},
         filterIcon: (filtered: boolean) => (
           <SearchOutlined style={{ color: filtered ? '#1677ff' : undefined }} />
         ),
-        onFilter: (value, record) =>
-          record[dataIndex]
+        onFilter: (value, record) => {
+          if (typeof(record[dataIndex]) == 'number') {
+            return record[dataIndex] ? value ? value as number < record[dataIndex] : true : value ? false : true;
+          }
+          const returnValue = record[dataIndex]? record[dataIndex]
             .toString()
             .toLowerCase()
-            .includes((value as string).toLowerCase()),
+            .includes((value as string).toLowerCase()): value ? false : true;
+          return returnValue
+        },
         onFilterDropdownOpenChange: (visible) => {
           // if (visible) {
           //     setTimeout(() => searchInput.current!.select(), 100);
@@ -116,7 +130,7 @@ const DataTable = ({data, checkedListSubmission, checkedListAuthorship, checkedL
           if (dataIndex === 'action') {
             if (record['action'] === 'publish') {
               return(
-              <Popconfirm title="Sure to publish?" onConfirm={() => consoleLogger('publish', record)}>
+              <Popconfirm title="Sure to publish?" onConfirm={async () => await publish_sample(record['id'], user)}>
               <a href="#/">Publish</a>
             </Popconfirm>
               )
@@ -125,16 +139,16 @@ const DataTable = ({data, checkedListSubmission, checkedListAuthorship, checkedL
             return (<>{""}</>)
           }
           const items = [
-            { key: '1', label: <button onClick={() => consoleLogger(record['pgenes'])}>
+            { key: '1', label: <button onClick={async () => await get_file('pgenes', record['id'], record['pgenesname'], user)}>
             {'pgenes: ' + record['pgenesname']}
           </button> },
-            { key: '2', label: <button onClick={() => consoleLogger(record['rreads'])}>
+            { key: '2', label: <button onClick={async () => await get_file('rreads', record['id'], record['rrname'], user)}>
             {'rreads; ' + record['rrname']}
           </button> },
-            { key: '3', label: <button onClick={() => consoleLogger(record['assembled'])}>
+            { key: '3', label: <button onClick={async () => await get_file('assembled', record['id'], record['assname'], user)}>
             {'assembled; ' + record['assname']}
             </button> },
-            { key: '4', label: <button onClick={() => consoleLogger(record['treads'])}>
+            { key: '4', label: <button onClick={async () => await get_file('treads', record['id'], record['trname'], user)}>
             {'treads; ' + record['trname']}
             </button> },
           ];
@@ -157,7 +171,15 @@ const DataTable = ({data, checkedListSubmission, checkedListAuthorship, checkedL
           ) : (
             text
           );
-          return returnValue;
+          return (
+            <Text
+            style={ { width: 100 }}
+            ellipsis={{ tooltip: returnValue }}
+          >
+            {returnValue}
+          </Text>
+          );
+        
         },
       });
       const hidden = {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button, Input, Modal, Form } from 'antd';
+import { Button, Input, InputNumber, Modal, Form } from 'antd';
 import { modalHeight, modalWidth } from '../../constants';
 
 const FormModal = ({opened, actualSeter, nextSeter, form}) => {
@@ -54,7 +54,7 @@ const FormModal = ({opened, actualSeter, nextSeter, form}) => {
       name="ssize"
       label="Sample size"
       >
-      <Input/>
+      <InputNumber/>
       </Form.Item>
       <Form.Item
       name="ssizeunit"

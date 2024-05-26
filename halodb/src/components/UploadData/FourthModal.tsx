@@ -86,7 +86,7 @@ const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
       name="gsta"
       label="Genome status"
       >
-      <Select defaultValue="COMPLETE"  options={[
+      <Select defaultValue=""  options={[
         { value: 'COMPLETE', label: 'COMPLETE' },
         { value: 'PARTIAL', label: 'PARTIAL' },
         { value: 'DRAFT', label: 'DRAFT' }]}/>

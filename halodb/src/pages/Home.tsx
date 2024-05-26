@@ -207,9 +207,9 @@ const Home = () => {
       <Button onClick={() => openUploadPushFiles()}  type="primary" style={{margin: 10}}>
         Upload Files
       </Button>
-      <Button onClick={() => openHandleGroups()}  type="primary" style={{margin: 10}}>
+      {/* <Button onClick={() => openHandleGroups()}  type="primary" style={{margin: 10}}>
         Groups
-      </Button>
+      </Button> */}
       
       <ColumnsSelector opened={modal} setModal={setModal} 
           checkedListSubmission={checkedListSubmission} setCheckedListSubmission={setCheckedListSubmission}
@@ -229,7 +229,7 @@ const Home = () => {
 
       <Group opened={modalHandleGroups} onClose={() => setModalHandleGroups(false)}/>
 
-      <DataTable data={data} checkedListSubmission={checkedListSubmission}
+      <DataTable data={data} user={user} checkedListSubmission={checkedListSubmission}
                 checkedListAuthorship={checkedListAuthorship}
                 checkedListMaterial={checkedListMaterial}
                 checkedListGene={checkedListGene}

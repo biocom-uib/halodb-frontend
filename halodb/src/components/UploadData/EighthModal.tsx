@@ -75,7 +75,7 @@ const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
       >
       <Input />
       </Form.Item>
-      <Form.Item
+      {/* <Form.Item
       name="temc"
       label="Temperature category"
       >
@@ -86,7 +86,7 @@ const FormModal = ({opened, previousSeter, actualSeter, nextSeter, form}) => {
         { value: 'Thermophiles', label: 'Thermophiles' },
         { value: 'Hyperthermophiles', label: 'Hyperthermophiles' },
         ]}/>
-      </Form.Item>
+      </Form.Item> */}
       <Form.Item
       name="phop"
       label="pH optimum"
