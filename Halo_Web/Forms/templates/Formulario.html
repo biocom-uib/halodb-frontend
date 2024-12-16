@@ -1,32 +1,58 @@
 {% load static%}
 <!DOCTYPE html>
 <html>
-  <head> </head>
+  <head>
+    {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
+  </head>
   <body>
     <header>
-      <h1>Halo Database Insert Section</h1>
+      <h1 class="text-center">Halo Database Insert Section</h1>
       <nav>
-        <button onclick="">Cargar anterior</button>
+        <button onclick="" class="btn btn-primary">Cargar anterior</button>
       </nav>
     </header>
     <main>
       <h2>Etapa Actual: <span id="Etapa">Sample</span></h2>
       <h3 id="ruta">Sample</h3>
-      <div id="contenedor">
+      <div id="contenedor" class="container">
         <form id="Sample">
           <label for="name">Nombre</label>
-          <input type="text" name="name" id="name" />
+          <input type="text" name="name" id="name" class="form-control" />
           <label for="stype">Descripción</label>
-          <input type="text" name="stype" id="stype" />
+          <input type="text" name="stype" id="stype" class="form-control" />
           <label for="ssize">Tamaño</label>
-          <input type="number" name="ssize" id="ssize" step="0.01" min="0.01" />
+          <input
+            type="number"
+            name="ssize"
+            id="ssize"
+            class="form-control"
+            step="0.01"
+            min="0.01"
+          />
           <p>Tipo de medida:</p>
           <label for="ssizetype_l">Volumen(l)</label>
-          <input type="radio" name="ssizetype_l" id="ssizetype_l" value="l" />
+          <input
+            type="radio"
+            name="ssizetype"
+            id="ssizetype_l"
+            class="form-check-input"
+            value="l"
+          />
           <label for="ssizetype_m">Masa(g)</label>
-          <input type="radio" name="ssizetype_m" id="ssizetype_m" value="m" />
+          <input
+            type="radio"
+            name="ssizetype"
+            id="ssizetype_m"
+            class="form-check-input"
+            value="m"
+          />
           <label for="ssizeunit">Unidad</label>
-          <select name="ssizeunit" id="ssizeunit" form="Sample">
+          <select
+            name="ssizeunit"
+            id="ssizeunit"
+            form="Sample"
+            class="form-control"
+          >
             <option value="T">T</option>
             <option value="G">G</option>
             <option value="M">M</option>
@@ -42,11 +68,18 @@
             <option value="p">p</option>
           </select>
           <label for="keywords">Infromación adicional</label>
-          <input type="text" name="keywords" id="keywords" />
+          <input
+            type="text"
+            name="keywords"
+            id="keywords"
+            class="form-control"
+            aria-label="Large"
+          />
           <input
             type="submit"
             id="submit"
             value="Siguiente"
+            class="btn btn-primary"
             onclick="CPSample()"
           />
         </form>
