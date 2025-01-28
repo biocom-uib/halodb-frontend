@@ -1,0 +1,307 @@
+<!--
+Is this the designed type material for a new taxon?                         typn                    BOOLEAN
+Strin,MAG or SAG from which the reference taxon was obtainde                otyp                    VARCHAR(30)
+NCBI Taxonomy number material type                                          txnt                    INT
+If cultured, has been submitted to culture collection?                      ccsu                    BOOLEAN
+Designated type strain name/MAG/SAG (if TYPN)                               type                    VARCHAR(30)
+Strain collection numbers                                                   coln                    VARCHAR(80)
+16S rRNA gene accession number                                              sixteensr               VARCHAR(20)
+Sequencing depth (Isolates/MAG)                                             seqdpeth                FLOAT
+23S rRNA gene accession number                                              twentythreesr           VARCHAR(20)
+ALternative housekeeping genes                                              hkgn                    INT
+genome/MAG/SAG accession number                                             binn                    VARCHAR(20)
+Genome status                                                               gsta                    ENUM('complete','partial','draft')
+Percentage of the genome already processed.                                 completeness            FLOAT
+Proportion of reads not belonging to MAGs detected.                         contamination           FLOAT
+Method used to estimate the integrity and contamination of the sample.      ?method_id              INT
+Estimated or actual genome/metagenome size. Unit bp (base pairs)            gsiz                    INT
+Molar % of Guanine and Cytosine in DNA                                      ggcm                    FLOAT
+Assembly software                                                           asem                    INT
+Used Parameters in Assemby Software                                         asftparams              VARCHAR(80)
+Biosafety level                                                             bios                    ENUM('BSL-1','BSL-2','BSL-3','BSL-4')
+With which host does it interact?                                           host                    VARCHAR(100)
+Known pathogenicity                                                         path                    VARCHAR(100)
+UUID Assembled file                                                         assembled               VARCHAR(40)
+Name of original file containing the assembly                               assname                 VARCHAR(100)
+Assembly size in base pairs                                                 asize                   INT
+Number of contigs                                                           contignumber            INT
+-->
+<form id="Sample">
+  <!-- Is this the designed type material for a new taxon? -->
+  <div class="mb-3 row">
+    <label for="typn" class="col-sm-4 col-form-label"
+      >Is this the designed type material for a new taxon?</label
+    >
+    <div class="col-sm-8">
+      <input type="checkbox" id="typn" />
+    </div>
+  </div>
+
+  <!-- Strain, MAG or SAG from which the reference taxon was obtained -->
+  <div class="mb-3 row">
+    <label for="otyp" class="col-sm-4 col-form-label"
+      >Strain, MAG or SAG from which the reference taxon was obtained</label
+    >
+    <div class="col-sm-8">
+      <input type="text" maxlength="30" class="form-control" id="otyp" />
+    </div>
+  </div>
+
+  <!-- NCBI Taxonomy number material type -->
+  <div class="mb-3 row">
+    <label for="txnt" class="col-sm-4 col-form-label"
+      >NCBI Taxonomy number material type</label
+    >
+    <div class="col-sm-8">
+      <input type="number" class="form-control" id="txnt" />
+    </div>
+  </div>
+
+  <!-- If cultured, has been submitted to culture collection? -->
+  <div class="mb-3 row">
+    <label for="ccsu" class="col-sm-4 col-form-label"
+      >If cultured, has been submitted to culture collection?</label
+    >
+    <div class="col-sm-8">
+      <input type="checkbox" id="ccsu" />
+    </div>
+  </div>
+
+  <!-- Designated type strain name/MAG/SAG (if TYPN) -->
+  <div class="mb-3 row">
+    <label for="type" class="col-sm-4 col-form-label"
+      >Designated type strain name/MAG/SAG (if TYPN)</label
+    >
+    <div class="col-sm-8">
+      <input type="text" maxlength="30" class="form-control" id="type" />
+    </div>
+  </div>
+
+  <!-- Strain collection numbers -->
+  <div class="mb-3 row">
+    <label for="coln" class="col-sm-4 col-form-label"
+      >Strain collection numbers</label
+    >
+    <div class="col-sm-8">
+      <input type="text" maxlength="80" class="form-control" id="coln" />
+    </div>
+  </div>
+
+  <!-- 16S rRNA gene accession number -->
+  <div class="mb-3 row">
+    <label for="sixteensr" class="col-sm-4 col-form-label"
+      >16S rRNA gene accession number</label
+    >
+    <div class="col-sm-8">
+      <input type="text" maxlength="20" class="form-control" id="sixteensr" />
+    </div>
+  </div>
+
+  <!-- Sequencing depth (Isolates/MAG) -->
+  <div class="mb-3 row">
+    <label for="seqdpeth" class="col-sm-4 col-form-label"
+      >Sequencing depth (Isolates/MAG)</label
+    >
+    <div class="col-sm-8">
+      <input type="number" step="any" class="form-control" id="seqdpeth" />
+    </div>
+  </div>
+
+  <!-- 23S rRNA gene accession number -->
+  <div class="mb-3 row">
+    <label for="twentythreesr" class="col-sm-4 col-form-label"
+      >23S rRNA gene accession number</label
+    >
+    <div class="col-sm-8">
+      <input
+        type="text"
+        maxlength="20"
+        class="form-control"
+        id="twentythreesr"
+      />
+    </div>
+  </div>
+
+  <!-- Alternative housekeeping genes -->
+  <div class="mb-3 row">
+    <label for="hkgn" class="col-sm-4 col-form-label"
+      >Alternative housekeeping genes</label
+    >
+    <div class="col-sm-8">
+      <input type="number" class="form-control" id="hkgn" />
+    </div>
+  </div>
+
+  <!-- Genome/MAG/SAG accession number -->
+  <div class="mb-3 row">
+    <label for="binn" class="col-sm-4 col-form-label"
+      >Genome/MAG/SAG accession number</label
+    >
+    <div class="col-sm-8">
+      <input type="text" maxlength="20" class="form-control" id="binn" />
+    </div>
+  </div>
+
+  <!-- Genome status -->
+  <div class="mb-3 row">
+    <label for="gsta" class="col-sm-4 col-form-label">Genome status</label>
+    <div class="col-sm-8">
+      <select class="form-select" id="gsta">
+        <option value="complete">Complete</option>
+        <option value="partial">Partial</option>
+        <option value="draft">Draft</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Percentage of the genome already processed -->
+  <div class="mb-3 row">
+    <label for="completeness" class="col-sm-4 col-form-label"
+      >Percentage of the genome already processed</label
+    >
+    <div class="col-sm-8">
+      <input type="number" step="any" class="form-control" id="completeness" />
+    </div>
+  </div>
+
+  <!-- Proportion of reads not belonging to MAGs detected -->
+  <div class="mb-3 row">
+    <label for="contamination" class="col-sm-4 col-form-label"
+      >Proportion of reads not belonging to MAGs detected</label
+    >
+    <div class="col-sm-8">
+      <input type="number" step="any" class="form-control" id="contamination" />
+    </div>
+  </div>
+
+  <!-- Method used to estimate the integrity and contamination of the sample -->
+  <div class="mb-3 row">
+    <label for="method_id" class="col-sm-4 col-form-label"
+      >Method used to estimate integrity and contamination</label
+    >
+    <div class="col-sm-8">
+      <input type="number" class="form-control" id="method_id" />
+    </div>
+  </div>
+
+  <!-- Estimated or actual genome/metagenome size -->
+  <div class="mb-3 row">
+    <label for="gsiz" class="col-sm-4 col-form-label"
+      >Estimated or actual genome/metagenome size (bp)</label
+    >
+    <div class="col-sm-8">
+      <input type="number" class="form-control" id="gsiz" />
+    </div>
+  </div>
+
+  <!-- Molar % of Guanine and Cytosine in DNA -->
+  <div class="mb-3 row">
+    <label for="ggcm" class="col-sm-4 col-form-label"
+      >Molar % of Guanine and Cytosine in DNA</label
+    >
+    <div class="col-sm-8">
+      <input type="number" step="any" class="form-control" id="ggcm" />
+    </div>
+  </div>
+
+  <!-- Assembly software -->
+  <div class="mb-3 row">
+    <label for="asem" class="col-sm-4 col-form-label">Assembly software</label>
+    <div class="col-sm-8">
+      <input type="number" class="form-control" id="asem" />
+    </div>
+  </div>
+
+  <!-- Used Parameters in Assembly Software -->
+  <div class="mb-3 row">
+    <label for="asftparams" class="col-sm-4 col-form-label"
+      >Used Parameters in Assembly Software</label
+    >
+    <div class="col-sm-8">
+      <input type="text" maxlength="80" class="form-control" id="asftparams" />
+    </div>
+  </div>
+
+  <!-- Biosafety level -->
+  <div class="mb-3 row">
+    <label for="bios" class="col-sm-4 col-form-label">Biosafety level</label>
+    <div class="col-sm-8">
+      <select class="form-select" id="bios">
+        <option value="BSL-1">BSL-1</option>
+        <option value="BSL-2">BSL-2</option>
+        <option value="BSL-3">BSL-3</option>
+        <option value="BSL-4">BSL-4</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- With which host does it interact? -->
+  <div class="mb-3 row">
+    <label for="host" class="col-sm-4 col-form-label"
+      >With which host does it interact?</label
+    >
+    <div class="col-sm-8">
+      <input type="text" maxlength="100" class="form-control" id="host" />
+    </div>
+  </div>
+
+  <!-- Known pathogenicity -->
+  <div class="mb-3 row">
+    <label for="path" class="col-sm-4 col-form-label"
+      >Known pathogenicity</label
+    >
+    <div class="col-sm-8">
+      <input type="text" maxlength="100" class="form-control" id="path" />
+    </div>
+  </div>
+
+  <!-- UUID Assembled file -->
+  <div class="mb-3 row">
+    <label for="assembled" class="col-sm-4 col-form-label"
+      >UUID Assembled file</label
+    >
+    <div class="col-sm-8">
+      <input type="text" maxlength="40" class="form-control" id="assembled" />
+    </div>
+  </div>
+
+  <!-- Name of original file containing the assembly -->
+  <div class="mb-3 row">
+    <label for="assname" class="col-sm-4 col-form-label"
+      >Name of original file containing the assembly</label
+    >
+    <div class="col-sm-8">
+      <input type="text" maxlength="100" class="form-control" id="assname" />
+    </div>
+  </div>
+
+  <!-- Assembly size in base pairs -->
+  <div class="mb-3 row">
+    <label for="asize" class="col-sm-4 col-form-label"
+      >Assembly size in base pairs</label
+    >
+    <div class="col-sm-8">
+      <input type="number" class="form-control" id="asize" />
+    </div>
+  </div>
+
+  <!-- Number of contigs -->
+  <div class="mb-3 row">
+    <label for="contignumber" class="col-sm-4 col-form-label"
+      >Number of contigs</label
+    >
+    <div class="col-sm-8">
+      <input type="number" class="form-control" id="contignumber" />
+    </div>
+  </div>
+
+  <!-- Submit button -->
+  <div>
+    <input
+      type="submit"
+      value="Next Step"
+      class="btn btn-primary"
+      onclick="CPSample()"
+    />
+  </div>
+</form>

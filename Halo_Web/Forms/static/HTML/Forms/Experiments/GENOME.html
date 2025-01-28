@@ -1,0 +1,56 @@
+<!-- TAMBIÉN SIRVE PARA CONTIGS_VIRUS y GENOME
+Kind of Material                                                        komas(GENOME VIRUS)                                 ENUM('METAGENOME', 'METATRANSCRIPTOME', 'METAVIROME', 'GENOME PROCARIOTA', 'GENOME VIRUS', 'PROTEOMICS', 'SINGLE CELL GENOMICS', 'PLASMID')
+Is this the designed type material for a new taxon?                     typn                        BOOLEAN
+Strain or MAG or SAG from which the reference taxon was obtained        otyp                        VARCHAR(30)
+NCBI Taxonomy number material type                                          txnt                    INT
+If cultured, has been submitted to culture collection?                  ccsu(VI)                    BOOLEAN
+Designated type strain name/MAG/SAG                                     type                        VARCHAR(30)
+Strain collection numbers                                                   coln                    VARCHAR(80)
+16S rRNA gene accession number                                          sixteensr                   VARCHAR(20)  
+Sequencing depth                                                        seqdepth                    FLOAT
+23S rRNA gene accession number                                          twentythreesr               VARCHAR(20)
+ALternative housekeeping genes                                              hkgn                    INT
+MAG accession number(RefSeq/ENA)                                        gare(MV)                    VARCHAR(20)
+garem(VI)                   ?
+Genome status                                                           gsta(MV)                    ENUM("complete","partial","draft")
+Completness                                                             completeness                FLOAT
+Contaminations                                                          contamination               FLOAT
+Method used to estimate the integrity and contamination of the sample   method(MV)                  INT
+Estimated or actual genome/metagenome size. Unit bp (base pairs)        gsiz(METAGENOME),                                   INT
+Molar percentage of Guanine and Cytosine in DNA.                        ggcm(MV)                    FLOAT
+DNA extraction method                                                   dnae                        INT
+Software used for assembly                                              asem(VI)                    INT
+Parameters used with asem                                               asftparams(VI)              VARCHAR(80)
+Sequencing Technology                                                   seqt(VI)                    INT
+asft                        ?
+Date of isolation                                                       dati(VI)                    DATE
+tems                        FLOAT
+phsa                        FLOAT
+sals                        FLOAT
+emet                        VARCHAR(500)
+orel                        INT
+elac                        VARCHAR(40)
+temo                        FLOAT
+teml                        FLOAT
+temh                        FLOAT
+temc                        FLOAT=temo??
+phop                        FLOAT
+phlo                        FLOAT
+phhi                        FLOAT
+phca                        FLOAT=phop??
+salo                        FLOAT
+sall                        FLOAT
+salh                        FLOAT
+salw                        VARCHAR(80)
+bios(VI)                    ENUM("BSL-1","BSL-2","BSL-3","BSL-4")
+bins                        INT*[no GEN]
+bior(VI)                    VARCHAR(100)
+host(VI)                    VARCHAR(100)
+path                        VARCHAR(100)
+extr                        VARCHAR (500)
+assembled(VI)               VARCHAR(40)
+assname(VI)                 VARCHAR(10)
+asize(VI)                   INT
+contignumber(VI)            INT
+strccol                     INT
+-->

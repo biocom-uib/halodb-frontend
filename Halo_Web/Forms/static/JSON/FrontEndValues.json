@@ -1,0 +1,39 @@
+{
+  "path": "/static/HTML/Forms/",
+  "table": [
+    {
+      "name": "Raw Read",
+      "path": "Experiments/RAW_READ.html",
+      "maxSteps": "4",
+      "steps": []
+    },
+    {
+      "name": "Trimmed Read",
+      "path": "Experiments/TRIMMED_READ.html"
+    },
+    {
+      "name": "Plasmid",
+      "path": "Experiments/PLASMID.html"
+    },
+    {
+      "name": "Peptides",
+      "path": "Experiments/PEPTIDES.html"
+    },
+    {
+      "name": "Mags",
+      "path": "Experiments/MAGS.html"
+    },
+    {
+      "name": "Genome",
+      "path": "Experiments/GENOME.html"
+    },
+    {
+      "name": "Contigs",
+      "path": "Experiments/CONTIGS.html"
+    },
+    {
+      "name": "Contigs Virus",
+      "path": "Experiments/CONTIGS_VIRUS.html"
+    }
+  ]
+}
