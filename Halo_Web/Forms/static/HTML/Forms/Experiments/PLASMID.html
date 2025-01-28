@@ -1,0 +1,110 @@
+<!--
+ALternative housekeeping genes                  hkgn                INT
+Molar % of Guanine and Cytosine in DNA          ggcm                FLOAT
+Assembly software                               asem                INT
+Used Parameters in Assemby Software             asftparams          VARCHAR(80)
+Sequencing Technology                           seqt                INT
+UUID Assembled file                             assembled           VARCHAR(40)
+Name of original file containing the assembly   assname             VARCHAR(100)
+Assembly size in base pairs                     asize               INT
+Number of contigs                               contignumber        INT
+-->
+<form id="Sample">
+  <!-- Alternative housekeeping genes -->
+  <div class="mb-3 row">
+    <label for="hkgn" class="col-sm-4 col-form-label"
+      >Alternative housekeeping genes</label
+    >
+    <div class="col-sm-8">
+      <input type="number" class="form-control" id="hkgn" />
+    </div>
+  </div>
+
+  <!-- Molar % of Guanine and Cytosine in DNA -->
+  <div class="mb-3 row">
+    <label for="ggcm" class="col-sm-4 col-form-label"
+      >Molar % of Guanine and Cytosine in DNA</label
+    >
+    <div class="col-sm-8">
+      <input type="number" step="any" class="form-control" id="ggcm" />
+    </div>
+  </div>
+
+  <!-- Assembly software -->
+  <div class="mb-3 row">
+    <label for="asem" class="col-sm-4 col-form-label">Assembly software</label>
+    <div class="col-sm-8">
+      <input type="number" class="form-control" id="asem" />
+    </div>
+  </div>
+
+  <!-- Used Parameters in Assembly Software -->
+  <div class="mb-3 row">
+    <label for="asftparams" class="col-sm-4 col-form-label"
+      >Used Parameters in Assembly Software</label
+    >
+    <div class="col-sm-8">
+      <input type="text" maxlength="80" class="form-control" id="asftparams" />
+    </div>
+  </div>
+
+  <!-- Sequencing Technology -->
+  <div class="mb-3 row">
+    <label for="seqt" class="col-sm-4 col-form-label"
+      >Sequencing Technology</label
+    >
+    <div class="col-sm-8">
+      <input type="number" class="form-control" id="seqt" />
+    </div>
+  </div>
+
+  <!-- UUID Assembled file -->
+  <div class="mb-3 row">
+    <label for="assembled" class="col-sm-4 col-form-label"
+      >UUID Assembled file</label
+    >
+    <div class="col-sm-8">
+      <input type="text" maxlength="40" class="form-control" id="assembled" />
+    </div>
+  </div>
+
+  <!-- Name of original file containing the assembly -->
+  <div class="mb-3 row">
+    <label for="assname" class="col-sm-4 col-form-label"
+      >Name of original file containing the assembly</label
+    >
+    <div class="col-sm-8">
+      <input type="text" maxlength="100" class="form-control" id="assname" />
+    </div>
+  </div>
+
+  <!-- Assembly size in base pairs -->
+  <div class="mb-3 row">
+    <label for="asize" class="col-sm-4 col-form-label"
+      >Assembly size in base pairs</label
+    >
+    <div class="col-sm-8">
+      <input type="number" class="form-control" id="asize" />
+    </div>
+  </div>
+
+  <!-- Number of contigs -->
+  <div class="mb-3 row">
+    <label for="contignumber" class="col-sm-4 col-form-label"
+      >Number of contigs</label
+    >
+    <div class="col-sm-8">
+      <input type="number" class="form-control" id="contignumber" />
+    </div>
+  </div>
+
+  <!-- Submit button -->
+  <div>
+    <input
+      type="submit"
+      value="Next Step"
+      class="btn btn-primary"
+      onclick="CPSample()"
+    />
+  </div>
+</form>

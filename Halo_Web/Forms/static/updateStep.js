@@ -1,13 +1,11 @@
 function updateStep() {
   var Etapa = document.getElementById("Etapa");
+  var SBS = document.getElementById("step-by-step");
   if (Etapa.innerHTML === "Sample") Etapa.innerHTML = "Metada";
-  var ruta = document.getElementById("ruta");
-  ruta.innerHTML =
-    ruta.innerHTML +
-    " =>" +
-    "<a href='#' id='" +
-    Etapa.innerHTML +
-    "'>" +
-    Etapa.innerHTML +
-    "</a>";
+  fetch("/static/HTML/Others/SVG_Active.html")
+    .then((response) => response.text())
+    .then((data) => {
+      SBS.innerHTML = SBS.data;
+    })
+    .catch((error) => console.error("Error al cargar el archivo:", error));
 }

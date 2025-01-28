@@ -1,0 +1,171 @@
+<!--
+Public?                                                                 is_public                                           BOOLEAN,
+Sample ID                                                               id                                                  INT,
+Experminent ID                                                          experimnent_id?                                     INT
+Date created                                                            created                                             DATETIME,
+Date of last update                                                     updated                                             DATETIME,
+User                                                                    user_id                                             INT,
+NCBI Taxonomy NUmber                                                    txnr                                                INT,
+It's cultured?                                                          cult                                                ENUM('cultures', 'uncultured')
+INSDC metagenome accesion number                                        meca(METAGENOME,METAVIROME,PRO,PL),                 VARCHAR(20)
+DNA extraction method                                                   dnae(METAG,METAVIROME,PRO,SC,PL),                   INT
+Raw Read UUID file                                                      rreads,                                             VARCHAR(40)
+Raw Read NCBI accession code                                            rreadacc                                            INT
+Name of the original file containing the raw reads                      rrname                                              VARCHAR(100)
+Number of raw reads                                                     rreadsnum                                           INT
+Number of base pairs of raw reads                                       rreaddbsp                                           INT
+-->
+<form id="Sample">
+  <!-- Public? -->
+  <div class="mb-3 row">
+    <label for="is_public" class="col-sm-4 col-form-label">Public?</label>
+    <div class="col-sm-8">
+      <input type="checkbox" id="is_public" />
+    </div>
+  </div>
+
+  <!-- Sample ID -->
+  <div class="mb-3 row">
+    <label for="id" class="col-sm-4 col-form-label">Sample ID</label>
+    <div class="col-sm-8">
+      <input type="number" class="form-control" id="id" />
+    </div>
+  </div>
+
+  <!-- Experiment ID -->
+  <div class="mb-3 row">
+    <label for="experiment_id" class="col-sm-4 col-form-label"
+      >Experiment ID</label
+    >
+    <div class="col-sm-8">
+      <input type="number" class="form-control" id="experiment_id" />
+    </div>
+  </div>
+
+  <!-- Date created -->
+  <div class="mb-3 row">
+    <label for="created" class="col-sm-4 col-form-label">Date created</label>
+    <div class="col-sm-8">
+      <input type="datetime-local" class="form-control" id="created" />
+    </div>
+  </div>
+
+  <!-- Date of last update -->
+  <div class="mb-3 row">
+    <label for="updated" class="col-sm-4 col-form-label"
+      >Date of last update</label
+    >
+    <div class="col-sm-8">
+      <input type="datetime-local" class="form-control" id="updated" />
+    </div>
+  </div>
+
+  <!-- User -->
+  <div class="mb-3 row">
+    <label for="user_id" class="col-sm-4 col-form-label">User</label>
+    <div class="col-sm-8">
+      <input type="number" class="form-control" id="user_id" />
+    </div>
+  </div>
+
+  <!-- NCBI Taxonomy Number -->
+  <div class="mb-3 row">
+    <label for="txnr" class="col-sm-4 col-form-label"
+      >NCBI Taxonomy Number</label
+    >
+    <div class="col-sm-8">
+      <input type="number" class="form-control" id="txnr" />
+    </div>
+  </div>
+
+  <!-- It's cultured? -->
+  <div class="mb-3 row">
+    <label for="cult" class="col-sm-4 col-form-label">It's cultured?</label>
+    <div class="col-sm-8">
+      <select class="form-select" id="cult">
+        <option value="cultures">Cultures</option>
+        <option value="uncultured">Uncultured</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- INSDC metagenome accession number -->
+  <div class="mb-3 row">
+    <label for="meca" class="col-sm-4 col-form-label"
+      >INSDC metagenome accession number</label
+    >
+    <div class="col-sm-8">
+      <input type="text" maxlength="20" class="form-control" id="meca" />
+    </div>
+  </div>
+
+  <!-- DNA extraction method -->
+  <div class="mb-3 row">
+    <label for="dnae" class="col-sm-4 col-form-label"
+      >DNA extraction method</label
+    >
+    <div class="col-sm-8">
+      <input type="number" class="form-control" id="dnae" />
+    </div>
+  </div>
+
+  <!-- Raw Read UUID file -->
+  <div class="mb-3 row">
+    <label for="rreads" class="col-sm-4 col-form-label"
+      >Raw Read UUID file</label
+    >
+    <div class="col-sm-8">
+      <input type="text" maxlength="40" class="form-control" id="rreads" />
+    </div>
+  </div>
+
+  <!-- Raw Read NCBI accession code -->
+  <div class="mb-3 row">
+    <label for="rreadacc" class="col-sm-4 col-form-label"
+      >Raw Read NCBI accession code</label
+    >
+    <div class="col-sm-8">
+      <input type="number" class="form-control" id="rreadacc" />
+    </div>
+  </div>
+
+  <!-- Name of the original file containing the raw reads -->
+  <div class="mb-3 row">
+    <label for="rrname" class="col-sm-4 col-form-label"
+      >Name of the original file containing the raw reads</label
+    >
+    <div class="col-sm-8">
+      <input type="text" maxlength="100" class="form-control" id="rrname" />
+    </div>
+  </div>
+
+  <!-- Number of raw reads -->
+  <div class="mb-3 row">
+    <label for="rreadsnum" class="col-sm-4 col-form-label"
+      >Number of raw reads</label
+    >
+    <div class="col-sm-8">
+      <input type="number" class="form-control" id="rreadsnum" />
+    </div>
+  </div>
+
+  <!-- Number of base pairs of raw reads -->
+  <div class="mb-3 row">
+    <label for="rreaddbsp" class="col-sm-4 col-form-label"
+      >Number of base pairs of raw reads</label
+    >
+    <div class="col-sm-8">
+      <input type="number" class="form-control" id="rreaddbsp" />
+    </div>
+  </div>
+
+  <!-- Submit button -->
+  <div>
+    <input
+      type="submit"
+      value="Next Step"
+      class="btn btn-primary"
+      onclick="CPSample()"
+    />
+  </div>
+</form>
