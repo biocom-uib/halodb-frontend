@@ -21,13 +21,7 @@ Number of raw reads                                                     rreadsnu
 Number of base pairs of raw reads                                       rreaddbsp                                           INT
 -->
 <form id="Sample">
-  <!-- Public? -->
-  <div class="mb-3 row">
-    <label for="is_public" class="col-sm-4 col-form-label">Public?</label>
-    <div class="col-sm-8">
-      <input type="checkbox" id="is_public" />
-    </div>
-  </div>
+
 
   <!-- Sample ID -->
   <div class="mb-3 row">
@@ -44,53 +38,6 @@ Number of base pairs of raw reads                                       rreaddbs
     >
     <div class="col-sm-8">
       <input type="number" class="form-control" id="experiment_id" />
-    </div>
-  </div>
-
-  <!-- Date created -->
-  <div class="mb-3 row">
-    <label for="created" class="col-sm-4 col-form-label">Date created</label>
-    <div class="col-sm-8">
-      <input type="datetime-local" class="form-control" id="created" />
-    </div>
-  </div>
-
-  <!-- Date of last update -->
-  <div class="mb-3 row">
-    <label for="updated" class="col-sm-4 col-form-label"
-      >Date of last update</label
-    >
-    <div class="col-sm-8">
-      <input type="datetime-local" class="form-control" id="updated" />
-    </div>
-  </div>
-
-  <!-- User -->
-  <div class="mb-3 row">
-    <label for="user_id" class="col-sm-4 col-form-label">User</label>
-    <div class="col-sm-8">
-      <input type="number" class="form-control" id="user_id" />
-    </div>
-  </div>
-
-  <!-- NCBI Taxonomy Number -->
-  <div class="mb-3 row">
-    <label for="txnr" class="col-sm-4 col-form-label"
-      >NCBI Taxonomy Number</label
-    >
-    <div class="col-sm-8">
-      <input type="number" class="form-control" id="txnr" />
-    </div>
-  </div>
-
-  <!-- It's cultured? -->
-  <div class="mb-3 row">
-    <label for="cult" class="col-sm-4 col-form-label">It's cultured?</label>
-    <div class="col-sm-8">
-      <select class="form-select" id="cult">
-        <option value="cultures">Cultures</option>
-        <option value="uncultured">Uncultured</option>
-      </select>
     </div>
   </div>
 
@@ -111,23 +58,6 @@ Number of base pairs of raw reads                                       rreaddbs
     >
     <div class="col-sm-8">
       <input type="number" class="form-control" id="gsiz" />
-    </div>
-  </div>
-
-  <!-- Kind of Material -->
-  <div class="mb-3 row">
-    <label for="komas" class="col-sm-4 col-form-label">Kind of Material</label>
-    <div class="col-sm-8">
-      <select class="form-select" id="komas">
-        <option value="METAGENOME">Metagenome</option>
-        <option value="METATRANSCRIPTOME">Metatranscriptome</option>
-        <option value="METAVIROME">Metavirome</option>
-        <option value="GENOME PROCARIOTA">Genome Procariota</option>
-        <option value="GENOME VIRUS">Genome Virus</option>
-        <option value="PROTEOMICS">Proteomics</option>
-        <option value="SINGLE CELL GENOMICS">Single Cell Genomics</option>
-        <option value="PLASMID">Plasmid</option>
-      </select>
     </div>
   </div>
 
@@ -226,4 +156,9 @@ Number of base pairs of raw reads                                       rreaddbs
       onclick="CPSample()"
     />
   </div>
+
+  <!-- Go Back button-->
+   <div>
+    <button id="goBack" class="btn btn-primary">Go back</button>
+   </div>
 </form>

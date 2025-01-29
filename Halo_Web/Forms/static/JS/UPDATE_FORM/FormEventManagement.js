@@ -4,7 +4,12 @@ function FormEventManagement() {
     event.preventDefault();
     var step = localStorage.getItem("actualStep");
     PassActiveToCompleted();
-    formMetadata(step);
+    if (step<3){
+      loadFixedForms(step - 1);
+    }else if (step == 3){
+      getKomaForms();
+    }
+    
     localStorage.setItem("actualStep", Number(step) + 1);
     AddNewStep();
   });
