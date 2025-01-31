@@ -23,120 +23,22 @@
       <div class="container">
         <h3 id="ruta" class="text-start">Sample</h3>
       </div>
-      <div id="contenedor" class="container">
-        <form id="Sample">
-          <label for="name">Sample Name*</label>
-          <input type="text" name="name" id="name" class="form-control" />
-          <div class="mb-3">
-            <label for="stype" class="form-label">Description*</label>
-            <textarea class="form-control" id="stype" rows="3"></textarea>
-          </div>
-
-          <div class="row">
-            <div class="col">
-              <label for="ssize">Value*</label>
-              <input
-                type="number"
-                name="ssize"
-                id="ssize"
-                class="form-control"
-                step="0.01"
-                min="0.01"
-              />
-            </div>
-            <div class="col text-center">
-              <p>Unity:*</p>
-              <label for="ssizetype_l">l</label>
-              <input
-                type="radio"
-                name="ssizetype"
-                id="ssizetype_l"
-                class="form-check-input"
-                value="l"
-              />
-              <label for="ssizetype_m">m<sup>3</sup></label>
-              <input
-                type="radio"
-                name="ssizetype"
-                id="ssizetype_m"
-                class="form-check-input"
-                value="m3"
-              />
-              <label for="ssizetype_m">g</label>
-              <input
-                type="radio"
-                name="ssizetype"
-                id="ssizetype_m"
-                class="form-check-input"
-                value="g"
-              />
-            </div>
-            <div class="col">
-              <label for="ssizeunit">Scale</label>
-              <select
-                name="ssizeunit"
-                id="ssizeunit"
-                form="Sample"
-                class="form-control"
-              >
-                <option value="u">-</option>
-                <option value="d">d</option>
-                <option value="c">c</option>
-                <option value="m">m</option>
-                <option value="micro">µ</option>
-                <option value="n">n</option>
-                <option value="p">p</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="mb-3">
-            <label for="keywords" class="form-label"
-              >Aditional Information</label
-            >
-            <textarea class="form-control" id="keywords" rows="3"></textarea>
-          </div>
-          <br />
-          <input
-            type="submit"
-            id="submit"
-            value="Next Step"
-            class="btn btn-primary"
-            onclick="CPSample()"
-          />
-        </form>
-      </div>
+      <div id="contenedorForm" class="container"></div>
     </main>
-    <script src="{% static 'JS/SVG/AddStep.js' '%}"></script>
-    <script src="{% static 'JS/SVG/UpdateColor.js' '%}"></script>
-    <script src="{% static 'JS/SVG/CheckPointSample.js' '%}"></script>
-    <script src="{% static 'JS/UPDATE_FORM/Step2Form.js' '%}"></script>
-    <script src="{% static 'JS/UPDATE_FORM/updateStep.js' '%}"></script>
     <script src="{% static 'JS/BASIC/init.js' '%}"></script>
-    <script src="{% static 'JS/BASIC/const.js' '%}"></script>
+    <script src="{% static 'JS/BASIC/global.js' '%}"></script>
+    <script src="{% static 'JS/BASIC/goBack.js' '%}"></script>
+
+    <!--<script src="{% static 'JS/EXPERIMENT_FORM/showHideInputs.js'}"></script>-->
+
+    <script src="{% static 'JS/SVG/AddStep.js' '%}"></script>
+    <script src="{% static 'JS/SVG/RemoveStep.js' '%}"></script>
+    <script src="{% static 'JS/SVG/UpdateColor.js' '%}"></script>
+
+    <script src="{% static 'JS/UPDATE_FORM/getKomaForms.js' '%}"></script>
+    <script src="{% static 'JS/UPDATE_FORM/LoadNextForm.js' '%}"></script>
     <script src="{% static 'JS/UPDATE_FORM/FormEventManagement.js' '%}"></script>
+    <script src="{% static 'JS/UPDATE_FORM/LocalStoreData.js' '%}"></script>
+    <script src="{% static 'JS/UPDATE_FORM/UpdateStep.js' '%}"></script>
   </body>
-  <!--
-  Campos del Formulario_1():
-  -MUESTRA:
-    name: Nombre muestra(text)
-    stype: Description (text)
-    ssize: Tamaño muestra (number)
-    ssizeunit:Unidad (enum)
-    keywords:Lista valores
-    Data_keywords: extension
-    country: País de orígen(Lista)
-    regi:Región(Lista+ opción de otros)
-    geol: Posición geográfica(Texto (Mapa a futuro))
-    lati:Num
-    long:NUm
-    depth: Prfundidad (NUM)
-    sour: Info adicional
-    dats: Fecha (date)
-    hocs: Hora (Time)
-    dati: fecha isolacion
-    tems: temperatura (num)
-    phsa: PH (num)
-    sals: Salinidad:(num)
-  -->
 </html>

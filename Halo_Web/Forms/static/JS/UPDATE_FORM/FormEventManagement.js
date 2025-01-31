@@ -1,16 +1,27 @@
-function FormEventManagement() {
+async function FormEventManagement() {
+  const ACT_STEP = localStorage.getItem("actualStep");
+  const NEXT_STEP = Number(ACT_STEP) + 1;
+  const SVG_ID = "SVG_".concat(ACT_STEP);
+  const COLOR = "grey";
   var form = document.getElementById("Sample");
   form.addEventListener("submit", (event) => {
+    LocalStoreData();
     event.preventDefault();
-    var step = localStorage.getItem("actualStep");
-    PassActiveToCompleted();
-    if (step<3){
-      loadFixedForms(step - 1);
-    }else if (step == 3){
-      getKomaForms();
+    UpdateColor(SVG_ID, COLOR);
+    localStorage.setItem("actualStep", NEXT_STEP);
+    if (NEXT_STEP == 3) {
+      gestionAsync(NEXT_STEP);
+    } else {
+      loadFixedForms(NEXT_STEP);
+      AddStep();
     }
-    
-    localStorage.setItem("actualStep", Number(step) + 1);
-    AddNewStep();
   });
+}
+
+async function gestionAsync(NEXT_STEP) {
+  const NEW_LIST_VALUES = await getKomaForms();
+  STATIC_FOMRS_PATH = STATIC_FOMRS_PATH.concat(NEW_LIST_VALUES[0]);
+  STEPS_NAME = STEPS_NAME.concat(NEW_LIST_VALUES[1]);
+  loadFixedForms(NEXT_STEP);
+  AddStep();
 }

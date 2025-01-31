@@ -1,8 +1,8 @@
 {
   "path": "/static/HTML/Forms/",
-  "table": [
+  "experiments": [
     {
-      "koma":"METAGENOME",
+      "koma": "METAGENOME",
       "stepNumber": "5",
       "steps": [
         {
@@ -17,38 +17,37 @@
           "name": "Contigs",
           "path": "Experiments/CONTIGS.html"
         },
-          {
+        {
           "name": "Predicted Genes",
           "path": "Experiments/PREDICTED_GENES.html"
         },
         {
-        "name": "Mags",
-        "path": "Experiments/MAGS.html"
-      }
+          "name": "Mags",
+          "path": "Experiments/MAGS.html"
+        }
       ]
     },
     {
-      "koma":"METATRANSCRIPTOME",
-      "stepNumber":"2",
-      "steps":[
+      "koma": "METATRANSCRIPTOME",
+      "stepNumber": "2",
+      "steps": [
         {
-          "name":"Raw Read",
-          "path":"Experiments/RAW_READ.html"
+          "name": "Raw Read",
+          "path": "Experiments/RAW_READ.html"
         },
         {
           "name": "Trimmed Read",
           "path": "Experiments/TRIMMED_READ.html"
         }
       ]
-      
     },
     {
-      "koma":"METAVIROME",
-      "stepNumber":"5",
-      "steps":[
+      "koma": "METAVIROME",
+      "stepNumber": "5",
+      "steps": [
         {
-          "name":"Raw Read",
-          "path":"Experiments/RAW_READ.html"
+          "name": "Raw Read",
+          "path": "Experiments/RAW_READ.html"
         },
         {
           "name": "Trimmed Read",
@@ -58,96 +57,96 @@
           "name": "Contigs",
           "path": "Experiments/CONTIGS.html"
         },
-          {
+        {
           "name": "Predicted Genes",
           "path": "Experiments/PREDICTED_GENES.html"
         },
         {
-        "name": "Contigs Virus",
-        "path": "Experiments/CONTIGS_VIRUS.html"
-      }
-      ]
-    },
-    {
-      "koma":"GENOME PROCARIOTA",
-      "stepNumber":"3",
-      "steps":[
-        {
-          "name":"Raw Read",
-          "path":"Experiments/RAW_READ.html"
-        },
-        {
-          "name":"Genome",
-          "path":"Experiments/GENOME.html"
-        },
-        {
-        "name": "Predicted Genes",
-        "path": "Experiments/PREDICTED_GENES.html"
-      }
-      ]
-    },
-    {
-      "koma":"GENOME VIRUS",
-      "stepNumber":"3",
-      "steps":[
-        {
-          "name":"Raw Read",
-          "path":"Experiments/RAW_READ.html"
-        },
-        {
-          "name":"Genome",
-          "path":"Experiments/GENOME.html"
-        },
-        {
-        "name": "Predicted Genes",
-        "path": "Experiments/PREDICTED_GENES.html"
-      }
-      ]
-    },
-    {
-      "koma":"PROTEOMICS",
-      "stepNumber":"1",
-      "steps":[
-        {
-          "name":"Peptides",
-          "path":"Experiments/PEPTIDES.html"
+          "name": "Contigs Virus",
+          "path": "Experiments/CONTIGS_VIRUS.html"
         }
       ]
     },
     {
-      "koma":"SINGLE CELL GENOMICS",
-      "stepNumber":"3",
-      "steps":[
+      "koma": "GENOME PROCARIOTA",
+      "stepNumber": "3",
+      "steps": [
         {
-          "name":"Raw Read",
-          "path":"Experiments/RAW_READ.html"
+          "name": "Raw Read",
+          "path": "Experiments/RAW_READ.html"
         },
         {
-          "name":"Single Cell Genome",
-          "path":"Experiments/SINGLE_CELL_GENOME.html"
+          "name": "Genome",
+          "path": "Experiments/GENOME.html"
         },
         {
-        "name": "Predicted Genes",
-        "path": "Experiments/PREDICTED_GENES.html"
-      }
+          "name": "Predicted Genes",
+          "path": "Experiments/PREDICTED_GENES.html"
+        }
       ]
     },
     {
-      "koma":"PLASMID",
-      "stepNumber":"3",
-      "steps":[
+      "koma": "GENOME VIRUS",
+      "stepNumber": "3",
+      "steps": [
         {
-          "name":"Raw Read",
-          "path":"Experiments/RAW_READ.html"
+          "name": "Raw Read",
+          "path": "Experiments/RAW_READ.html"
         },
         {
-          "name":"Plasmid",
-          "path":"Experiments/PLASMID.html"
+          "name": "Genome",
+          "path": "Experiments/GENOME.html"
         },
         {
-        "name": "Predicted Genes",
-        "path": "Experiments/PREDICTED_GENES.html"
-      }
+          "name": "Predicted Genes",
+          "path": "Experiments/PREDICTED_GENES.html"
+        }
+      ]
+    },
+    {
+      "koma": "PROTEOMICS",
+      "stepNumber": "1",
+      "steps": [
+        {
+          "name": "Peptides",
+          "path": "Experiments/PEPTIDES.html"
+        }
+      ]
+    },
+    {
+      "koma": "SINGLE CELL GENOMICS",
+      "stepNumber": "3",
+      "steps": [
+        {
+          "name": "Raw Read",
+          "path": "Experiments/RAW_READ.html"
+        },
+        {
+          "name": "Single Cell Genome",
+          "path": "Experiments/SINGLE_CELL_GENOME.html"
+        },
+        {
+          "name": "Predicted Genes",
+          "path": "Experiments/PREDICTED_GENES.html"
+        }
+      ]
+    },
+    {
+      "koma": "PLASMID",
+      "stepNumber": "3",
+      "steps": [
+        {
+          "name": "Raw Read",
+          "path": "Experiments/RAW_READ.html"
+        },
+        {
+          "name": "Plasmid",
+          "path": "Experiments/PLASMID.html"
+        },
+        {
+          "name": "Predicted Genes",
+          "path": "Experiments/PREDICTED_GENES.html"
+        }
       ]
     }
   ]
