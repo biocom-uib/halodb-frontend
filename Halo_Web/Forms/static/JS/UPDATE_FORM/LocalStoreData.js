@@ -1,12 +1,8 @@
-//
 /*
-    CPSample se encarga de realizar un Checkpoint temporal de la información introducida en
-    el Formulario "Sample". Se guardan los campos en LocalStorage para evitar
-    almacenar en la base de datos información incompleta y minimizar los accesos a esta.
-    También permitirá la vuelta atrás, por si el usuario desea modificar algún dato
+LocalStoreData: Stores form inputs values in actual session to avoid "trash inputs" in DB
 */
 
-function CPSample() {
+function LocalStoreData(step) {
   var form = document.getElementById("Sample");
   //Obtenemos el formulario Sample y sus campos inputs
   var inputs = form.getElementsByTagName("input");
@@ -26,8 +22,6 @@ function CPSample() {
       }
     }
   }
-  var etapaAct = STEPS_NAME[Number(localStorage.getItem("actualStep"))];
-  document.getElementById("Etapa").innerHTML = etapaAct;
   /*
   for (var id of TEST) {
     console.log("Almacenado como " + id + ":" + localStorage.getItem(id));
