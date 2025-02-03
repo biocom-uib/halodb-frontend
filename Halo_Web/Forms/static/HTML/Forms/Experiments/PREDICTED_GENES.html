@@ -21,13 +21,16 @@ Original file containing the predicted genes    pgenesname      VARCHAR(100)
     </div>
   </div>
 
-  <!-- Submit button -->
-  <div>
-    <input
-      type="submit"
-      value="Next Step"
-      class="btn btn-primary"
-      onclick="CPSample()"
-    />
-  </div>
+  <div class="row">
+    <div class="col">
+      <input
+        type="submit"
+        id="submit"
+        value="Next Step"
+        class="btn btn-primary"
+      />
+      <button id="goBack" class="btn btn-secondary" onclick="goBack()">
+        Go back
+      </button>
+    </div>
 </form>

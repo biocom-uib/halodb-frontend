@@ -14,6 +14,8 @@ function AddStep() {
       svg.children[1].innerHTML = "\n    " + (Number(step) + 1) + "\n  ";
       svg.children[2].innerHTML = "\n" + STEPS_NAME[step] + "\n  ";
       svg.children[2].attributes["x"].value = "25";
+
+      document.getElementById("Etapa").innerHTML = STEPS_NAME[step];
     })
     .catch((error) => console.error("Error al cargar el archivo:", error));
 }

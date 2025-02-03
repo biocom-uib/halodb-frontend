@@ -4,30 +4,34 @@
 2. Retornar los valores de cada campo
 3. Actualizar step-by-step
 */
-function goBack() {
+async function goBack() {
   const newStep = Number(localStorage.getItem("actualStep")) - 1;
   localStorage.setItem("actualStep", newStep);
-  LoadNextForm(newStep);
+  await loadFixedForms(newStep);
   RecoverFieldsData();
   RemoveStep(newStep);
+  document.getElementById("Etapa").innerHTML = STEPS_NAME[newStep];
 }
 
-function RecoverFieldsData() {
+async function RecoverFieldsData() {
   var form = document.getElementById("Sample");
-  var inputList = form.getElementsByTagName("input");
-  var textareaList = form.getElementsByTagName("textarea");
-  var selectList = form.getElementsByTagName("select");
-  var item, storedValue;
-  for (item in inputList) {
+  var inputList = Array.from(form.getElementsByTagName("input"));
+  var textareaList = Array.from(form.getElementsByTagName("textarea"));
+  var selectList = Array.from(form.getElementsByTagName("select"));
+  var item, idx, storedValue;
+  for (idx in inputList) {
+    item = inputList[idx];
     storedValue = localStorage.getItem(item.id);
     item.value = storedValue;
   }
-  for (item in textareaList) {
+  for (idx in textareaList) {
+    item = textareaList[idx];
     storedValue = localStorage.getItem(item.id);
     item.value = storedValue;
   }
-  for (item in selectList) {
+  for (idx in selectList) {
+    item = selectList[idx];
     storedValue = localStorage.getItem(item.id);
-    item.options.namedItem(storedValue).selected = true;
+    document.getElementById(item.id).value = storedValue;
   }
 }
