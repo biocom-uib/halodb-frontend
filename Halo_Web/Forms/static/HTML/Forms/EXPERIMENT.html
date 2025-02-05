@@ -3,91 +3,79 @@ Is the sample cultured or uncultured?           cult    ENUM('cultured,unculture
 Kind of material                                koma    ENUM('METAGENOME', 'METATRANSCRIPTOME', 'METAVIROME', 'GENOME PROCARIOTA', 'GENOME VIRUS', 'PROTEOMICS', 'SINGLE CELL GENOMICS', 'PLASMID')
 Other                                           coth    VARCHAR(500)
 -->
-<form id="Sample">
-      <!-- NCBI Taxonomy Number -->
-  <div class="mb-3 row">
-    <label for="txnr" class="col-sm-4 col-form-label"
-      >NCBI Taxonomy Number</label
-    >
-    <div class="col-sm-8">
-      <input type="number" class="form-control" id="txnr" />
-    </div>
+<!-- NCBI Taxonomy Number -->
+<div class="mb-3 row">
+  <label for="txnr" class="col-sm-4 col-form-label">NCBI Taxonomy Number</label>
+  <div class="col-sm-8">
+    <input type="number" class="form-control" id="txnr" />
   </div>
+</div>
 <!-- Kind of Material -->
- <div class="mb-3 row">
-    <label for="cult" class="col-sm-4 col-form-label"></label>
-    <div class="col-sm-8">
-        <select class="form-select" id="cult">
-            <option value="cultured">Cultured</option>
-            <option value="uncultured">Uncultured</option>
-          </select>
-    </div>
- </div>
-  <div class="mb-3 row">
-    <label for="koma" class="col-sm-4 col-form-label">Kind of Material</label>
-    <div class="col-sm-8">
-      <select class="form-select" id="koma">
-        <option value="METAGENOME">Metagenome</option>
-        <option value="METATRANSCRIPTOME">Metatranscriptome</option>
-        <option value="METAVIROME">Metavirome</option>
-        <option value="GENOME PROCARIOTA">Genome Procariota</option>
-        <option value="GENOME VIRUS">Genome Virus</option>
-        <option value="PROTEOMICS">Proteomics</option>
-        <option value="SINGLE CELL GENOMICS">Single Cell Genomics</option>
-        <option value="PLASMID">Plasmid</option>
-      </select>
-    </div>
+<div class="mb-3 row">
+  <label for="cult" class="col-sm-4 col-form-label"></label>
+  <div class="col-sm-8">
+    <select class="form-select" id="cult">
+      <option value="cultured">Cultured</option>
+      <option value="uncultured">Uncultured</option>
+    </select>
   </div>
+</div>
+<div class="mb-3 row">
+  <label for="koma" class="col-sm-4 col-form-label">Kind of Material</label>
+  <div class="col-sm-8">
+    <select class="form-select" id="koma">
+      <option value="METAGENOME">Metagenome</option>
+      <option value="METATRANSCRIPTOME">Metatranscriptome</option>
+      <option value="METAVIROME">Metavirome</option>
+      <option value="GENOME PROCARIOTA">Genome Procariota</option>
+      <option value="GENOME VIRUS">Genome Virus</option>
+      <option value="PROTEOMICS">Proteomics</option>
+      <option value="SINGLE CELL GENOMICS">Single Cell Genomics</option>
+      <option value="PLASMID">Plasmid</option>
+    </select>
+  </div>
+</div>
 
-    <!-- Submitted to culture collection? -->
-    <div class="mb-3 row">
-        <label for="ccsu" class="col-sm-4 col-form-label">Submitted to culture collection?</label>
-        <div class="col-sm-8">
-          <input type="checkbox" id="ccsu" />
-        </div>
-      </div>
-    <!-- Strain/MAG/SAG taxon reference  -->
-    <div class="mb-3 row">
-        <label for="otyp" class="col-sm-4 col-form-label"
-          >Strain/MAG/SAG taxon reference</label
-        >
-        <div class="col-sm-8">
-          <input type="text" maxlength="100" class="form-control" id="otyp" />
-        </div>
-      </div>
-        <!-- NCBI Taxnomy Number of the type material -->
-  <div class="mb-3 row">
-    <label for="txnt" class="col-sm-4 col-form-label">NCBI Taxnomy Number of the type material</label>
-    <div class="col-sm-8">
-      <input type="number" class="form-control" id="txnt" />
-    </div>
+<!-- Submitted to culture collection? -->
+<div class="mb-3 row">
+  <label for="ccsu" class="col-sm-4 col-form-label"
+    >Submitted to culture collection?</label
+  >
+  <div class="col-sm-8">
+    <input type="checkbox" id="ccsu" />
   </div>
-  <!--Strain collection number-->
-  <div class="mb-3 row">
-    <label for="coln" class="col-sm-4 col-form-label"
-      >Strain collection number</label
-    >
-    <div class="col-sm-8">
-      <input type="text" maxlength="80" class="form-control" id="coln" />
-    </div>
-      <!--Other-->
-  <div class="mb-3 row">
-    <label for="coth" class="col-sm-4 col-form-label"
-      >Other</label
-    >
-    <div class="col-sm-8">
-      <input type="text" maxlength="500" class="form-control" id="coth" />
-    </div>
+</div>
+<!-- Strain/MAG/SAG taxon reference  -->
+<div class="mb-3 row">
+  <label for="otyp" class="col-sm-4 col-form-label"
+    >Strain/MAG/SAG taxon reference</label
+  >
+  <div class="col-sm-8">
+    <input type="text" maxlength="100" class="form-control" id="otyp" />
   </div>
-  <br/>
-  <div class="row">
-    <div class="col">
-      <input
-        type="submit"
-        id="submit"
-        value="Next Step"
-        class="btn btn-primary"
-      />
-      <button id="goBack" type="button" class="btn btn-secondary">Go back</button>
-    </div>
-</form>
+</div>
+<!-- NCBI Taxnomy Number of the type material -->
+<div class="mb-3 row">
+  <label for="txnt" class="col-sm-4 col-form-label"
+    >NCBI Taxnomy Number of the type material</label
+  >
+  <div class="col-sm-8">
+    <input type="number" class="form-control" id="txnt" />
+  </div>
+</div>
+<!--Strain collection number-->
+<div class="mb-3 row">
+  <label for="coln" class="col-sm-4 col-form-label"
+    >Strain collection number</label
+  >
+  <div class="col-sm-8">
+    <input type="text" maxlength="80" class="form-control" id="coln" />
+  </div>
+</div>
+<!--Other-->
+<div class="mb-3 row">
+  <label for="coth" class="col-sm-4 col-form-label">Other</label>
+  <div class="col-sm-8">
+    <input type="text" maxlength="500" class="form-control" id="coth" />
+  </div>
+</div>

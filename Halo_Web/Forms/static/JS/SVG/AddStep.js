@@ -2,20 +2,25 @@ function AddStep() {
   fetch("/static/HTML/Others/SVG_Active.html")
     .then((response) => response.text())
     .then((data) => {
-      let step = localStorage.getItem("actualStep");
-      let stepName;
-      if (step < 3) {
-        stepName = STEPS_NAME[step];
-      }
-      var container = document.getElementById("step-by-step");
-      container.innerHTML += data;
-      var svg = container.childNodes[step * 2];
-      svg.id = "SVG_".concat(step);
-      svg.children[1].innerHTML = "\n    " + (Number(step) + 1) + "\n  ";
-      svg.children[2].innerHTML = "\n" + STEPS_NAME[step] + "\n  ";
-      svg.children[2].attributes["x"].value = "25";
+      let step = Number(localStorage.getItem("actualStep"));
+      let stepName = STEPS_NAME[step];
 
-      document.getElementById("Etapa").innerHTML = STEPS_NAME[step];
+      var container = document.getElementById("step-by-step");
+      container.insertAdjacentHTML("beforeend", data); // Mejor que innerHTML +=
+
+      // Obtener el último SVG añadido de forma más precisa
+      var svgs = container.querySelectorAll("svg");
+      var svg = svgs[svgs.length - 1];
+
+      svg.id = `SVG_${step}`;
+      svg.children[1].innerHTML = `\n    ${step + 1}\n  `;
+      svg.children[2].innerHTML = `\n${stepName}\n  `;
+      svg.children[2].setAttribute("x", "25");
+
+      document.getElementById("Etapa").innerHTML = stepName;
+
+      // Asignar el evento al SVG con el paso correspondiente
+      svg.addEventListener("click", () => goBack(step));
     })
     .catch((error) => console.error("Error al cargar el archivo:", error));
 }

@@ -2,35 +2,21 @@
 Predicted genes                                 pgenes          VARACHAR(40)
 Original file containing the predicted genes    pgenesname      VARCHAR(100)
 -->
-<form id="Sample">
-  <!-- Predicted genes -->
-  <div class="mb-3 row">
-    <label for="pgenes" class="col-sm-4 col-form-label">Predicted genes</label>
-    <div class="col-sm-8">
-      <input type="text" maxlength="40" class="form-control" id="pgenes" />
-    </div>
-  </div>
 
-  <!-- Original file containing the predicted genes -->
-  <div class="mb-3 row">
-    <label for="pgenesname" class="col-sm-4 col-form-label"
-      >Original file containing the predicted genes</label
-    >
-    <div class="col-sm-8">
-      <input type="text" maxlength="100" class="form-control" id="pgenesname" />
-    </div>
+<!-- Predicted genes -->
+<div class="mb-3 row">
+  <label for="pgenes" class="col-sm-4 col-form-label">Predicted genes</label>
+  <div class="col-sm-8">
+    <input type="text" maxlength="40" class="form-control" id="pgenes" />
   </div>
+</div>
 
-  <div class="row">
-    <div class="col">
-      <input
-        type="submit"
-        id="submit"
-        value="Next Step"
-        class="btn btn-primary"
-      />
-      <button id="goBack" class="btn btn-secondary" onclick="goBack()">
-        Go back
-      </button>
-    </div>
-</form>
+<!-- Original file containing the predicted genes -->
+<div class="mb-3 row">
+  <label for="pgenesname" class="col-sm-4 col-form-label"
+    >Original file containing the predicted genes</label
+  >
+  <div class="col-sm-8">
+    <input type="text" maxlength="100" class="form-control" id="pgenesname" />
+  </div>
+</div>

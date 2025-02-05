@@ -6,11 +6,11 @@
   </head>
   <body>
     <header>
-      <div class="container">
+      <div class="container mt-4">
         <h1 class="text-center">Halo Database Insert Section</h1>
       </div>
       <nav>
-        <div class="container">
+        <div class="container mt-4">
           <button onclick="" class="btn btn-primary">Load Data</button>
           <button id="saveButton" onclick="" class="btn btn-primary">
             Save Data
@@ -19,14 +19,40 @@
       </nav>
     </header>
     <main>
-      <div class="container">
-        <h2 class="text-center">Step: <span id="Etapa">Sample</span></h2>
+      <div id="step-by-step" class="container mt-4"></div>
+      <div
+        class="container d-flex flex-column justify-content-center align-items-center mt-4"
+      >
+        <h2 id="Etapa">Sample</h2>
+        <h3 id="komaLabel" data-selected="0">Koma:</h3>
       </div>
-      <div id="step-by-step" class="container"></div>
-      <div class="container">
-        <h3 id="ruta" class="text-start">Sample</h3>
+
+      <div id="contenedorForm" class="container mt-4">
+        <form id="mainForm" class="container">
+          <div id="cardForm" class="card p-3">
+            <!-- Data Fields-->
+          </div>
+          <div
+            id="containerButtons"
+            class="d-flex justify-content-between align-items-center mt-4"
+          >
+            <button
+              id="goBack"
+              type="button"
+              class="btn btn-secondary"
+              style="visibility: hidden"
+            >
+              Go back
+            </button>
+            <input
+              type="submit"
+              id="submit"
+              value="Next Step"
+              class="btn btn-primary"
+            />
+          </div>
+        </form>
       </div>
-      <div id="contenedorForm" class="container"></div>
     </main>
     <script src="{% static 'JS/BASIC/init.js' %}"></script>
     <script src="{% static 'JS/BASIC/global.js' %}"></script>

@@ -4,33 +4,42 @@
 2. Retornar los valores de cada campo
 3. Actualizar step-by-step
 */
-async function goBack() {
-  const newStep = Number(localStorage.getItem("actualStep")) - 1;
+async function goBack(step) {
+  var newStep;
+  if (step > 0) {
+    newStep = step - 1;
+  } else {
+    newStep = step;
+  }
   localStorage.setItem("actualStep", newStep);
   await loadFixedForms(newStep);
   RecoverFieldsData();
   RemoveStep(newStep);
   document.getElementById("Etapa").innerHTML = STEPS_NAME[newStep];
+  if (newStep < 3) {
+    const komaLabel = document.getElementById("komaLabel");
+    STEPS_NAME = STEPS_NAME.slice(0, 3);
+    STATIC_FOMRS_PATH = STATIC_FOMRS_PATH.slice(0, 3);
+
+    komaLabel.dataset.selected = 0;
+    komaLabel.innerText = "Koma:";
+  }
 }
 
 async function RecoverFieldsData() {
-  var form = document.getElementById("Sample");
-  var inputList = Array.from(form.getElementsByTagName("input"));
-  var textareaList = Array.from(form.getElementsByTagName("textarea"));
-  var selectList = Array.from(form.getElementsByTagName("select"));
-  var item, idx, storedValue;
-  for (idx in inputList) {
-    item = inputList[idx];
+  const cardForm = document.getElementById("cardForm");
+  const inputList = Array.from(cardForm.getElementsByTagName("input"));
+  const textareaList = Array.from(cardForm.getElementsByTagName("textarea"));
+  const selectList = Array.from(cardForm.getElementsByTagName("select"));
+  const simpleItem = inputList.concat(textareaList);
+  var item, i, storedValue;
+  for (i in simpleItem) {
+    item = simpleItem[i];
     storedValue = localStorage.getItem(item.id);
     item.value = storedValue;
   }
-  for (idx in textareaList) {
-    item = textareaList[idx];
-    storedValue = localStorage.getItem(item.id);
-    item.value = storedValue;
-  }
-  for (idx in selectList) {
-    item = selectList[idx];
+  for (i in selectList) {
+    item = selectList[i];
     storedValue = localStorage.getItem(item.id);
     document.getElementById(item.id).value = storedValue;
   }

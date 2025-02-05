@@ -3,10 +3,10 @@ LocalStoreData: Stores form inputs values in actual session to avoid "trash inpu
 */
 
 function LocalStoreData() {
-  var form = document.getElementById("Sample");
-  var inputList = form.getElementsByTagName("input");
-  var textareaList = form.getElementsByTagName("textarea");
-  var selectList = form.getElementsByTagName("select");
+  const cardForm = document.getElementById("cardForm");
+  const inputList = cardForm.getElementsByTagName("input");
+  const textareaList = cardForm.getElementsByTagName("textarea");
+  const selectList = cardForm.getElementsByTagName("select");
   setInputValues(
     Array.from(inputList).concat(
       Array.from(textareaList),
@@ -16,10 +16,10 @@ function LocalStoreData() {
 }
 
 function setInputValues(list) {
-  var indx, item;
+  let i, item;
   if (list.length > 0) {
-    for (indx in list) {
-      item = list[indx];
+    for (i in list) {
+      item = list[i];
       localStorage.setItem(item.id, item.value);
     }
   }

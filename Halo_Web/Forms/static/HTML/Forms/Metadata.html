@@ -15,134 +15,126 @@ pH of the sample                                phsa    FLOAT
 Salinity of the sample [%]                      sals    FLOAT 
 -->
 
-<form id="Sample">
-  <!-- Country of origin -->
-  <div class="mb-3 row">
-    <label for="coun" class="col-sm-4 col-form-label">Country of origin</label>
-    <div class="col-sm-8">
-      <textarea class="form-control" id="coun" rows="2"></textarea>
-    </div>
+<!-- Country of origin -->
+<div class="mb-3 row">
+  <label for="coun" class="col-sm-4 col-form-label">Country of origin</label>
+  <div class="col-sm-8">
+    <textarea class="form-control" id="coun" rows="2"></textarea>
   </div>
+</div>
 
-  <!-- Region of origin -->
-  <div class="mb-3 row">
-    <label for="regi" class="col-sm-4 col-form-label">Region of origin</label>
-    <div class="col-sm-8">
-      <textarea class="form-control" id="regi" rows="2"></textarea>
-    </div>
+<!-- Region of origin -->
+<div class="mb-3 row">
+  <label for="regi" class="col-sm-4 col-form-label">Region of origin</label>
+  <div class="col-sm-8">
+    <textarea class="form-control" id="regi" rows="2"></textarea>
   </div>
+</div>
 
-  <!-- Geographic location -->
-  <div class="mb-3 row">
-    <label for="geol" class="col-sm-4 col-form-label"
-      >Geographic location</label
-    >
-    <div class="col-sm-8">
-      <textarea class="form-control" id="geol" rows="3"></textarea>
-    </div>
+<!-- Geographic location -->
+<div class="mb-3 row">
+  <label for="geol" class="col-sm-4 col-form-label">Geographic location</label>
+  <div class="col-sm-8">
+    <textarea class="form-control" id="geol" rows="3"></textarea>
   </div>
+</div>
 
-  <!-- Latitude -->
-  <div class="mb-3 row">
-    <label for="lati" class="col-sm-4 col-form-label">Latitude</label>
-    <div class="col-sm-8">
-      <input type="number" step="any" class="form-control" id="lati" />
-    </div>
+<!-- Latitude -->
+<div class="mb-3 row">
+  <label for="lati" class="col-sm-4 col-form-label">Latitude</label>
+  <div class="col-sm-8">
+    <input type="number" step="any" class="form-control" id="lati" />
   </div>
+</div>
 
-  <!-- Longitude -->
-  <div class="mb-3 row">
-    <label for="long" class="col-sm-4 col-form-label">Longitude</label>
-    <div class="col-sm-8">
-      <input type="number" step="any" class="form-control" id="long" />
-    </div>
+<!-- Longitude -->
+<div class="mb-3 row">
+  <label for="long" class="col-sm-4 col-form-label">Longitude</label>
+  <div class="col-sm-8">
+    <input type="number" step="any" class="form-control" id="long" />
   </div>
+</div>
 
-  <!-- Altitude in meters, over level at sea -->
-  <div class="mb-3 row">
-    <label for="alti" class="col-sm-4 col-form-label"
-      >Altitude in meters, over level at sea</label
-    >
-    <div class="col-sm-8">
-      <input type="number" step="any" class="form-control" id="alti" />
-    </div>
+<!-- Altitude in meters, over level at sea -->
+<div class="mb-3 row">
+  <label for="alti" class="col-sm-4 col-form-label"
+    >Altitude in meters, over level at sea</label
+  >
+  <div class="col-sm-8">
+    <input type="number" step="any" class="form-control" id="alti" />
   </div>
+</div>
 
-  <!-- Depth in meters -->
-  <div class="mb-3 row">
-    <label for="dept" class="col-sm-4 col-form-label"
-      >Depth, in meters, where the sample was taken</label
-    >
-    <div class="col-sm-8">
-      <input type="number" step="any" class="form-control" id="dept" />
-    </div>
+<!-- Depth in meters -->
+<div class="mb-3 row">
+  <label for="dept" class="col-sm-4 col-form-label"
+    >Depth, in meters, where the sample was taken</label
+  >
+  <div class="col-sm-8">
+    <input type="number" step="any" class="form-control" id="dept" />
   </div>
+</div>
 
-  <!-- Other relevant information about the sample -->
-  <div class="mb-3 row">
-    <label for="sour" class="col-sm-4 col-form-label"
-      >Other relevant information about the sample</label
-    >
-    <div class="col-sm-8">
-      <textarea class="form-control" id="sour" rows="3"></textarea>
-    </div>
+<!-- Other relevant information about the sample -->
+<div class="mb-3 row">
+  <label for="sour" class="col-sm-4 col-form-label"
+    >Other relevant information about the sample</label
+  >
+  <div class="col-sm-8">
+    <textarea class="form-control" id="sour" rows="3"></textarea>
   </div>
+</div>
 
-  <!-- Sampling date -->
-  <div class="mb-3 row">
-    <label for="dats" class="col-sm-4 col-form-label">Sampling date</label>
-    <div class="col-sm-8">
-      <input type="date" class="form-control" id="dats" />
-    </div>
+<!-- Sampling date -->
+<div class="mb-3 row">
+  <label for="dats" class="col-sm-4 col-form-label">Sampling date</label>
+  <div class="col-sm-8">
+    <input type="date" class="form-control" id="dats" />
   </div>
+</div>
 
-  <!-- Hour of collection of the sample -->
-  <div class="mb-3 row">
-    <label for="hocs" class="col-sm-4 col-form-label"
-      >Hour of collection of the sample</label
-    >
-    <div class="col-sm-8">
-      <input type="time" class="form-control" id="hocs" />
-    </div>
+<!-- Hour of collection of the sample -->
+<div class="mb-3 row">
+  <label for="hocs" class="col-sm-4 col-form-label"
+    >Hour of collection of the sample</label
+  >
+  <div class="col-sm-8">
+    <input type="time" class="form-control" id="hocs" />
   </div>
+</div>
 
-  <!-- Date of isolation -->
-  <div class="mb-3 row">
-    <label for="dati" class="col-sm-4 col-form-label">Date of isolation</label>
-    <div class="col-sm-8">
-      <input type="date" class="form-control" id="dati" />
-    </div>
+<!-- Date of isolation -->
+<div class="mb-3 row">
+  <label for="dati" class="col-sm-4 col-form-label">Date of isolation</label>
+  <div class="col-sm-8">
+    <input type="date" class="form-control" id="dati" />
   </div>
+</div>
 
-  <!-- Temperature of the sample -->
-  <div class="mb-3 row">
-    <label for="tems" class="col-sm-4 col-form-label"
-      >Temperature of the sample [C]</label
-    >
-    <div class="col-sm-8">
-      <input type="number" step="any" class="form-control" id="tems" />
-    </div>
+<!-- Temperature of the sample -->
+<div class="mb-3 row">
+  <label for="tems" class="col-sm-4 col-form-label"
+    >Temperature of the sample [C]</label
+  >
+  <div class="col-sm-8">
+    <input type="number" step="any" class="form-control" id="tems" />
   </div>
+</div>
 
-  <!-- pH of the sample -->
-  <div class="mb-3 row">
-    <label for="phsa" class="col-sm-4 col-form-label">pH of the sample</label>
-    <div class="col-sm-8">
-      <input type="number" step="any" class="form-control" id="phsa" />
-    </div>
+<!-- pH of the sample -->
+<div class="mb-3 row">
+  <label for="phsa" class="col-sm-4 col-form-label">pH of the sample</label>
+  <div class="col-sm-8">
+    <input type="number" step="any" class="form-control" id="phsa" />
   </div>
+</div>
 
-  <!-- Salinity of the sample -->
-  <div class="mb-3 row">
-    <label for="sali" class="col-sm-4 col-form-label"
-      >Salinity of the sample [%]</label
-    >
-    <div class="col-sm-8">
-      <input type="number" step="any" class="form-control" id="sali" />
-    </div>
+<!-- Salinity of the sample -->
+<div class="mb-3 row">
+  <label for="sali" class="col-sm-4 col-form-label"
+    >Salinity of the sample [%]</label
+  >
+  <div class="col-sm-8">
+    <input type="number" step="any" class="form-control" id="sals" />
   </div>
-
-  <input type="submit" id="submit" value="Next Step" class="btn btn-primary" />
-
-  <button id="goBack" type="button" class="btn btn-secondary">Go back</button>
-</form>
+</div>

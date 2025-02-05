@@ -2,21 +2,21 @@
 Kind of Material                                                        komas(GENOME VIRUS)                                 ENUM('METAGENOME', 'METATRANSCRIPTOME', 'METAVIROME', 'GENOME PROCARIOTA', 'GENOME VIRUS', 'PROTEOMICS', 'SINGLE CELL GENOMICS', 'PLASMID')
 Is this the designed type material for a new taxon?                     typn                        BOOLEAN
 Strain or MAG or SAG from which the reference taxon was obtained        otyp                        VARCHAR(30)
-NCBI Taxonomy number material type                                          txnt                    INT
+NCBI Taxonomy number material type                                      txnt                        INT
 If cultured, has been submitted to culture collection?                  ccsu(VI)                    BOOLEAN
 Designated type strain name/MAG/SAG                                     type                        VARCHAR(30)
-Strain collection numbers                                                   coln                    VARCHAR(80)
+Strain collection numbers                                               coln                        VARCHAR(80)
 16S rRNA gene accession number                                          sixteensr                   VARCHAR(20)  
 Sequencing depth                                                        seqdepth                    FLOAT
 23S rRNA gene accession number                                          twentythreesr               VARCHAR(20)
-ALternative housekeeping genes                                              hkgn                    INT
+ALternative housekeeping genes                                          hkgn                        INT
 MAG accession number(RefSeq/ENA)                                        gare(MV)                    VARCHAR(20)
 garem(VI)                   ?
 Genome status                                                           gsta(MV)                    ENUM("complete","partial","draft")
 Completness                                                             completeness                FLOAT
 Contaminations                                                          contamination               FLOAT
 Method used to estimate the integrity and contamination of the sample   method(MV)                  INT
-Estimated or actual genome/metagenome size. Unit bp (base pairs)        gsiz(METAGENOME),                                   INT
+Estimated or actual genome/metagenome size. Unit bp (base pairs)        gsiz(METAGENOME),           INT
 Molar percentage of Guanine and Cytosine in DNA.                        ggcm(MV)                    FLOAT
 DNA extraction method                                                   dnae                        INT
 Software used for assembly                                              asem(VI)                    INT
@@ -24,33 +24,109 @@ Parameters used with asem                                               asftpara
 Sequencing Technology                                                   seqt(VI)                    INT
 asft                        ?
 Date of isolation                                                       dati(VI)                    DATE
-tems                        FLOAT
-phsa                        FLOAT
-sals                        FLOAT
-emet                        VARCHAR(500)
-orel                        INT
-elac                        VARCHAR(40)
-temo                        FLOAT
-teml                        FLOAT
-temh                        FLOAT
-temc                        FLOAT=temo??
-phop                        FLOAT
-phlo                        FLOAT
-phhi                        FLOAT
-phca                        FLOAT=phop??
-salo                        FLOAT
-sall                        FLOAT
-salh                        FLOAT
-salw                        VARCHAR(80)
-bios(VI)                    ENUM("BSL-1","BSL-2","BSL-3","BSL-4")
-bins                        INT*[no GEN]
-bior(VI)                    VARCHAR(100)
-host(VI)                    VARCHAR(100)
-path                        VARCHAR(100)
-extr                        VARCHAR (500)
-assembled(VI)               VARCHAR(40)
-assname(VI)                 VARCHAR(10)
-asize(VI)                   INT
-contignumber(VI)            INT
-strccol                     INT
+Temperature of the sample (Celsius)                                     tems                        FLOAT
+PH of the Sample                                                        phsa                        FLOAT
+Salinity of the sample                                                  sals                        FLOAT
+Energy metabolism                                                       emet                        VARCHAR(500)
+Relation with O2                                                        orel                        INT
+Terminal electron acceptor                                              elac                        VARCHAR(40)
+Temperature Optimum                                                     temo                        FLOAT
+Lowest temperature for growth                                           teml                        FLOAT
+Highest temperature for growth                                          temh                        FLOAT
+Temperature Category                                                    temc                        ENUM("Psychrophyles","Mesophiles","Moderate thermophiles","Thermophiles","Hyperthermophiles")
+PH optimum                                                              phop                        FLOAT
+Lowest ph for growth                                                    phlo                        FLOAT
+Highest ph for growth                                                   phhi                        FLOAT
+ph Category                                                             phca                        ENUM("Ultra acidic","Extremly acidic","Very strong acidic","Strongly acidic","Moderately acidic","Slightly acidic","Neutral","Slightly alkaline","Moderately alkaline","Strongly alkaline","Very strong alkaline","Extremly alkaline","Ultra alkaline")
+Salinity optimum                                                        salo                        FLOAT
+Lowest NaCl concentration for growth                                    sall                        FLOAT
+Highest NaCl concentration for growth                                   salh                        FLOAT
+Other salts besides NaCl to be reported                                 salw                        VARCHAR(80)
+Biosafety level                                                         bios(VI)                    ENUM("BSL-1","BSL-2","BSL-3","BSL-4")
+Binning software used                                                   bins                        INT*[no GEN]
+Biotic relationship with other organisms.                               bior(VI)                    VARCHAR(100)
+If it is a symbiont, with which host does it interact?                  host(VI)                    VARCHAR(100)
+Known pathogenicity.                                                    path                        VARCHAR(100)
+Miscellaneous, extraordinary features relevant for the description      extr                        VARCHAR (500)
+Assebled file ID                                                        assembled(VI)               VARCHAR(40)
+Original assembly file name                                             assname(VI)                 VARCHAR(10)
+Assembly size in base pairs                                             asize(VI)                   INT
+Number of contigs                                                       contignumber(VI)            INT
+Strain Collection number                                                strccol                     INT
 -->
+<!-- Kind of Material -->
+<div class="mb-3 row">
+  <label for="komas" class="col-sm-4 col-form-label">Kind of Material</label>
+  <div class="col-sm-8">
+    <select class="form-select" id="komas">
+      <option value="METAGENOME">Metagenome</option>
+      <option value="METATRANSCRIPTOME">Metatranscriptome</option>
+      <option value="METAVIROME">Metavirome</option>
+      <option value="GENOME PROCARIOTA">Genome Procariota</option>
+      <option value="GENOME VIRUS">Genome Virus</option>
+      <option value="PROTEOMICS">Proteomics</option>
+      <option value="SINGLE CELL GENOMICS">Single Cell Genomics</option>
+      <option value="PLASMID">Plasmid</option>
+    </select>
+  </div>
+</div>
+
+<!-- Is this the designed type material for a new taxon? -->
+<div class="mb-3 row">
+  <label for="typn" class="col-sm-4 col-form-label"
+    >Is this the designed type material for a new taxon?</label
+  >
+  <div class="col-sm-8">
+    <input type="checkbox" id="typn" />
+  </div>
+</div>
+
+<!-- Strain or MAG or SAG from which the reference taxon was obtained -->
+<div class="mb-3 row">
+  <label for="otyp" class="col-sm-4 col-form-label"
+    >Strain or MAG or SAG from which the reference taxon was obtained</label
+  >
+  <div class="col-sm-8">
+    <input type="text" maxlength="30" class="form-control" id="otyp" />
+  </div>
+</div>
+
+<!-- NCBI Taxonomy number material type -->
+<div class="mb-3 row">
+  <label for="txnt" class="col-sm-4 col-form-label"
+    >NCBI Taxonomy number material type</label
+  >
+  <div class="col-sm-8">
+    <input type="number" class="form-control" id="txnt" />
+  </div>
+</div>
+
+<!-- If cultured, has been submitted to culture collection? -->
+<div class="mb-3 row">
+  <label for="ccsu" class="col-sm-4 col-form-label"
+    >If cultured, has been submitted to culture collection?</label
+  >
+  <div class="col-sm-8">
+    <input type="checkbox" id="ccsu" />
+  </div>
+</div>
+
+<!-- Designated type strain name/MAG/SAG -->
+<div class="mb-3 row">
+  <label for="type" class="col-sm-4 col-form-label"
+    >Designated type strain name/MAG/SAG</label
+  >
+  <div class="col-sm-8">
+    <input type="text" maxlength="30" class="form-control" id="type" />
+  </div>
+</div>
+
+<!-- Strain collection numbers -->
+<div class="mb-3 row">
+  <label for="coln" class="col-sm-4 col-form-label"
+    >Strain collection numbers</label
+  >
+  <div class="col-sm-8">
+    <input type="text" maxlength="80" class="form-control" id="coln" />
+  </div>
+</div>

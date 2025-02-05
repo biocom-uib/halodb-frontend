@@ -5,63 +5,48 @@ Number of trimmed reads                                 treadsnum               
 Number of base pairs in trimmed reads.                  treadsbp                        INT
 Coverage                                                coverage(MG,MV)                 FLOAT
 -->
-<form id="Sample">
-  <!-- Trimmed Reads -->
-  <div class="mb-3 row">
-    <label for="treads" class="col-sm-4 col-form-label">Trimmed Reads</label>
-    <div class="col-sm-8">
-      <input type="text" maxlength="40" class="form-control" id="treads" />
-    </div>
+<!-- Trimmed Reads -->
+<div class="mb-3 row">
+  <label for="treads" class="col-sm-4 col-form-label">Trimmed Reads</label>
+  <div class="col-sm-8">
+    <input type="text" maxlength="40" class="form-control" id="treads" />
   </div>
+</div>
 
-  <!-- Name of the original file containing the trimmed reads -->
-  <div class="mb-3 row">
-    <label for="trname" class="col-sm-4 col-form-label"
-      >Name of the original file containing the trimmed reads</label
-    >
-    <div class="col-sm-8">
-      <input type="text" maxlength="100" class="form-control" id="trname" />
-    </div>
+<!-- Name of the original file containing the trimmed reads -->
+<div class="mb-3 row">
+  <label for="trname" class="col-sm-4 col-form-label"
+    >Name of the original file containing the trimmed reads</label
+  >
+  <div class="col-sm-8">
+    <input type="text" maxlength="100" class="form-control" id="trname" />
   </div>
+</div>
 
-  <!-- Number of trimmed reads -->
-  <div class="mb-3 row">
-    <label for="treadsnum" class="col-sm-4 col-form-label"
-      >Number of trimmed reads</label
-    >
-    <div class="col-sm-8">
-      <input type="number" class="form-control" id="treadsnum" />
-    </div>
+<!-- Number of trimmed reads -->
+<div class="mb-3 row">
+  <label for="treadsnum" class="col-sm-4 col-form-label"
+    >Number of trimmed reads</label
+  >
+  <div class="col-sm-8">
+    <input type="number" class="form-control" id="treadsnum" />
   </div>
+</div>
 
-  <!-- Number of base pairs in trimmed reads -->
-  <div class="mb-3 row">
-    <label for="treadsbp" class="col-sm-4 col-form-label"
-      >Number of base pairs in trimmed reads</label
-    >
-    <div class="col-sm-8">
-      <input type="number" class="form-control" id="treadsbp" />
-    </div>
+<!-- Number of base pairs in trimmed reads -->
+<div class="mb-3 row">
+  <label for="treadsbp" class="col-sm-4 col-form-label"
+    >Number of base pairs in trimmed reads</label
+  >
+  <div class="col-sm-8">
+    <input type="number" class="form-control" id="treadsbp" />
   </div>
+</div>
 
-  <!-- Coverage -->
-  <div class="mb-3 row">
-    <label for="coverage" class="col-sm-4 col-form-label">Coverage</label>
-    <div class="col-sm-8">
-      <input type="number" step="any" class="form-control" id="coverage" />
-    </div>
+<!-- Coverage -->
+<div class="mb-3 row">
+  <label for="coverage" class="col-sm-4 col-form-label">Coverage</label>
+  <div class="col-sm-8">
+    <input type="number" step="any" class="form-control" id="coverage" />
   </div>
-
-  <div class="row">
-    <div class="col">
-      <input
-        type="submit"
-        id="submit"
-        value="Next Step"
-        class="btn btn-primary"
-      />
-      <button id="goBack" class="btn btn-secondary" onclick="goBack()">
-        Go back
-      </button>
-    </div>
-</form>
+</div>
