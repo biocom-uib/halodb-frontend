@@ -15,126 +15,97 @@ pH of the sample                                phsa    FLOAT
 Salinity of the sample [%]                      sals    FLOAT 
 -->
 
-<!-- Country of origin -->
-<div class="mb-3 row">
-  <label for="coun" class="col-sm-4 col-form-label">Country of origin</label>
-  <div class="col-sm-8">
-    <textarea class="form-control" id="coun" rows="2"></textarea>
+<div class="row">
+  <!-- Country of origin -->
+  <div class="col">
+    <label for="coun" class="col-form-label">Country of origin</label>
+    <input type="text" class="form-control" id="coun" rows="2" maxlength="30" />
+  </div>
+  <!-- Region of origin -->
+  <div class="col">
+    <label for="regi" class="col-form-label">Region of origin</label>
+    <input type="text" class="form-control" id="regi" rows="2" maxlength="30" />
+  </div>
+  <!-- Geographic location -->
+  <div class="col">
+    <label for="geol" class="col-form-label">Geographic location</label>
+    <input type="text" class="form-control" id="geol" rows="2" maxlength="80" />
   </div>
 </div>
 
-<!-- Region of origin -->
-<div class="mb-3 row">
-  <label for="regi" class="col-sm-4 col-form-label">Region of origin</label>
-  <div class="col-sm-8">
-    <textarea class="form-control" id="regi" rows="2"></textarea>
-  </div>
-</div>
-
-<!-- Geographic location -->
-<div class="mb-3 row">
-  <label for="geol" class="col-sm-4 col-form-label">Geographic location</label>
-  <div class="col-sm-8">
-    <textarea class="form-control" id="geol" rows="3"></textarea>
-  </div>
-</div>
-
-<!-- Latitude -->
-<div class="mb-3 row">
-  <label for="lati" class="col-sm-4 col-form-label">Latitude</label>
-  <div class="col-sm-8">
+<div class="row">
+  <!-- Latitude -->
+  <div class="col">
+    <label for="lati" class="col-form-label">Latitude</label>
     <input type="number" step="any" class="form-control" id="lati" />
   </div>
-</div>
-
-<!-- Longitude -->
-<div class="mb-3 row">
-  <label for="long" class="col-sm-4 col-form-label">Longitude</label>
-  <div class="col-sm-8">
+  <!-- Longitude -->
+  <div class="col">
+    <label for="long" class="col-form-label">Longitude</label>
     <input type="number" step="any" class="form-control" id="long" />
   </div>
-</div>
-
-<!-- Altitude in meters, over level at sea -->
-<div class="mb-3 row">
-  <label for="alti" class="col-sm-4 col-form-label"
-    >Altitude in meters, over level at sea</label
-  >
-  <div class="col-sm-8">
+  <!-- Altitud eover sea level-->
+  <div class="col-4">
+    <label for="alti" class="col-form-label"
+      >Altitude over level at sea(m)</label
+    >
     <input type="number" step="any" class="form-control" id="alti" />
   </div>
-</div>
-
-<!-- Depth in meters -->
-<div class="mb-3 row">
-  <label for="dept" class="col-sm-4 col-form-label"
-    >Depth, in meters, where the sample was taken</label
-  >
-  <div class="col-sm-8">
+  <!-- Depth in meters -->
+  <div class="col-4">
+    <label for="dept" class="col-form-label"
+      >Depth where the sample was taken(m)</label
+    >
     <input type="number" step="any" class="form-control" id="dept" />
   </div>
 </div>
 
-<!-- Other relevant information about the sample -->
-<div class="mb-3 row">
-  <label for="sour" class="col-sm-4 col-form-label"
-    >Other relevant information about the sample</label
-  >
-  <div class="col-sm-8">
-    <textarea class="form-control" id="sour" rows="3"></textarea>
-  </div>
-</div>
-
-<!-- Sampling date -->
-<div class="mb-3 row">
-  <label for="dats" class="col-sm-4 col-form-label">Sampling date</label>
-  <div class="col-sm-8">
+<div class="row">
+  <!-- Sampling date -->
+  <div class="col">
+    <label for="dats" class="col-form-label">Sampling date</label>
     <input type="date" class="form-control" id="dats" />
   </div>
-</div>
-
-<!-- Hour of collection of the sample -->
-<div class="mb-3 row">
-  <label for="hocs" class="col-sm-4 col-form-label"
-    >Hour of collection of the sample</label
-  >
-  <div class="col-sm-8">
+  <!-- Hour of collection of the sample -->
+  <div class="col">
+    <label for="hocs" class="col-form-label"
+      >Hour of collection of the sample</label
+    >
     <input type="time" class="form-control" id="hocs" />
   </div>
-</div>
-
-<!-- Date of isolation -->
-<div class="mb-3 row">
-  <label for="dati" class="col-sm-4 col-form-label">Date of isolation</label>
-  <div class="col-sm-8">
+  <!-- Date of isolation -->
+  <div class="col">
+    <label for="dati" class="col-form-label">Date of isolation</label>
     <input type="date" class="form-control" id="dati" />
   </div>
 </div>
 
-<!-- Temperature of the sample -->
-<div class="mb-3 row">
-  <label for="tems" class="col-sm-4 col-form-label"
-    >Temperature of the sample [C]</label
-  >
-  <div class="col-sm-8">
+<div class="row">
+  <!-- Temperature of the sample -->
+  <div class="col">
+    <label for="tems" class="col-form-label"
+      >Temperature of the sample [C]</label
+    >
     <input type="number" step="any" class="form-control" id="tems" />
   </div>
-</div>
-
-<!-- pH of the sample -->
-<div class="mb-3 row">
-  <label for="phsa" class="col-sm-4 col-form-label">pH of the sample</label>
-  <div class="col-sm-8">
+  <!-- pH of the sample -->
+  <div class="col">
+    <label for="phsa" class="col-form-label">pH of the sample</label>
     <input type="number" step="any" class="form-control" id="phsa" />
+  </div>
+  <!-- Salinity of the sample -->
+  <div class="col">
+    <label for="sali" class="col-form-label">Salinity of the sample [%]</label>
+    <input type="number" step="any" class="form-control" id="sals" />
   </div>
 </div>
 
-<!-- Salinity of the sample -->
-<div class="mb-3 row">
-  <label for="sali" class="col-sm-4 col-form-label"
-    >Salinity of the sample [%]</label
-  >
-  <div class="col-sm-8">
-    <input type="number" step="any" class="form-control" id="sals" />
+<!-- Other relevant information about the sample -->
+<div class="row">
+  <div class="col">
+    <label for="sour" class="col-form-label"
+      >Other relevant information about the sample</label
+    >
+    <textarea class="form-control" id="sour" rows="3" maxlength="80"></textarea>
   </div>
 </div>
