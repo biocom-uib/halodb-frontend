@@ -3,15 +3,17 @@ Is the sample cultured or uncultured?           cult    ENUM('cultured,unculture
 Kind of material                                koma    ENUM('METAGENOME', 'METATRANSCRIPTOME', 'METAVIROME', 'GENOME PROCARIOTA', 'GENOME VIRUS', 'PROTEOMICS', 'SINGLE CELL GENOMICS', 'PLASMID')
 Other                                           coth    VARCHAR(500)
 -->
-
 <div class="row">
-  <!-- NCBI Taxonomy Number -->
+  <!-- Submitted to culture collection? -->
   <div class="col">
-    <label for="txnr" class="col-form-label">NCBI Taxonomy Number</label>
-    <div class="col-sm-8">
-      <input type="number" class="form-control" id="txnr" />
-    </div>
+    <label for="ccsu" class="col-form-label"
+      >Submitted to culture collection?</label
+    >
+
+    <input type="checkbox" id="ccsu" />
   </div>
+</div>
+<div class="row">
   <!-- Cultured? -->
   <div class="col">
     <label for="cult" class="col-form-label">Cultured?</label>
@@ -37,14 +39,13 @@ Other                                           coth    VARCHAR(500)
   </div>
 </div>
 <div class="row">
-  <!-- Submitted to culture collection? -->
+  <!-- NCBI Taxonomy Number -->
   <div class="col">
-    <label for="ccsu" class="col-form-label"
-      >Submitted to culture collection?</label
-    >
+    <label for="txnr" class="col-form-label">NCBI Taxonomy Number</label>
 
-    <input type="checkbox" id="ccsu" />
+    <input type="number" class="form-control" id="txnr" />
   </div>
+
   <!-- Strain/MAG/SAG taxon reference  -->
   <div class="col">
     <label for="otyp" class="col-form-label"
