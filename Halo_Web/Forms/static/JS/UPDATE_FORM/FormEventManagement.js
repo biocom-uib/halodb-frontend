@@ -13,6 +13,7 @@ async function FormEventManagement() {
   }
   loadFixedForms(NEXT_STEP);
   AddStep();
+  document.getElementById("step-by-step").scrollIntoView();
 }
 
 async function gestionAsync() {
