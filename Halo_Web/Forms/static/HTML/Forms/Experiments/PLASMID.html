@@ -9,91 +9,79 @@ Name of original file containing the assembly   assname             VARCHAR(100)
 Assembly size in base pairs                     asize               INT
 Number of contigs                               contignumber        INT
 -->
-
-<!-- Alternative housekeeping genes -->
-<div class="mb-3 row">
-  <label for="hkgn" class="col-sm-4 col-form-label"
-    >Alternative housekeeping genes</label
-  >
-  <div class="col-sm-8">
+<div class="row">
+  <!-- Alternative housekeeping genes -->
+  <div class="col">
+    <label for="hkgn" class="col-form-label"
+      >Alternative housekeeping genes</label
+    >
     <input type="number" class="form-control" id="hkgn" />
   </div>
-</div>
 
-<!-- Molar % of Guanine and Cytosine in DNA -->
-<div class="mb-3 row">
-  <label for="ggcm" class="col-sm-4 col-form-label"
-    >Molar % of Guanine and Cytosine in DNA</label
-  >
-  <div class="col-sm-8">
-    <input type="number" step="any" class="form-control" id="ggcm" />
+  <!-- Molar % of Guanine and Cytosine in DNA -->
+  <div class="col">
+    <label for="ggcm" class="col-form-label"
+      >Molar % of Guanine and Cytosine in DNA</label
+    >
+    <div class="input-group">
+      <input type="number" step="any" class="form-control" id="ggcm" />
+      <div class="input-group-append">
+        <span class="input-group-text">%</span>
+      </div>
+    </div>
   </div>
 </div>
-
-<!-- Assembly software -->
-<div class="mb-3 row">
-  <label for="asem" class="col-sm-4 col-form-label">Assembly software</label>
-  <div class="col-sm-8">
+<div class="row">
+  <!-- Assembly software -->
+  <div class="col">
+    <label for="asem" class="col-form-label">Assembly software</label>
     <input type="number" class="form-control" id="asem" />
   </div>
-</div>
 
-<!-- Used Parameters in Assembly Software -->
-<div class="mb-3 row">
-  <label for="asftparams" class="col-sm-4 col-form-label"
-    >Used Parameters in Assembly Software</label
-  >
-  <div class="col-sm-8">
+  <!-- Used Parameters in Assembly Software -->
+  <div class="col">
+    <label for="asftparams" class="col-form-label"
+      >Used Parameters in Assembly Software</label
+    >
     <input type="text" maxlength="80" class="form-control" id="asftparams" />
   </div>
-</div>
 
-<!-- Sequencing Technology -->
-<div class="mb-3 row">
-  <label for="seqt" class="col-sm-4 col-form-label"
-    >Sequencing Technology</label
-  >
-  <div class="col-sm-8">
+  <!-- Sequencing Technology -->
+  <div class="col">
+    <label for="seqt" class="col-form-label">Sequencing Technology</label>
     <input type="number" class="form-control" id="seqt" />
   </div>
 </div>
-
-<!-- UUID Assembled file -->
-<div class="mb-3 row">
-  <label for="assembled" class="col-sm-4 col-form-label"
-    >UUID Assembled file</label
-  >
-  <div class="col-sm-8">
+<div class="row">
+  <!-- UUID Assembled file -->
+  <div class="col">
+    <label for="assembled" class="col-form-label">UUID Assembled file</label>
     <input type="text" maxlength="40" class="form-control" id="assembled" />
   </div>
-</div>
 
-<!-- Name of original file containing the assembly -->
-<div class="mb-3 row">
-  <label for="assname" class="col-sm-4 col-form-label"
-    >Name of original file containing the assembly</label
-  >
-  <div class="col-sm-8">
+  <!-- Name of original file containing the assembly -->
+  <div class="col">
+    <label for="assname" class="col-form-label"
+      >Original filename containing the assembly</label
+    >
     <input type="text" maxlength="100" class="form-control" id="assname" />
   </div>
 </div>
-
-<!-- Assembly size in base pairs -->
-<div class="mb-3 row">
-  <label for="asize" class="col-sm-4 col-form-label"
-    >Assembly size in base pairs</label
-  >
-  <div class="col-sm-8">
-    <input type="number" class="form-control" id="asize" />
+<div class="row">
+  <!-- Assembly size in base pairs -->
+  <div class="col">
+    <label for="asize" class="col-form-label">Assembly size</label>
+    <div class="input-group">
+      <input type="number" class="form-control" id="asize" />
+      <div class="input-group-append">
+        <span class="input-group-text">bp</span>
+      </div>
+    </div>
   </div>
-</div>
 
-<!-- Number of contigs -->
-<div class="mb-3 row">
-  <label for="contignumber" class="col-sm-4 col-form-label"
-    >Number of contigs</label
-  >
-  <div class="col-sm-8">
+  <!-- Number of contigs -->
+  <div class="col">
+    <label for="contignumber" class="col-form-label">Number of contigs</label>
     <input type="number" class="form-control" id="contignumber" />
   </div>
 </div>
