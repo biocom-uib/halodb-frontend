@@ -55,78 +55,56 @@ Number of contigs                                                       contignu
 Strain Collection number                                                strccol                     INT
 -->
 <!-- Kind of Material -->
-<div class="mb-3 row">
-  <label for="komas" class="col-sm-4 col-form-label">Kind of Material</label>
-  <div class="col-sm-8">
-    <select class="form-select" id="komas">
-      <option value="METAGENOME">Metagenome</option>
-      <option value="METATRANSCRIPTOME">Metatranscriptome</option>
-      <option value="METAVIROME">Metavirome</option>
-      <option value="GENOME PROCARIOTA">Genome Procariota</option>
-      <option value="GENOME VIRUS">Genome Virus</option>
-      <option value="PROTEOMICS">Proteomics</option>
-      <option value="SINGLE CELL GENOMICS">Single Cell Genomics</option>
-      <option value="PLASMID">Plasmid</option>
-    </select>
+<div class="row">
+  <!-- Is this the designed type material for a new taxon? -->
+  <div class="col">
+    <label for="typn" class="form-check-label"
+      >Is this the designed type material for a new taxon?</label
+    >
+    <input class="form-check-input" type="checkbox" id="typn" />
   </div>
-</div>
 
-<!-- Is this the designed type material for a new taxon? -->
-<div class="mb-3 row">
-  <label for="typn" class="col-sm-4 col-form-label"
-    >Is this the designed type material for a new taxon?</label
-  >
-  <div class="col-sm-8">
-    <input type="checkbox" id="typn" />
-  </div>
-</div>
-
-<!-- Strain or MAG or SAG from which the reference taxon was obtained -->
-<div class="mb-3 row">
-  <label for="otyp" class="col-sm-4 col-form-label"
-    >Strain or MAG or SAG from which the reference taxon was obtained</label
-  >
-  <div class="col-sm-8">
+  <!-- Strain or MAG or SAG from which the reference taxon was obtained -->
+  <div class="col">
+    <label for="otyp" class="col-form-label"
+      >Strain or MAG or SAG from which the reference taxon was obtained</label
+    >
     <input type="text" maxlength="30" class="form-control" id="otyp" />
   </div>
 </div>
+<div class="row">
+  <!-- If cultured, has been submitted to culture collection? -->
+  <div class="col">
+    <label for="ccsu" class="form-check-label"
+      >If cultured, has been submitted to culture collection?</label
+    >
 
-<!-- NCBI Taxonomy number material type -->
-<div class="mb-3 row">
-  <label for="txnt" class="col-sm-4 col-form-label"
-    >NCBI Taxonomy number material type</label
-  >
-  <div class="col-sm-8">
+    <input class="form-check-input" type="checkbox" id="ccsu" />
+  </div>
+  <!-- NCBI Taxonomy number material type -->
+  <div class="col">
+    <label for="txnt" class="col-form-label"
+      >NCBI Taxonomy number material type</label
+    >
+
     <input type="number" class="form-control" id="txnt" />
   </div>
 </div>
 
-<!-- If cultured, has been submitted to culture collection? -->
-<div class="mb-3 row">
-  <label for="ccsu" class="col-sm-4 col-form-label"
-    >If cultured, has been submitted to culture collection?</label
-  >
-  <div class="col-sm-8">
-    <input type="checkbox" id="ccsu" />
-  </div>
-</div>
+<div class="row">
+  <!-- Designated type strain name/MAG/SAG -->
+  <div class="col">
+    <label for="type" class="col-form-label"
+      >Designated type strain name/MAG/SAG</label
+    >
 
-<!-- Designated type strain name/MAG/SAG -->
-<div class="mb-3 row">
-  <label for="type" class="col-sm-4 col-form-label"
-    >Designated type strain name/MAG/SAG</label
-  >
-  <div class="col-sm-8">
     <input type="text" maxlength="30" class="form-control" id="type" />
   </div>
-</div>
 
-<!-- Strain collection numbers -->
-<div class="mb-3 row">
-  <label for="coln" class="col-sm-4 col-form-label"
-    >Strain collection numbers</label
-  >
-  <div class="col-sm-8">
+  <!-- Strain collection numbers -->
+  <div class="col">
+    <label for="coln" class="col-form-label">Strain collection numbers</label>
+
     <input type="text" maxlength="80" class="form-control" id="coln" />
   </div>
 </div>

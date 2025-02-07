@@ -19,189 +19,167 @@ Biotic relationship with other organisms.                               bior    
 If it is a symbiont, with which host does it interact?                  host                        VARCHAR(100)
 Known pathogenicity.                                                    path                        VARCHAR(100)
 -->
-
-<!-- Is this the designed type material for a new taxon? -->
-<div class="mb-3 row">
-  <label for="typn" class="col-sm-4 col-form-label"
-    >Is this the designed type material for a new taxon?</label
-  >
-  <div class="col-sm-8">
+<div class="row">
+  <!-- Is this the designed type material for a new taxon? -->
+  <div class="col">
+    <label for="typn" class="col-form-label"
+      >Is this the designed type material for a new taxon?</label
+    >
     <input type="checkbox" id="typn" />
   </div>
 </div>
-
-<!-- Strain or MAG or SAG from which the reference taxon was obtained -->
-<div class="mb-3 row">
-  <label for="otyp" class="col-sm-4 col-form-label"
-    >Strain or MAG or SAG from which the reference taxon was obtained</label
-  >
-  <div class="col-sm-8">
+<div class="row">
+  <!-- Strain or MAG or SAG from which the reference taxon was obtained -->
+  <div class="col">
+    <label for="otyp" class="col-form-label"
+      >Reference Strain/MAG/SAG<br />
+      taxon
+    </label>
     <input type="text" maxlength="30" class="form-control" id="otyp" />
   </div>
-</div>
+  <!-- Designated type strain name/MAG/SAG -->
+  <div class="col">
+    <label for="type" class="col-form-label"
+      >Designated type strain name/MAG/SAG</label
+    >
 
-<!-- Designated type strain name/MAG/SAG -->
-<div class="mb-3 row">
-  <label for="type" class="col-sm-4 col-form-label"
-    >Designated type strain name/MAG/SAG</label
-  >
-  <div class="col-sm-8">
     <input type="text" maxlength="30" class="form-control" id="type" />
   </div>
-</div>
-
-<!-- 16S rRNA gene accession number -->
-<div class="mb-3 row">
-  <label for="sixteensr" class="col-sm-4 col-form-label"
-    >16S rRNA gene accession number</label
-  >
-  <div class="col-sm-8">
+  <!-- 16S rRNA gene accession number -->
+  <div class="col">
+    <label for="sixteensr" class="col-form-label"
+      >16S rRNA gene <br />accession number</label
+    >
     <input type="text" maxlength="20" class="form-control" id="sixteensr" />
   </div>
-</div>
+  <!-- 23S rRNA gene accession number -->
+  <div class="col">
+    <label for="twentythreesr" class="col-form-label"
+      >23S rRNA gene <br />accession number</label
+    >
 
-<!-- Sequencing depth -->
-<div class="mb-3 row">
-  <label for="seqdepth" class="col-sm-4 col-form-label">Sequencing depth</label>
-  <div class="col-sm-8">
-    <input type="number" step="any" class="form-control" id="seqdepth" />
-  </div>
-</div>
-
-<!-- 23S rRNA gene accession number -->
-<div class="mb-3 row">
-  <label for="twentythreesr" class="col-sm-4 col-form-label"
-    >23S rRNA gene accession number</label
-  >
-  <div class="col-sm-8">
     <input type="text" maxlength="20" class="form-control" id="twentythreesr" />
   </div>
 </div>
+<div class="row">
+  <!-- Sequencing depth -->
+  <div class="col">
+    <label for="seqdepth" class="col-form-label">Sequencing depth</label>
 
-<!-- MAG accession number (RefSeq/ENA) -->
-<div class="mb-3 row">
-  <label for="gare" class="col-sm-4 col-form-label"
-    >MAG accession number (RefSeq/ENA)</label
-  >
-  <div class="col-sm-8">
+    <input type="number" step="any" class="form-control" id="seqdepth" />
+  </div>
+  <!-- MAG accession number (RefSeq/ENA) -->
+  <div class="col">
+    <label for="gare" class="col-form-label"
+      >MAG accession number (RefSeq/ENA)</label
+    >
+
     <input type="text" maxlength="20" class="form-control" id="gare" />
   </div>
-</div>
 
-<!-- MAG accession number (other) -->
-<div class="mb-3 row">
-  <label for="binn" class="col-sm-4 col-form-label"
-    >MAG accession number (other)</label
-  >
-  <div class="col-sm-8">
+  <!-- MAG accession number (other) -->
+  <div class="col">
+    <label for="binn" class="col-form-label"
+      >MAG accession number (other)</label
+    >
+
     <input type="text" maxlength="20" class="form-control" id="binn" />
   </div>
 </div>
+<div class="row">
+  <!-- Genome status -->
+  <div class="col">
+    <label for="gsta" class="col-form-label">Genome status</label>
 
-<!-- Genome status -->
-<div class="mb-3 row">
-  <label for="gsta" class="col-sm-4 col-form-label">Genome status</label>
-  <div class="col-sm-8">
     <select class="form-select" id="gsta">
       <option value="complete">Complete</option>
       <option value="partial">Partial</option>
       <option value="draft">Draft</option>
     </select>
   </div>
-</div>
 
-<!-- Completeness -->
-<div class="mb-3 row">
-  <label for="completeness" class="col-sm-4 col-form-label">Completeness</label>
-  <div class="col-sm-8">
+  <!-- Completeness -->
+  <div class="col">
+    <label for="completeness" class="col-form-label">Completeness</label>
     <input type="number" step="any" class="form-control" id="completeness" />
   </div>
-</div>
 
-<!-- Contaminations -->
-<div class="mb-3 row">
-  <label for="contamination" class="col-sm-4 col-form-label"
-    >Contaminations</label
-  >
-  <div class="col-sm-8">
+  <!-- Contaminations -->
+  <div class="col">
+    <label for="contamination" class="col-form-label">Contaminations</label>
     <input type="number" step="any" class="form-control" id="contamination" />
   </div>
-</div>
-
-<!-- Method used to estimate the integrity and contamination of the sample -->
-<div class="mb-3 row">
-  <label for="method" class="col-sm-4 col-form-label"
-    >Method used to estimate integrity and contamination</label
-  >
-  <div class="col-sm-8">
+  <!-- Method used to estimate the integrity and contamination of the sample -->
+  <div class="col-6">
+    <label for="method" class="col-form-label"
+      >Method used to estimate integrity and contamination</label
+    >
     <input type="number" class="form-control" id="method" />
   </div>
 </div>
-
-<!-- Estimated or actual genome/metagenome size (bp) -->
-<div class="mb-3 row">
-  <label for="gsiz" class="col-sm-4 col-form-label"
-    >Estimated or actual genome/metagenome size (bp)</label
-  >
-  <div class="col-sm-8">
-    <input type="number" class="form-control" id="gsiz" />
+<div class="row">
+  <!-- Estimated or actual genome/metagenome size (bp) -->
+  <div class="col">
+    <label for="gsiz" class="col-form-label"
+      >Estimated or actual genome/metagenomesize</label
+    >
+    <div class="input-group">
+      <input type="number" class="form-control" id="gsiz" />
+      <div class="input-group-append">
+        <span class="input-group-text">bp</span>
+      </div>
+    </div>
   </div>
-</div>
 
-<!-- Molar percentage of Guanine and Cytosine in DNA -->
-<div class="mb-3 row">
-  <label for="ggcm" class="col-sm-4 col-form-label"
-    >Molar percentage of Guanine and Cytosine in DNA</label
-  >
-  <div class="col-sm-8">
-    <input type="number" step="any" class="form-control" id="ggcm" />
+  <!-- Molar percentage of Guanine and Cytosine in DNA -->
+  <div class="col">
+    <label for="ggcm" class="col-form-label"
+      >Molar % of Guanine and Cytosine in DNA</label
+    >
+    <div class="input-group">
+      <input type="number" step="any" class="form-control" id="ggcm" />
+      <div class="input-group-append">
+        <span class="input-group-text">%</span>
+      </div>
+    </div>
   </div>
-</div>
+  <!-- Binning software used -->
+  <div class="col">
+    <label for="bins" class="col-form-label">Binning software <br />used</label>
 
-<!-- Binning software used -->
-<div class="mb-3 row">
-  <label for="bins" class="col-sm-4 col-form-label"
-    >Binning software used</label
-  >
-  <div class="col-sm-8">
     <input type="number" class="form-control" id="bins" />
   </div>
-</div>
 
-<!-- Parameters used with bins -->
-<div class="mb-3 row">
-  <label for="binsparams" class="col-sm-4 col-form-label"
-    >Parameters used with bins</label
-  >
-  <div class="col-sm-8">
+  <!-- Parameters used with bins -->
+  <div class="col">
+    <label for="binsparams" class="col-form-label"
+      >Parameters used with <br />bins</label
+    >
+
     <input type="text" maxlength="80" class="form-control" id="binsparams" />
   </div>
 </div>
-
-<!-- Biotic relationship with other organisms -->
-<div class="mb-3 row">
-  <label for="bior" class="col-sm-4 col-form-label"
-    >Biotic relationship with other organisms</label
-  >
-  <div class="col-sm-8">
+<div class="row">
+  <!-- Biotic relationship with other organisms -->
+  <div class="col">
+    <label for="bior" class="col-form-label"
+      >Biotic relationship with other organisms</label
+    >
     <input type="text" maxlength="100" class="form-control" id="bior" />
   </div>
-</div>
 
-<!-- If it is a symbiont, with which host does it interact? -->
-<div class="mb-3 row">
-  <label for="host" class="col-sm-4 col-form-label"
-    >If it is a symbiont, with which host does it interact?</label
-  >
-  <div class="col-sm-8">
+  <!-- If it is a symbiont, with which host does it interact? -->
+  <div class="col">
+    <label for="host" class="col-form-label"
+      >Interction Host(Only symbiont)</label
+    >
     <input type="text" maxlength="100" class="form-control" id="host" />
   </div>
-</div>
 
-<!-- Known pathogenicity -->
-<div class="mb-3 row">
-  <label for="path" class="col-sm-4 col-form-label">Known pathogenicity</label>
-  <div class="col-sm-8">
+  <!-- Known pathogenicity -->
+  <div class="col">
+    <label for="path" class="col-form-label">Known pathogenicity</label>
+
     <input type="text" maxlength="100" class="form-control" id="path" />
   </div>
 </div>
