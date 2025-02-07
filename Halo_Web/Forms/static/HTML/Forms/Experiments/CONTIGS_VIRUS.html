@@ -1,59 +1,66 @@
 <!--
 genome/MAG/SAG accession number                                         gare(MV)                    VARCHAR(20)
 Genome status                                                           gsta(MV)                    ENUM("complete","partial","draft")
-Method used to estimate the integrity and contamination of the sample.  method(MV)                  INT
-Estimated or actual genome/metagenome size. Unit bp (base pairs)        gsiz(METAGENOME),                                   INT
+Method used to estimate the integrity and contamination of the sample.  method(MV)                  INT(SELECT??)
+Estimated or actual genome/metagenome size. Unit bp (base pairs)        gsiz(METAGENOME),           INT
 Molar percentage of Guanine and Cytosine in DNA.                        ggcm(MV)                    FLOAT
 -->
 
 <!-- Genome/MAG/SAG accession number -->
-<div class="mb-3 row">
-  <label for="gare" class="col-sm-4 col-form-label"
-    >Genome/MAG/SAG accession number</label
-  >
-  <div class="col-sm-8">
-    <input type="text" maxlength="20" class="form-control" id="gare" />
+<div class="row">
+  <div class="col">
+    <label for="gare" class="col-form-label">Accession number</label>
+    <div class="input-group">
+      <input type="text" maxlength="20" class="form-control" id="gare" />
+    </div>
   </div>
-</div>
+  <!-- Genome status -->
 
-<!-- Genome status -->
-<div class="mb-3 row">
-  <label for="gsta" class="col-sm-4 col-form-label">Genome status</label>
-  <div class="col-sm-8">
+  <div class="col">
+    <label for="gsta" class="col-form-label">Genome status</label>
+
     <select class="form-select" id="gsta">
       <option value="complete">Complete</option>
       <option value="partial">Partial</option>
       <option value="draft">Draft</option>
     </select>
   </div>
-</div>
+  <div class="col">
+    <label for="method" class="col-form-label"
+      >Estimate integrity and contamination Method</label
+    >
 
-<!-- Method used to estimate the integrity and contamination of the sample -->
-<div class="mb-3 row">
-  <label for="method" class="col-sm-4 col-form-label"
-    >Method used to estimate integrity and contamination</label
-  >
-  <div class="col-sm-8">
     <input type="number" class="form-control" id="method" />
   </div>
 </div>
 
-<!-- Estimated or actual genome/metagenome size (bp) -->
-<div class="mb-3 row">
-  <label for="gsiz" class="col-sm-4 col-form-label"
-    >Estimated or actual genome/metagenome size (bp)</label
-  >
-  <div class="col-sm-8">
-    <input type="number" class="form-control" id="gsiz" />
-  </div>
-</div>
+<div class="row">
+  <!-- Method used to estimate the integrity and contamination of the sample -->
 
-<!-- Molar percentage of Guanine and Cytosine in DNA -->
-<div class="mb-3 row">
-  <label for="ggcm" class="col-sm-4 col-form-label"
-    >Molar percentage of Guanine and Cytosine in DNA</label
-  >
-  <div class="col-sm-8">
-    <input type="number" step="any" class="form-control" id="ggcm" />
+  <!-- Estimated or actual genome/metagenome size (bp) -->
+  <div class="col">
+    <label for="gsiz" class="col-form-label"
+      >Estimated or actual genome/metagenome size</label
+    >
+    <div class="input-group">
+      <input type="number" class="form-control" id="gsiz" />
+      <div class="input-group-append">
+        <span class="input-group-text">bp</span>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <label for="ggcm" class="col-form-label"
+      >Molar % of Guanine and Cytosine in DNA</label
+    >
+    <div class="input-group">
+      <input type="number" step="any" class="form-control" id="ggcm" />
+      <div class="input-group-append">
+        <span class="input-group-text">%</span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <!-- Molar percentage of Guanine and Cytosine in DNA -->
   </div>
 </div>
