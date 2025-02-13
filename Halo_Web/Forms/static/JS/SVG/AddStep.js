@@ -6,7 +6,7 @@ function AddStep() {
       let stepName = STEPS_NAME[step];
 
       var container = document.getElementById("step-by-step");
-      container.insertAdjacentHTML("beforeend", data); // Mejor que innerHTML +=
+      container.insertAdjacentHTML("beforeend", data);
 
       // Obtener el último SVG añadido de forma más precisa
       var svgs = container.querySelectorAll("svg");
@@ -16,9 +16,6 @@ function AddStep() {
       svg.children[1].innerHTML = `\n    ${step + 1}\n  `;
       svg.children[2].innerHTML = `\n${stepName}\n  `;
       svg.children[2].setAttribute("x", "25");
-
-      document.getElementById("Etapa").innerHTML = stepName;
-
       // Asignar el evento al SVG con el paso correspondiente
       svg.addEventListener("click", () => goBack(step));
     })

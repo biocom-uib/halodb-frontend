@@ -5,6 +5,7 @@
 function init() {
   const STEP = 0;
   localStorage.setItem("actualStep", STEP);
+  localStorage.setItem("maxStepDone", STEP);
   AddStep();
   loadFixedForms(STEP);
   const goBackBtn = document.getElementById("goBack");

@@ -5,22 +5,22 @@
 3. Actualizar step-by-step
 */
 async function goBack(step) {
-  var newStep;
-  if (step > 0) {
-    newStep = step - 1;
-  } else {
-    newStep = step;
+  const ACT_STEP = localStorage.getItem("actualStep");
+  if (ACT_STEP == step) {
+    return;
   }
-  localStorage.setItem("actualStep", newStep);
-  await loadFixedForms(newStep);
+
+  localStorage.setItem("actualStep", step);
+  await loadFixedForms(step);
   RecoverFieldsData();
-  RemoveStep(newStep);
-  document.getElementById("Etapa").innerHTML = STEPS_NAME[newStep];
-  if (newStep < 3) {
+  RemoveStep(step, ACT_STEP);
+  document.getElementById("Etapa").innerHTML = STEPS_NAME[step];
+  if (step < 3) {
     const komaLabel = document.getElementById("komaLabel");
+    const CARD = document.getElementById("cardForm");
     STEPS_NAME = STEPS_NAME.slice(0, 3);
     STATIC_FOMRS_PATH = STATIC_FOMRS_PATH.slice(0, 3);
-
+    changeColors(CARD.classList, DEFULT_CARD_COLOR);
     komaLabel.dataset.selected = 0;
     komaLabel.innerText = "Koma:";
   }
