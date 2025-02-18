@@ -8,7 +8,6 @@ async function getKomaForms() {
 
     const PARSED_DATA = JSON.parse(data);
     const KOMA = localStorage.getItem("koma"); // Obtén el "koma" de localStorage
-
     const KOMA_DATA = PARSED_DATA.experiments.find(
       (exp) => exp.koma.toUpperCase() === KOMA
     );

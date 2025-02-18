@@ -5,9 +5,6 @@ async function loadFixedForms(step) {
   await fetch(STATIC_FOMRS_PATH[step])
     .then((response) => response.text())
     .then((data) => {
-      const KOMA_IDX = document.getElementById("koma")
-        ? document.getElementById("koma").selectedIndex
-        : -1;
       const IS_LAST = step > 2 && step == STEPS_NAME.length - 1;
       const KOMA = localStorage.getItem("koma");
 
@@ -17,14 +14,19 @@ async function loadFixedForms(step) {
       const komaLabel = document.getElementById("komaLabel");
 
       cardForm.innerHTML = data;
-      submitButton.value = IS_LAST ? "Save" : "Next Step";
+      submitButton.innerHTML = IS_LAST
+        ? `Save<i class="bi bi-floppy"></i>`
+        : "Next Step";
       goBackButton.style.visibility = step == 0 ? "hidden" : "Visible";
       if (komaLabel.dataset.selected == 0 && KOMA) {
         komaLabel.innerText += KOMA;
         komaLabel.dataset.selected = 1;
-        if (KOMA_IDX >= 0) {
-          changeColors(cardForm.classList, CARD_COLORS[KOMA_IDX]);
-        }
+      }
+      if (step == 2) {
+        const KOMA = document.getElementById("koma");
+        KOMA.addEventListener("change", () =>
+          ChangeKoma(KOMA.selectedIndex, KOMA.value)
+        );
       }
     })
     .catch((error) => console.error("Error loadFixedForms: ", error));

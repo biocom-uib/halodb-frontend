@@ -10,7 +10,7 @@ async function FormEventManagement() {
   const COLOR = "grey";
   UpdateColor(SVG_ID, COLOR);
 
-  LocalStoreData();
+  LocalStoreData(ACT_STEP);
 
   localStorage.setItem("actualStep", NEXT_STEP);
   if (NEXT_STEP == 3) {

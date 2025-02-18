@@ -1,78 +1,64 @@
-{% load static%}
+{% extends "master.html" %}
 <!DOCTYPE html>
 <html>
   <head>
-    {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
+    {% load static %}
+    {% block title %} HaloFile Experiments Forms {% endblock %}
     <!-- Bootstrap Icons CDN -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
     />
   </head>
-  <body>
-    <header>
+  {% block content %}
+  <header>
+    <div class="container mt-4">
+      <h1 class="text-center">HaloFile Insert Section</h1>
+    </div>
+    <nav>
       <div class="container mt-4">
-        <h1 class="text-center">HaloFile Insert Section</h1>
+        <button onclick="" class="btn btn-primary">
+          Load Data <i class="bi bi-file-earmark-arrow-up"></i>
+        </button>
+        <button id="saveButton" onclick="" class="btn btn-primary">
+          Save Data <i class="bi bi-floppy"></i>
+        </button>
       </div>
-      <nav>
-        <div class="container mt-4">
-          <button onclick="" class="btn btn-primary">
-            Load Data <i class="bi bi-file-earmark-arrow-up"></i>
+    </nav>
+  </header>
+  <main>
+    <div id="step-by-step" class="container mt-4"></div>
+    <div
+      class="container d-flex flex-column justify-content-center align-items-center mt-4"
+    >
+      <h2 id="Etapa">Sample</h2>
+      <h3 id="komaLabel" data-selected="0">Koma:</h3>
+    </div>
+
+    <div id="contenedorForm" class="container mt-4">
+      <form id="mainForm" class="container">
+        <div id="cardForm" class="card p-3">
+          <!-- Data Fields-->
+        </div>
+        <div
+          id="containerButtons"
+          class="d-flex justify-content-between align-items-center mt-4"
+        >
+          <button
+            id="goBack"
+            type="button"
+            class="btn btn-secondary"
+            style="visibility: hidden"
+          >
+            <i class="bi bi-arrow-left"></i> Go back
           </button>
-          <button id="saveButton" onclick="" class="btn btn-primary">
-            Save Data <i class="bi bi-floppy"></i>
+          <button type="submit" id="submit" class="btn btn-primary">
+            Next Step <i class="bi bi-arrow-right"></i>
           </button>
         </div>
-      </nav>
-    </header>
-    <main>
-      <div id="step-by-step" class="container mt-4"></div>
-      <div
-        class="container d-flex flex-column justify-content-center align-items-center mt-4"
-      >
-        <h2 id="Etapa">Sample</h2>
-        <h3 id="komaLabel" data-selected="0">Koma:</h3>
-      </div>
-
-      <div id="contenedorForm" class="container mt-4">
-        <form id="mainForm" class="container">
-          <div id="cardForm" class="card p-3">
-            <!-- Data Fields-->
-          </div>
-          <div
-            id="containerButtons"
-            class="d-flex justify-content-between align-items-center mt-4"
-          >
-            <button
-              id="goBack"
-              type="button"
-              class="btn btn-secondary"
-              style="visibility: hidden"
-            >
-              <i class="bi bi-arrow-left"></i> Go back
-            </button>
-            <button type="submit" id="submit" class="btn btn-primary">
-              Next Step <i class="bi bi-arrow-right"></i>
-            </button>
-          </div>
-        </form>
-      </div>
-    </main>
-    <script src="{% static 'JS/BASIC/init.js' %}"></script>
-    <script src="{% static 'JS/BASIC/global.js' %}"></script>
-    <script src="{% static 'JS/BASIC/goBack.js' %}"></script>
-
-    <!--<script src="{% static 'JS/EXPERIMENT_FORM/showHideInputs.js'}"></script>-->
-
-    <script src="{% static 'JS/SVG/AddStep.js' '%}"></script>
-    <script src="{% static 'JS/SVG/RemoveStep.js' '%}"></script>
-    <script src="{% static 'JS/SVG/UpdateColor.js' '%}"></script>
-
-    <script src="{% static 'JS/UPDATE_FORM/getKomaForms.js' '%}"></script>
-    <script src="{% static 'JS/UPDATE_FORM/LoadNextForm.js' '%}"></script>
-    <script src="{% static 'JS/UPDATE_FORM/FormEventManagement.js' '%}"></script>
-    <script src="{% static 'JS/UPDATE_FORM/LocalStoreData.js' '%}"></script>
-    <script src="{% static 'JS/UPDATE_FORM/UpdateStep.js' '%}"></script>
-    <script src="{% static 'JS/UPDATE_FORM/changeCardBG.js' '%}"></script>
-  </body>
+      </form>
+    </div>
+  </main>
+  <script src="{% static 'JS/BASIC/init.js' %}"></script>
+  {% endblock %}
 </html>

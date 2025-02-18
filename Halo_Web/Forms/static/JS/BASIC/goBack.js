@@ -8,22 +8,14 @@ async function goBack(step) {
   const ACT_STEP = localStorage.getItem("actualStep");
   if (ACT_STEP == step) {
     return;
+  } else if (step == -1) {
+    step = ACT_STEP - 1;
   }
-
   localStorage.setItem("actualStep", step);
   await loadFixedForms(step);
   RecoverFieldsData();
   RemoveStep(step, ACT_STEP);
   document.getElementById("Etapa").innerHTML = STEPS_NAME[step];
-  if (step < 3) {
-    const komaLabel = document.getElementById("komaLabel");
-    const CARD = document.getElementById("cardForm");
-    STEPS_NAME = STEPS_NAME.slice(0, 3);
-    STATIC_FOMRS_PATH = STATIC_FOMRS_PATH.slice(0, 3);
-    changeColors(CARD.classList, DEFULT_CARD_COLOR);
-    komaLabel.dataset.selected = 0;
-    komaLabel.innerText = "Koma:";
-  }
 }
 
 async function RecoverFieldsData() {

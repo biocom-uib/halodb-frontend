@@ -10,7 +10,7 @@ function init() {
   loadFixedForms(STEP);
   const goBackBtn = document.getElementById("goBack");
   goBackBtn.addEventListener("click", () =>
-    goBack(localStorage.getItem("actualStep"))
+    goBack(localStorage.getItem("actualStep") - 1)
   );
   var form = document.getElementById("mainForm");
   form.addEventListener("submit", (event) => {
