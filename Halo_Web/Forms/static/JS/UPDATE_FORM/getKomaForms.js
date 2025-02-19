@@ -8,18 +8,19 @@ async function getKomaForms() {
 
     const PARSED_DATA = JSON.parse(data);
     const KOMA = localStorage.getItem("koma"); // Obtén el "koma" de localStorage
+    const PATH = PARSED_DATA.path;
     const KOMA_DATA = PARSED_DATA.experiments.find(
       (exp) => exp.koma.toUpperCase() === KOMA
     );
 
     const EXP_STEPS = KOMA_DATA.steps;
-    const PATH = PARSED_DATA.path;
-
+    
+    let step,completePath
     // Rellena las listas con datos
     for (let idx in EXP_STEPS) {
-      let step = EXP_STEPS[idx];
-      let completePath = PATH.concat(step.path);
-
+      step = EXP_STEPS[idx];
+      completePath = PATH.concat(step.path);
+      
       path_list.push(completePath);
       step_list.push(step.name);
     }

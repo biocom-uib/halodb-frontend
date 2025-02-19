@@ -1,62 +1,5 @@
-            <!-- TAMBIÉN SIRVE PARA CONTIGS_VIRUS y GENOME
-Kind of Material                                                        komas(GENOME VIRUS)                                 ENUM('METAGENOME', 'METATRANSCRIPTOME', 'METAVIROME', 'GENOME PROCARIOTA', 'GENOME VIRUS', 'PROTEOMICS', 'SINGLE CELL GENOMICS', 'PLASMID')
-Is this the designed type material for a new taxon?                     typn                        BOOLEAN
-Strain or MAG or SAG from which the reference taxon was obtained        otyp                        VARCHAR(30)
-NCBI Taxonomy number material type                                      txnt                        INT
-If cultured, has been submitted to culture collection?                  ccsu(VI)                    BOOLEAN
-Designated type strain name/MAG/SAG                                     type                        VARCHAR(30)
-Strain collection numbers                                               coln                        VARCHAR(80)
-16S rRNA gene accession number                                          sixteensr                   VARCHAR(20)  
-Sequencing depth                                                        seqdepth                    FLOAT
-23S rRNA gene accession number                                          twentythreesr               VARCHAR(20)
-ALternative housekeeping genes                                          hkgn                        INT
-MAG accession number(RefSeq/ENA)                                        gare(MV)                    VARCHAR(20)
-garem(VI)                   ?
-Genome status                                                           gsta(MV)                    ENUM("complete","partial","draft")
-Completness                                                             completeness                FLOAT
-Contaminations                                                          contamination               FLOAT
-Method used to estimate the integrity and contamination of the sample   method(MV)                  INT
-Estimated or actual genome/metagenome size. Unit bp (base pairs)        gsiz(METAGENOME),           INT
-Molar percentage of Guanine and Cytosine in DNA.                        ggcm(MV)                    FLOAT
-DNA extraction method                                                   dnae                        INT
-Software used for assembly                                              asem(VI)                    INT
-Parameters used with asem                                               asftparams(VI)              VARCHAR(80)
-Sequencing Technology                                                   seqt(VI)                    INT
-asft                        ?
-Date of isolation                                                       dati(VI)                    DATE
-Temperature of the sample (Celsius)                                     tems                        FLOAT
-PH of the Sample                                                        phsa                        FLOAT
-Salinity of the sample                                                  sals                        FLOAT
-Energy metabolism                                                       emet                        VARCHAR(500)
-Relation with O2                                                        orel                        INT
-Terminal electron acceptor                                              elac                        VARCHAR(40)
-Temperature Optimum                                                     temo                        FLOAT
-Lowest temperature for growth                                           teml                        FLOAT
-Highest temperature for growth                                          temh                        FLOAT
-Temperature Category                                                    temc                        ENUM("Psychrophyles","Mesophiles","Moderate thermophiles","Thermophiles","Hyperthermophiles")
-PH optimum                                                              phop                        FLOAT
-Lowest ph for growth                                                    phlo                        FLOAT
-Highest ph for growth                                                   phhi                        FLOAT
-ph Category                                                             phca                        ENUM("Ultra acidic","Extremly acidic","Very strong acidic","Strongly acidic","Moderately acidic","Slightly acidic","Neutral","Slightly alkaline","Moderately alkaline","Strongly alkaline","Very strong alkaline","Extremly alkaline","Ultra alkaline")
-Salinity optimum                                                        salo                        FLOAT
-Lowest NaCl concentration for growth                                    sall                        FLOAT
-Highest NaCl concentration for growth                                   salh                        FLOAT
-Other salts besides NaCl to be reported                                 salw                        VARCHAR(80)
-Biosafety level                                                         bios(VI)                    ENUM("BSL-1","BSL-2","BSL-3","BSL-4")
-Binning software used                                                   bins                        INT*[no GEN]
-Biotic relationship with other organisms.                               bior(VI)                    VARCHAR(100)
-If it is a symbiont, with which host does it interact?                  host(VI)                    VARCHAR(100)
-Known pathogenicity.                                                    path                        VARCHAR(100)
-Miscellaneous, extraordinary features relevant for the description      extr                        VARCHAR (500)
-Assebled file ID                                                        assembled(VI)               VARCHAR(40)
-Original assembly file name                                             assname(VI)                 VARCHAR(10)
-Assembly size in base pairs                                             asize(VI)                   INT
-Number of contigs                                                       contignumber(VI)            INT
-Strain Collection number                                                strccol                     INT
--->
-
-<div class="accordion p-1" id="accordionExample">
-  <div class="accordion-item">
+<div class="accordion p-1 text-dark" id="accordionExample">
+  <div class="accordion-item ">
     <h2 class="accordion-header" id="Taxonomy">
       <button
         class="accordion-button"
@@ -81,11 +24,7 @@ Strain Collection number                                                strccol 
             <label for="typn" class="form-check-label"
               >Designed type material for a new taxon?</label
             >
-            <input
-              class="form-check-input"
-              type="checkbox"
-              id="typn"
-            />
+            <input class="form-check-input" type="checkbox" id="typn" />
           </div>
           <!-- If cultured, has been submitted to culture collection? -->
           <div class="d-flex align-items-center col">
@@ -93,11 +32,7 @@ Strain Collection number                                                strccol 
               >Submitted to culture collection?</label
             >
 
-            <input
-              class="form-check-input"
-              type="checkbox"
-              id="ccsu"
-            />
+            <input class="form-check-input" type="checkbox" id="ccsu" />
           </div>
         </div>
         <div class="d-flex justify-content-between row mt-4">
@@ -106,12 +41,7 @@ Strain Collection number                                                strccol 
             <label for="txnt" class="col-form-label"
               >NCBI Taxonomy number material type</label
             >
-            <input
-              type="number"
-              class="form-control"
-              id="txnt"
-              min="1"
-            />
+            <input type="number" class="form-control" id="txnt" min="1" />
           </div>
           <!-- Designated type strain name/MAG/SAG -->
           <div class="col-2">
@@ -119,24 +49,14 @@ Strain Collection number                                                strccol 
               >Designated type strain name/MAG/SAG</label
             >
 
-            <input
-              type="text"
-              maxlength="30"
-              class="form-control"
-              id="type"
-            />
+            <input type="text" maxlength="30" class="form-control" id="type" />
           </div>
           <!-- Strain or MAG or SAG from which the reference taxon was obtained -->
           <div class="col-3">
             <label for="otyp" class="col-form-label"
               >Obtained Strain/MAG/SAG taxon reference</label
             >
-            <input
-              type="text"
-              maxlength="30"
-              class="form-control"
-              id="otyp"
-            />
+            <input type="text" maxlength="30" class="form-control" id="otyp" />
           </div>
           <!--Biosafety level (bios)-->
           <div class="col-2">
@@ -160,25 +80,13 @@ Strain Collection number                                                strccol 
               >Strain collection numbers</label
             >
 
-            <input
-              type="text"
-              maxlength="80"
-              class="form-control"
-              id="coln"
-            />
+            <input type="text" maxlength="80" class="form-control" id="coln" />
           </div>
         </div>
         <div class="row">
           <div class="col">
-            <label for="bior" class="col-form-label"
-              >Biotic relationship</label
-            >
-            <input
-              type="text"
-              maxlength="100"
-              class="form-control"
-              id="bior"
-            />
+            <label for="bior" class="col-form-label">Biotic relationship</label>
+            <input type="text" maxlength="100" class="form-control" id="bior" />
           </div>
         </div>
 
@@ -188,27 +96,15 @@ Strain Collection number                                                strccol 
             <label for="host" class="col-form-label"
               >Interaction Host(Only symbiont)</label
             >
-            <input
-              type="text"
-              maxlength="100"
-              class="form-control"
-              id="host"
-            />
+            <input type="text" maxlength="100" class="form-control" id="host" />
           </div>
         </div>
 
         <!--Known pathogenicity(path)-->
         <div class="row">
           <div class="col">
-            <label for="path" class="col-form-label"
-              >Known pathogenicity</label
-            >
-            <input
-              type="text"
-              maxlength="100"
-              class="form-control"
-              id="path"
-            />
+            <label for="path" class="col-form-label">Known pathogenicity</label>
+            <input type="text" maxlength="100" class="form-control" id="path" />
           </div>
         </div>
       </div>
@@ -249,9 +145,7 @@ Strain Collection number                                                strccol 
             </div>
             <!-- 23S rRNA gene accession number -->
             <div class="col-3">
-              <label
-                for="twentythreesr"
-                class="col-form-label col-6"
+              <label for="twentythreesr" class="col-form-label col-6"
                 >23S rRNA gene accession number</label
               >
               <input
@@ -284,9 +178,7 @@ Strain Collection number                                                strccol 
           <div class="d-flex justify-content-between row">
             <!--GEnome Status-->
             <div class="col-2">
-              <label for="gsta" class="col-form-label"
-                >Genome status</label
-              >
+              <label for="gsta" class="col-form-label">Genome status</label>
               <select class="form-control" id="gsta">
                 <option value="complete">Complete</option>
                 <option value="partial">Partial</option>
@@ -378,32 +270,21 @@ Strain Collection number                                                strccol 
                 <label for="dnae" class="col-form-label"
                   >DNA extraction method</label
                 >
-                <input
-                  type="number"
-                  class="form-control"
-                  id="dnae"
-                  min="1"
-                />
+                <input type="number" class="form-control" id="dnae" min="1" />
               </div>
               <!--Software used for assembly-->
               <div class="col">
                 <label for="asem" class="col-form-label"
                   >Software used for assembly</label
                 >
-                <input
-                  type="number"
-                  class="form-control"
-                  id="asem"
-                  min="1"
-                />
+                <input type="number" class="form-control" id="asem" min="1" />
               </div>
               <!--Parameters used with assembly software -->
             </div>
             <div class="row">
               <div class="col">
                 <label for="asftparams" class="col-form-label"
-                  >Assembly Software
-                  <portal></portal>arameters</label
+                  >Assembly Software <portal></portal>arameters</label
                 >
                 <input
                   type="text"
@@ -417,11 +298,7 @@ Strain Collection number                                                strccol 
                 <label for="seqt" class="col-form-label"
                   >Sequencing Technology</label
                 >
-                <input
-                  type="number"
-                  class="form-control"
-                  id="seqt"
-                />
+                <input type="number" class="form-control" id="seqt" />
               </div>
             </div>
             <div class="row">
@@ -451,15 +328,9 @@ Strain Collection number                                                strccol 
               </div>
               <!--Assembly size-->
               <div class="col-2">
-                <label for="asize" class="col-form-label"
-                  >Assembly size</label
-                >
+                <label for="asize" class="col-form-label">Assembly size</label>
                 <div class="input-group">
-                  <input
-                    type="number"
-                    class="form-control"
-                    id="asize"
-                  />
+                  <input type="number" class="form-control" id="asize" />
                   <div class="input-group-append">
                     <span class="input-group-text">bp</span>
                   </div>
@@ -470,11 +341,7 @@ Strain Collection number                                                strccol 
                 <label for="contignumber" class="col-form-label"
                   >Number of contigs</label
                 >
-                <input
-                  type="number"
-                  class="form-control"
-                  id="contignumber"
-                />
+                <input type="number" class="form-control" id="contignumber" />
               </div>
             </div>
           </div>
@@ -503,9 +370,7 @@ Strain Collection number                                                strccol 
           <div class="row">
             <div class="col-3">
               <!--Date of isolation-->
-              <label for="dati" class="col-form-label"
-                >Date of isolation</label
-              >
+              <label for="dati" class="col-form-label">Date of isolation</label>
               <input type="date" class="form-control" id="dati" />
             </div>
           </div>
@@ -590,102 +455,54 @@ Strain Collection number                                                strccol 
                   Moderate thermophiles
                 </option>
                 <option value="Thermophiles">Thermophiles</option>
-                <option value="Hyperthermophiles">
-                  Hyperthermophiles
-                </option>
+                <option value="Hyperthermophiles">Hyperthermophiles</option>
               </select>
             </div>
           </div>
           <!--PH of the Sample-->
           <div class="row">
             <div class="col">
-              <label for="phsa" class="col-form-label"
-                >PH of the Sample</label
-              >
-              <input
-                type="number"
-                step="0.01"
-                class="form-control"
-                id="phsa"
-              />
+              <label for="phsa" class="col-form-label">PH of the Sample</label>
+              <input type="number" step="0.01" class="form-control" id="phsa" />
             </div>
             <!--PH optimum-->
             <div class="col">
-              <label for="phop" class="col-form-label"
-                >PH optimum</label
-              >
-              <input
-                type="number"
-                step="0.01"
-                class="form-control"
-                id="phop"
-              />
+              <label for="phop" class="col-form-label">PH optimum</label>
+              <input type="number" step="0.01" class="form-control" id="phop" />
             </div>
             <!--Lowest pH for growth-->
             <div class="col">
               <label for="phlo" class="col-form-label"
                 >Lowest pH for growth</label
               >
-              <input
-                type="number"
-                step="0.01"
-                class="form-control"
-                id="phlo"
-              />
+              <input type="number" step="0.01" class="form-control" id="phlo" />
             </div>
             <!--Highest pH for growth-->
             <div class="col">
               <label for="phhi" class="col-form-label"
                 >Highest pH for growth</label
               >
-              <input
-                type="number"
-                step="0.01"
-                class="form-control"
-                id="phhi"
-              />
+              <input type="number" step="0.01" class="form-control" id="phhi" />
             </div>
             <!--pH Category-->
             <div class="col">
-              <label for="phca" class="col-form-label"
-                >pH Category</label
-              >
+              <label for="phca" class="col-form-label">pH Category</label>
               <select class="form-control" id="phca">
                 <option value="Ultra acidic">Ultra acidic</option>
-                <option value="Extremly acidic">
-                  Extremly acidic
-                </option>
-                <option value="Very strong acidic">
-                  Very strong acidic
-                </option>
-                <option value="Strongly acidic">
-                  Strongly acidic
-                </option>
-                <option value="Moderately acidic">
-                  Moderately acidic
-                </option>
-                <option value="Slightly acidic">
-                  Slightly acidic
-                </option>
+                <option value="Extremly acidic">Extremly acidic</option>
+                <option value="Very strong acidic">Very strong acidic</option>
+                <option value="Strongly acidic">Strongly acidic</option>
+                <option value="Moderately acidic">Moderately acidic</option>
+                <option value="Slightly acidic">Slightly acidic</option>
                 <option value="Neutral">Neutral</option>
-                <option value="Slightly alkaline">
-                  Slightly alkaline
-                </option>
-                <option value="Moderately alkaline">
-                  Moderately alkaline
-                </option>
-                <option value="Strongly alkaline">
-                  Strongly alkaline
-                </option>
+                <option value="Slightly alkaline">Slightly alkaline</option>
+                <option value="Moderately alkaline">Moderately alkaline</option>
+                <option value="Strongly alkaline">Strongly alkaline</option>
                 <option value="Very strong alkaline">
                   Very strong alkaline
                 </option>
-                <option value="Extremly alkaline">
-                  Extremly alkaline
-                </option>
-                <option value="Ultra alkaline">
-                  Ultra alkaline
-                </option>
+                <option value="Extremly alkaline">Extremly alkaline</option>
+                <option value="Ultra alkaline">Ultra alkaline</option>
               </select>
             </div>
           </div>
@@ -694,45 +511,25 @@ Strain Collection number                                                strccol 
               <label for="sals" class="col-form-label"
                 >Sample<br />Salinity</label
               >
-              <input
-                type="number"
-                step="0.01"
-                class="form-control"
-                id="sals"
-              />
+              <input type="number" step="0.01" class="form-control" id="sals" />
             </div>
             <div class="col">
               <label for="salo" class="col-form-label"
                 >Optimum<br />Salinity
               </label>
-              <input
-                type="number"
-                step="0.01"
-                class="form-control"
-                id="salo"
-              />
+              <input type="number" step="0.01" class="form-control" id="salo" />
             </div>
             <div class="col">
               <label for="sall" class="col-form-label"
                 >Lowest NaCl concentration for growth</label
               >
-              <input
-                type="number"
-                step="0.01"
-                class="form-control"
-                id="sall"
-              />
+              <input type="number" step="0.01" class="form-control" id="sall" />
             </div>
             <div class="col">
               <label for="salh" class="col-form-label"
                 >Highest NaCl concentration for growth</label
               >
-              <input
-                type="number"
-                step="0.01"
-                class="form-control"
-                id="salh"
-              />
+              <input type="number" step="0.01" class="form-control" id="salh" />
             </div>
             <div class="col">
               <label for="salw" class="col-form-label"
@@ -770,38 +567,34 @@ Strain Collection number                                                strccol 
         <div class="accordion-body">
           <div class="row">
             <!-- Sequencing depth -->
-  <div class="col">
-    <label for="seqdepth" class="col-form-label"
-      >Sequencing<br />
-      depth</label
-    >
-    <input
-      type="number"
-      step="0.01"
-      class="form-control"
-      id="seqdepth"
-    />
-  </div>
-  <div class="col">
-    <label for="extr" class="col-form-label"
-      >Miscellaneous, extraordinary features relevant for the
-      description</label
-    >
-    <textarea
-      type="text"
-      maxlength="500"
-      class="form-control"
-      id="extr"
-      rows="4"
-    ></textarea>
-  </div>
+            <div class="col">
+              <label for="seqdepth" class="col-form-label"
+                >Sequencing<br />
+                depth</label
+              >
+              <input
+                type="number"
+                step="0.01"
+                class="form-control"
+                id="seqdepth"
+              />
+            </div>
+            <div class="col">
+              <label for="extr" class="col-form-label"
+                >Miscellaneous, extraordinary features relevant for the
+                description</label
+              >
+              <textarea
+                type="text"
+                maxlength="500"
+                class="form-control"
+                id="extr"
+                rows="4"
+              ></textarea>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    
   </div>
-</div>
-
-
 </div>

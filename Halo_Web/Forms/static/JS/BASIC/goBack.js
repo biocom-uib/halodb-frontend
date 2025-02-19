@@ -12,7 +12,7 @@ async function goBack(step) {
     step = ACT_STEP - 1;
   }
   localStorage.setItem("actualStep", step);
-  await loadFixedForms(step);
+  await LoadNextForm(step);
   RecoverFieldsData();
   RemoveStep(step, ACT_STEP);
   document.getElementById("Etapa").innerHTML = STEPS_NAME[step];
