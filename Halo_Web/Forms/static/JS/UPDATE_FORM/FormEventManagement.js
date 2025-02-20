@@ -1,12 +1,18 @@
 async function FormEventManagement() {
-  
+
   const ACT_STEP = localStorage.getItem("actualStep");
   const MAX_STEP_DONE = localStorage.getItem("maxStepDone");
-  const IS_LAST = ACT_STEP > 2 && ACT_STEP == STEPS_NAME.length - 1;
+  const IS_LAST = ACT_STEP > 2 && ACT_STEP == (STEPS_NAME.length - 1);
   const NEXT_STEP = Number(ACT_STEP) + 1;
   const PROGRESS = MAX_STEP_DONE < NEXT_STEP;
   const SVG_ID = "SVG_".concat(ACT_STEP);
   const COLOR = "grey";
+
+  if(IS_LAST){
+    LocalStoreData(ACT_STEP);
+    window.location.assign("/Summary");
+    return;
+  }
 
   if (PROGRESS) {
     localStorage.setItem("maxStepDone", NEXT_STEP);

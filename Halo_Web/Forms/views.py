@@ -13,6 +13,10 @@ def signup(request):
     template=loader.get_template('SignUp.html')
     return HttpResponse(template.render())
 
+def summary(request):
+  template = loader.get_template('Summary.html')
+  return HttpResponse(template.render())
+
 def main(request):
   template = loader.get_template('index.html')
   return HttpResponse(template.render())

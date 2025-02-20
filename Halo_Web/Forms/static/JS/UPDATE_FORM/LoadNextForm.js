@@ -1,7 +1,8 @@
 /*
   LoadNextForm: Update form inputs fields 
 */
-async function LoadNextForm(step,IS_LAST) {
+async function LoadNextForm(step) {
+  const IS_LAST = step > 2 && step == (STEPS_NAME.length - 1);
   await fetch(STATIC_FOMRS_PATH[step])
     .then((response) => response.text())
     .then((data) => {
@@ -14,12 +15,9 @@ async function LoadNextForm(step,IS_LAST) {
       cardForm.innerHTML = data;
       if (IS_LAST) {
         const icon = document.createElement("i");
-        icon.classList.add("bi", " bi-floppy");
+        icon.classList.add("bi", "bi-floppy");
         submitButton.innerText = "Save";
         submitButton.appendChild(icon);
-        submitButton.removeEventListener("submit");
-        submitButton.addEventListener("submit",()=>window.location.assign("/Summary"))
-        submitButton.role = "link";
       }
       goBackButton.style.visibility = step == 0 ? "hidden" : "Visible";
 
