@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %} 
+    {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %} {% load bootstrap_icons %}
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body>
@@ -25,5 +25,9 @@
     <script src="{% static 'JS/UPDATE_FORM/UpdateStep.js' '%}"></script>
     <script src="{% static 'JS/UPDATE_FORM/changeCardBG.js' '%}"></script>
     <script src="{% static 'JS/UPDATE_FORM/detectKomaChanges.js' '%}"></script>
+
+    <script src="{% static 'JS/SUMMARY/LoadSummary.js' %}"></script>
+    <script src="{% static 'JS/SUMMARY/GenerateNavItems.js' %}"></script>
+    <script src="{% static 'JS/SUMMARY/GenerateSummaryRow.js' %}"></script>
   </body>
 </html>

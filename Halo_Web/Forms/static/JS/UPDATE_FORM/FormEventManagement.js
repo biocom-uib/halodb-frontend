@@ -9,6 +9,7 @@ async function FormEventManagement() {
   const COLOR = "grey";
 
   if(IS_LAST){
+    localStorage.setItem("StepsNameList",JSON.stringify(STEPS_NAME))
     LocalStoreData(ACT_STEP);
     window.location.assign("/Summary");
     return;

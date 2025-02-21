@@ -28,8 +28,20 @@ function setInputValues(list) {
     for (i in list) {
       item = list[i];
       localStorage.setItem(item.id, item.value);
-      result.push({ id: item.id, value: item.value });
+      if(item.tagName=="SELECT"){
+        result.push({ id: item.id, value: item.value, tagName: item.tagName, type:item.type, options:JSON.stringify(getOptionsName(item)) });
+      }else{
+        result.push({ id: item.id, value: item.value, tagName: item.tagName, type:item.type });
+      }
     }
   }
   return result;
+}
+
+function getOptionsName(item){
+  let list=[];
+  Array.from(item.options).forEach((item)=>{
+    list.push({text:item.text,value:item.value})
+  })
+  return list;
 }

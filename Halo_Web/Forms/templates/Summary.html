@@ -1,0 +1,33 @@
+
+{% extends "master.html" %}
+{% load static%}
+{% block title %} 
+    HaloFile WebApp 
+{% endblock %}
+<body>
+    {% block content %}
+    <main>
+        <section>
+            <div class="container d-flex justify-content-center">
+                <header>
+                    <h1>HaloPhile Summary</h1>
+                </header>
+            </div>
+        </section>
+        <section>
+            <div class="container d-flex justify-content-center">
+                <div id="SummaryCardNav" class="card">
+                    <nav>
+                        <ul id="Tabs" class="nav nav-tabs">
+                          </ul>
+                    </nav>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div id="SummaryCardData" class="card d-flex"></div>
+        </section>
+        
+    </main>    
+    {% endblock %} 
+</body>
