@@ -1,11 +1,50 @@
-<form method="post">
-    {% csrf_token %}
+{% extends "master.html" %}
+{% block title %}
+    HaloFile Experiments Forms 
+{% endblock %}
+
+{% block content %}
+<header>
+    <div class="container d-flex justify-content-between" style="background-color: aquamarine;">
+        <p>Logo </p>
+        <h1>
+            HaloPhile LogIn
+        </h1>
+        <nav>
+            <a href="{% url 'main' %}">Go Back</a>
+        </nav>
+    </div>
     
-    <label for="email">Email:</label>
-    <input type="text" name="username" required>
-
-    <label for="password">Contraseña:</label>
-    <input type="password" name="password" required>
-
-    <button type="submit">Iniciar Sesión</button>
-</form>
+</header>
+<main>
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="card position-absolute top-50 start-50 translate-middle">
+            <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <div class="row p-3">
+                    <div class="col">
+                        <label for="username" class="col-form-label">Username:</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" name="username" required>
+                    </div>
+                </div>
+                <div class="row p-3">
+                    <div class="col">
+                        <label for="password" class="col-form-label">Contraseña:</label>
+                    </div>
+                    <div class="col">
+                        <input type="password" name="password" class="form-control" required>
+                    </div>
+                </div>
+                <div class="container d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary m-3">Iniciar Sesión</button>
+                </div>
+                
+            </form>
+            </div>    
+        </div>
+    </div>    
+</main>
+{% endblock %}

@@ -27,7 +27,8 @@ async function FormEventManagement() {
     await addKomaSteps();
   }
 
-  LoadNextForm(NEXT_STEP,IS_LAST);
+  await LoadNextForm(NEXT_STEP,IS_LAST);
+  addFileInputEvent();
   
   if (PROGRESS) {
     AddStep();

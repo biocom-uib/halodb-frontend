@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login,logout
 from django.contrib.auth.decorators import login_required
 from django.template import loader
 from django.http import HttpResponse
@@ -24,6 +24,10 @@ def main(request):
 @login_required
 def profile(request):
   return render(request, "profile.html")
+
+def logout_view(request):
+  logout(request)
+  return render (request, "index.html")
 
 def login_manual(request):
   if request.method == "POST":

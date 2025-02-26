@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-)0mp9_7nxcqlp^__$l_^2xiamft0_05p=h@(#5^_2ld(20-2c1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://bioinfo.uib.es/halophile/','localhost']
 
 
 # Application definition

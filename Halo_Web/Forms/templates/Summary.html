@@ -4,7 +4,6 @@
 {% block title %} 
     HaloFile WebApp 
 {% endblock %}
-<body>
     {% block content %}
     <main>
         <section>
@@ -27,7 +26,8 @@
         <section>
             <div id="SummaryCardData" class="card d-flex"></div>
         </section>
-        
+        <button class="btn btn-primary">
+            <a href="{% url 'profile' %}">Go Main Page</a>
+        </button>
     </main>    
-    {% endblock %} 
-</body>
+    {% endblock %}

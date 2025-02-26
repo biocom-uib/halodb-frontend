@@ -87,10 +87,10 @@ Number of base pairs of raw reads                                       rreaddbs
 </div>
 
 <div class="row">
-  <!-- Raw Read UUID file -->
+  <!-- Raw Read files -->
   <div class="col">
-    <label for="rreads" class="col-form-label">Raw Read UUID file</label>
-    <input type="text" maxlength="40" class="form-control" id="rreads" />
+    <label for="rreads" class="col-form-label">Raw Read file</label>
+    <input type="file" class="form-control" id="rreads" required/>
   </div>
 
   <!-- Name of the original file containing the raw reads -->
@@ -99,6 +99,21 @@ Number of base pairs of raw reads                                       rreaddbs
     <input type="text" maxlength="100" class="form-control" id="rrname" />
   </div>
 </div>
+
+<div class="row">
+  <!-- Raw Read files -->
+  <div class="col">
+    <label for="rreads2" class="col-form-label">Raw Read file</label>
+    <input type="file" class="form-control" id="rreads" />
+  </div>
+
+  <!-- Name of the original file containing the raw reads -->
+  <div class="col">
+    <label for="rrname2" class="col-form-label">Name of the original file</label>
+    <input type="text" class="form-control" id="rrname2" />
+  </div>
+</div>
+
 <div class="row">
   <!-- Number of raw reads -->
   <div class="col">
