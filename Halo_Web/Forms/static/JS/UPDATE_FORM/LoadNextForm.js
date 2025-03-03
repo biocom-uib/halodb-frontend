@@ -3,22 +3,18 @@
 */
 async function LoadNextForm(step) {
   const IS_LAST = step > 2 && step == (STEPS_NAME.length - 1);
-  await fetch(STATIC_FOMRS_PATH[step])
+  const PATH="/static/HTML/Forms/Experiments/".concat(STEPS_NAME[step],".html")
+  await fetch(PATH)
     .then((response) => response.text())
     .then((data) => {
-      
-
       const cardForm = document.getElementById("cardForm");
-      const submitButton = document.getElementById("submit");
       const goBackButton = document.getElementById("goBack");
 
       cardForm.innerHTML = data;
-      if (IS_LAST) {
-        const icon = document.createElement("i");
-        icon.classList.add("bi", "bi-floppy");
-        submitButton.innerText = "Save";
-        submitButton.appendChild(icon);
-      }
+      
+      if (IS_LAST) 
+        isLastChanges();
+      
       goBackButton.style.visibility = step == 0 ? "hidden" : "Visible";
 
       if (step == 2) {

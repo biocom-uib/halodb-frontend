@@ -1,32 +1,12 @@
 async function getKomaForms() {
-  var path_list = [];
-  var step_list = [];
-
-  try {
-    const response = await fetch("\\static\\JSON\\komaSteps.json"); // Espera la respuesta de fetch
-    const data = await response.text(); // Espera la conversión a texto
-
-    const PARSED_DATA = JSON.parse(data);
-    const KOMA = localStorage.getItem("koma"); // Obtén el "koma" de localStorage
-    const PATH = PARSED_DATA.path;
-    const KOMA_DATA = PARSED_DATA.experiments.find(
-      (exp) => exp.koma.toUpperCase() === KOMA
-    );
-
-    const EXP_STEPS = KOMA_DATA.steps;
-    
-    let step,completePath
-    // Rellena las listas con datos
-    for (let idx in EXP_STEPS) {
-      step = EXP_STEPS[idx];
-      completePath = PATH.concat(step.path);
-      
-      path_list.push(completePath);
-      step_list.push(step.name);
-    }
-
-    return [path_list, step_list];
-  } catch (error) {
-    console.error("Error en getKomaForms:", error);
-  }
+    var STEPS;
+    await fetch("https://biocom.uib.es/halodb/sequences")
+    .then((response) => response.text())
+    .then((data) => {
+      const PARSED_DATA=JSON.parse(data)
+      const KOMA = localStorage.getItem("koma"); // Obtén el "koma" de localStorage
+      STEPS = PARSED_DATA[KOMA];
+    })
+    .catch((error) => console.error("Error loadFixedForms: ", error));
+    return STEPS;
 }

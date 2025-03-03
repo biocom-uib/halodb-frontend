@@ -1,7 +1,7 @@
 function ChangeKoma(idx, name) {
   /*
     1. Borrar SVGs
-    2. Camniar el color del Card
+    2. CamBiar el color del Card
     3. LoadNext
     */
   const KOMA_LABEL = document.getElementById("komaLabel");
@@ -10,5 +10,4 @@ function ChangeKoma(idx, name) {
   changeColors(cardForm.classList, CARD_COLORS[idx]);
   localStorage.setItem("maxStepDone", 2);
   STEPS_NAME=STEPS_NAME.slice(0,3)
-  STATIC_FOMRS_PATH=STATIC_FOMRS_PATH.slice(0,3)
 }
