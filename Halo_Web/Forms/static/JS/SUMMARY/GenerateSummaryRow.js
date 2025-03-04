@@ -13,9 +13,15 @@ function GenerateSummaryRow(field){
     title.innerText=field.id
     title.classList.add("col-form-label")
     if(field.type=="select-one"){
-        value=document.createElement("select")
-        generateOptions(value,JSON.parse(field.options))
-        value.children=JSON.parse(field.options)
+        if(field.id=="koma"){
+            value=document.createElement("span")
+            value.innerText=field.value
+        }else{
+            value=document.createElement("select")
+            generateOptions(value,JSON.parse(field.options))
+            value.children=JSON.parse(field.options)
+        }
+        
     }
     else if(field.type=="radio"){
         value.classList.add("form-check-input")
