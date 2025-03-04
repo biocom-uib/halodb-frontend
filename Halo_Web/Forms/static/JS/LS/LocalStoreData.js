@@ -30,7 +30,13 @@ function setInputValues(list) {
       localStorage.setItem(item.id, item.value);
       if(item.tagName=="SELECT"){
         result.push({ id: item.id, value: item.value, tagName: item.tagName, type:item.type, options:JSON.stringify(getOptionsName(item)) });
-      }else{
+      }else if (item.type=="radio"){
+        if(item.checked){
+          result.push({ id: item.id, value: item.value, tagName: item.tagName, type:item.type });
+        }
+          
+      }
+      else{
         result.push({ id: item.id, value: item.value, tagName: item.tagName, type:item.type });
       }
     }

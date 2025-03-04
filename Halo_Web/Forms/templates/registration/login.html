@@ -43,6 +43,14 @@
                                     <input type="password" name="password" class="form-control" required>
                                 </div>
                             </div>
+                            <!-- Mensaje de error si hay uno -->
+                            {% if messages %}
+                                <div class="alert alert-danger mt-3" role="alert">
+                                    {% for message in messages %}
+                                        <p>{{ message }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
                             <div class="container d-flex justify-content-end">
                                 <button type="submit" class="btn btn-primary m-3">Iniciar Sesión</button>
                             </div>

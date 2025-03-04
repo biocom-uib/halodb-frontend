@@ -33,10 +33,6 @@ def login_manual(request):
   if request.method == "POST":
       user = request.POST.get("username")
       password = request.POST.get("password")
-
-      print(f"Email recibido: {user}")
-      print(f"Contraseña recibida: {password}")
-
       # Buscar el usuario por email
       try:
           user = User.objects.get(username=user)
@@ -51,6 +47,7 @@ def login_manual(request):
           login(request, user)
           return redirect("profile") # Redirigir a la página principal
       else:
-          messages.error(request, "Contraseña incorrecta.")
+          messages.error(request, "Usuario o contraseña incorrectos")
+          return render(request, 'registration/login.html')
 
   return render(request, "registration/login.html")
