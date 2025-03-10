@@ -3,7 +3,7 @@
 */
 async function LoadNextForm(step) {
   const IS_LAST = step > 2 && step == (STEPS_NAME.length - 1);
-  const PATH="/static/HTML/Forms/Experiments/".concat(STEPS_NAME[step],".html")
+  const PATH="halophile/static/HTML/Forms/Experiments/".concat(STEPS_NAME[step],".html")
   await fetch(PATH)
     .then((response) => response.text())
     .then((data) => {

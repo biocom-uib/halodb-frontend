@@ -1,8 +1,9 @@
 {% extends "master.html" %} {% block title %} HaloPhile WebApp {% endblock %} 
+{% load static %}
 {% block content %}
     <header>
         <div class="container d-flex justify-content-between  align-items-center">
-          <img src="/static/icon.png" width="10%" height="10%" style="min-width: 90px;">
+          <img src="{% static 'icon.png' %}" width="10%" height="10%" style="min-width: 90px;">
             <h1>HaloPhile Main Page</h1>
             {% if user.is_authenticated %}
               <h2> Welcome Back, {{ user.get_username }}</h2>

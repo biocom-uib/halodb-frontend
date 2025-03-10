@@ -1,4 +1,5 @@
 {% extends "master.html" %}
+{% load static %}
 {% block title %}
     HaloFile Experiments Forms 
 {% endblock %}
@@ -6,7 +7,7 @@
 {% block content %}
 <header class="border-3 border-secondary-subtle bg-info bg-opacity-10">
     <div class="container d-flex justify-content-between align-items-center">
-        <img src="/static/icon.png" width="10%" height="10%" style="min-width: 90px;">
+        <img src="{% static 'icon.png' %}" width="10%" height="10%" style="min-width: 90px;">
         <h1>
             HaloPhile LogIn
         </h1>
@@ -21,7 +22,7 @@
         <div class="card position-absolute top-50 start-50 translate-middle">
             <div class="row">
                 <div class="col">
-                    <img src="/static/icon.png">
+                    <img src="{% static 'icon.png' %}">
                 </div>
                 <div class="col align-items-center">
                     <div class="card-body ">

@@ -4,6 +4,7 @@ from .views import login_manual
 
 
 urlpatterns = [
+    path('index.php',views.main,name='main'),
     path('',views.main, name='main'),
     path('Forms/', views.forms, name='Forms'),
     path('accounts/login/',login_manual,name="login"),

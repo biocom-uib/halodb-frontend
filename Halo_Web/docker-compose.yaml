@@ -1,0 +1,12 @@
+services:
+  web:
+    build: .
+    container_name: django_app
+    restart: always
+    ports:
+      - "8000:8000"
+    volumes:
+      - static_volume:/app/staticfiles
+
+volumes:
+  static_volume:
