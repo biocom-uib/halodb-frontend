@@ -9,7 +9,7 @@ async function FormEventManagement() {
   if(IS_LAST){
     localStorage.setItem("StepsNameList",JSON.stringify(STEPS_NAME))
     LocalStoreData(ACT_STEP);
-    window.location.assign("/Summary");
+    window.location.assign("https://bioinfo.uib.es/halophile/Summary");
     return;
   }
 

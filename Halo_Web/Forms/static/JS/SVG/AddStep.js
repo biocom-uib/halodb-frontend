@@ -1,5 +1,5 @@
 function AddStep() {
-  fetch("/static/HTML/Others/SVG_Active.html")
+  fetch("https://bioinfo.uib.es/halophile/static/HTML/Others/SVG_Active.html")
     .then((response) => response.text())
     .then((data) => {
       let step = Number(localStorage.getItem("actualStep"));
