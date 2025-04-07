@@ -3,9 +3,9 @@ document.getElementById("registerForm").addEventListener("submit", async functio
   
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
-  
+    console.log(window.location.href)
     try {
-      const response = await fetch("/registration/SignUp", {
+      const response = await fetch(window.location.href, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

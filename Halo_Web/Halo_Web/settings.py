@@ -14,7 +14,8 @@ from pathlib import Path
 
 import os
 
-#FORCE_SCRIPT_NAME = '/halophile'
+from decouple import config
+#
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,7 +28,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-)0mp9_7nxcqlp^__$l_^2xiamft0_05p=h@(#5^_2ld(20-2c1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DJANGO_ENV = config('DJANGO_ENV', default='prod')
+DEBUG = DJANGO_ENV=='dev'
 
 ALLOWED_HOSTS = ["bioinfo.uib.es/halophile",'127.0.0.1']
 
@@ -134,13 +136,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
+STATIC_ROOT = '/home/halophile/public_html/static/'
 
 if DEBUG:
     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'Forms/static'),]
     STATIC_URL = '/static/'
 else:
     STATIC_URL = '/halophile/static/'
-    STATIC_ROOT = '/home/halophile/public_html/static/'
+    #FORCE_SCRIPT_NAME = '/halophile'
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#
 
