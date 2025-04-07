@@ -14,7 +14,7 @@ from pathlib import Path
 
 import os
 
-FORCE_SCRIPT_NAME = '/halophile'
+#FORCE_SCRIPT_NAME = '/halophile'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,7 +31,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["bioinfo.uib.es/halophile",'127.0.0.1']
 
-CSRF_TRUSTED_ORIGINS = ["https://bioinfo.uib.es",'127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ["https://bioinfo.uib.es",'https://127.0.0.1:8000']
 
 
 # Application definition
@@ -51,7 +51,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -125,7 +125,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = '/halophile/static/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -135,7 +135,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
 
-STATIC_ROOT = '/home/halophile/public_html/static/'
+if DEBUG:
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'Forms/static'),]
+    STATIC_URL = '/static/'
+else:
+    STATIC_URL = '/halophile/static/'
+    STATIC_ROOT = '/home/halophile/public_html/static/'
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 

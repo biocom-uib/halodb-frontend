@@ -15,5 +15,6 @@ async function goBack(step) {
   await LoadNextForm(step);
   RecoverFieldsData();
   RemoveStep(step, ACT_STEP);
+  document.getElementById("submit").innerText="Next"
   document.getElementById("Etapa").innerHTML = STEPS_NAME[step];
 }

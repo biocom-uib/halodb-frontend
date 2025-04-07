@@ -1,4 +1,4 @@
-var STEPS_NAME = ["SAMPLE", "METADATA", "EXPERIMENT"];
+var STEPS_NAME = ["EXPERIMENT"];
 
 const CARD_COLORS = [
   "bg-primary text-white",

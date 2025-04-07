@@ -1,9 +1,15 @@
 <!--
-genome/MAG/SAG accession number                                         gare(MV)                    VARCHAR(20)
-Genome status                                                           gsta(MV)                    ENUM("complete","partial","draft")
-Method used to estimate the integrity and contamination of the sample.  method(MV)                  INT(SELECT??)
-Estimated or actual genome/metagenome size. Unit bp (base pairs)        gsiz(METAGENOME),           INT
-Molar percentage of Guanine and Cytosine in DNA.                        ggcm(MV)                    FLOAT
+genome/MAG/SAG accession number                                         gare                        VARCHAR(20)
+Genome status                                                           gsta                        ENUM("complete","partial","draft")
+Method used to estimate the integrity and contamination of the sample.  method                      INT(SELECT??)
+Estimated or actual genome/metagenome size. Unit bp (base pairs)        gsiz                        INT
+Molar percentage of Guanine and Cytosine in DNA.                        ggcm                        FLOAT
+Sequencing depth                                                        seqdepth                    FLOAT
+Genome/MAG/SAG accesion number                                          binn                        VARCHAR(20)
+% of the genome already processed                                       completeness                FLOAT
+% of reads not belonging to MAGs detected                               contamination               FLOAT
+Software used for assembly                                              asem                        INT
+Parameters of Assembly software                                         asftparams                  VARCHAR() 
 -->
 
 <!-- Genome/MAG/SAG accession number -->
@@ -29,8 +35,7 @@ Molar percentage of Guanine and Cytosine in DNA.                        ggcm(MV)
     <label for="method" class="col-form-label"
       >Estimate integrity and contamination Method</label
     >
-
-    <input type="number" class="form-control" id="method" />
+    <select class="form-control" id="method"></select>
   </div>
 </div>
 

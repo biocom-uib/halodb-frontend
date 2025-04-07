@@ -21,12 +21,12 @@
     </nav>
   </header>
   <main>
-    <div id="step-by-step" class="container mt-4"></div>
+    <div id="step-by-step" class="container d-flex justify-content-between mt-4"></div>
     <div
       class="container d-flex flex-column justify-content-center align-items-center mt-4"
     >
       <h2 id="Etapa">Sample</h2>
-      <h3 id="komaLabel" data-selected="0">Koma:</h3>
+      <h3 id="komaLabel" data-selected="0">Kind of material:</h3>
     </div>
 
     <div id="contenedorForm" class="container mt-4">
@@ -53,6 +53,10 @@
       </form>
     </div>
   </main>
+  <script>
+    const STATIC_BASE_URL = "{{ STATIC_URL }}"
+  </script>
   <script src="{% static 'JS/BASIC/init.js' %}"></script>
+  <script src="{% static 'JS/UPDATE_FORM/getSelectItems.js' %}"></script>
   {% endblock %}
 </html>

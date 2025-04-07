@@ -1,0 +1,228 @@
+{% extends "master.html" %}
+{% load static%}
+    {% block title %}
+      HaloFile Experiments Forms 
+    {% endblock %}
+
+  {% block content %}
+  <header>
+    <div class="container mt-4">
+      <h1 class="text-center">HaloFile Insert Section</h1>
+    </div>
+    <nav class="container d-flex" style="width: 81.5%;">
+      <div class="container mt-4">
+        <button onclick="" class="btn btn-primary">
+          Load Data <i class="bi bi-file-earmark-arrow-up"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <form method="POST" class="container d-flex justify-content-center" style="width: 80%;">
+        <div class="accordion w-100 mt-4" id="accordionExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <h2>Sample Generic Information</h2>
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <div class="container">
+                  <div class="row">
+                    <div class="col">
+                      <label for="project_id" class="form-label" multiple>Project</label>
+                      <select id="project_id" class="form-control"></select>
+                    </div>
+
+                    <div class="col">
+                      <label for="name" class="form-label">Sample Name(*)</label>
+                      <input type="text" name="name" id="name" class="form-control" />
+                    </div>
+                    
+                    <div class="col">
+                      <label for="stype" class="form-label">Description</label>
+                      <input type="text" class="form-control" id="stype"/>
+                    </div>
+  
+                    <div class="col">
+                      <label for="ssize" class="form-label">Sample Size</label>
+                      <div class="input-group">
+                        <input type="number" name="ssize" id="ssize" class="form-control" step="0.01" min="0.01" aria-describedby="unityValue">
+                        <span class="input-group-text" id="unityValue">X</span>
+                      </div>
+                        
+                      </div>
+                      
+                      
+                  </div>
+                  
+                  <div class="row">
+                    <div class="col p-2">
+                      <label for="ssizetype_u" class="form-label">Unity</label>
+                      <select id="ssizetype_u" class="form-control">
+                        <option value="l">l</option>
+                        <option value="m3">m3</option>
+                        <option value="g" selected>g</option>
+                      </select>
+                    </div>
+  
+                    <div class="col p-2">
+                      <label for="ssizeunit" class="form-label">Scale</label>
+                      <select
+                        name="ssizeunit"
+                        id="ssizeunit"
+                        form="Sample"
+                        class="form-control "
+                      >
+                        <option value="u">-</option>
+                        <option value="d">d</option>
+                        <option value="c">c</option>
+                        <option value="m">m</option>
+                        <option value="micro">µ</option>
+                        <option value="n">n</option>
+                        <option value="p">p</option>
+                      </select>
+                    </div>
+                    <div class="col p-2">
+                      <label for="keywords" class="form-label">Aditional Information</label>
+                      <input class="form-control" id="keywords"/>
+                    </div>
+
+                    <div class="col p-2">
+                      <label for="target_id" class="form-label" multiple>Target nucleic acids</label>
+                      <select id="target_id" class="form-control" name="target"></select>
+                    </div>
+                  </div>
+
+                </div>
+                
+               
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <h2>Sample Metadata Information</h2>
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <div class="row">
+                  <!-- Country of origin -->
+                  <div class="col">
+                    <label for="coun" class="col-form-label">Origin country</label>
+                    <input type="text" class="form-control" id="coun" rows="2" maxlength="30" />
+                  </div>
+                  <!-- Region of origin -->
+                  <div class="col">
+                    <label for="regi" class="col-form-label">origin region</label>
+                    <input type="text" class="form-control" id="regi" rows="2" maxlength="30" />
+                  </div>
+                  <!-- Geographic location -->
+                  <div class="col">
+                    <label for="geol" class="col-form-label">Geographic location</label>
+                    <input type="text" class="form-control" id="geol" rows="2" maxlength="80" />
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <!-- Latitude -->
+                  <div class="col">
+                    <label for="lati" class="col-form-label">Latitude</label>
+                    <input type="number" step="any" class="form-control" id="lati" />
+                  </div>
+                  <!-- Longitude -->
+                  <div class="col">
+                    <label for="long" class="col-form-label">Longitude</label>
+                    <input type="number" step="any" class="form-control" id="long" />
+                  </div>
+                  <!-- Altitud eover sea level-->
+                  <div class="col-4">
+                    <label for="alti" class="col-form-label"
+                      >Altitude over level at sea(m)</label
+                    >
+                    <input type="number" step="any" class="form-control" id="alti" />
+                  </div>
+                  <!-- Depth in meters -->
+                  <div class="col-4">
+                    <label for="dept" class="col-form-label"
+                      >Depth where the sample was taken(m)</label
+                    >
+                    <input type="number" step="any" class="form-control" id="dept" />
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <!-- Sampling date -->
+                  <div class="col">
+                    <label for="dats" class="col-form-label">Sampling date</label>
+                    <input type="date" class="form-control" id="dats" />
+                  </div>
+                  <!-- Hour of collection of the sample -->
+                  <div class="col">
+                    <label for="hocs" class="col-form-label"
+                      >Hour of collection of the sample</label
+                    >
+                    <input type="time" class="form-control" id="hocs" />
+                  </div>
+                </div>
+
+                <!-- Other relevant information about the sample -->
+                <div class="row">
+                  <div class="col">
+                    <label for="sour" class="col-form-label"
+                      >Other relevant information about the sample</label
+                    >
+                    <textarea class="form-control" id="sour" rows="3" maxlength="80"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container d-flex justify-content-end m-3">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#experimentModal">
+          Create Sample
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="experimentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="experimentModal">Sample Saved Successfully</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Wanna use this Sample for an Experiment?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#exampleModal">Maybe later</button>
+                <a href="{% url 'Forms' %}" class="btn btn-primary">Go to Experiments</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Close Sample Section</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Wanna insert more Samples?
+              </div>
+              <div class="modal-footer">
+                <a href="{% url 'profile' %}" class="btn btn-secondary">Go to profile</a>
+                <button type="reset" class="btn btn-primary" data-bs-dismiss="modal">Insert more samples</button>
+              </div>
+            </div>
+      </form>
+  </main>
+
+  <script src="{% static 'JS/UPDATE_FORM/getSelectItems.js' %}"></script>
+  {% endblock %}
+</html>

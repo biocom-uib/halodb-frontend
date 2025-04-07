@@ -1,13 +1,13 @@
 {% extends "master.html" %}
 {% load static %}
 {% block title %}
-    HaloFile Experiments Forms 
+    HaloFile Log In 
 {% endblock %}
 
 {% block content %}
 <header class="border-3 border-secondary-subtle bg-info bg-opacity-10">
     <div class="container d-flex justify-content-between align-items-center">
-        <img src="{% static 'icon.png' %}" width="10%" height="10%" style="min-width: 90px;">
+        <img src="{% static 'src/img/icon.png' %}" class="p-2" style="width: 10vw;height: 20vh;">
         <h1>
             HaloPhile LogIn
         </h1>
@@ -18,50 +18,40 @@
     
 </header>
 <main>
-    <div class="container d-flex justify-content-center align-items-center">
-        <div class="card position-absolute top-50 start-50 translate-middle">
-            <div class="row">
-                <div class="col">
-                    <img src="{% static 'icon.png' %}">
-                </div>
-                <div class="col align-items-center">
-                    <div class="card-body ">
-                        <form method="post">
-                            {% csrf_token %}
-                            <div class="row p-3">
-                                <div class="col">
-                                    <label for="username" class="col-form-label">Username:</label>
-                                </div>
-                                <div class="col">
-                                    <input type="text" class="form-control" name="username" required>
-                                </div>
-                            </div>
-                            <div class="row p-3">
-                                <div class="col">
-                                    <label for="password" class="col-form-label">Contraseña:</label>
-                                </div>
-                                <div class="col">
-                                    <input type="password" name="password" class="form-control" required>
-                                </div>
-                            </div>
-                            <!-- Mensaje de error si hay uno -->
-                            {% if messages %}
-                                <div class="alert alert-danger mt-3" role="alert">
-                                    {% for message in messages %}
-                                        <p>{{ message }}</p>
-                                    {% endfor %}
-                                </div>
-                            {% endif %}
-                            <div class="container d-flex justify-content-end">
-                                <button type="submit" class="btn btn-primary m-3">Iniciar Sesión</button>
-                            </div>
-                            
-                        </form>
-                        </div>
-                </div>
+    <section class="container d-flex justify-content-center align-items-center p-3" style="width: 50vw;">
+            <div>
+                <img src="{% static 'src/img/icon.png' %}" style="width: 100%; height: 80%;">
             </div>
-                
-        </div>
-    </div>    
+            <div class="card-body ">
+                                    <!-- Mensaje de error si hay uno -->
+                {% if messages %}
+                <div class="alert alert-danger mt-3" role="alert">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                <form id="loginForm" method="POST">
+                    {% csrf_token %}
+                    <div class="row p-3">
+                        <label for="email" class="col-form-label">Email:</label>
+                        <input type="email" class="form-control" name="email" required>
+                        </div>
+                    
+                    <div class="row p-3">
+                        <label for="password" class="col-form-label">Contraseña:</label>    
+                        <input type="password" name="password" class="form-control" required>
+                    </div>
+                    <div class="container d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary m-3">Log In</button>
+                    </div>   
+                </form>
+            </div>
+    </section>
+    <div class="container d-flex justify-content-center flex-column align-items-center">
+        <p>New in HalopHile? <a href="{% url 'register' %}">Sign Up</a></p>
+        <p>Can't remember your password? <a href="#">Reset Password</a></p>
+    </div>
+ 
 </main>
 {% endblock %}
