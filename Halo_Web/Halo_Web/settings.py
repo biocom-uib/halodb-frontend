@@ -21,6 +21,15 @@ from decouple import config
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'in-v3.mailjet.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True  # No TLS por ahora, ya que estamos en local
+EMAIL_HOST_USER = 'eb6436d23f547dcdfd11552616bd5836'  # El usuario configurado en Docker
+EMAIL_HOST_PASSWORD = '0ac3e293bcbf431fbe9a7a87501ddcbd'  # La contraseña configurada en Docker
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -79,6 +88,16 @@ TEMPLATES = [
     },
 ]
 
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379/1',  # Puedes cambiar a tu configuración si usas otro puerto o base de datos
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    }
+}
 WSGI_APPLICATION = 'Halo_Web.wsgi.application'
 
 

@@ -1,5 +1,7 @@
 from .views_import import *
 
+from Forms.utils import *
+
 
 
 def main(request):
@@ -23,20 +25,35 @@ def logout_view(request):
   return render (request, "index.html")
 
 @csrf_exempt
-def register_user(request):
-  if request.method=="POST":
-    body_unicode = request.body.decode('utf-8')
-    registerInformation = json.loads(body_unicode)
+def start_registration(request):
+    if request.method=="POST":
+      data = json.loads(request.body)
 
-    url = URL + "user/"
-    response = requests.post(url, json=registerInformation)
+      token = store_user_temp(data)
+      send_confirmation_email(data['email'], token)
+
+      return JsonResponse({'message': 'Correo enviado para confirmar registro'})
     
-    if response.status_code == 200:
-        return JsonResponse(response.json())
-    else:
-        return JsonResponse({'status':'error','message':'Error interno, sistema no operativo:'},status=405)
+    return render(request, "registration/register.html")
+    
 
-  return render(request, "registration/register.html")
+@csrf_exempt
+def register_user(request,token):
+  key = f'pending_user:{token}'
+  data = cache.get(key)
+
+  if not data:
+      return JsonResponse({'error': 'Token inválido o expirado'}, status=400)
+
+  url = URL + "user/"
+  response = requests.post(url, json=data)
+  
+  if response.status_code == 200:
+      cache.delete(key)  # Eliminar los datos después de usarlos
+      return redirect('login')
+  else:
+      return JsonResponse({'status':'error','message':'Error interno, sistema no operativo:'},status=405)
+
 
 @csrf_exempt
 def login_manual(request):

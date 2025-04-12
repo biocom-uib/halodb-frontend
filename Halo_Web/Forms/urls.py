@@ -10,12 +10,13 @@ urlpatterns = [
     path('',main, name='main'),
     path('Forms/',forms, name='Forms'),
     path('registration/login/',login_manual,name="login"),
-    path('registration/SignUp',register_user,name="register"),
+    path('registration/SignUp',start_registration,name="register"),
+    path('registration/confirm-registration',register_user,name="confirmRegister"),
     path('Sample/',sample_insert,name="Sample"),
     path('profile/', profile, name='profile'),
     path('Summary/',summary,name="Summary"),
     path('registration/logout/',logout_view,name="logout"),
-    path('api/get/<str:query_params>/', api_get_calls, name="api_get_calls")
-
+    re_path(r'^.*/api/get/(?P<query_params>.+)/$', api_get_calls, name='api_get_calls'),
+    path('secure-static/<path:filename>/', get_static_file, name='secure_static'),
 ]
 
