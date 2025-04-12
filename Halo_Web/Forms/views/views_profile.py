@@ -12,7 +12,7 @@ def get_user_data(request):
     url=URL+"user/"
     headers={"Authorization":f"Bearer {token}"}
 
-    response=request.get(url,headers=headers)
+    response=requests.get(url,headers=headers)
 
     if response.status_code == 200:
         user_data = response.json()  # Obtener la respuesta en JSON

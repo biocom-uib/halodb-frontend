@@ -6,7 +6,7 @@ function getSelectedItems(selectList){
         if(element.name && COMPL_TABLES.includes(element.name)){
             const DATA=await fetchSecureFile("GET","query/"+element.name)
             
-            DATA.message.forEach(item=>{
+            DATA.forEach(item=>{
                 let option=document.createElement("option");
                 
                 option.value=item.id;

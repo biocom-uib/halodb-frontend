@@ -4,16 +4,11 @@ CHANGE: Add "type" in JSON LS
 const TABS=document.getElementById("Tabs")
 
 function LoadSummary(){
-    const LIST_STEPS=JSON.parse(localStorage.getItem("StepsNameList"))
+    
     if(!TABS){
         return false
     }
-    LIST_STEPS.forEach(
-        (item) =>{
-            const ID=LIST_STEPS.indexOf(item)
-            TABS.appendChild(GenerateNavItems(item,ID))
-        }
-    )
+
     return true;
 }
 
@@ -28,11 +23,15 @@ function LoadSummaryData(id){
     DATA.forEach((pair)=>DATA_CARD.append(GenerateSummaryRow(pair)))
 }
 
-document.addEventListener("DOMContentLoaded",()=>{
-    if(LoadSummary()){
-        const BUTTONS=Array.from(TABS.getElementsByClassName("nav-link"))
-        BUTTONS.forEach((item)=>
-            item.addEventListener("click",()=>{LoadSummaryData(item.id)}))
-    }
-
-    } )
+function initSummary(){
+    const LIST_STEPS=JSON.parse(localStorage.getItem("StepsNameList"))
+    LIST_STEPS.forEach(
+        (item) =>{
+            const ID=LIST_STEPS.indexOf(item)
+            TABS.appendChild(GenerateNavItems(item,ID))
+        }
+        )
+    const BUTTONS=Array.from(TABS.getElementsByClassName("nav-link"))
+    BUTTONS.forEach((item)=>
+        item.addEventListener("click",()=>{LoadSummaryData(item.id)}))
+} 

@@ -23,6 +23,7 @@ def get_static_file(request,filename):
     """"The users must be logged to use this kind of services"""
     if not request.session.get("auth_token"):
             return JsonResponse({"status":"error","message":"Usuario no autenticado"},status=401)
+    
     #DEV Envior
     if settings.DEBUG:
         # En desarrollo, buscar en STATICFILES_DIRS
@@ -44,15 +45,16 @@ def api_get_calls(request, query_params):
     """Hace una petición GET a la API externa y devuelve la respuesta como JSON"""
 
     """"The users must be logged to use this kind of services"""
-    if not request.session.get("auth_token"):
+    token = request.session.get("auth_token")
+    if not token:
             return JsonResponse({"status":"error","message":"Usuario no autenticado"},status=401)
 
     # Construir la URL con el parámetro dinámico
     full_url = f"{URL}{query_params}"
-
+    headers={"Authorization":f"Bearer {token}"}
     try:
         # Hacer la petición GET a la API externa
-        response = requests.get(full_url, timeout=5)
+        response = requests.get(full_url, headers=headers)
 
         # Verificar si la respuesta es correcta (código 200)
         if response.status_code == 200:

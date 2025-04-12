@@ -11,8 +11,9 @@ async function fetchSecureFile(type, param) {
             throw new Error("Archivo no encontrado");
         }
 
-        const data = await response.text();
-        return JSON.parse(data);
+        const RESPONSE = await (response.text());
+        const PARSED_RESPONSE=JSON.parse(RESPONSE)
+        return PARSED_RESPONSE.message;
         
     } catch (error) {
         console.error("Error al cargar el archivo:", error);

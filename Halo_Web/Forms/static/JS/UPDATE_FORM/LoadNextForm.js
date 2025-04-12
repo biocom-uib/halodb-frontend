@@ -6,7 +6,7 @@ async function LoadNextForm(step) {
   const DATA = await fetchSecureFile("static",`Forms/${STEPS_NAME[step]}.html`)
   const cardForm = document.getElementById("cardForm");
   const goBackButton = document.getElementById("goBack");
-  cardForm.innerHTML = DATA.message;
+  cardForm.innerHTML = DATA;
   getSelectedItems(document.getElementsByTagName("select")) 
   if (IS_LAST) 
     isLastChanges()
