@@ -16,6 +16,7 @@ urlpatterns = [
     path('profile/', profile, name='profile'),
     path('Summary/',summary,name="Summary"),
     path('registration/logout/',logout_view,name="logout"),
+    path('mySamples/<int:sample_id>/<str:step_name>',get_step_info,name="mySamples"),
     re_path(r'^.*/api/get/(?P<query_params>.+)/$', api_get_calls, name='api_get_calls'),
     path('secure-static/<path:filename>/', get_static_file, name='secure_static'),
 ]

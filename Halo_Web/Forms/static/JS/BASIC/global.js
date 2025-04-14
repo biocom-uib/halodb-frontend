@@ -16,23 +16,106 @@ const PAUSED_COLOR = "grey";
 
 const ACTIVE_COLOR = "green";
 
-/*
-  init: Set up necessary records, like actStep and the inital SVG
-*/
-
-function setFormsEnv() {
-  const STEP = 0;
-  localStorage.setItem("actualStep", STEP);
-  localStorage.setItem("maxStepDone", STEP);
-  AddStep();
-  LoadNextForm(STEP);
-  const goBackBtn = document.getElementById("goBack");
-  goBackBtn.addEventListener("click", () =>
-    goBack(localStorage.getItem("actualStep") - 1)
-  );
-  var form = document.getElementById("mainForm");
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    FormEventManagement();
-  });
-}
+const paramDict = {
+  alti: "Altitude in meters where the sample was taken",
+  asem: "Software used for assembly",
+  asftparams: "Parameters used with asem",
+  asize: "Assembly size in base pairs",
+  assembled: "Identificador del fitxer d’assembled",
+  assname: "Name of the original file containing the assembly",
+  binn: "genome/MAG/SAG accession number [other]",
+  bins: "Binning software used",
+  binsparams: "Params used with bins",
+  bior: "Biotic relationship with other organisms",
+  bios: "Biosafety level",
+  ccsu: "If cultured, has been submitted to culture collection?",
+  coln: "Strain collection numbers",
+  completeness: "Completeness",
+  contamination: "Level of contamination",
+  contignumber: "Number of contigs",
+  coth: "Other",
+  coun: "Country of origin",
+  coverage: "Coverage",
+  created: "Date created",
+  cult: "Is the sample cultured or uncultured?",
+  dati: "Date of isolation",
+  dats: "Sampling date",
+  dept: "Depth where the sample was taken, with respect to the field alti",
+  dnae: "DNA extraction method",
+  elac: "Terminal electron acceptor",
+  emet: "Energy metabolism",
+  extr: "Miscellaneous, extraordinary features relevant for the description",
+  gare: "genome/MAG/SAG accession number [RefSeq/ENA]",
+  geol: "Geographic location",
+  ggcm: "Molar percentage of Guanine and Cytosine in DNA",
+  gsiz: "Estimated or actual genome/metagenome size",
+  gsta: "Genome status",
+  habt: "Habitat",
+  hkgn: "Alternative housekeeping genes",
+  hocs: "Hour of collection of the sample ",
+  host: "If it is a symbiont, with which host does it interact?",
+  id: "Sample unique internal identifier",
+  is_public: "True if the sample is public",
+  keywords_id: "Keywords",
+  koma: "Kind of material",
+  lati: "Latitude",
+  long: "Longitude",
+  meca: "INSDC metagenome accession number",
+  method_id: "Method used to estimate the integrity and contamination of the sample",
+  nagoya: "Information related to the Nagoya Protocol",
+  name: "Sample name",
+  orel: "Relationship with O2",
+  otyp: "If it is not a new taxon, indicate the strain or MAG or SAG from which the reference taxon was obtained",
+  path: "Known pathogenicity",
+  pgenes: "Predicted genes",
+  pgenesname: "Name of the original file containing the predicted genes",
+  phca: "pH category",
+  phhi: "Highest pH for growth",
+  phlo: "Lowest pH for growth",
+  phop: "pH optimum",
+  phsa: "pH of the sample",
+  project_id: "Project of the sample",
+  publication_id: "Publication data",
+  regi: "Region of origin",
+  rreadacc: "Raw reads NCBI accesion code",
+  rreads: "Raw reads",
+  rreads2: "Raw reads, second file",
+  rreadsbp: "Number of base pairs of raw reads",
+  rreadsnum: "Number of raw reads",
+  rrname: "Name of the original file containing the raw reads",
+  rrname2: "Name of the second original file containing the raw reads",
+  salc: "Salinity category",
+  salh: "Highest NaCl concentration for growth",
+  sall: "Lowest NaCl concentration for growth",
+  salo: "Salinity optimum",
+  sals: "Salinity of the sample ",
+  salw: "Other salts besides NaCl to be reported",
+  seqdepth: "Sequencing depth",
+  seqt: "Sequencing Technology",
+  sequrl: "¡Atención! No hay indicios, aclarar qué señala esta URL",
+  sfrac: "Sequenced fraction",
+  sixteensr: "16S rRNA gene accession number",
+  sour: "Source of sample",
+  source_id: "To which part does the current element belong?",
+  ssize: "Sample size",
+  ssizeunit: "Units of ssize",
+  strccol: "Strain Collection number",
+  stype: "Sample type",
+  target_id: "Target nucleic acids",
+  temc: "Temperature category",
+  temh: "Highest temperature for growth",
+  teml: "Lowest temperature for growth",
+  temo: "Temperature optimum",
+  tems: "Temperature of the sample ",
+  treads: "Trimmed reads",
+  treadsbp: "Number of base pairs in trimmed reads",
+  treadsnum: "Number of trimmed reads",
+  trname: "Name of the original file containing the trimmed reads",
+  twentythreesr: "23S rRNA gene accession number",
+  txnr: "NCBI Taxonomy number",
+  txnt: "NCBI Taxonomy number of the type material",
+  type: "Designated type strain name/MAG/SAG",
+  typn: "Is this the designed type material for a new taxon?",
+  updated: "Date updated",
+  user_id: "User"
+};

@@ -5,7 +5,7 @@ from .views_import import *
 
 
 def forms(request):
-    return render(request,"Formulario.html",{"STATIC_URL":settings.STATIC_URL})
+    return render(request,"Formulario.html")
 
 def summary(request):
     referer = request.META.get('HTTP_REFERER')

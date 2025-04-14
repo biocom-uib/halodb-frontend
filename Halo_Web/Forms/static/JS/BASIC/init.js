@@ -9,4 +9,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   if(document.getElementById("SummaryCardNav")){
     initSummary()
   }   
+  if(document.getElementById("sampleDataAmp")){
+    
+  }
 } );
