@@ -19,6 +19,33 @@ def summary(request):
 def sample_insert(request):
    return render(request,"Sample.html")
 
+def api_post_calls(request,table,body):
+    """Hace una petición GET a la API externa y devuelve la respuesta como JSON"""
+
+    """"The users must be logged to use this kind of services"""
+    token = request.session.get("auth_token")
+    if not token:
+            return JsonResponse({"status":"error","message":"Usuario no autenticado"},status=401)
+
+    # Construir la URL con el parámetro dinámico
+    full_url = f"{URL}{table}"
+    headers={"Authorization":f"Bearer {token}"}
+    try:
+        # Hacer la petición GET a la API externa
+        response = requests.get(full_url, headers=headers)
+
+        # Verificar si la respuesta es correcta (código 200)
+        if response.status_code == 200:
+            return JsonResponse(response.json())  # Devolver la respuesta de la API externa
+        else:
+            return JsonResponse(
+                {"error": "Error en la API externa", "status_code": response.status_code},
+                status=response.status_code
+            )
+    
+    except requests.exceptions.RequestException as e:
+        return JsonResponse({"error": "Error en la conexión a la API externa", "details": str(e)}, status=500)
+
 def get_static_file(request,filename):
     """"The users must be logged to use this kind of services"""
     if not request.session.get("auth_token"):

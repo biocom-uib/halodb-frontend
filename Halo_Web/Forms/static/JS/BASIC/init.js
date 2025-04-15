@@ -10,7 +10,12 @@ document.addEventListener("DOMContentLoaded",()=>{
     initSummary()
   }   
   /*TO DO: Create a Sample View with OpenStreet Map */
-  if(document.getElementById("sampleDataAmp")){
-    
+  const sampleForm=document.getElementById("sampleForm")
+  if(sampleForm){
+    sampleForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      LocalStoreData("Sample",true,sampleForm)
+      prepareBodyRequest("Sample")
+    });
   }
 } );

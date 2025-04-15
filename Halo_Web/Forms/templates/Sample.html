@@ -18,7 +18,8 @@
     </nav>
   </header>
   <main>
-    <form method="POST" class="container d-flex justify-content-center" style="width: 80%;">
+    <form method="POST" id="sampleForm" class="container d-flex justify-content-center" style="width: 80%;">
+      {% csrf_token %}
         <div class="accordion w-100 mt-4" id="accordionExample">
           <div class="accordion-item">
             <h2 class="accordion-header">
@@ -182,7 +183,7 @@
           </div>
         </div>
         <div class="container d-flex justify-content-end m-3">
-        <button id="" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#experimentModal">
+        <button id="" type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#experimentModal">
           Create Sample
         </button>
 
@@ -223,6 +224,5 @@
       </form>
   </main>
 
-  <script src="{% static 'JS/UPDATE_FORM/getSelectItems.js' %}"></script>
   {% endblock %}
 </html>

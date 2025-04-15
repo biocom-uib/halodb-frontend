@@ -2,8 +2,8 @@
 LocalStoreData: Stores form inputs values in actual session to avoid "trash inputs" in DB
 */
 
-function LocalStoreData(step) {
-  const cardForm = document.getElementById("cardForm");
+function LocalStoreData(step="Sample",isSample=false,form=null) {
+  const cardForm = isSample ? form : document.getElementById("cardForm");
   const inputList = cardForm.getElementsByTagName("input");
   const textareaList = cardForm.getElementsByTagName("textarea");
   const selectList = cardForm.getElementsByTagName("select");
