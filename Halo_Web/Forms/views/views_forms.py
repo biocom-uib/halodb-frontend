@@ -4,7 +4,7 @@ from .views_import import *
 
 
 
-def forms(request):
+def load_experiment_form(request):
     return render(request,"Formulario.html")
 
 def summary(request):

@@ -7,8 +7,7 @@ function getSelectedItems(selectList){
             const DATA=await fetchSecureFile("GET","query/"+element.name)
             
             DATA.forEach(item=>{
-                let option=document.createElement("option");
-                
+                let option=document.createElement("option");               
                 option.value=item.id;
                 option.innerText=item.description
                 element.appendChild(option)

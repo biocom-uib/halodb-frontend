@@ -13,7 +13,10 @@ async function fetchSecureFile(type, param) {
 
         const RESPONSE = await (response.text());
         const PARSED_RESPONSE=JSON.parse(RESPONSE)
-        return PARSED_RESPONSE.message;
+        if(PARSED_RESPONSE.message)
+            return PARSED_RESPONSE.message;
+        else
+            return PARSED_RESPONSE
         
     } catch (error) {
         console.error("Error al cargar el archivo:", error);

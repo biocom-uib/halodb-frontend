@@ -1,14 +1,14 @@
-var STEPS_NAME = ["EXPERIMENT"];
+var STEPS_NAME = [];
 
-const CARD_COLORS = [
-  "bg-primary text-white",
-  "bg-secondary text-white",
-  "bg-success text-white",
-  "bg-danger text-white",
-  "bg-warning text-dark",
-  "bg-info text-white",
-  "bg-dark text-white",
-];
+const COLOR_DICT={
+  "METAGENOME":  "bg-primary text-white",
+  "METAVIROME":"bg-secondary text-white",
+  "METATRANSCRIPTOME":"bg-success text-white",
+  "GENOME PROCARIOTA":"bg-danger text-white",
+  "GENOME VIRUS":"bg-warning text-dark",
+  "PROTEOMICS":"bg-info text-white",
+  "SINGLE CELL GENOMICS":"bg-dark text-white",
+}
 
 const DEFULT_CARD_COLOR = "bg-white text-dark";
 

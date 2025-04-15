@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   if(document.getElementById("SummaryCardNav")){
     initSummary()
   }   
+  /*TO DO: Create a Sample View with OpenStreet Map */
   if(document.getElementById("sampleDataAmp")){
     
   }

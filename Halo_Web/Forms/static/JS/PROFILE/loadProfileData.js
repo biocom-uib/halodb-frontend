@@ -12,4 +12,6 @@ async function loadProfileData(){
     );
     //Keep it in session memory
     sessionStorage.setItem("userSamples",JSON.stringify(sampleUserDict))
+
+    komaModelChooserEvent()
 }

@@ -8,7 +8,7 @@ from .views.views_profile import *
 urlpatterns = [
     path('index.php',main,name='main'),
     path('',main, name='main'),
-    path('Forms/',forms, name='Forms'),
+    path('Forms/',load_experiment_form, name='Forms'),
     path('registration/login/',login_manual,name="login"),
     path('registration/SignUp',start_registration,name="register"),
     path('registration/confirm-registration',register_user,name="confirmRegister"),
