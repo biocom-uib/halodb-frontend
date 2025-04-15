@@ -14,30 +14,17 @@ from pathlib import Path
 
 import os
 
-from decouple import config
 #
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'in-v3.mailjet.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True  # No TLS por ahora, ya que estamos en local
-EMAIL_HOST_USER = 'eb6436d23f547dcdfd11552616bd5836'  # El usuario configurado en Docker
-EMAIL_HOST_PASSWORD = '0ac3e293bcbf431fbe9a7a87501ddcbd'  # La contraseña configurada en Docker
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-)0mp9_7nxcqlp^__$l_^2xiamft0_05p=h@(#5^_2ld(20-2c1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DJANGO_ENV = config('DJANGO_ENV', default='prod')
+DJANGO_ENV= 'dev'
 DEBUG = DJANGO_ENV=='dev'
 
 ALLOWED_HOSTS = ["bioinfo.uib.es/halophile",'127.0.0.1']
