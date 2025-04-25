@@ -19,20 +19,22 @@ def summary(request):
 def sample_insert(request):
    return render(request,"Sample.html")
 
-def api_post_calls(request,table,body):
+@csrf_exempt
+def api_post_calls(request,table):
     """Hace una petición GET a la API externa y devuelve la respuesta como JSON"""
 
     """"The users must be logged to use this kind of services"""
     token = request.session.get("auth_token")
     if not token:
             return JsonResponse({"status":"error","message":"Usuario no autenticado"},status=401)
-
+    body_unicode = request.body.decode('utf-8') 
+    body_request = json.loads(body_unicode)
     # Construir la URL con el parámetro dinámico
-    full_url = f"{URL}{table}"
+    full_url = f"{URL}{table.upper()}"
     headers={"Authorization":f"Bearer {token}"}
     try:
         # Hacer la petición GET a la API externa
-        response = requests.get(full_url, headers=headers)
+        response = requests.post(full_url, headers=headers,json=body_request)
 
         # Verificar si la respuesta es correcta (código 200)
         if response.status_code == 200:
@@ -80,12 +82,13 @@ def api_get_calls(request, query_params):
     full_url = f"{URL}{query_params}"
     headers={"Authorization":f"Bearer {token}"}
     try:
+        print(full_url)
         # Hacer la petición GET a la API externa
         response = requests.get(full_url, headers=headers)
 
         # Verificar si la respuesta es correcta (código 200)
         if response.status_code == 200:
-            return JsonResponse(response.json())  # Devolver la respuesta de la API externa
+            return JsonResponse(response.json(), safe=False)  # Devolver la respuesta de la API externa
         else:
             return JsonResponse(
                 {"error": "Error en la API externa", "status_code": response.status_code},

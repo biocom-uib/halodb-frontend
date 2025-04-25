@@ -1,6 +1,7 @@
 function fillSampleCard(element,modalID){
     const MODAL=document.getElementById(modalID)
     const MODAL_BODY=MODAL.getElementsByClassName("modal-body")[0]
+    MODAL_BODY.innerHTML=""
     let keyCol,valCol
     MODAL_BODY.classList.add(
         "row", 
@@ -27,10 +28,7 @@ function fillSampleCard(element,modalID){
           valCol.innerText="None"
 
         MODAL_BODY.append(keyCol)
-        MODAL_BODY.append(valCol)
-
-        
-        
+        MODAL_BODY.append(valCol)      
       });
       
 }

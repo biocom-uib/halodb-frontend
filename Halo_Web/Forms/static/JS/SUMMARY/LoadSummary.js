@@ -30,7 +30,7 @@ function initSummary(){
             const ID=LIST_STEPS.indexOf(item)
             TABS.appendChild(GenerateNavItems(item,ID))
         }
-        )
+    )
     const BUTTONS=Array.from(TABS.getElementsByClassName("nav-link"))
     BUTTONS.forEach((item)=>
         item.addEventListener("click",()=>{LoadSummaryData(item.id)}))

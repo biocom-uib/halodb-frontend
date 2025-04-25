@@ -119,3 +119,13 @@ const paramDict = {
   updated: "Date updated",
   user_id: "User"
 };
+
+const SEQUENCES=["METAGENOME",
+  "METATRANSCRIPTOME",
+  "METAVIROME",
+  "GENOME PROCARIOTA",
+  "GENOME VIRUS",
+  "PROTEOMICS",
+  "SINGLE CELL GENOMICS",
+  "PLASMID"
+]

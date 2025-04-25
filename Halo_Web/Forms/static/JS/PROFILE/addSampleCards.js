@@ -1,6 +1,6 @@
-async function addSampleCard(element){
+async function addSampleCard(element,rowId){
     const CARD=await fetchSecureFile("static","Profile/ProjectCard.html")
-    const ROW=document.getElementById("profileSamples")
+    const ROW=document.getElementById(rowId)
     
     let container=document.createElement("div")
     container.classList.add("col")
@@ -10,20 +10,26 @@ async function addSampleCard(element){
     container.id=element.id
     
     updateCardData(container,element)
-    fillSampleCard(element,configureModal(container,element))
-}
-
-function updateCardData(container,element){
-    container.getElementsByTagName("h5")[0].innerHTML=element.name
-    container.getElementsByTagName("p")[0].innerHTML=element.stype
-    container.getElementsByTagName("span")[0].innerHTML=element.updated
-}
-
-function configureModal(container){
-    const MODAL=document.getElementById("exampleModal")
+    container.addEventListener("click",()=>{fillSampleCard(element,configureModal(container,"sampleModal"))})
     
-    MODAL.id='modal-'+container.id
+}
 
+async function updateCardData(container,element){
+    let card_data
+    if(element.koma){
+        const sample_list=await fetchSecureFile('GET','user/list/sample/')
+        card_data=sample_list.find(item => item.id === element.source_id);
+    }
+    else{
+        card_data=element
+    }
+    container.getElementsByTagName("h5")[0].innerHTML=card_data.name
+    container.getElementsByTagName("p")[0].innerHTML=card_data.stype
+    container.getElementsByTagName("span")[0].innerHTML=card_data.updated
+} 
+
+function configureModal(container,id){
+    const MODAL=document.getElementById(id)
     container.setAttribute("data-bs-target", `#${MODAL.id}`);
     container.setAttribute("data-bs-toggle","modal")
 

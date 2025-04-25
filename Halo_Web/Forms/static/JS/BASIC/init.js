@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     sampleForm.addEventListener("submit", (event) => {
       event.preventDefault();
       LocalStoreData("Sample",true,sampleForm)
-      prepareBodyRequest("Sample")
+      uploadOperation("Sample") 
     });
   }
 } );
