@@ -1,52 +1,59 @@
 <!--
-Public?                                                                 is_public                                           BOOLEAN,
-Sample ID                                                               id                                                  INT,
-Experminent ID                                                          experimnent_id?                                     INT
-Date created                                                            created                                             DATETIME,
-Date of last update                                                     updated                                             DATETIME,
-User                                                                    user_id                                             INT,
-NCBI Taxonomy NUmber                                                    txnr                                                INT,
-It's cultured?                                                          cult                                                ENUM('cultures', 'uncultured')
-INSDC metagenome accesion number                                        meca(METAGENOME,METAVIROME,PRO,PL),                 VARCHAR(20)
-Estimated or actual genome/metagenome size. Unit bp (base pairs)        gsiz(METAGENOME),                                   INT
-Kind of Material                                                        komas(GENOME VIRUS)                                 ENUM('METAGENOME', 'METATRANSCRIPTOME', 'METAVIROME', 'GENOME PROCARIOTA', 'GENOME VIRUS', 'PROTEOMICS', 'SINGLE CELL GENOMICS', 'PLASMID')
-DNA extraction method                                                   dnae(METAG,METAVIROME,PRO,SC,PL),                   INT
-Sequencing Technology                                                   seqt(METAVIROME,METAG,SC),                          INT
-Dateo of isolation                                                      dati(SC)                                            DATE
-Sequence fraction                                                       sfrac*(METAGENOME)                                  INT
-Raw Read UUID file                                                      rreads,                                             VARCHAR(40)
-Raw Read NCBI accession code                                            rreadacc                                            INT
-Name of the original file containing the raw reads                      rrname                                              VARCHAR(100)
-Number of raw reads                                                     rreadsnum                                           INT
-Number of base pairs of raw reads                                       rreaddbsp                                           INT
+Is the sample cultured or uncultured?           cult    ENUM('cultured,uncultured')
+Kind of material                                koma    ENUM('METAGENOME', 'METATRANSCRIPTOME', 'METAVIROME', 'GENOME PROCARIOTA', 'GENOME VIRUS', 'PROTEOMICS', 'SINGLE CELL GENOMICS', 'PLASMID')
+Other                                           coth    VARCHAR(500)
 -->
 <div class="row">
-  <!-- Sample ID -->
+  <!-- Submitted to culture collection? -->
   <div class="col">
-    <label for="id" class="col-form-label">Sample ID</label>
+    <label for="ccsu" class="col-form-label"
+      >Submitted to culture collection?</label
+    >
 
-    <input type="number" class="form-control" id="id" />
-  </div>
-
-  <!-- Experiment ID -->
-  <div class="col">
-    <label for="experiment_id" class="col-form-label">Experiment ID</label>
-
-    <input type="number" class="form-control" id="experiment_id" />
-  </div>
-  <!-- Date of isolation -->
-  <div class="col">
-    <label for="dati" class="col-form-label">Date of isolation</label>
-    <input type="date" class="form-control" id="dati" />
+    <input type="checkbox" id="ccsu" />
   </div>
 </div>
 <div class="row">
-  <!-- INSDC metagenome accession number -->
+  <!-- Cultured? -->
+  <div class="col">
+    <label for="cult" class="col-form-label">Cultured?</label>
+
+    <select class="form-select" id="cult">
+      <option value="cultured">Cultured</option>
+      <option value="uncultured">Uncultured</option>
+    </select>
+  </div>
+  <!-- Kind of Material -->
+  <div class="col">
+    <label for="koma" class="col-form-label">Kind of Material</label>
+    <select class="form-select" id="koma">
+      <option value="METAGENOME">Metagenome</option>
+      <option value="METATRANSCRIPTOME">Metatranscriptome</option>
+      <option value="METAVIROME">Metavirome</option>
+      <option value="GENOME PROCARIOTA">Genome Procariota</option>
+      <option value="GENOME VIRUS">Genome Virus</option>
+      <option value="PROTEOMICS">Proteomics</option>
+      <option value="SINGLE CELL GENOMICS">Single Cell Genomics</option>
+      <option value="PLASMID">Plasmid</option>
+    </select>
+  </div>
+</div>
+<div class="row">
+  <!-- NCBI Taxonomy Number -->
+  <div class="col">
+    <label for="txnr" class="col-form-label">NCBI Taxonomy Number</label>
+
+    <input type="number" class="form-control" id="txnr"/>
+  </div>
+
   <div class="col">
     <label for="meca" class="col-form-label">INSDC metagenome access num</label>
     <input type="text" maxlength="20" class="form-control" id="meca" />
   </div>
 
+</div>
+
+<div class="row">
   <!-- Estimated or actual genome/metagenome size -->
   <div class="col">
     <label for="gsiz" class="col-form-label">Genome/metagenome size</label>
@@ -57,32 +64,26 @@ Number of base pairs of raw reads                                       rreaddbs
       </div>
     </div>
   </div>
+    <!-- DNA extraction method -->
+    <div class="col">
+      <label for="dnae" class="col-form-label">DNA extraction method</label>
+      <select name="dna" class="form-control" id="dnae"></select>
+    </div>
+      <!-- Sequencing Technology -->
+    <div class="col">
+      <label for="seqt" class="col-form-label">Sequencing Technology</label>
+      <select name="sequencing" class="form-control" id="seqt"></select>
+    </div>
+    <!-- Date of isolation -->
+    <div class="col">
+      <label for="dati" class="col-form-label">Date of isolation</label>
+      <input type="date" class="form-control" id="dati" />
+    </div>
 
-  <!-- DNA extraction method -->
-  <div class="col">
-    <label for="dnae" class="col-form-label">DNA extraction method</label>
-    <input type="number" class="form-control" id="dnae" />
-  </div>
-</div>
-
-<div class="row">
-  <!-- Sequencing Technology -->
-  <div class="col">
-    <label for="seqt" class="col-form-label">Sequencing Technology</label>
-    <input type="number" class="form-control" id="seqt" />
-  </div>
-
-  <!-- Sequence fraction -->
-  <div class="col">
-    <label for="sfrac" class="col-form-label">Sequence fraction</label>
-    <input type="number" class="form-control" id="sfrac" />
-  </div>
-  <!-- Raw Read NCBI accession code -->
-  <div class="col">
-    <label for="rreadacc" class="col-form-label"
-      >Raw Read NCBI accession code</label
-    >
-    <input type="number" class="form-control" id="rreadacc" />
+    <div class="col">
+      <label for="sfrac" class="col-form-label">Sequence fraction</label>
+      <select name="fraction" class="form-control" id="sfrac"></select>
+    </div>
   </div>
 </div>
 

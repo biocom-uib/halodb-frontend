@@ -1,26 +1,22 @@
 function prepareBodyRequest(step, source = null) {
+  const koma=localStorage.getItem("koma")
   const ID_FORM = "Form_".concat(step);
   const RAW_DATA = JSON.parse(localStorage.getItem(ID_FORM));
 
-  let tempFields = {};
+  let result = {};
 
   // 1. Recorremos y procesamos los campos
-  const filteredData = RAW_DATA.fields
+  RAW_DATA.fields
     .filter(item => item.id)
-    .map(item => {
-      // Guardamos todos los valores temporalmente
-      tempFields[item.id] = item.value;
-
+    .forEach(item => {
       // Fecha
       if (item.type === "date") {
         const dateObj = item.value ? new Date(item.value) : new Date();
         const day = String(dateObj.getDate()).padStart(2, '0');
         const month = String(dateObj.getMonth() + 1).padStart(2, '0');
         const year = dateObj.getFullYear();
-        return {
-          id: item.id,
-          value: `${day}/${month}/${year}`
-        };
+        result[item.id] = `${day}/${month}/${year}`;
+        return;
       }
 
       // Hora
@@ -29,28 +25,21 @@ function prepareBodyRequest(step, source = null) {
         const hours = String(timeObj.getHours()).padStart(2, '0');
         const minutes = String(timeObj.getMinutes()).padStart(2, '0');
         const seconds = String(timeObj.getSeconds()).padStart(2, '0');
-        return {
-          id: item.id,
-          value: `${hours}:${minutes}:${seconds}`
-        };
+        result[item.id] = `${hours}:${minutes}:${seconds}`;
+        return;
       }
 
-      return {
-        id: item.id,
-        value: item.value
-      };
+      // Otros tipos
+      result[item.id] = item.value;
     });
 
-  // 2. Construimos el objeto final
-  const result = filteredData.reduce((acc, item) => {
-    // Concatenar ssizeunit + ssizetype_u
-    if (item.id === "ssizeunit") {
-      acc["ssizeunit"] = item.value + (tempFields["ssizetype_u"] || "");
-    } else if (item.id !== "ssizetype_u") {
-      acc[item.id] = item.value;
-    }
-    return acc;
-  }, {});
+  // Añadir source_id si existe
+  if (source !== null) {
+    result["source_id"] = source;
+    result["sequence"]=koma;
+    result["koma"]=koma;
+  }
+
 
   return JSON.stringify(result, null, 2);
 }

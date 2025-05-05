@@ -13,7 +13,8 @@ document.getElementById("registerForm").addEventListener("submit", async functio
         body: JSON.stringify(data)
       });
   
-      const result = await response.json();
+      //const result = await response.json();
+      //console.log("Django response with:"+result)
   
       if (response.ok) {
         alert("Registro exitoso");

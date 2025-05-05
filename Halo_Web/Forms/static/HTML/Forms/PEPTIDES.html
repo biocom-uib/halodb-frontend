@@ -1,70 +1,120 @@
 <!--
-Public?                                                                 is_public                                           BOOLEAN,
-Sample ID                                                               id                                                  INT,
-Experminent ID                                                          experimnent_id?                                     INT
-Date created                                                            created                                             DATETIME,
-Date of last update                                                     updated                                             DATETIME,
-User                                                                    user_id                                             INT,
-NCBI Taxonomy NUmber                                                    txnr                                                INT,
-It's cultured?                                                          cult                                                ENUM('cultures', 'uncultured')
-INSDC metagenome accesion number                                        meca(METAGENOME,METAVIROME,PRO,PL),                 VARCHAR(20)
-DNA extraction method                                                   dnae(METAG,METAVIROME,PRO,SC,PL),                   INT
-Raw Read UUID file                                                      rreads,                                             VARCHAR(40)
-Raw Read NCBI accession code                                            rreadacc                                            INT
-Name of the original file containing the raw reads                      rrname                                              VARCHAR(100)
-Number of raw reads                                                     rreadsnum                                           INT
-Number of base pairs of raw reads                                       rreaddbsp                                           INT
+Is the sample cultured or uncultured?           cult    ENUM('cultured,uncultured')
+Kind of material                                koma    ENUM('METAGENOME', 'METATRANSCRIPTOME', 'METAVIROME', 'GENOME PROCARIOTA', 'GENOME VIRUS', 'PROTEOMICS', 'SINGLE CELL GENOMICS', 'PLASMID')
+Other                                           coth    VARCHAR(500)
 -->
+<div class="row">
+  <!-- Submitted to culture collection? -->
+  <div class="col">
+    <label for="ccsu" class="col-form-label"
+      >Submitted to culture collection?</label
+    >
+
+    <input type="checkbox" id="ccsu" />
+  </div>
+</div>
+<div class="row">
+  <!-- Cultured? -->
+  <div class="col">
+    <label for="cult" class="col-form-label">Cultured?</label>
+
+    <select class="form-select" id="cult">
+      <option value="cultured">Cultured</option>
+      <option value="uncultured">Uncultured</option>
+    </select>
+  </div>
+  <!-- Kind of Material -->
+  <div class="col">
+    <label for="koma" class="col-form-label">Kind of Material</label>
+    <select class="form-select" id="koma">
+      <option value="METAGENOME">Metagenome</option>
+      <option value="METATRANSCRIPTOME">Metatranscriptome</option>
+      <option value="METAVIROME">Metavirome</option>
+      <option value="GENOME PROCARIOTA">Genome Procariota</option>
+      <option value="GENOME VIRUS">Genome Virus</option>
+      <option value="PROTEOMICS">Proteomics</option>
+      <option value="SINGLE CELL GENOMICS">Single Cell Genomics</option>
+      <option value="PLASMID">Plasmid</option>
+    </select>
+  </div>
+</div>
 <div class="row">
   <!-- NCBI Taxonomy Number -->
   <div class="col">
     <label for="txnr" class="col-form-label">NCBI Taxonomy Number</label>
-    <input type="number" class="form-control" id="txnr" />
+
+    <input type="number" class="form-control" id="txnr"/>
   </div>
 
-  <!-- It's cultured? -->
-  <div class="col">
-    <label for="cult" class="col-form-label">It's cultured?</label>
-    <select class="form-select" id="cult">
-      <option value="cultures">Cultures</option>
-      <option value="uncultured">Uncultured</option>
-    </select>
-  </div>
-
-  <!-- INSDC metagenome accession number -->
   <div class="col">
     <label for="meca" class="col-form-label">INSDC metagenome access num</label>
     <input type="text" maxlength="20" class="form-control" id="meca" />
   </div>
-  <!-- DNA extraction method -->
+
+</div>
+
+<div class="row">
+  <!-- Estimated or actual genome/metagenome size -->
   <div class="col">
-    <label for="dnae" class="col-form-label">DNA extraction method</label>
-    <input type="number" class="form-control" id="dnae" />
+    <label for="gsiz" class="col-form-label">Genome/metagenome size</label>
+    <div class="input-group">
+      <input type="number" class="form-control" id="gsiz" />
+      <div class="input-group-append">
+        <span class="input-group-text">bp</span>
+      </div>
+    </div>
+  </div>
+    <!-- DNA extraction method -->
+    <div class="col">
+      <label for="dnae" class="col-form-label">DNA extraction method</label>
+      <select name="dna" class="form-control" id="dnae"></select>
+    </div>
+      <!-- Sequencing Technology -->
+    <div class="col">
+      <label for="seqt" class="col-form-label">Sequencing Technology</label>
+      <select name="sequencing" class="form-control" id="seqt"></select>
+    </div>
+    <!-- Date of isolation -->
+    <div class="col">
+      <label for="dati" class="col-form-label">Date of isolation</label>
+      <input type="date" class="form-control" id="dati" />
+    </div>
+
+    <div class="col">
+      <label for="sfrac" class="col-form-label">Sequence fraction</label>
+      <select name="fraction" class="form-control" id="sfrac"></select>
+    </div>
   </div>
 </div>
-<div class="row">
-  <!-- Raw Read UUID file -->
-  <div class="col">
-    <label for="rreads" class="col-form-label">Raw Read UUID file</label>
-    <input type="text" maxlength="40" class="form-control" id="rreads" />
-  </div>
 
-  <!-- Raw Read NCBI accession code -->
+<div class="row">
+  <!-- Raw Read files -->
   <div class="col">
-    <label for="rreadacc" class="col-form-label"
-      >Raw Read NCBI accession code</label
-    >
-    <input type="number" class="form-control" id="rreadacc" />
+    <label for="rreads" class="col-form-label">Raw Read file 1</label>
+    <input type="file" class="form-control" id="rreads" required/>
   </div>
 
   <!-- Name of the original file containing the raw reads -->
   <div class="col">
-    <label for="rrname" class="col-form-label"
-      >Original File Name containing the raw reads</label
-    >
+    <label for="rrname" class="col-form-label">Name of the original file 1</label>
     <input type="text" maxlength="100" class="form-control" id="rrname" />
   </div>
 </div>
+
+<div class="row">
+  <!-- Raw Read files -->
+  <div class="col">
+    <label for="rreads2" class="col-form-label">Raw Read file 2</label>
+    <input type="file" class="form-control" id="rreads" />
+  </div>
+
+  <!-- Name of the original file containing the raw reads -->
+  <div class="col">
+    <label for="rrname2" class="col-form-label">Name of the original file 2</label>
+    <input type="text" class="form-control" id="rrname2" />
+  </div>
+</div>
+
 <div class="row">
   <!-- Number of raw reads -->
   <div class="col">
@@ -78,7 +128,6 @@ Number of base pairs of raw reads                                       rreaddbs
     <label for="rreaddbsp" class="col-form-label"
       >Number of base pairs of raw reads</label
     >
-
     <input type="number" class="form-control" id="rreaddbsp" />
   </div>
 </div>

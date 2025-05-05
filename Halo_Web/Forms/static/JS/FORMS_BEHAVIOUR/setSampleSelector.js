@@ -7,6 +7,7 @@ function setSampleSelector(){
         option.textContent = value;
         sourceSelector.appendChild(option);
     }
+    sourceSelector.value=sessionStorage.getItem("source_id")
     //Each time you choose another value, the source_id change
     sourceSelector.addEventListener("change",()=>sessionStorage.setItem("source_id",sourceSelector.value))
 }

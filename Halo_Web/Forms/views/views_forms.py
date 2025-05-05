@@ -27,19 +27,25 @@ def api_post_calls(request,table):
     token = request.session.get("auth_token")
     if not token:
             return JsonResponse({"status":"error","message":"Usuario no autenticado"},status=401)
-    body_unicode = request.body.decode('utf-8') 
-    body_request = json.loads(body_unicode)
-    # Construir la URL con el parámetro dinámico
+    body_unicode = request.body.decode('utf-8')
+ # Construir la URL con el parámetro dinámico
     full_url = f"{URL}{table.upper()}"
+    body_unicode=json.loads(body_unicode)
+    print(full_url)
+    print(body_unicode)
     headers={"Authorization":f"Bearer {token}"}
     try:
         # Hacer la petición GET a la API externa
-        response = requests.post(full_url, headers=headers,json=body_request)
+        response = requests.post(full_url, headers=headers,json=body_unicode)
 
         # Verificar si la respuesta es correcta (código 200)
         if response.status_code == 200:
+            #print(response.step.id)
             return JsonResponse(response.json())  # Devolver la respuesta de la API externa
         else:
+            err=response.json()
+            print(err)
+            print(response)
             return JsonResponse(
                 {"error": "Error en la API externa", "status_code": response.status_code},
                 status=response.status_code

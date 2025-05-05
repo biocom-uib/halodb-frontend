@@ -9,18 +9,21 @@ async function FormEventManagement() {
   if(IS_LAST){
     localStorage.setItem("StepsNameList",JSON.stringify(STEPS_NAME))
     LocalStoreData(ACT_STEP);
+    uploadOperation(STEPS_NAME[ACT_STEP],sessionStorage.getItem("source_id"))
     window.location.assign(`/Summary/`);
     return;
   }
 
-  if (PROGRESS) {
-    localStorage.setItem("maxStepDone", NEXT_STEP);
-  }
+
   localStorage.setItem("actualStep",NEXT_STEP)
 
   UpdateColor("SVG_".concat(ACT_STEP), PAUSED_COLOR);
   LocalStoreData(ACT_STEP);
-
+  
+  if (PROGRESS) {
+    localStorage.setItem("maxStepDone", NEXT_STEP);
+    uploadOperation(STEPS_NAME[ACT_STEP],sessionStorage.getItem("source_id"))
+  }
   await LoadNextForm(NEXT_STEP,IS_LAST);
   addFileInputEvent();
   

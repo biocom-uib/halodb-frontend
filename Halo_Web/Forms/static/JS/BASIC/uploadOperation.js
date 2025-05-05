@@ -2,7 +2,7 @@ async function uploadOperation(table) {
     try {
         const response = await fetch("/upload/"+table,{
             method:"POST",
-            body: prepareBodyRequest(table)
+            body: prepareBodyRequest(localStorage.getItem("actualStep")-1,sessionStorage.getItem("source_id"))
         }
     );
 

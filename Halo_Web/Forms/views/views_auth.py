@@ -24,6 +24,9 @@ def logout_view(request):
   
   return render (request, "index.html")
 
+'''TO DO: Add SMTP or similar service to send automatic mails to users'''
+
+'''
 @csrf_exempt
 def start_registration(request):
     if request.method=="POST":
@@ -53,6 +56,20 @@ def register_user(request,token):
       return redirect('login')
   else:
       return JsonResponse({'status':'error','message':'Error interno, sistema no operativo:'},status=405)
+'''
+
+@csrf_exempt
+def register_user(request):
+  if request.method== "POST":
+    full_url=URL+"user/"
+    body=json.loads(request.body)
+    response=requests.post(full_url,json=body)
+    if response.status_code==200:
+      return HttpResponse("OK", status=200)
+    else:
+      return JsonResponse({'status':'error','message':'Register failed! Please try again'},status=405)
+  else:
+    return render(request,"registration/register.html")
 
 
 @csrf_exempt
