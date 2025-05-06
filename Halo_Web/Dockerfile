@@ -14,6 +14,8 @@ RUN pip install --no-cache-dir --upgrade pip \
 # Recoger archivos estáticos (servidos por Apache)
 RUN python manage.py collectstatic --noinput
 
+ENV PYTHONUNBUFFERED=1
+
 # Exponer el puerto en el que correrá Gunicorn
 EXPOSE 8000
 

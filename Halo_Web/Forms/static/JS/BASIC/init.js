@@ -14,6 +14,10 @@ document.addEventListener("DOMContentLoaded",()=>{
   if(sampleForm){
     sampleForm.addEventListener("submit", (event) => {
       event.preventDefault();
+      SEQUENCES.forEach(element => {
+        document.getElementById("komaChooser").appendChild(generateModalButton(element,"/Forms"))
+        //EXP_LIST.appendChild(GenerateNavItems(element,element))
+        });
       LocalStoreData("Sample",true,sampleForm)
       uploadOperation("Sample") 
     });

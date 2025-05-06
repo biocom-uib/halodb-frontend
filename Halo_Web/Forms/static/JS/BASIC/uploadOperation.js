@@ -1,8 +1,12 @@
 async function uploadOperation(table) {
     try {
-        const response = await fetch("/upload/"+table,{
+        let step= localStorage.getItem("actualStep") ? localStorage.getItem("actualStep")-1 : "Sample"
+        const post_body=prepareBodyRequest(step,sessionStorage.getItem("source_id")) 
+        const response = await fetch(`/halophile/upload/${table.toUpperCase()}`,{
+             headers: {
+                "Content-Type": "application/json"},
             method:"POST",
-            body: prepareBodyRequest(localStorage.getItem("actualStep")-1,sessionStorage.getItem("source_id"))
+            body: post_body
         }
     );
 

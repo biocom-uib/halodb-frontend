@@ -1,5 +1,5 @@
 const URL_DICC = {
-    "static": "/secure-static/",
+    "static": "/halophile/static/HTML/",
     "GET": "api/get/"
 };
 
@@ -10,9 +10,14 @@ async function fetchSecureFile(type, param) {
         if (!response.ok) {
             throw new Error("Archivo no encontrado");
         }
-
         const RESPONSE = await (response.text());
+        if(type==="static"){
+            return RESPONSE
+        }
+
         const PARSED_RESPONSE=JSON.parse(RESPONSE)
+        if (PARSED_RESPONSE.token)
+            sessionStorage.setItem("token",PARSED_RESPONSE.token)
         if(PARSED_RESPONSE.message)
             return PARSED_RESPONSE.message;
         else

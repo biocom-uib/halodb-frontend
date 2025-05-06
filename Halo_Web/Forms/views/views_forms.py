@@ -47,33 +47,28 @@ def api_post_calls(request,table):
             print(err)
             print(response)
             return JsonResponse(
-                {"error": "Error en la API externa", "status_code": response.status_code},
+                {"error": err, "status_code": response.status_code},
                 status=response.status_code
             )
     
     except requests.exceptions.RequestException as e:
         return JsonResponse({"error": "Error en la conexión a la API externa", "details": str(e)}, status=500)
 
-def get_static_file(request,filename):
-    """"The users must be logged to use this kind of services"""
+def get_static_file(request, filename):
+    """Retrieve static HTML files only for authenticated users."""
     if not request.session.get("auth_token"):
-            return JsonResponse({"status":"error","message":"Usuario no autenticado"},status=401)
-    
-    #DEV Envior
-    if settings.DEBUG:
-        # En desarrollo, buscar en STATICFILES_DIRS
-        file_path = os.path.join(settings.STATICFILES_DIRS[0], "HTML")
-    else:
-        # En producción, usar STATIC_ROOT
-        file_path = os.path.join(settings.STATIC_ROOT, "HTML")
+        return JsonResponse({"status": "error", "message": "Usuario no autenticado"}, status=401)
 
-    file_path = os.path.normpath(os.path.join(file_path, filename))
-    if os.path.exists(file_path):
+    # Buscar el archivo dentro de /static/HTML/
+    static_path = f"HTML/{filename}"
+    file_path = finders.find(static_path)
+
+    if file_path and os.path.exists(file_path):
         with open(file_path, "r", encoding="utf-8") as file:
-            content = file.read()  # Leer el contenido como string
-            return JsonResponse({"message": content})  # Devolver como JSON
+            content = file.read()
+        return JsonResponse({"message": content})
     else:
-        print(f"NO Exsite {file_path}")
+        print(f"Archivo no encontrado: {static_path}")
         raise Http404("Archivo no encontrado.")
   
 def api_get_calls(request, query_params):

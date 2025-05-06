@@ -16,7 +16,6 @@ async function loadUserKomaData(koma){
         experimentContainer.appendChild(experimentContent)
 
         const USER_EXPERIMENTS= await fetchSecureFile("GET","user/list/"+seq_step)
-        let first=true
         USER_EXPERIMENTS.forEach(experiment=>{
             if(experiment.koma==koma){
                 console.log("Experiment Found: "+JSON.stringify(experiment, null, 2))

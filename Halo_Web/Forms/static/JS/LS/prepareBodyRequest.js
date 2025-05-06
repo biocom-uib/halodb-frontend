@@ -34,7 +34,7 @@ function prepareBodyRequest(step, source = null) {
     });
 
   // Añadir source_id si existe
-  if (source !== null) {
+  if (step!="Sample" && step=="0") {
     result["source_id"] = source;
     result["sequence"]=koma;
     result["koma"]=koma;

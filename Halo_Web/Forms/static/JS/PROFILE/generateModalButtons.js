@@ -7,7 +7,7 @@ function generateModalButton(name,href){
     container.classList.add('col')
     if(colors)
         button.classList.add('btn',colors[0],colors[1])
-    button.href=href
+    button.href="/halophile"+href
     button.innerText=name
 
     container.appendChild(button)

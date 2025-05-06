@@ -17,7 +17,6 @@ async function loadProfileData(){
     SEQUENCES.forEach(element => {
         document.getElementById("komaChooser").appendChild(generateModalButton(element,"/Forms"))
         EXP_LIST.appendChild(GenerateNavItems(element,element))
-
         });
     const BUTTONS=Array.from(EXP_LIST.getElementsByClassName("nav-link"))
     BUTTONS.forEach((item)=>

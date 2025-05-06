@@ -98,6 +98,23 @@ DATABASES = {
     }
 }
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'propagate': True,
+        },
+    },
+}
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -142,15 +159,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
-STATIC_ROOT = '/home/halophile/public_html/static/'
+STATIC_ROOT = '/home/halophile/public_html/'
 
 if DEBUG:
     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'Forms/static'),]
     STATIC_URL = '/static/'
 else:
     STATIC_URL = '/halophile/static/'
-    #FORCE_SCRIPT_NAME = '/halophile'
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    FORCE_SCRIPT_NAME = '/halophile'
 
 #
 

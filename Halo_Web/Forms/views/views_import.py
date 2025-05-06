@@ -4,6 +4,7 @@ import os
 import ast
 
 from django.contrib.auth.decorators import login_required
+from django.contrib.staticfiles import finders
 from django.urls import re_path
 from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
