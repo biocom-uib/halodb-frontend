@@ -1,3 +1,39 @@
-.card:hover{
+.projectCard{
+    cursor: pointer; /* Cambia el cursor al de un enlace */
+}
+
+.projectCard:hover{
     box-shadow: inset;
+}
+
+.modal-header{
+  min-height: 10dvh; 
+  margin-bottom: 2rem; 
+}
+
+.modal-body{
+  max-height: 50dvh; 
+
+  padding-right: 1rem; 
+}
+
+.stepContainer{
+  min-height: 10dvh; 
+  margin: 4rem; 
+  max-height: 50dvh; 
+  overflow-y: auto;
+  padding-right: 1rem; 
+
+}
+
+.stepSelect{
+  margin-bottom: 4rem; 
+}
+
+.plasmidContainer{
+  background-color: #9900cc !important;
+}
+
+.plasmidLetter{
+  color: #ffffff;
 }

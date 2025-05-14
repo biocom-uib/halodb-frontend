@@ -23,24 +23,24 @@
                 <img src="{% static 'src/img/icon.png' %}" style="width: 100%; height: 80%;">
             </div>
             <div class="card-body ">
-                                    <!-- Mensaje de error si hay uno -->
+            <!-- Mensaje de error si hay uno -->
                 {% if messages %}
-                <div class="alert alert-danger mt-3" role="alert">
-                    {% for message in messages %}
-                        <p>{{ message }}</p>
-                    {% endfor %}
-                </div>
+                {% for message in messages %}
+                    <div class="alert alert-danger mt-3" role="alert">
+                    <p>{{ message }}</p>
+                    </div>
+                {% endfor %}
                 {% endif %}
                 <form id="loginForm" method="POST">
                     {% csrf_token %}
                     <div class="row p-3">
                         <label for="email" class="col-form-label">Email:</label>
-                        <input type="email" class="form-control" name="email" required>
+                        <input type="email" class="form-control" name="email" id="email" required autocomplete="email">
                         </div>
                     
                     <div class="row p-3">
                         <label for="password" class="col-form-label">Contraseña:</label>    
-                        <input type="password" name="password" class="form-control" required>
+                        <input type="password" name="password" class="form-control" id="password" required>
                     </div>
                     <div class="container d-flex justify-content-end">
                         <button type="submit" class="btn btn-primary m-3">Log In</button>

@@ -13,10 +13,5 @@ async function LoadNextForm(step) {
       
   goBackButton.style.visibility = step == 0 ? "hidden" : "Visible";
 
-/*  if (step == 0) {
-    const KOMA = document.getElementById("koma");
-    KOMA.addEventListener("change", () =>
-      ChangeKoma(KOMA.selectedIndex, KOMA.value)
-    );
-  } */
+  addFileInputEvent();
 }

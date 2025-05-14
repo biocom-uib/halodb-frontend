@@ -1,3 +1,6 @@
+/**
+ * Detect when a file is uploaded in a form and set the associated "fileName" input 
+ */
 function addFileInputEvent(){
     const inputs=document.getElementsByTagName("input")
     //Comprobamos que hay algun input del tipo "file" en el fomrulario

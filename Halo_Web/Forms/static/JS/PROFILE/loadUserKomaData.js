@@ -1,26 +1,74 @@
+/**
+ * Generate a grid container. Each column will represent each step of entried koma
+ * @param {*} koma - Kind of material selected
+ */
 async function loadUserKomaData(koma){
+
     const SEQUENCE_STEPS=await fetchSecureFile("GET","query/sequence/"+koma)
-            const experimentContainer=document.getElementById("expContainer")
-        experimentContainer.innerHTML=""
+    const experimentContainer=document.getElementById("expContainer")
+    experimentContainer.innerHTML=""
     //Append a sampleCard for each sample
-    SEQUENCE_STEPS.forEach(async seq_step => {
-        const EXP_ID="row_"+seq_step
-        const experimentHeader=document.createElement("h1")
-        const experimentContent=document.createElement("div")
+    const cols= 4
+    let source_list=[]
+    
+    for(const seq_step of SEQUENCE_STEPS) {
+        const EXP_ID="cont_"+seq_step
+        const stepTtl=document.createElement("h1")
+        const stepContainer=document.createElement("div")
+        const stepContentSelector=document.createElement("select")
+        stepContentSelector.className="form-select stepSelect"
         
-        experimentHeader.innerText=seq_step
-        experimentContent.classList.add('row', 'd-flex', 'justify-content-between', 'w-100' ,'row-cols-1' ,'row-cols-md-3' ,'g-4')
+        stepContentSelector.addEventListener("change",()=>{
+        const url= `${seq_step}/${stepContentSelector.value}`
+            fillStepData(url,stepContainer,seq_step)
+        })
 
-        experimentContent.id=EXP_ID
-        experimentContainer.appendChild(experimentHeader)
-        experimentContainer.appendChild(experimentContent)
+        stepTtl.innerText=seq_step
+        stepContainer.className=`col-${cols} border`
 
-        const USER_EXPERIMENTS= await fetchSecureFile("GET","user/list/"+seq_step)
-        USER_EXPERIMENTS.forEach(experiment=>{
-            if(experiment.koma==koma){
-                console.log("Experiment Found: "+JSON.stringify(experiment, null, 2))
-                addSampleCard(experiment,EXP_ID)  
-            }
-        })    
-    });
+        stepContainer.id=EXP_ID
+        stepContainer.appendChild(stepTtl)
+        stepContainer.appendChild(stepContentSelector)
+        experimentContainer.appendChild(stepContainer)
+        source_list=await filterExperiments(source_list,koma,seq_step)
+        generateSourceSelect(stepContentSelector,source_list)
+    }
 }
+/**
+ * Filters the list of sequence step entried and returns the list of id according to this rules:
+ *  - First Sequence Step: Check koma value
+ *  - Default: Check if his source_id exist in previous step list 
+ * @param {Array} source_id - List of previous validated ids (sources)
+ * @param {String} koma - Kind of material selected
+ * @param {String} seq_step - Actual sequence step
+ * @returns 
+ */
+
+async function filterExperiments(source_id,koma,seq_step) {
+    const USER_EXPERIMENTS= await fetchSecureFile("GET","user/list/"+seq_step)
+    let src_list=[]
+    USER_EXPERIMENTS.forEach(experiment=>{
+        if((experiment.koma && experiment.koma==koma) || source_id.includes(experiment.source_id)){
+            src_list.push(experiment.id) 
+        }
+    })
+    return src_list   
+}
+
+/**
+ * Add options element with the corresponding Array list
+ * @param {HTMLSelectElement} select - Select item of the sequence
+ * @param {Array} opciones - List of items 
+ */
+function generateSourceSelect(select,opciones){
+    opciones.forEach(opcion => {
+        const optionElement = document.createElement("option");
+        optionElement.value = opcion;
+        optionElement.textContent = opcion;
+        select.appendChild(optionElement);
+    });
+     
+}
+
+
+

@@ -1,9 +1,9 @@
 <!--
-ALternative housekeeping genes                  hkgn                INT
+ALternative housekeeping genes                  hkgn                SELECT(*)
 Molar % of Guanine and Cytosine in DNA          ggcm                FLOAT
-Assembly software                               asem                INT
+Assembly software                               asem                SELECT
 Used Parameters in Assemby Software             asftparams          VARCHAR(80)
-Sequencing Technology                           seqt                INT
+Sequencing Technology                           seqt                SELECT
 UUID Assembled file                             assembled           VARCHAR(40)
 Name of original file containing the assembly   assname             VARCHAR(100)
 Assembly size in base pairs                     asize               INT
@@ -35,7 +35,7 @@ Number of contigs                               contignumber        INT
   <!-- Assembly software -->
   <div class="col">
     <label for="asem" class="col-form-label">Assembly software</label>
-    <input type="number" class="form-control" id="asem" />
+    <select name="assembly" class="form-control" id="asem"></select>
   </div>
 
   <!-- Used Parameters in Assembly Software -->
@@ -49,14 +49,14 @@ Number of contigs                               contignumber        INT
   <!-- Sequencing Technology -->
   <div class="col">
     <label for="seqt" class="col-form-label">Sequencing Technology</label>
-    <input type="number" class="form-control" id="seqt" />
+    <select name="sequencing" class="form-control" id="seqt"></select>
   </div>
 </div>
 <div class="row">
-  <!-- UUID Assembled file -->
+  <!--Assembly file -->
   <div class="col">
-    <label for="assembled" class="col-form-label">UUID Assembled file</label>
-    <input type="text" maxlength="40" class="form-control" id="assembled" />
+    <label for="assembled" class="col-form-label">Assembly File</label>
+    <input type="file" class="form-control" id="assembled"/>
   </div>
 
   <!-- Name of original file containing the assembly -->

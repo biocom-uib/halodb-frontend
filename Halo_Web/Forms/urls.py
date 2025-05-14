@@ -18,7 +18,8 @@ urlpatterns = [
     path('registration/logout/',logout_view,name="logout"),
     path('upload/<str:table>',api_post_calls,name="api_post"),
     path('mySamples/<int:sample_id>/<str:step_name>',get_step_info,name="mySamples"),
-    re_path(r'^.*/api/get/(?P<query_params>.+)/$', api_get_calls, name='api_get_calls'),
+    path('halophile/api/get/<path:query_params>', api_get_calls, name='api_get_calls'),
+    path('api/get/<path:query_params>', api_get_calls, name='api_get_calls'),
     path('secure-static/<path:filename>/', get_static_file, name='secure_static'),
 ]
 

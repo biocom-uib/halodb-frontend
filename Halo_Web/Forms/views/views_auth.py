@@ -62,14 +62,25 @@ def register_user(request,token):
 def register_user(request):
   if request.method== "POST":
     full_url=URL+"user/"
-    body=json.loads(request.body)
-    response=requests.post(full_url,json=body)
+    name= request.POST.get("name")
+    surname= request.POST.get("surname")
+    email = request.POST.get("email")
+    password = request.POST.get("password")
+  
+    response=requests.post(full_url,
+      json={
+        "name":name,
+        "surname":surname,
+        "email":email,
+        "password":password
+      })
     if response.status_code==200:
-      return HttpResponse("OK", status=200)
+      messages.success(request, 'Register complete! Now, you can access to your profile view!')
+      return redirect('login')
     else:
-      return JsonResponse({'status':'error','message':'Register failed! Please try again'},status=405)
-  else:
-    return render(request,"registration/register.html")
+      messages.error(request, response.json()['message']['message'])
+    
+  return render(request,"registration/register.html")
 
 
 @csrf_exempt
@@ -92,7 +103,8 @@ def login_manual(request):
           request.session.set_expiry(3600)
           return redirect("profile")
         else:
-          return JsonResponse({'status':'error','message':'Error interno, sistema no operativo'},status=405)
+          messages.error(request, response.json()['message'])
       else:
-          return render(request, "registration/login.html",{"messages":["Los datos introducidos son incorrectos"]})
+        print(response.json())
+        messages.error(request, response.json()['message'])
   return render(request, "registration/login.html")

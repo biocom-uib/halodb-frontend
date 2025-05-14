@@ -1,5 +1,4 @@
 var STEPS_NAME = [];
-
 const COLOR_DICT={
   "METAGENOME":  "bg-primary text-white",
   "METAVIROME":"bg-secondary text-white",
@@ -8,6 +7,17 @@ const COLOR_DICT={
   "GENOME VIRUS":"bg-warning text-dark",
   "PROTEOMICS":"bg-info text-white",
   "SINGLE CELL GENOMICS":"bg-dark text-white",
+  "PLASMID":"plasmidContainer plasmidLetter"
+}
+
+const URL_DICC = {
+  "static": "/static/HTML/",
+  "GET": "/api/get/"
+};
+
+const HOST_DICC ={
+  "127.0.0.1":"dev",
+  "bioinfo.uib.es":"prod"
 }
 
 const DEFULT_CARD_COLOR = "bg-white text-dark";

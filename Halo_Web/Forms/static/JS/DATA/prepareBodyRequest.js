@@ -1,3 +1,10 @@
+/**
+ * Gets data stored in LS & parse this information to be used as body request 
+ * in DDBB used
+ * @param {*} step - Actual step. Usually a Number (exception "Sample")
+ * @param {*} source - Usually a number. Default value null
+ * @returns JSON stringfy used as a body request
+ */
 function prepareBodyRequest(step, source = null) {
   const koma=localStorage.getItem("koma")
   const ID_FORM = "Form_".concat(step);
@@ -34,7 +41,7 @@ function prepareBodyRequest(step, source = null) {
     });
 
   // Añadir source_id si existe
-  if (step!="Sample" && step=="0") {
+  if (step!="Sample") {
     result["source_id"] = source;
     result["sequence"]=koma;
     result["koma"]=koma;

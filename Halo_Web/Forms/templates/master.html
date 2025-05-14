@@ -28,27 +28,36 @@
     </footer>
     
     <script src="{% static 'JS/BASIC/global.js' %}"></script>
-    <script src="{% static 'JS/BASIC/goBack.js' %}"></script>
-    <script src="{% static 'JS/BASIC/fetchOperations.js' %}"></script>
     <script src="{% static 'JS/BASIC/init.js' %}"></script>
-    <script src="{% static 'JS/BASIC/uploadOperation.js' %}"></script>
+    <script src="{% static 'JS/BASIC/generatePath.js' %}"></script>
+    <script src="{% static 'JS/BASIC/generateModal.js' %}"></script>
+
+    <script src="{% static 'JS/DATA/fetchOperations.js' %}"></script>
+    <script src="{% static 'JS/DATA/uploadOperation.js' %}"></script>
+    <script src="{% static 'JS/DATA/prepareBodyRequest.js' '%}"></script>
 
     <script src="{% static 'JS/FORMS_BEHAVIOUR/FormEventManagement.js' '%}"></script>
+    <script src="{% static 'JS/FORMS_BEHAVIOUR/completedSequence.js' '%}"></script>
     <script src="{% static 'JS/FORMS_BEHAVIOUR/getFileName.js'%}"></script>
     <script src="{% static 'JS/FORMS_BEHAVIOUR/isLastChanges.js' '%}"></script>
     <script src="{% static 'JS/FORMS_BEHAVIOUR/setFormsEnv.js'%}"></script>
     <script src="{% static 'JS/FORMS_BEHAVIOUR/setSampleSelector.js' '%}"></script>
+    <script src="{% static 'JS/FORMS_BEHAVIOUR/goBack.js' '%}"></script>
 
     <script src="{% static 'JS/LS/RecoverFieldsData.js' '%}"></script>
     <script src="{% static 'JS/LS/LocalStoreData.js' '%}"></script>
-    <script src="{% static 'JS/LS/prepareBodyRequest.js' '%}"></script>
+    <script src="{% static 'JS/LS/removeSteps.js' '%}"></script>
+    <script src="{% static 'JS/LS/restartLS.js' '%}"></script>
+
 
     <script src="{% static 'JS/PROFILE/loadProfileData.js' '%}"></script>
     <script src="{% static 'JS/PROFILE/fillSampleCard.js' '%}"></script>
     <script src="{% static 'JS/PROFILE/addSampleCards.js' '%}"></script>
-    <script src="{% static 'JS/PROFILE/komaChooser.js' '%}"></script>
     <script src="{% static 'JS/PROFILE/generateModalButtons.js' '%}"></script>
     <script src="{% static 'JS/PROFILE/loadUserKomaData.js' '%}"></script>
+    <script src="{% static 'JS/PROFILE/updateCardData.js' '%}"></script>
+    <script src="{% static 'JS/PROFILE/fillDataContainer.js' '%}"></script>
+    <script src="{% static 'JS/PROFILE/fillStepData.js' '%}"></script>
     
 
     <script src="{% static 'JS/SUMMARY/LoadSummary.js' %}"></script>
@@ -61,6 +70,9 @@
     <script src="{% static 'JS/SVG/UpdateColor.js' '%}"></script>
     <script src="{% static 'JS/SVG/DeleteSteps.js' '%}"></script>
   
+    <script src="{% static 'JS/SAMPLE/configureModal.js' '%}"></script>
+    <script src="{% static 'JS/SAMPLE/generateKomaModalBody.js' '%}"></script>
+    <script src="{% static 'JS/SAMPLE/initSample.js' '%}"></script>
 
     <script src="{% static 'JS/UPDATE_FORM/LoadNextForm.js' '%}"></script>
     <script src="{% static 'JS/UPDATE_FORM/detectKomaChanges.js' '%}"></script>

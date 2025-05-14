@@ -1,3 +1,6 @@
+/**
+ *  Allows to recover data into inputs when you go back in sequence 
+ */
 async function RecoverFieldsData() {
     const cardForm = document.getElementById("cardForm");
     const inputList = Array.from(cardForm.getElementsByTagName("input"));

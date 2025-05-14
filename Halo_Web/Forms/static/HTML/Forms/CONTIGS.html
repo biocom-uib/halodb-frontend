@@ -16,47 +16,39 @@ Number of contigs                                   contignumber        INT
 
   <!-- Parameters used with assembly software -->
   <div class="col">
-    <label for="asftparams" class="col-form-label"
-      >Parameters used with assembly software</label
-    >
+    <label for="asftparams" class="col-form-label">
+      Parameters used with assembly software
+    </label>
     <input type="text" maxlength="80" class="form-control" id="asftparams" />
   </div>
 </div>
 
 <div class="row">
-  <!-- Assembled File ID -->
   <div class="col">
     <label for="assembled" class="col-form-label">Assemble File</label>
     <input type="file" class="form-control" id="assembled"/>
   </div>
-  <!-- Name of the original file containing the assembly -->
+  
   <div class="col">
-    <label for="assname" class="col-form-label"
-      >Name of the original file containing the assembly</label
-    >
+    <label for="assname" class="col-form-label">
+      Name of the original file containing the assembly
+      </label>
     <input type="text" maxlength="100" class="form-control" id="assname" />
   </div>
 </div>
 <div class="row">
-  <!-- Assembly size (BP) -->
+  
   <div class="col">
     <label for="asize" class="col-form-label">Assembly size</label>
     <div class="input-group">
-      <input
-        type="number"
-        class="form-control"
-        id="asize"
-        aria-label="Assembly size"
-        min="0"
-        max="9999.99"
-      />
+      <input type="number" class="form-control" id="asize" aria-label="Assembly size"
+              min="0" max="9999.99"/>
       <div class="input-group-append">
         <span class="input-group-text">bp</span>
       </div>
     </div>
   </div>
 
-  <!-- Number of contigs -->
   <div class="col">
     <label for="contignumber" class="col-form-label">Number of contigs</label>
     <input type="number" class="form-control" id="contignumber" />

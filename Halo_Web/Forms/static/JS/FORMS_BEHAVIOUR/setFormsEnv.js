@@ -1,34 +1,41 @@
-/*
-  init: Set up necessary records, like actStep and the inital SVG
-*/
+/**
+ *  Set up necessary records, like actStep and the inital SVG
+ */
+ 
+let steps_sources_id
 
 async function setFormsEnv() {
+
+  steps_sources_id=[]
+
+  const goBackBtn=document.getElementById("goBack")
+  const formElement=document.getElementById("mainForm")
+  const sequences=await fetchSecureFile("GET","sequences")
 
   //Initialize steps values
   localStorage.setItem("actualStep", 0);
   localStorage.setItem("maxStepDone", 0);
 
   //Choose KOMA sequence
-  const sequences=await fetchSecureFile("GET","sequences")
   STEPS_NAME=sequences[localStorage.getItem("koma")]
 
-  //Load the first Experiment Forms
+  
   ChangeKoma()
+  //Load the first Experiment Forms
   await LoadNextForm(0);
-  //Associate the goBackEvent to the button "Go Back"
   //Add SVG to step-by-step guide
   AddStep();
-  document.getElementById("goBack").addEventListener("click", () =>
+  //Associate the goBackEvent to the button "Go Back"
+  goBackBtn.addEventListener("click", () =>
     goBack(localStorage.getItem("actualStep") - 1)
   );
   //Add main event manager to the form element
-  document.getElementById("mainForm").addEventListener("submit", (event) => {
+  formElement.addEventListener("submit", (event) => {
     event.preventDefault();
     FormEventManagement();
   });
   //Init the Sample Selector
   setSampleSelector()
-
   //Add fileName detect event
   addFileInputEvent();
   }

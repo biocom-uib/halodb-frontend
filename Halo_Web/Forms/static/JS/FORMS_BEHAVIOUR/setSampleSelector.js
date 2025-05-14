@@ -1,3 +1,6 @@
+/**
+ * Configure the Sample selector in Sequences forms
+ */
 function setSampleSelector(){
     const sourceSelector=document.getElementById("sampleId")
     const userSamples=JSON.parse(sessionStorage.getItem("userSamples"))
@@ -8,6 +11,6 @@ function setSampleSelector(){
         sourceSelector.appendChild(option);
     }
     sourceSelector.value=sessionStorage.getItem("source_id")
-    //Each time you choose another value, the source_id change
+
     sourceSelector.addEventListener("change",()=>sessionStorage.setItem("source_id",sourceSelector.value))
 }

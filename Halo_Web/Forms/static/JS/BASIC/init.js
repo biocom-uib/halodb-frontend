@@ -1,25 +1,30 @@
-/*Gobal DOM change listener that control every template change*/
-document.addEventListener("DOMContentLoaded",()=>{
-  if (document.getElementById("profileSamples")) {
-    loadProfileData();
-  }
-  if (document.getElementById("step-by-step")){
+/**
+ * Manage all DOMContentLoaded Events in the differents views
+*/
+
+function init(){
+  const profileElement=document.getElementById("profileSamples")
+  const formsElement=document.getElementById("step-by-step")
+  const summaryElement=document.getElementById("SummaryCardNav")
+  const sampleElement=document.getElementById("sampleForm")
+
+  //Helps to identify the env we are working at
+  if(localStorage.getItem("env")===null)
+    localStorage.setItem("env",HOST_DICC[window.location.hostname])
+
+  if (profileElement) 
+    loadProfileData()
+  
+  if (formsElement)
     setFormsEnv()
-  }
-  if(document.getElementById("SummaryCardNav")){
+  
+  if(summaryElement)
     initSummary()
-  }   
+
+  if(sampleElement)
+    initSample(sampleElement)
+
   /*TO DO: Create a Sample View with OpenStreet Map */
-  const sampleForm=document.getElementById("sampleForm")
-  if(sampleForm){
-    sampleForm.addEventListener("submit", (event) => {
-      event.preventDefault();
-      SEQUENCES.forEach(element => {
-        document.getElementById("komaChooser").appendChild(generateModalButton(element,"/Forms"))
-        //EXP_LIST.appendChild(GenerateNavItems(element,element))
-        });
-      LocalStoreData("Sample",true,sampleForm)
-      uploadOperation("Sample") 
-    });
-  }
-} );
+
+}
+document.addEventListener("DOMContentLoaded",init);
