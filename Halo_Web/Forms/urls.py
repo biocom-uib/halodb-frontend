@@ -3,6 +3,8 @@ from . import views
 from .views.views_forms import *
 from .views.views_auth import *
 from .views.views_profile import *
+from .views.views_api import *
+from .views.views_api_files import *
 
 
 urlpatterns = [
@@ -20,6 +22,9 @@ urlpatterns = [
     path('mySamples/<int:sample_id>/<str:step_name>',get_step_info,name="mySamples"),
     path('halophile/api/get/<path:query_params>', api_get_calls, name='api_get_calls'),
     path('api/get/<path:query_params>', api_get_calls, name='api_get_calls'),
+    path('api/put_file/<path:src>', api_put_file, name='api_put_file'),
+    path('api/get_file/<path:src>', api_get_file, name='api_get_file'),
+    path('api/put/<path:src>', api_get_file, name='api_put_file'),
     path('secure-static/<path:filename>/', get_static_file, name='secure_static'),
 ]
 

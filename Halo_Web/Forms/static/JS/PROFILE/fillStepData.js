@@ -6,9 +6,8 @@
 async function fillStepData(url,seqContainer,seq_step){
     const stepInfo=await fetchSecureFile("GET",url)
     let container=seqContainer.querySelector("div")
-    if (!container)
-        container=document.createElement("div")
-    container=fillDataContainer(stepInfo[seq_step])
-    if (!seqContainer.querySelector("div"))
-        seqContainer.appendChild(container)
+    if (container)
+        seqContainer.removeChild(container)  
+    seqContainer.appendChild(fillDataContainer(stepInfo[seq_step],seq_step))
+    
 }

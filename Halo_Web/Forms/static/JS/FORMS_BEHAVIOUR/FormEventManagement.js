@@ -14,7 +14,6 @@ async function FormEventManagement() {
 
   if(IS_LAST){
     completedSequence(STEPS_NAME)
-    //return;
   }
 
   //Update actualStep value
@@ -25,18 +24,19 @@ async function FormEventManagement() {
   UpdateColor("SVG_".concat(ACT_STEP), PAUSED_COLOR);
   //Store in LS last data
   LocalStoreData(ACT_STEP);
-
+  const srcId=getSourceId(ACT_STEP)
   //if we progress, update maxStepDone, upload inserted data & add a new visual step 
   // element 
   if (PROGRESS) {
     localStorage.setItem("maxStepDone", NEXT_STEP);
     //First case: use sample id as source_id; Else, use previous step id returned from POST
     
-    const backend_response=await uploadOperation(STEPS_NAME[ACT_STEP],getSourceId(ACT_STEP))
+    const backend_response=await uploadOperation(STEPS_NAME[ACT_STEP],srcId)
     //Add step id at the list
-    //steps_sources_id.push(backend_response.step.id)
+    steps_sources_id.push(backend_response.step.id)
     AddStep();
   }else{
+    uploadOperation(`/api/put/${STEPS_NAME[ACT_STEP]}/${srcId}`,srcId)
     UpdateColor("SVG_" + NEXT_STEP, ACTIVE_COLOR);
   }
 

@@ -22,7 +22,7 @@ async function goBack(step) {
   //Update the stp-by-step element
   RemoveStep(step, ACT_STEP);
   //Change submit button text(avoid check if its the last or not)
-  submit.innerText="Next"
+  submit.innerText="Save & Next"
 
   etapaLabel.innerHTML = STEPS_NAME[step];
 }

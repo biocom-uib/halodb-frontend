@@ -19,8 +19,11 @@ async function loadUserKomaData(koma){
         stepContentSelector.className="form-select stepSelect"
         
         stepContentSelector.addEventListener("change",()=>{
-        const url= `${seq_step}/${stepContentSelector.value}`
-            fillStepData(url,stepContainer,seq_step)
+            if(stepContentSelector.value!="-1"){
+                const url= `${seq_step}/${stepContentSelector.value}`
+                fillStepData(url,stepContainer,seq_step)
+            }
+
         })
 
         stepTtl.innerText=seq_step
@@ -61,6 +64,10 @@ async function filterExperiments(source_id,koma,seq_step) {
  * @param {Array} opciones - List of items 
  */
 function generateSourceSelect(select,opciones){
+    //Add empty option
+    let aux=document.createElement("option");
+    aux.value="-1"
+    select.appendChild(aux)
     opciones.forEach(opcion => {
         const optionElement = document.createElement("option");
         optionElement.value = opcion;
