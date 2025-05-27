@@ -48,7 +48,7 @@ function addDownloadBtn(item,id,table){
   btn.className="btn btn-primary"
   btn.addEventListener("click",async ()=>{
     try {
-      const response = await fetch(`/api/get_file/${table}/${id}/${item}/`);  // Cambia la URL según tu endpoint
+      const response = await fetch(generatePath(`/api/get_file/${table}/${id}/${item}/`));  // Cambia la URL según tu endpoint
 
       if (!response.ok) throw new Error("Error al descargar el archivo");
 
