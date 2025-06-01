@@ -13,7 +13,7 @@ function fillDataContainer(data,table){
       "justify-content-between", 
       "w-100", 
       "row-cols-1", 
-      "row-cols-md-2", 
+      "row-cols-md-4", 
       "g-4",
       "stepContainer"
     );  

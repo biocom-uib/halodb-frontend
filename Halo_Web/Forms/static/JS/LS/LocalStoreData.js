@@ -23,32 +23,36 @@ function LocalStoreData(step="Sample",isSample=false,form=null) {
   localStorage.setItem("Form_".concat(step), JSON.stringify(FORM_DATA));
 }
 
+
+const TAG_SETUP={
+  SELECT: (item)=>({ id: item.id, value: item.value, tagName: item.tagName, type:item.type, options:JSON.stringify(getOptionsName(item))}),
+  file: (item)=>({id: item.id, value: item.value, tagName: item.tagName, type:item.type, file:item.files[0]}),
+  default:(item)=>({ id: item.id, value: item.value, tagName: item.tagName, type:item.type })
+}
+
+
 /**
  * Transforms all inputs values into JSON objects 
  *  @param {Array} list - List of inputs values
  *  @returns {Array} List with all the values with JSON structure 
  */
 function setInputValues(list) {
-  let i,
-    item,
-    result = [];
-  if (list.length > 0) {
-    for (i in list) {
-      item = list[i];
-      localStorage.setItem(item.id, item.value);
-      //Case when item is Select Type
-      if(item.tagName=="SELECT"){
-        result.push({ id: item.id, value: item.value, tagName: item.tagName, type:item.type, options:JSON.stringify(getOptionsName(item)) });
-      }
-      else if(item.type==="file"){
-        result.push({id: item.id, value: item.value, tagName: item.tagName, type:item.type, file:item.files[0]})
-      }
-      else{
-        result.push({ id: item.id, value: item.value, tagName: item.tagName, type:item.type });
-      }
-    }
-  }
-  return result;
+  let result = [];
+    list.forEach((item)=>{
+      if (IDBCursorWithValue){
+        localStorage.setItem(item.id, item.value);
+        //Case when item is Select Type
+        if(item.tagName=="SELECT"){
+          result.push(TAG_SETUP[item.tagName](item));
+        }
+        else if(item.type==="file"){
+          result.push(TAG_SETUP[item.type](item))
+        }
+        else{
+          result.push(TAG_SETUP["default"](item));
+        }
+    }})
+  return result
 }
 
 /**

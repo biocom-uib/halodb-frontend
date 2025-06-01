@@ -19,32 +19,32 @@
     </header>
     <main>
     <section id="userData" class="container d-flex justify-content-center">
-      <div class="card" style="width: 87vw;">
-      <div class="card-header"><h2>User Profile</h2></div>
-      <div class="card-body">
+      <form class="card" style="width: 87vw;">
+        <div class="card-header">
+          <h2>User Profile</h2>
+        </div>
+        <div class="card-body">
+          <div id="userData" class="row mb-3 row-cols-md-2">
+            <label for="userName" class="form-label">
+              <strong>Name </strong>
+            </label>
+            <input id="userName" class="form-control" value="{{ user.name }}" type="text" autocomplete="name">
 
-        <div class="row mb-3 row-cols-md-1">
-          <div class="col">
-            <p>
-              <strong>Name: </strong><span id="userName">{{ user.name }}</span>
-            </p>
-          </div>
-          <div class="col">
-            <p>
-              <strong>Surname: </strong><span id="userSurname">{{ user.surname }}</span>
-            </p>
-          </div>
-          <div class="col">
-            <p>
-              <strong>Email: </strong><span id="userEmail">{{ user.email }}</span>
-            </p>
+            <label for="userSurname" class="form-label">
+              <strong>Surname </strong>
+            </label>
+            <input id="userSurname" class="form-control" value="{{ user.surname }}" type="text">
+
+            <label for="userEmail" class="form-label">
+              <strong>Email </strong>
+            </label>
+            <input id="userEmail" class="form-control" value="{{ user.email }}" type="email">
           </div>
         </div>
-      </div>
-      <div class="card-footer d-flex justify-content-end">
-        <button id="editProfile" class="btn btn-primary">Edit Profile <i class="bi bi-pencil-square"></i></button>
-      </div>
-    </div>
+        <div class="card-footer d-flex justify-content-end">
+          <button id="editProfile" type="submit" class="btn btn-primary">Edit Profile <i class="bi bi-pencil-square"></i></button>
+        </div>
+      </form>
     </section>
 
 <!--

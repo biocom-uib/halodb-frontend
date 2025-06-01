@@ -4,6 +4,7 @@ function getSelectedItems(selectList){
     const SEL=Array.from(selectList)
     SEL.forEach(async element => {
         if(element.name && COMPL_TABLES.includes(element.name)){
+            element.className="form-select"
             const DATA=await fetchSecureFile("GET","query/"+element.name)
             
             DATA.forEach(item=>{

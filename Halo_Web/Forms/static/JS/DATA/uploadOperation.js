@@ -12,7 +12,7 @@ const FNAME_DICC={
 async function uploadOperation(table,id=null,route="upload") {
 
     const step= table==="Sample" ? table:localStorage.getItem("actualStep")-1 
-    const post_body=prepareBodyRequest(step,id) 
+    const post_body=prepareBodyRequest(step,id,table==="PREDICTED GENES") 
     const header ={"Content-Type": "application/json"}
 
     const path= route ==="upload" ? "/upload/"+table : route
@@ -28,13 +28,13 @@ async function uploadOperation(table,id=null,route="upload") {
         configureModal("Unexpected Error!","Youre sampled could'nt be registered in"+
             " HaloFilesDB. try it later and if this errors persist, please"+
             " contact with an adminstrator",false)
-        return;
+        return -1;
     }
 
     const RESPONSE = await (response.text());
     const PARSED_RESPONSE=JSON.parse(RESPONSE)
 
-    const stepID=PARSED_RESPONSE.message.step.id
+    const stepID= route==="upload" ? PARSED_RESPONSE.message.step.id : id
     const forms=document.getElementById("cardForm")
      if(forms)
         uploadFile(forms,stepID,table)
