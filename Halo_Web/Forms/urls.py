@@ -26,6 +26,6 @@ urlpatterns = [
     path('api/get_file/<path:src>', api_get_file, name='api_get_file'),
     path('api/put/<path:src>', api_get_file, name='api_put_file'),
     path('secure-static/<path:filename>/', get_static_file, name='secure_static'),
-    path('infoDisplayDEMO',load_info_display,name='load_info_display')
+    path('infoDisplay/<path:filename>',load_info_display,name='load_info_display')
 ]
 

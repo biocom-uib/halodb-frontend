@@ -8,8 +8,9 @@ async function addSampleCard(element,rowId,sampleModal,experimentCard=null){
     const CARD=await fetchSecureFile("static","Profile/ProjectCard.html")
     const ROW=document.getElementById(rowId)
     
-    let container=document.createElement("div")
+    let container=document.createElement("a")
     container.classList.add("col")
+    container.href=`/infoDisplay/SAMPLE/${element.id}`
     
     experimentCard ? ROW.append(container) : ROW.prepend(container);
     container.innerHTML=CARD

@@ -22,10 +22,10 @@
             <div id="metaInfo" class="container w-100" style="background-color:cadetblue; height: 45dvh; overflow-y: auto; border-radius: 1rem; border-color: black;">
                 <h3 class="d-flex justify-content-center">System Data</h3>
                 <ul class="list-group">
-                    <li class="list-group-item">Public? <span style="color: green; font-weight: bold; ">Yes</span></li>
-                    <li class="list-group-item">Owner: <span style="font-weight: bold;">User</span></li>
-                    <li class="list-group-item">Date of creation: <span style="font-weight: bold;">Yes</span></li>
-                    <li class="list-group-item">Last Update: <span style="font-weight: bold;">Yes</span></li>
+                    <li class="list-group-item">Public? <span id="public" style="color: green; font-weight: bold; ">Yes</span></li>
+                    <li class="list-group-item">Owner: <span id="owned" style="font-weight: bold;">User</span></li>
+                    <li class="list-group-item">Date of creation: <span id="created" style="font-weight: bold;">Yes</span></li>
+                    <li class="list-group-item">Last Update: <span id="updated" style="font-weight: bold;">Yes</span></li>
                     <li class="list-group-item">Shared with groups: <span style="font-weight: bold;">None</span></li>
                 </ul>
                 <div class="container d-flex justify-content-end mt-2">
@@ -38,80 +38,13 @@
                  <div id="map" style="height: 35dvh; border-radius: 1rem;"></div>
             </div>
         </section>
-        <section id="leftZone" class="w-75 h-100 m-2">
+        <section id="leftZone" class="w-100 h-100 m-2">
             <div id="dataShow" class="container w-100" style="background-color:aquamarine; height: 83dvh; overflow-y: auto; border-radius: 1dvw;">
                 <div class="d-flex justify-content-center">
                     <h3><span>Step</span> information</h3>
                 </div>
-                <div class="row row-cols-md-3">
-                    <div>
-                        <label for="input" class="form-label">Label</label>
-                        <input type="number" class="form-control" readonly value="0">
-                    </div>
-                    <div>
-                        <label for="input" class="form-label" >Label</label>
-                        <input type="text" class="form-control" value="Example">
-                    </div>
-                    <div>
-                        <label for="input" class="form-label">Label</label>
-                        <input type="date" class="form-control" readonly value="2025-06-01">
-                    </div>
-                    <div>
-                        <label for="input" class="form-label">Label</label>
-                        <input type="time" class="form-control" readonly value="10:11">
-                    </div>
-                    <div>
-                        <label for="select" class="form-label">Label</label>
-                        <select id="select" class="form-select">
-                            <option disabled>Example 1</option>
-                            <option selected>Example 2</option>
-                            <option disabled>Example 3</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="input" class="form-label">Label</label>
-                        <input type="text" class="form-control" readonly value="Example">
-                    </div>
-                    <div>
-                        <label for="input" class="form-label">Label</label>
-                        <input type="text" class="form-control" readonly value="Example">
-                    </div>
-                    <div>
-                        <label for="input" class="form-label">Label</label>
-                        <input type="text" class="form-control" readonly value="Example">
-                    </div>
-                    <div>
-                        <label for="input" class="form-label">Label</label>
-                        <input type="number" class="form-control" readonly value="0">
-                    </div>
-                    <div>
-                        <label for="input" class="form-label">Label</label>
-                        <input type="text" class="form-control" readonly value="Example">
-                    </div>
-                    <div>
-                        <label for="input" class="form-label">Label</label>
-                        <input type="text" class="form-control" readonly value="Example">
-                    </div>
-                    <div>
-                        <div class="align-items-start">
-                            <span>Label</span>
-                        </div>
-                        <div class="align-items-end mt-2">
-                            <button id="fileExample" class="btn btn-primary">Download</button>
-                        </div>
-                    </div>
-                    <div>
-                        <label for="input" class="form-label">Label</label>
-                        <input type="text" class="form-control" readonly value="Example">
-                    </div>
-                    <div>
-                        <label for="input" class="form-label">Label</label>
-                        <input type="text" class="form-control" readonly value="Example">
-                    </div>
-                    <div>
-                        <label for="input" class="form-label">Label</label>
-                        <input type="number" class="form-control" readonly value="0">
-                    </div>
+                <div class="row row-cols-md-2" id="stepDataContainer">
+
                 </div>
                 <div class="container d-flex justify-content-end mt-2">
                     <button class="btn btn-primary">

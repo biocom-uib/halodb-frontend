@@ -4,7 +4,7 @@ def signup(request):
     template=loader.get_template('registration/register.html')
     return HttpResponse(template.render())
 
-def load_info_display(request):
+def load_info_display(request,filename):
     return render(request, 'infoDisplay.html')
 
 def get_user_data(request):

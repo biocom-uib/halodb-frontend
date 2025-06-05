@@ -4,6 +4,10 @@
   --main: #3f51b5;
   --white: #ffffff;
 }
+a{
+  color: black !important;
+  text-decoration: none !important;
+}
 
 .projectCard{
     cursor: pointer; /* Cambia el cursor al de un enlace */
