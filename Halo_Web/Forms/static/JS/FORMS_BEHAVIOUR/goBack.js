@@ -25,4 +25,25 @@ async function goBack(step) {
   submit.innerText="Save & Next"
 
   etapaLabel.innerHTML = STEPS_NAME[step];
+  if(step==0)
+    setSampleSelector()
+  else{
+    source_list=await filterExperiments(source_list,koma,STEPS_NAME[ACT_STEP])
+    generateSourceSelect(document.querySelector('select'),source_list)
+  }
+  hideFileFields()
+}
+
+function hideFileFields(){
+  try{
+    const fileContainers=document.querySelectorAll('.fileContainer')
+    const showFilesBtn=document.getElementById('showFiles')
+    fileContainers.forEach(container =>container.setAttribute('hidden',null))
+    showFilesBtn.addEventListener('click',()=>{
+      fileContainers.forEach(container =>container.removeAttribute('hidden'))
+      showFilesBtn.setAttribute('hidden',null)
+    })
+  }
+  catch{}
+
 }

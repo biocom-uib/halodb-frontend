@@ -4,6 +4,9 @@ def signup(request):
     template=loader.get_template('registration/register.html')
     return HttpResponse(template.render())
 
+def load_info_display(request):
+    return render(request, 'infoDisplay.html')
+
 def get_user_data(request):
     token=request.session.get("auth_token")
 

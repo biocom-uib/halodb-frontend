@@ -89,7 +89,7 @@ Other                                           coth    VARCHAR(500)
   </div>
 </div>
 
-<div class="row">
+<div class="row fileContainer">
   <!-- Raw Read files -->
   <div class="col">
     <label for="rreads" class="col-form-label">Raw Read file 1</label>
@@ -103,7 +103,7 @@ Other                                           coth    VARCHAR(500)
   </div>
 </div>
 
-<div class="row">
+<div class="row fileContainer">
   <!-- Raw Read files -->
   <div class="col">
     <label for="rreads2" class="col-form-label">Raw Read file 2</label>
@@ -122,7 +122,7 @@ Other                                           coth    VARCHAR(500)
   <div class="col">
     <label for="rreadsnum" class="col-form-label">Number of raw reads</label>
 
-    <input type="number" class="form-control" id="rreadsnum" />
+    <input type="number" min="0"class="form-control" id="rreadsnum" />
   </div>
 
   <!-- Number of base pairs of raw reads -->
@@ -130,6 +130,6 @@ Other                                           coth    VARCHAR(500)
     <label for="rreaddbsp" class="col-form-label"
       >Number of base pairs of raw reads</label
     >
-    <input type="number" class="form-control" id="rreaddbsp" />
+    <input type="number" min="0" class="form-control" id="rreaddbsp" />
   </div>
 </div>

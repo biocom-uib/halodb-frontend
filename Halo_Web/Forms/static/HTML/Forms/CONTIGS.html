@@ -22,8 +22,8 @@ Number of contigs                                   contignumber        INT
     <input type="text" maxlength="80" class="form-control" id="asftparams" />
   </div>
 </div>
-
-<div class="row">
+<button id="showFiles" class="btn btn-primary" hidden>Change File</button>
+<div class="row fileContainer">
   <div class="col">
     <label for="assembled" class="col-form-label">Assemble File</label>
     <input type="file" class="form-control" id="assembled"/>
@@ -51,6 +51,6 @@ Number of contigs                                   contignumber        INT
 
   <div class="col">
     <label for="contignumber" class="col-form-label">Number of contigs</label>
-    <input type="number" class="form-control" id="contignumber" />
+    <input type="number" class="form-control" id="contignumber" min="0"/>
   </div>
 </div>

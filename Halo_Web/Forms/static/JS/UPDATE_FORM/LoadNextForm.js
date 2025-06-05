@@ -14,4 +14,6 @@ async function LoadNextForm(step) {
   goBackButton.style.visibility = step == 0 ? "hidden" : "Visible";
 
   addFileInputEvent();
+  if(modifyDict[STEPS_NAME[step]])
+    modifyDict[STEPS_NAME[step]](localStorage.getItem('koma'))
 }

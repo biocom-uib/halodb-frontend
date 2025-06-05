@@ -25,8 +25,9 @@ function generateFormatTime(item,result){
 
 
 const inputTypeFormat={
-  date:(value)=>generateFormatDate(value,result),
-  time:(value)=>generateFormatTime(value,result)
+  date:(item,result)=>generateFormatDate(item,result),
+  time:(item,result)=>generateFormatTime(item,result),
+  checkbox:(item,result)=>result[item.id]=item.checked
 }
 
 const PREDICTED_GENES_ID_KEY={
@@ -59,8 +60,8 @@ function prepareBodyRequest(step, source = null, isPredictedGenes=false) {
         inputTypeFormat[item.type](item,result)
         return
       }
-      // Otros tipos
-      result[item.id] = item.value;
+      if(item.value)
+        result[item.id] = item.value;
     });
 
   // Añadir source_id si existe

@@ -5,16 +5,18 @@
     {% endblock %}
 
   {% block content %}
-  <header>
-    <a href="{url 'main' }">
-      <img src="{% static 'src/img/icon.png' %}" width="10%" height="10%" style="min-width: 90px;">
+  <header class="d-flex justify-content-between">
+    <a href="{% url 'main' %}">
+      <img src="{% static 'src/img/icon.png' %}" style="max-width: 10dvw;">
     </a>
     
-    <div class="container mt-4">
-      <h1 class="text-center">HaloFile Insert Section</h1>
+    <div class="container d-flex justify-content-center align-items-center">
+      <h1>HaloFile Insert Section</h1>
     </div>
-
-    <a href="{url 'profile'}" class="btn btn-primary">Go to Profile</a>
+    <div class="container d-flex align-items-center" style="max-width: 10dvw;">
+      <a href="{% url 'profile' %}" class="btn btn-primary">Go to Profile</a>
+    </div>
+    
   </header>
   <main>
     <form method="POST" id="sampleForm" class="container d-flex justify-content-center" style="width: 80%;">
@@ -29,8 +31,8 @@
             <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
               <div class="accordion-body">
                 <div class="container">
-                  <div class="row">
-                    <div class="col">
+                  <div class="row row-cols-md-2">
+                    <div class="col" hidden>
                       <label for="project_id" class="form-label" multiple>Project</label>
                       <select id="project_id" class="form-control"></select>
                     </div>
@@ -48,42 +50,25 @@
                     <div class="col">
                       <label for="ssize" class="form-label">Sample Size</label>
                       <div class="input-group">
-                        <input type="number" name="ssize" id="ssize" class="form-control" step="0.01" min="0.01" aria-describedby="unityValue">
-                        <span class="input-group-text" id="unityValue">X</span>
-                      </div>
-                        
-                      </div>
-                      
-                      
-                  </div>
-                  
-                  <div class="row">
-                    <div class="col p-2">
-                      <label for="ssizeunit" class="form-label">Unit</label>
-                      <select
-                        name="ssizeunit"
-                        id="ssizeunit"
-                        form="Sample"
-                        class="form-control "
-                      >
-                        <!--<option value="μl">μl</option>-->
-                        <option value="ml">ml</option>
-                        <option value="l">l</option>
-                        <option value="g">g</option>
-                        <option value="Kg">Kg</option>
-                      </select>
+                        <input type="number" name="ssize" id="ssize" class="form-control" step="0.01" min="0.01">
+                        <select name="ssizeunit" id="ssizeunit" form="Sample" 
+                          class="input-group-text">
+                          <option value="ml">ml</option>
+                          <option value="l">l</option>
+                          <option value="g">g</option>
+                          <option value="Kg">Kg</option>
+                        </select>
+                      </div>           
                     </div>
-                    <div class="col p-2">
-                      <label for="keywords" class="form-label">Aditional Information</label>
-                      <input class="form-control" id="keywords"/>
-                    </div>
-
-                    <div class="col p-2">
+                    <div class="col">
                       <label for="target_id" class="form-label" multiple>Target nucleic acids</label>
                       <select id="target_id" class="form-control" name="target"></select>
                     </div>
-                  </div>
-
+                    <div class="col">
+                      <label for="keywords" class="form-label">Aditional Information</label>
+                      <input class="form-control" id="keywords"/>
+                    </div>    
+                  </div>  
                 </div>
                 
                
@@ -91,11 +76,11 @@
           </div>
           <div class="accordion-item">
             <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                 <h2>Sample Metadata Information</h2>
               </button>
             </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div id="collapseTwo" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
               <div class="accordion-body">
                 <div class="row">
                   <!-- Country of origin -->

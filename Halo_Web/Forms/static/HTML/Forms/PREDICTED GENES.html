@@ -2,9 +2,9 @@
 Predicted genes                                 pgenes          VARACHAR(40)
 Original file containing the predicted genes    pgenesname      VARCHAR(100)
 -->
-
+<button id="showFiles" class="btn btn-primary" hidden>Change File</button>
 <!-- Predicted genes -->
-<div class="mb-3 row">
+<div class="mb-3 row fileContainer">
   <label for="pgenes" class="col-sm-4 col-form-label">Predicted genes</label>
   <div class="col-sm-8">
     <input type="file" class="form-control" id="pgenes"/>
@@ -12,7 +12,7 @@ Original file containing the predicted genes    pgenesname      VARCHAR(100)
 </div>
 
 <!-- Original file containing the predicted genes -->
-<div class="mb-3 row">
+<div class="mb-3 row fileContainer">
   <label for="pgenesname" class="col-sm-4 col-form-label">
     Original file containing the predicted genes
   </label>

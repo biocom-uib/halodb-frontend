@@ -1,8 +1,3 @@
-<!--
-Is the sample cultured or uncultured?           cult    ENUM('cultured,uncultured')
-Kind of material                                koma    ENUM('METAGENOME', 'METATRANSCRIPTOME', 'METAVIROME', 'GENOME PROCARIOTA', 'GENOME VIRUS', 'PROTEOMICS', 'SINGLE CELL GENOMICS', 'PLASMID')
-Other                                           coth    VARCHAR(500)
--->
 <div class="row">
   <!-- Submitted to culture collection? -->
   <div class="col">
@@ -23,32 +18,16 @@ Other                                           coth    VARCHAR(500)
       <option value="uncultured">Uncultured</option>
     </select>
   </div>
-  <!-- Kind of Material
-    <div class="col">
-    <label for="koma" class="col-form-label">Kind of Material</label>
-    <select class="form-select" id="koma">
-      <option value="METAGENOME">Metagenome</option>
-      <option value="METATRANSCRIPTOME">Metatranscriptome</option>
-      <option value="METAVIROME">Metavirome</option>
-      <option value="GENOME PROCARIOTA">Genome Procariota</option>
-      <option value="GENOME VIRUS">Genome Virus</option>
-      <option value="PROTEOMICS">Proteomics</option>
-      <option value="SINGLE CELL GENOMICS">Single Cell Genomics</option>
-      <option value="PLASMID">Plasmid</option>
-    </select>
-  </div>
-</div> 
-  -->
 
 <div class="row">
   <!-- NCBI Taxonomy Number -->
   <div class="col">
     <label for="txnr" class="col-form-label">NCBI Taxonomy Number</label>
 
-    <input type="number" class="form-control" id="txnr"/>
+    <input type="number" min="1" step="1" class="form-control" id="txnr"/>
   </div>
 
-  <div class="col">
+  <div class="col" hidden>
     <label for="meca" class="col-form-label">INSDC metagenome access num</label>
     <input type="text" maxlength="20" class="form-control" id="meca" />
   </div>
@@ -57,10 +36,10 @@ Other                                           coth    VARCHAR(500)
 
 <div class="row">
   <!-- Estimated or actual genome/metagenome size -->
-  <div class="col">
+  <div class="col" hidden>
     <label for="gsiz" class="col-form-label">Genome/metagenome size</label>
     <div class="input-group">
-      <input type="number" class="form-control" id="gsiz" />
+      <input type="number" class="form-control" id="gsiz" min="0" step="0.01"/>
       <div class="input-group-append">
         <span class="input-group-text">bp</span>
       </div>
@@ -82,14 +61,14 @@ Other                                           coth    VARCHAR(500)
       <input type="date" class="form-control" id="dati" />
     </div>
 
-    <div class="col">
+    <div class="col" hidden>
       <label for="sfrac" class="col-form-label">Sequence fraction</label>
       <select name="fraction" class="form-control" id="sfrac"></select>
     </div>
   </div>
 </div>
-
-<div class="row">
+<button id="showFiles" class="btn btn-primary" hidden>Change File</button>
+<div class="row fileContainer">
   <!-- Raw Read files -->
   <div class="col">
     <label for="rreads" class="col-form-label">Raw Read file 1</label>
@@ -103,7 +82,7 @@ Other                                           coth    VARCHAR(500)
   </div>
 </div>
 
-<div class="row">
+<div class="row fileContainer">
   <!-- Raw Read files -->
   <div class="col">
     <label for="rreads2" class="col-form-label">Raw Read file 2</label>
@@ -122,7 +101,7 @@ Other                                           coth    VARCHAR(500)
   <div class="col">
     <label for="rreadsnum" class="col-form-label">Number of raw reads</label>
 
-    <input type="number" class="form-control" id="rreadsnum" />
+    <input type="number" min="0" step="1" class="form-control" id="rreadsnum" />
   </div>
 
   <!-- Number of base pairs of raw reads -->
@@ -130,6 +109,6 @@ Other                                           coth    VARCHAR(500)
     <label for="rreaddbsp" class="col-form-label"
       >Number of base pairs of raw reads</label
     >
-    <input type="number" class="form-control" id="rreaddbsp" />
+    <input type="number" min="0" step="1" class="form-control" id="rreaddbsp" />
   </div>
 </div>

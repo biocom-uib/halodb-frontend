@@ -64,7 +64,7 @@ async function filterExperiments(source_id,koma,seq_step) {
  * @param {Array} opciones - List of items 
  */
 function generateSourceSelect(select,opciones){
-    //Add empty option
+    select.innerHTML=''
     let aux=document.createElement("option");
     aux.value="-1"
     select.appendChild(aux)

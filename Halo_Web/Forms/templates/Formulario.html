@@ -16,8 +16,8 @@
   </header>
   <nav>
     <div class="container mt-4">
-      <label for="sampleId">Sample:</label>
-      <select id="sampleId" name="sampleId" class="form-select">
+      <label for="sourceId">Source:</label>
+      <select id="sourceId" name="sampleId" class="form-select">
         <!--Each option is user's samples name-->
       </select>
     </div>
@@ -40,17 +40,32 @@
           id="containerButtons"
           class="d-flex justify-content-between align-items-center mt-4"
         >
-          <button
-            id="goBack"
-            type="button"
-            class="btn btn-secondary"
-            style="visibility: hidden"
-          >
+          <button id="goBack" type="button" class="btn btn-secondary" 
+                  style="visibility: hidden">
             <i class="bi bi-arrow-left"></i> Go back
           </button>
-          <button type="submit" id="submit" class="btn btn-primary">
-            Next Step <i class="bi bi-arrow-right"></i>
-          </button>
+          <div class="container">
+            <button type="button" class="btn btn-primary">
+              Save
+            </button>
+            <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+            <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+              <div class="toast-header">
+
+                <strong class="me-auto">Bootstrap</strong>
+                <small>11 mins ago</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+              </div>
+              <div class="toast-body">
+                Hello, world! This is a toast message.
+              </div>
+            </div>
+          </div>
+            <button type="submit" id="submit" class="btn btn-primary">
+              Next Step <i class="bi bi-arrow-right"></i>
+            </button>
+          </div>
+
         </div>
       </form>
     </div>

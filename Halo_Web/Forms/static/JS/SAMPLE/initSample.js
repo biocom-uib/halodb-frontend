@@ -17,4 +17,6 @@ async function initSample(sampleForm){
                 " HaloFiles!",true)
         }
     });
+    const ssizeunitSelect=document.getElementById("ssizeunit")
+    ssizeunitSelect.addEventListener("change",()=>document.getElementById("unityValue").innerText=ssizeunitSelect.value)
 }

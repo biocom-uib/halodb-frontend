@@ -1,0 +1,185 @@
+{% extends "master.html" %}
+{% load static%}
+    {% block title %}
+      HaloFile Experiments Forms 
+    {% endblock %}
+
+  {% block content %}
+
+    <header class="d-flex justify-content-between align-items-center w-100" style="background-color: #3f51b5;">
+          <a href="{% url 'main' %}" style="max-width:7dvw ;">
+            <img src="{% static 'src/img/icon.png' %}" width="10%" height="10%" style="min-width: 90px;">
+          </a>
+              <h1 class="p-2 align-items-center" style="color: azure;">HaloFile Profile Page</h1>
+
+          <nav class="nav nav-pills">
+            <a class="btn btn-secondary" href="{% url 'logout' %}">LogOut</a>
+          </nav>
+    </header>
+    
+    <main class="container d-flex">
+        <section id="leftZone" class="m-2" style="width: 25dvw;">
+            <div id="metaInfo" class="container w-100" style="background-color:cadetblue; height: 45dvh; overflow-y: auto; border-radius: 1rem; border-color: black;">
+                <h3 class="d-flex justify-content-center">System Data</h3>
+                <ul class="list-group">
+                    <li class="list-group-item">Public? <span style="color: green; font-weight: bold; ">Yes</span></li>
+                    <li class="list-group-item">Owner: <span style="font-weight: bold;">User</span></li>
+                    <li class="list-group-item">Date of creation: <span style="font-weight: bold;">Yes</span></li>
+                    <li class="list-group-item">Last Update: <span style="font-weight: bold;">Yes</span></li>
+                    <li class="list-group-item">Shared with groups: <span style="font-weight: bold;">None</span></li>
+                </ul>
+                <div class="container d-flex justify-content-end mt-2">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+                        Publish <i class="bi bi-pencil-square"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="dataShow" class="mt-3">
+                 <div id="map" style="height: 35dvh; border-radius: 1rem;"></div>
+            </div>
+        </section>
+        <section id="leftZone" class="w-75 h-100 m-2">
+            <div id="dataShow" class="container w-100" style="background-color:aquamarine; height: 83dvh; overflow-y: auto; border-radius: 1dvw;">
+                <div class="d-flex justify-content-center">
+                    <h3><span>Step</span> information</h3>
+                </div>
+                <div class="row row-cols-md-3">
+                    <div>
+                        <label for="input" class="form-label">Label</label>
+                        <input type="number" class="form-control" readonly value="0">
+                    </div>
+                    <div>
+                        <label for="input" class="form-label" >Label</label>
+                        <input type="text" class="form-control" value="Example">
+                    </div>
+                    <div>
+                        <label for="input" class="form-label">Label</label>
+                        <input type="date" class="form-control" readonly value="2025-06-01">
+                    </div>
+                    <div>
+                        <label for="input" class="form-label">Label</label>
+                        <input type="time" class="form-control" readonly value="10:11">
+                    </div>
+                    <div>
+                        <label for="select" class="form-label">Label</label>
+                        <select id="select" class="form-select">
+                            <option disabled>Example 1</option>
+                            <option selected>Example 2</option>
+                            <option disabled>Example 3</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="input" class="form-label">Label</label>
+                        <input type="text" class="form-control" readonly value="Example">
+                    </div>
+                    <div>
+                        <label for="input" class="form-label">Label</label>
+                        <input type="text" class="form-control" readonly value="Example">
+                    </div>
+                    <div>
+                        <label for="input" class="form-label">Label</label>
+                        <input type="text" class="form-control" readonly value="Example">
+                    </div>
+                    <div>
+                        <label for="input" class="form-label">Label</label>
+                        <input type="number" class="form-control" readonly value="0">
+                    </div>
+                    <div>
+                        <label for="input" class="form-label">Label</label>
+                        <input type="text" class="form-control" readonly value="Example">
+                    </div>
+                    <div>
+                        <label for="input" class="form-label">Label</label>
+                        <input type="text" class="form-control" readonly value="Example">
+                    </div>
+                    <div>
+                        <div class="align-items-start">
+                            <span>Label</span>
+                        </div>
+                        <div class="align-items-end mt-2">
+                            <button id="fileExample" class="btn btn-primary">Download</button>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="input" class="form-label">Label</label>
+                        <input type="text" class="form-control" readonly value="Example">
+                    </div>
+                    <div>
+                        <label for="input" class="form-label">Label</label>
+                        <input type="text" class="form-control" readonly value="Example">
+                    </div>
+                    <div>
+                        <label for="input" class="form-label">Label</label>
+                        <input type="number" class="form-control" readonly value="0">
+                    </div>
+                </div>
+                <div class="container d-flex justify-content-end mt-2">
+                    <button class="btn btn-primary">
+                        Edit <i class="bi bi-pencil-square"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+        <section class="m-2">
+            <div id="appendNodes" class="container w-100" style="background-color:firebrick;max-height: 100dvh;height: 50dvh; border-radius: 1dvw;">
+                <h3 class="d-flex justify-content-center">Experiments</h3>
+                <ul class="list-group" style="overflow-y: auto;max-height: 90dvh;">
+                    <!--Insert link to load next steps data-->
+                    <li class="list-group-item">
+                        <a href="{% url 'profile' %}">Sample Example</a>
+                    </li>
+                                        <li class="list-group-item">
+                        <a href="{% url 'profile' %}">Sample Example</a>
+                    </li>
+                                        <li class="list-group-item">
+                        <a href="{% url 'profile' %}">Sample Example</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="{% url 'profile' %}">Sample Example</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="{% url 'profile' %}">Sample Example</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="{% url 'profile' %}">Sample Example</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="{% url 'profile' %}">Sample Example</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </section>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-warning" role="alert">
+                    <strong>After publish, you can't modify this information!</strong>
+                </div>
+                <div>
+                    <label for="addNotice">Wanna add an already published article to this sample?</label>
+                    <input type="checkbox" id="addNotice">
+                </div>
+                <div id="doiCont" hidden>
+                    <label for="doi">Insert article DOI</label>
+                    <input type="text">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+            </div>
+        </div>
+        </div>
+          <script>
+    document.addEventListener("DOMContentLoaded",()=>initMap())
+  </script>
+    </main>
+    {% endblock %}

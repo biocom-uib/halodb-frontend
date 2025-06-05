@@ -15,7 +15,7 @@ Number of contigs                               contignumber        INT
     <label for="hkgn" class="col-form-label"
       >Alternative housekeeping genes</label
     >
-    <input type="number" class="form-control" id="hkgn" />
+    <input type="number" step="1" min="0" class="form-control" id="hkgn" />
   </div>
 
   <!-- Molar % of Guanine and Cytosine in DNA -->
@@ -24,7 +24,7 @@ Number of contigs                               contignumber        INT
       >Molar % of Guanine and Cytosine in DNA</label
     >
     <div class="input-group">
-      <input type="number" step="any" class="form-control" id="ggcm" />
+      <input type="number" step="0.01" min="0" class="form-control" id="ggcm" />
       <div class="input-group-append">
         <span class="input-group-text">%</span>
       </div>
@@ -52,7 +52,8 @@ Number of contigs                               contignumber        INT
     <select name="sequencing" class="form-control" id="seqt"></select>
   </div>
 </div>
-<div class="row">
+<button id="showFiles" class="btn btn-primary" hidden>Change File</button>
+<div class="row fileContainer">
   <!--Assembly file -->
   <div class="col">
     <label for="assembled" class="col-form-label">Assembly File</label>
@@ -72,7 +73,7 @@ Number of contigs                               contignumber        INT
   <div class="col">
     <label for="asize" class="col-form-label">Assembly size</label>
     <div class="input-group">
-      <input type="number" class="form-control" id="asize" />
+      <input type="number" class="form-control" id="asize" min="0" />
       <div class="input-group-append">
         <span class="input-group-text">bp</span>
       </div>
@@ -82,6 +83,6 @@ Number of contigs                               contignumber        INT
   <!-- Number of contigs -->
   <div class="col">
     <label for="contignumber" class="col-form-label">Number of contigs</label>
-    <input type="number" class="form-control" id="contignumber" />
+    <input type="number" class="form-control" id="contignumber" min="0"/>
   </div>
 </div>

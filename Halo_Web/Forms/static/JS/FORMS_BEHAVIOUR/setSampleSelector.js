@@ -2,7 +2,8 @@
  * Configure the Sample selector in Sequences forms
  */
 function setSampleSelector(){
-    const sourceSelector=document.getElementById("sampleId")
+    const sourceSelector=document.querySelector('select')
+    sourceSelector.innerHTML=''
     const userSamples=JSON.parse(sessionStorage.getItem("userSamples"))
     for (const [key, value] of Object.entries(userSamples)) {
         const option = document.createElement("option");

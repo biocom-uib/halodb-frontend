@@ -34,6 +34,7 @@ async function setFormsEnv() {
     event.preventDefault();
     FormEventManagement();
   });
+  document.getElementById("saveButton").addEventListener('click',()=>saveData())
   //Init the Sample Selector
   setSampleSelector()
   //Add fileName detect event

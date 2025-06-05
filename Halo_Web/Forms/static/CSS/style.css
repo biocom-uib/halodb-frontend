@@ -1,10 +1,14 @@
+/*#3f51b5;*/
+
+:root {
+  --main: #3f51b5;
+  --white: #ffffff;
+}
+
 .projectCard{
     cursor: pointer; /* Cambia el cursor al de un enlace */
 }
 
-.projectCard:hover{
-    box-shadow: inset;
-}
 
 .modal-header{
   min-height: 10dvh; 

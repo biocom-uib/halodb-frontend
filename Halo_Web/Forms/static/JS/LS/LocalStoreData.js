@@ -27,7 +27,8 @@ function LocalStoreData(step="Sample",isSample=false,form=null) {
 const TAG_SETUP={
   SELECT: (item)=>({ id: item.id, value: item.value, tagName: item.tagName, type:item.type, options:JSON.stringify(getOptionsName(item))}),
   file: (item)=>({id: item.id, value: item.value, tagName: item.tagName, type:item.type, file:item.files[0]}),
-  default:(item)=>({ id: item.id, value: item.value, tagName: item.tagName, type:item.type })
+  checkbox:(item)=>({ id: item.id, value: item.checked, tagName: item.tagName, type:item.type }),
+  default:(item)=>({ id: item.id, value: item.value ? item.value : null, tagName: item.tagName, type:item.type })
 }
 
 
@@ -46,6 +47,9 @@ function setInputValues(list) {
           result.push(TAG_SETUP[item.tagName](item));
         }
         else if(item.type==="file"){
+          result.push(TAG_SETUP[item.type](item))
+        }
+        else if(item.type==="checkbox"){
           result.push(TAG_SETUP[item.type](item))
         }
         else{
