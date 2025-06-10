@@ -11,7 +11,7 @@ const FNAME_DICC={
 }
 async function uploadOperation(table,id=null,route="upload") {
 
-    const step= table==="Sample" ? table:localStorage.getItem("actualStep")-1 
+    const step= table==="Sample" ? table:localStorage.getItem("actualStep") 
     const post_body=prepareBodyRequest(step,id,table==="PREDICTED GENES") 
     const header ={"Content-Type": "application/json"}
 

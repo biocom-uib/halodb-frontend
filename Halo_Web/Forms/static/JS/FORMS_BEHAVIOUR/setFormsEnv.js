@@ -34,10 +34,15 @@ async function setFormsEnv() {
     event.preventDefault();
     FormEventManagement();
   });
-  document.getElementById("saveButton").addEventListener('click',()=>saveData())
+  document.getElementById("saveBtn").addEventListener('click',()=>{
+    const myModal = new bootstrap.Modal(element);
+    myModal.show();})
   //Init the Sample Selector
   setSampleSelector()
   //Add fileName detect event
   addFileInputEvent();
+
+  const element = await generateModal()
+  configureSaveModal(element)
   }
   

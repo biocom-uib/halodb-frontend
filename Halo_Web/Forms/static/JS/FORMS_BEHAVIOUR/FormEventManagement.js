@@ -1,15 +1,18 @@
-async function saveData(){
-const ACT_STEP = localStorage.getItem("actualStep")
-const MAX_STEP_DONE = localStorage.getItem("maxStepDone")
-const PROGRESS = MAX_STEP_DONE < NEXT_STEP;
-  const srcId=ACT_STEP==0 ? sessionStorage.getItem("source_id") : getSourceId(ACT_STEP,PROGRESS)
+async function saveData(isNewRegister=true,id=null){
 
-  const backend_response=await uploadOperation(STEPS_NAME[ACT_STEP],srcId)
-    if (backend_response<0){
-      //Show toes message
-      stepByStep.scrollIntoView();
-      return backend_response.step.id
-    }else return -1
+const ACT_STEP = localStorage.getItem("actualStep")
+const srcId=sessionStorage.getItem("source_id")
+LocalStoreData(ACT_STEP);
+const stepId=localStorage.getItem(`step_${ACT_STEP}_last_id`)
+const updatRoute=`/api/put/${STEPS_NAME[ACT_STEP]}/${stepId}`
+const backend_response=await uploadOperation(STEPS_NAME[ACT_STEP],srcId, !isNewRegister ? updatRoute : "upload")
+  if (backend_response.status=="success"){
+    //Show toes message
+    document.getElementById("step-by-step").scrollIntoView();
+    localStorage.setItem(`step_${ACT_STEP}_last_id`,backend_response.step.id)
+    return backend_response.step.id
+  } 
+  return -1
 }
 
 
@@ -37,26 +40,26 @@ async function FormEventManagement() {
   //Store in LS last data
   LocalStoreData(ACT_STEP);
 
-  saveData(ACT_STEP,PROGRESS)
+  //saveData(ACT_STEP,PROGRESS)
   if (!PROGRESS && saveResult>0){
     localStorage.setItem("actualStep",ACT_STEP)
     UpdateColor("SVG_".concat(ACT_STEP), ACTIVE_COLOR);
     return
   }
-  UpdateColor("SVG_" + NEXT_STEP, ACTIVE_COLOR);
+  
   localStorage.setItem("maxStepDone", NEXT_STEP);
   //Add step id at the list
-  AddStep();
+  await AddStep();
+  UpdateColor("SVG_" + NEXT_STEP, ACTIVE_COLOR);
   //Load next sequence form data
   await LoadNextForm(NEXT_STEP,IS_LAST)
 
-  source_list=await filterExperiments(source_list,koma,STEPS_NAME[ACT_STEP])
+ // document.querySelector(".modal-dialog").querySelectorAll("button")[1].setAttribute("hidden",null)
+
+  source_list=await filterExperiments([],localStorage.getItem("koma"),STEPS_NAME[ACT_STEP])
   generateSourceSelect(document.querySelector('select'),source_list)
   
   etapaLabel.innerHTML = STEPS_NAME[NEXT_STEP];
   stepByStep.scrollIntoView();
 }
 
-function getSourceId(ACT_STEP,PROGRESS){
-  return PROGRESS ? steps_sources_id[ACT_STEP-1] : steps_sources_id[ACT_STEP]
-}
