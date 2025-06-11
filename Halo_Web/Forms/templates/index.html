@@ -1,37 +1,18 @@
 {% extends "master.html" %} {% block title %} HaloPhile WebApp {% endblock %} 
 {% load static %}
 {% block content %}
-    <header>
-        <div class="container d-flex justify-content-between  align-items-center">
-          <img src="{% static 'src/img/icon.png' %}" width="10%" height="10%" style="min-width: 90px;">
-            <h1>HaloPhile Main Page</h1>
-            {% if user.is_authenticated %}
-              <h2> Welcome Back, {{ user.get_username }}</h2>
-            {% endif %}
-            <nav class="nav nav-pills">
-                {% if user.is_authenticated %}
-                  <a class="nav-link" href="{% url 'forms' %}">Insert Data</a>
-                {% endif%}
-
-                  <a class="btn btn-outline-success" href="{% url 'login' %}">Log In</a>
-
-            </nav>
-        </div>
-    </header>
     <main>
-      <section id="Searcher" class="p-3">
-        <div class="container d-flex justify-content-center">
+      <section id="Searcher" class="p-3" >
+        <div class="container d-flex justify-content-center" style="background: none;">
           <input class="form-control m-1" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success m-1" type="submit">Search</button>
-          <button class="btn btn-outline-success m-1" type="submit">Advanced Search</button>      
+          <button class="btn btn-primary m-1" type="submit">Search</button>
+          <button class="btn btn-success m-1" type="submit">Advanced Search</button>      
         </div>
       </section>
 
-      <section id="Introduction">
-        <div class="container d-flex justify-content-center">
-          <h2>Welcome to Halophile</h2>
-        </div>
-        <div class="container d-col p-3">
+      <section id="Introduction" >
+        <div class="container d-col p-3 mb-3" style="border-radius: 1rem;">
+          <h2 class="text-center">Welcome to Halophile</h2>
           <p class="m-3">
             Discover a comprehensive collection of microorganisms thriving in 
             environments with fluctuating salinity. Our database provides researchers,
@@ -44,37 +25,42 @@
           <p class="m-3">
             Start exploring today and unlock the secrets of microbial life in variable
             salinity conditions!
-            
           </p>
         </div>
       </section>
 
       <section id="Functions">
-        <div class="container d-flex justify-content-center">
-          <h2>What can I do in HaloPhileDB?</h2>
+        <div class="container mb-3" style="border-radius: 1rem;">
+          <div class="container d-flex justify-content-center" >
+            <h2>What can I do in HaloPhileDB?</h2>
+          </div>
+          <div class="container d-flex justify-content-start p-3">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><span class="badge bg-primary m-2">1</span>Look up any published data using multiple and sofistifaced filter</li>
+              <li class="list-group-item"><span class="badge bg-primary m-2">2</span>Upload your own projects and published them for share your knowledge!</li>
+              <li class="list-group-item"><span class="badge bg-primary m-2">3</span>Reuse your Data whenever you need. Same Sample but different experiments? Just save and change 1 field and go ahead!</li>
+              <li class="list-group-item"><span class="badge bg-primary m-2">4</span>Wanna share project information only with your investigation group? Also avalibable in HaloPhile!</li>
+            </ul>
+          </div>
         </div>
-        <div class="container d-flex justify-content-start p-3">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item"><span class="badge bg-primary m-2">1</span>Look up any published data using multiple and sofistifaced filter</li>
-            <li class="list-group-item"><span class="badge bg-primary m-2">2</span>Upload your own projects and published them for share your knowledge!</li>
-            <li class="list-group-item"><span class="badge bg-primary m-2">3</span>Reuse your Data whenever you need. Same Sample but different experiments? Just save and change 1 field and go ahead!</li>
-            <li class="list-group-item"><span class="badge bg-primary m-2">4</span>Wanna share project information only with your investigation group? Also avalibable in HaloPhile!</li>
-          </ul>
-        </div>
+        
       </section>
 
       <section id="Help">
-        <div class="container d-flex justify-content-center">
-          <h2>I need some help!</h2>
-        </div>
-        <div class="container d-flex justify-content-start">
-          <p class="m-3">
-            If you don't remember something or it's your first time in HaloPhile, you 
-            can check here the <a href="#">Documentation</a> and also you can take a look
-             this <a href="#">Example Videos</a> 
-          </p>
+        <div class="container pt-3" style="border-radius: 1rem;">
+          <div class="container d-flex justify-content-center">
+            <h2>I need some help!</h2>
+          </div>
+          <div class="container d-flex justify-content-start">
+            <p class="m-3">
+              If you don't remember something or it's your first time in HaloPhile, you 
+              can check here the <a href="#">Documentation</a> and also you can take a look
+              this <a href="#">Example Videos</a> 
+            </p>
+          </div>
         </div>
       </section>
+      <div style="min-height: 1rem;"></div>
       <script> document.addEventListener("DOMContentLoaded",localStorage.clear())</script>
     </main>
 

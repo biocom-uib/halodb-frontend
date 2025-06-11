@@ -2,15 +2,52 @@
 
 :root {
   --main: #3f51b5;
-  --white: #ffffff;
+  --main_font:white;
+  --secondary: teal;
+  --contrast_color: dimgray;
 }
-a{
-  color: black !important;
+#profileSamples a{
+  color: var(--main_font) !important;
   text-decoration: none !important;
+}
+header,
+#registerFormCard,
+.card,
+.card form{
+  color:var(--main_font);
+  background-color: var(--main) !important;
+}
+
+h3{
+  background-color: var(--contrast_color);
+  color: var(--main_font);
+}
+
+
+footer{
+  background-color: var(--secondary);
+  color: var(--main_font);
+}
+main{
+  background-image: url(/static/src/img/background.jpg);
+  background-size: cover;
+}
+main .container{
+  background-color: var(--main_font);
 }
 
 .projectCard{
+    background-color: var(--contrast_color) !important;
     cursor: pointer; /* Cambia el cursor al de un enlace */
+}
+.projectCard .card-footer{
+  background-color: var(--secondary);
+}
+
+.addButon{
+  background-color: var(--secondary);
+  border-radius: 10rem;
+  
 }
 
 

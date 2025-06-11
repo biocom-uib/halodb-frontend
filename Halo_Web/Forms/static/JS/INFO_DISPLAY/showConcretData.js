@@ -21,7 +21,7 @@ async function initInfoDisplay(){
     const params=window.location.pathname.slice('/infoDisplay/'.length).split("/")
     const table=params[0]
     const id=params[1]
-    displayStepInformation(id,table)
+    await displayStepInformation(id,table)
     document.getElementById("expBtn").addEventListener("click",async ()=>{
         const element=await generateModal()
         generateKomaModalBody(element)
@@ -29,6 +29,9 @@ async function initInfoDisplay(){
         const myModal = new bootstrap.Modal(element);
         myModal.show();
     })
+            const lat=document.getElementById("lati").value
+        const long=document.getElementById("long").value
+        initMap(lat,long)
 }
 
 async function displayStepInformation(id,table) {

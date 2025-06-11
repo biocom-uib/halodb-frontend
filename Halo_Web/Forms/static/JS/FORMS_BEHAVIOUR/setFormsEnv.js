@@ -30,9 +30,12 @@ async function setFormsEnv() {
     goBack(localStorage.getItem("actualStep") - 1)
   );
   //Add main event manager to the form element
-  formElement.addEventListener("submit", (event) => {
+  formElement.addEventListener("submit", async(event) => {
     event.preventDefault();
-    FormEventManagement();
+    const element = await generateModal()
+    configureNextModal(element)
+
+    //FormEventManagement();
   });
   document.getElementById("saveBtn").addEventListener('click',()=>{
     const myModal = new bootstrap.Modal(element);

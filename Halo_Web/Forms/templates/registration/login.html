@@ -5,24 +5,13 @@
 {% endblock %}
 
 {% block content %}
-<header class="border-3 border-secondary-subtle bg-info bg-opacity-10">
-    <div class="container d-flex justify-content-between align-items-center">
-        <img src="{% static 'src/img/icon.png' %}" class="p-2" style="width: 10vw;height: 20vh;">
-        <h1>
-            HaloPhile LogIn
-        </h1>
-        <nav>
-            <a href="{% url 'main' %}" class="btn btn-outline-success">Go Back</a>
-        </nav>
-    </div>
-    
-</header>
-<main>
-    <section class="container d-flex justify-content-center align-items-center p-3" style="width: 50vw;">
-            <div>
-                <img src="{% static 'src/img/icon.png' %}" style="width: 100%; height: 80%;">
+<main class="d-flex align-items-center justify-content-center" style="min-height: 85dvh;">
+    <section class="d-flex flex-column align-items-center justify-content-center">
+        <div class="card">
+            <div class="card-header">
+                <h2>Login Screen</h2>
             </div>
-            <div class="card-body ">
+            <div class="card-body">
             <!-- Mensaje de error si hay uno -->
                 {% if messages %}
                 {% for message in messages %}
@@ -31,27 +20,30 @@
                     </div>
                 {% endfor %}
                 {% endif %}
-                <form id="loginForm" method="POST">
+                <form id="loginForm" method="POST" class="container d-col align-items-center justify-content-center" style="border-radius: 1rem;">
                     {% csrf_token %}
-                    <div class="row p-3">
+                    <div class="row p-2">
                         <label for="email" class="col-form-label">Email:</label>
                         <input type="email" class="form-control" name="email" id="email" required autocomplete="email">
                         </div>
                     
-                    <div class="row p-3">
+                    <div class="row p-2">
                         <label for="password" class="col-form-label">Contraseña:</label>    
                         <input type="password" name="password" class="form-control" id="password" required>
                     </div>
-                    <div class="container d-flex justify-content-end">
-                        <button type="submit" class="btn btn-primary m-3">Log In</button>
+                    <div class="row p-2 mt-3">
+                        <button type="submit" class="btn btn-success">Log In</button>
                     </div>   
                 </form>
             </div>
+            <div class="card-footer">
+                <p>New in HalopHile? <a href="{% url 'register' %}">Sign Up</a></p>
+                <p>Can't remember your password? <a href="#">Reset Password</a></p>
+            </div>
+        </div>
+
     </section>
-    <div class="container d-flex justify-content-center flex-column align-items-center">
-        <p>New in HalopHile? <a href="{% url 'register' %}">Sign Up</a></p>
-        <p>Can't remember your password? <a href="#">Reset Password</a></p>
-    </div>
+
  
 </main>
 {% endblock %}

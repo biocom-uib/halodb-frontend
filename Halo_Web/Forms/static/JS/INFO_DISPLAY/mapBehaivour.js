@@ -1,10 +1,10 @@
-function initMap(){
-    var map = L.map('map').setView([39.638, 2.648], 12);
+function initMap(lat,lon){
+    var map = L.map('map').setView([lat, lon], 12);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
-    var circle = L.circle([39.638, 2.648], {
+    var circle = L.circle([lat, lon], {
     color: 'red',
     fillColor: '#f03',
     fillOpacity: 0.5,

@@ -5,20 +5,10 @@
     {% endblock %}
 
   {% block content %}
-
-    <header class="d-flex justify-content-between align-items-center w-100" style="background-color: #3f51b5;max-height: 20dvh;">
-          <a href="{% url 'main' %}" style="max-width:7dvw ;">
-            <img src="{% static 'src/img/icon.png' %}" width="10%" height="10%" style="min-width: 90px;">
-          </a>
-              <h1 class="p-2 align-items-center" style="color: azure;">HaloFile Profile Page</h1>
-
-          <nav class="nav nav-pills">
-            <a class="btn btn-secondary" href="{% url 'profile' %}">LogOut</a>
-          </nav>
-    </header>
     
-    <main class="container d-flex">
-        <section id="leftZone" class="m-2" style="width: 25dvw;">
+    <main>
+        <div class="container d-flex" style="background: none;">
+            <section id="leftZone" class="m-2" style="width: 25dvw;">
             <div id="metaInfo" class="container w-100" style="background-color:cadetblue; height: 55dvh; overflow-y: auto; border-radius: 1rem; border-color: black;">
                 <h3 class="d-flex justify-content-center">System Data</h3>
                 <ul class="list-group">
@@ -96,8 +86,8 @@
             </div>
         </div>
         </div>
-          <script>
-    document.addEventListener("DOMContentLoaded",()=>initMap())
-  </script>
+
+        </div>
+        
     </main>
     {% endblock %}

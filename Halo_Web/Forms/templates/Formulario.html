@@ -5,15 +5,7 @@
     {% endblock %}
 
   {% block content %}
-  <header>
-    <a href="{% url 'main' %}">
-      <img src="{% static 'src/img/icon.png' %}" width="10%" height="10%" style="min-width: 90px;">
-    </a>
-    <div class="container mt-4">
-      <h1 class="text-center">HaloFile Insert Section</h1>
-    </div>
-    <a href="{% url 'profile' %}" class="btn btn-primary">Go to Profile</a>
-  </header>
+
   <nav>
     <div class="container mt-4">
       <label for="sourceId">Source:</label>
@@ -36,24 +28,27 @@
         <div id="cardForm" class="card p-3">
           <!-- Data Fields-->
         </div>
-        <div
-          id="containerButtons"
-          class="d-flex justify-content-between align-items-center mt-4"
-        >
-          <button id="goBack" type="button" class="btn btn-secondary" 
-                  style="visibility: hidden">
-            <i class="bi bi-arrow-left"></i> Go back
-          </button>
-          <div class="container">
-            <button id="saveBtn" type="button" class="btn btn-primary">
-              Save
+
+
+          <div class="container d-flex justify-content-between mt-2">
+            <div class="container d-flex justify-content-start">
+              <button id="goBack" type="button" class="btn btn-secondary" 
+                      style="visibility: hidden">
+                <i class="bi bi-arrow-left"></i> Go back
+              </button>
+              <button id="saveBtn" type="button" class="btn btn-success">
+                Save <i class="bi bi-floppy"></i>
             </button>
-            <button type="submit" id="submit" class="btn btn-primary">
-              Next Step <i class="bi bi-arrow-right"></i>
-            </button>
+            </div>
+            <div class="container d-flex justify-content-end">
+              <button class="btn btn-primary m-1">Save & Next Step</button>
+              <button type="submit" id="submit" class="btn btn-secondary m-1">
+                Next Step <i class="bi bi-arrow-right"></i>
+              </button>
+            </div>
           </div>
 
-        </div>
+
       </form>
     </div>
   </main>
