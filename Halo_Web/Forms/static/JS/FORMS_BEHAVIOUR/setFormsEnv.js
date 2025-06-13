@@ -1,12 +1,8 @@
 /**
  *  Set up necessary records, like actStep and the inital SVG
  */
- 
-let steps_sources_id
-
+let source_list
 async function setFormsEnv() {
-
-  steps_sources_id=[]
 
   const goBackBtn=document.getElementById("goBack")
   const formElement=document.getElementById("mainForm")
@@ -19,12 +15,15 @@ async function setFormsEnv() {
   //Choose KOMA sequence
   STEPS_NAME=sequences[localStorage.getItem("koma")]
 
+  source_list=new Array(STEPS_NAME.lenght)
+
   
   ChangeKoma()
   //Load the first Experiment Forms
   await LoadNextForm(0);
-  //Add SVG to step-by-step guide
-  AddStep();
+  
+  loadAllSteps()
+
   //Associate the goBackEvent to the button "Go Back"
   goBackBtn.addEventListener("click", () =>
     goBack(localStorage.getItem("actualStep") - 1)
@@ -34,12 +33,18 @@ async function setFormsEnv() {
     event.preventDefault();
     const element = await generateModal()
     configureNextModal(element)
-
     //FormEventManagement();
   });
+
+  document.getElementById("saveNext").addEventListener('click',()=>{
+    saveData(true)
+    FormEventManagement()
+  })
+
   document.getElementById("saveBtn").addEventListener('click',()=>{
     const myModal = new bootstrap.Modal(element);
-    myModal.show();})
+    myModal.show();
+  })
   //Init the Sample Selector
   setSampleSelector()
   //Add fileName detect event
@@ -47,5 +52,7 @@ async function setFormsEnv() {
 
   const element = await generateModal()
   configureSaveModal(element)
+
+
   }
   

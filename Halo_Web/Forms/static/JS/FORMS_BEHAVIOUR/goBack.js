@@ -12,15 +12,15 @@ async function goBack(step) {
   //You can't go back to the same step
   if (ACT_STEP == step)
     return;
+  UpdateColor("SVG_" + ACT_STEP, PAUSED_COLOR);
   step = step == -1 ? ACT_STEP - 1 : step
   //Update actualStep value
   localStorage.setItem("actualStep", step);
 
   await LoadNextForm(step);
+  UpdateColor("SVG_" + step, ACTIVE_COLOR);
   //Fill the inputs with the previous values
   RecoverFieldsData();
-  //Update the stp-by-step element
-  RemoveStep(step, ACT_STEP);
   //Change submit button text(avoid check if its the last or not)
   submit.innerText="Save & Next"
 
@@ -28,7 +28,8 @@ async function goBack(step) {
   if(step==0)
     setSampleSelector()
   else{
-    source_list=await filterExperiments(source_list,koma,STEPS_NAME[ACT_STEP])
+    let koma=localStorage.getItem("koma")
+    source_list=await filterExperiments(source_list,koma ? koma : null,STEPS_NAME[ACT_STEP])
     generateSourceSelect(document.querySelector('select'),source_list)
   }
   hideFileFields()

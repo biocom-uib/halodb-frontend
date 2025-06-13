@@ -6,49 +6,52 @@
 
   {% block content %}
 
-  <nav>
-    <div class="container mt-4">
+
+  <main>
+    <div id="step-by-step" class="container d-flex justify-content-between">
+      <!--Add Steps Dynamically-->
+    </div>
+    <div id="komaInfoContainer" class="container d-flex flex-column justify-content-center align-items-center">
+      <h2 id="Etapa">Sample</h2>
+      <h2 id="komaLabel" data-selected="0">Kind of material:</h2>
+    </div>
+    <div id="selectorsContainer" class="container p-5">
       <label for="sourceId">Source:</label>
       <select id="sourceId" name="sampleId" class="form-select">
         <!--Each option is user's samples name-->
       </select>
-    </div>
-  </nav>
-  <main>
-    <div id="step-by-step" class="container d-flex justify-content-between mt-4"></div>
-    <div
-      class="container d-flex flex-column justify-content-center align-items-center mt-4"
-    >
-      <h2 id="Etapa">Sample</h2>
-      <h3 id="komaLabel" data-selected="0">Kind of material:</h3>
+      <label for="actId">Actual Step Data:</label>
+      <select id="actId" name="actId" class="form-select">
+        <!--Each option is user's samples name-->
+      </select>
     </div>
 
-    <div id="contenedorForm" class="container mt-4">
+    <div id="contenedorForm" class="container">
       <form id="mainForm" class="container">
         <div id="cardForm" class="card p-3">
           <!-- Data Fields-->
         </div>
-
-
-          <div class="container d-flex justify-content-between mt-2">
-            <div class="container d-flex justify-content-start">
-              <button id="goBack" type="button" class="btn btn-secondary" 
-                      style="visibility: hidden">
-                <i class="bi bi-arrow-left"></i> Go back
-              </button>
-              <button id="saveBtn" type="button" class="btn btn-success">
+          <div id="botonera" class="row row-cols-md-4 g-2 w-100 pb-5 pt-2">
+            <div class="col">
+            <button id="goBack" type="button" class="btn btn-secondary w-100" 
+                    style="visibility: hidden">
+              <i class="bi bi-arrow-left"></i> Go back
+            </button>
+            </div>
+            <div class="col">
+            <button id="saveBtn" type="button" class="btn btn-success w-100">
                 Save <i class="bi bi-floppy"></i>
             </button>
             </div>
-            <div class="container d-flex justify-content-end">
-              <button class="btn btn-primary m-1">Save & Next Step</button>
-              <button type="submit" id="submit" class="btn btn-secondary m-1">
-                Next Step <i class="bi bi-arrow-right"></i>
+            <div class="col">
+              <button class="btn btn-primary w-100" type="button" id="saveNext">Save & Next</button>
+            </div>
+            <div class="col">
+              <button type="submit" id="submit" class="btn btn-secondary w-100">
+                  Next<i class="bi bi-arrow-right"></i>
               </button>
             </div>
           </div>
-
-
       </form>
     </div>
   </main>

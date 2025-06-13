@@ -1,16 +1,15 @@
 async function saveData(isNewRegister=true,id=null){
-
 const ACT_STEP = localStorage.getItem("actualStep")
-const srcId=sessionStorage.getItem("source_id")
+const srcId=ACT_STEP==0 ? localStorage.getItem("sampleSrc") :source_list[ACT_STEP-1]
 LocalStoreData(ACT_STEP);
-const stepId=localStorage.getItem(`step_${ACT_STEP}_last_id`)
+const stepId=source_list[ACT_STEP]
 const updatRoute=`/api/put/${STEPS_NAME[ACT_STEP]}/${stepId}`
 const backend_response=await uploadOperation(STEPS_NAME[ACT_STEP],srcId, !isNewRegister ? updatRoute : "upload")
   if (backend_response.status=="success"){
     //Show toes message
     document.getElementById("step-by-step").scrollIntoView();
-    localStorage.setItem(`step_${ACT_STEP}_last_id`,backend_response.step.id)
-    return backend_response.step.id
+    source_list[ACT_STEP]=backend_response.step.id
+    return source_list[ACT_STEP]
   } 
   return -1
 }
@@ -48,17 +47,15 @@ async function FormEventManagement() {
   }
   
   localStorage.setItem("maxStepDone", NEXT_STEP);
-  //Add step id at the list
-  await AddStep();
   UpdateColor("SVG_" + NEXT_STEP, ACTIVE_COLOR);
   //Load next sequence form data
   await LoadNextForm(NEXT_STEP,IS_LAST)
 
  // document.querySelector(".modal-dialog").querySelectorAll("button")[1].setAttribute("hidden",null)
 
-  source_list=await filterExperiments([],localStorage.getItem("koma"),STEPS_NAME[ACT_STEP])
+  source_list=await filterExperiments(localStorage.getItem(`step_${ACT_STEP}_last_id`),localStorage.getItem("koma"),STEPS_NAME[ACT_STEP])
   generateSourceSelect(document.querySelector('select'),source_list)
-  
+  sessionStorage.setItem("source_id",localStorage.getItem(`step_${ACT_STEP}_last_id`))
   etapaLabel.innerHTML = STEPS_NAME[NEXT_STEP];
   stepByStep.scrollIntoView();
 }

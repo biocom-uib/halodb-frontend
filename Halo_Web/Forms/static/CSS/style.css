@@ -5,7 +5,35 @@
   --main_font:white;
   --secondary: teal;
   --contrast_color: dimgray;
+  
 }
+
+#leftZone .container{
+  background-color: var(--contrast_color);
+  
+}
+#midZone .container{
+  background-color: var(--secondary);
+  color: var(--main_font);
+}
+#rightZone .container{
+
+  background-color: var(--main);
+}
+
+nav,
+#mainForm,
+#botonera,
+form .container,
+nav .container,
+#step-by-step,
+#komaInfoContainer,
+
+#selectorsContainer,
+#contenedorForm{
+  background: none ;
+}
+
 #profileSamples a{
   color: var(--main_font) !important;
   text-decoration: none !important;
@@ -13,12 +41,26 @@
 header,
 #registerFormCard,
 .card,
+#sampleForm .accordion-body,
+
 .card form{
   color:var(--main_font);
   background-color: var(--main) !important;
 }
 
-h3{
+#selectorsContainer label,
+nav label,
+#komaInfoContainer h2,
+#komaInfoContainer h3{
+  color: var(--main_font);
+}
+
+text{
+  fill: var(--main_font);
+}
+
+h3,
+#sampleForm .accordion-button{
   background-color: var(--contrast_color);
   color: var(--main_font);
 }
@@ -27,6 +69,7 @@ h3{
 footer{
   background-color: var(--secondary);
   color: var(--main_font);
+  min-height: 5dvh;
 }
 main{
   background-image: url(/static/src/img/background.jpg);

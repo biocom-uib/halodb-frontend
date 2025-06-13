@@ -29,9 +29,11 @@ async function initInfoDisplay(){
         const myModal = new bootstrap.Modal(element);
         myModal.show();
     })
-            const lat=document.getElementById("lati").value
-        const long=document.getElementById("long").value
-        initMap(lat,long)
+    const lat=document.getElementById("lati").value
+    const long=document.getElementById("long").value
+    initMap(lat,long)
+
+    localStorage.setItem("sampleSrc",id)
 }
 
 async function displayStepInformation(id,table) {

@@ -13,5 +13,12 @@ function setSampleSelector(){
     }
     sourceSelector.value=sessionStorage.getItem("source_id")
 
-    sourceSelector.addEventListener("change",()=>sessionStorage.setItem("source_id",sourceSelector.value))
+    sourceSelector.addEventListener("change",()=>{
+        const ACT_STEP=localStorage.getItem("actualStep")
+        if (ACT_STEP==0){
+            localStorage.setItem("sampleSrc",sourceSelector.value)
+        }else{
+            source_list[ACT_STEP-1]=sourceSelector.value
+        }
+        console.log(`Source id ${sourceSelector.value} del step ${localStorage.getItem("actualStep")}`)})
 }

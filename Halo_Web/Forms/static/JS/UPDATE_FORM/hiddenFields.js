@@ -8,8 +8,8 @@ const modifyDict={
 const hideGenomeFieldsDict={
     "GENOME VIRUS": ["txnt","sixteensr","seqdepth","dnae","tems",
                                             "phsa","sals","emet","elac","temo","teml",
-                                            "temh","phop","phii","salo","sall","salw",
-                                            "path","extr","strccol"]
+                                            "temh","phop","phhi","salo","sall","salw",
+                                            "path","extr"]
 }
 
 const hideTRFieldsDict={
@@ -25,7 +25,9 @@ const showRRFieldsDict={
 
 function showListFields(list,show){
     list.forEach(element => {
-        if (!show)
+        const aux=document.getElementById(element)
+        console.log(element)
+        if (!show & aux.parentElement)
             document.getElementById(element).parentElement.setAttribute('hidden',null)
         else{
             const parent=document.getElementById(element).parentElement

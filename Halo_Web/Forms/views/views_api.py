@@ -23,7 +23,6 @@ def api_post_calls(request, table):
     body_unicode = json.loads(body_unicode)
 
     full_url = f"{URL}{table.upper()}"
-    print(full_url)
     print(body_unicode)
     headers = {"Authorization": f"Bearer {token}"}
 
@@ -127,6 +126,37 @@ def api_get_calls(request, query_params):
     try:
         print(full_url)
         response = requests.get(full_url, headers=headers)
+
+        if response.status_code == 200:
+            return JsonResponse(response.json(), safe=False)
+        else:
+            return JsonResponse(
+                {"error": "External API error", "status_code": response.status_code},
+                status=response.status_code
+            )
+
+    except requests.exceptions.RequestException as e:
+        return JsonResponse({"error": "Connection error to external API", "details": str(e)}, status=500)
+    
+def api_get_calls_simple(request, query_params):
+    """
+    Send a GET request to an external API and return the response as JSON.
+
+    Users must be authenticated via session token.
+
+    Args:
+        request (HttpRequest): The incoming HTTP request.
+        query_params (str): Encoded query path to append to the base URL.
+
+    Returns:
+        JsonResponse: Response from the external API, or error if the request fails.
+    """
+
+    full_url = f"{URL}{unquote(query_params)}"
+
+    try:
+        print(full_url)
+        response = requests.get(full_url)
 
         if response.status_code == 200:
             return JsonResponse(response.json(), safe=False)

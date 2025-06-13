@@ -3,6 +3,7 @@
 */
 
 function init(){
+  const headerBtn=document.getElementById("headerBtn")
   const profileElement=document.getElementById("profileSamples")
   const formsElement=document.getElementById("step-by-step")
   const summaryElement=document.getElementById("SummaryCardNav")
@@ -13,22 +14,37 @@ function init(){
   if(localStorage.getItem("env")===null)
     localStorage.setItem("env",HOST_DICC[window.location.hostname])
 
-  if (profileElement) 
+  if (profileElement){
     loadProfileData()
+    headerBtn.innerText="Log Out"
+    headerBtn.href="/"
+  } 
+    
   
-  if (formsElement)
+  if (formsElement){
     setFormsEnv()
+    headerBtn.innerText="Go Back"
+    headerBtn.href="/profile"
+  }
+    
   
-  if(summaryElement)
+  if(summaryElement){
     initSummary()
+    headerBtn.innerText="Go Back"
+    headerBtn.href="/profile"
+  }
 
-  if(sampleElement)
+  if(sampleElement){
     initSample(sampleElement)
+    headerBtn.innerText="Go Back"
+    headerBtn.href="/profile"
+  }
 
-  if(infoDisplayElement)
+  if(infoDisplayElement){
     initInfoDisplay()
-
-  /*TO DO: Create a Sample View with OpenStreet Map */
+    headerBtn.innerText="Go Back"
+    headerBtn.href="/profile"
+  }
 
 }
-document.addEventListener("DOMContentLoaded",init);
+document.addEventListener("DOMContentLoaded",init)

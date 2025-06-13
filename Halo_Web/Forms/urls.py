@@ -13,6 +13,7 @@ urlpatterns = [
     path('Forms/',load_experiment_form, name='Forms'),
     path('registration/login/',login_manual,name="login"),
     path('registration/SignUp',register_user,name="register"),
+    path('account/verify',verify_account,name="verify"),
     path('registration/confirm-registration',register_user,name="confirmRegister"),
     path('Sample/',sample_insert,name="Sample"),
     path('profile/', profile, name='profile'),

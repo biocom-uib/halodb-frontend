@@ -66,8 +66,9 @@ function prepareBodyRequest(step, source = null, isPredictedGenes=false) {
 
   // Añadir source_id si existe
   if (step!="Sample") {
-    const srcId= isPredictedGenes ? PREDICTED_GENES_ID_KEY[koma] : "source_id"
-    result[srcId] = source;
+    if(isPredictedGenes)
+      result[PREDICTED_GENES_ID_KEY[STEPS_NAME[step-1]]]=source  
+    result["source_id"] = source;
     result["sequence"]=koma;
     result["koma"]=koma;
   }

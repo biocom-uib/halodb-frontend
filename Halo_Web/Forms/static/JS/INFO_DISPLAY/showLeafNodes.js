@@ -19,11 +19,15 @@ async function showLeafNode(parentId,parentTable){
         rawList=await fetchSecureFile("GET",`user/list/${table}`)
     }
     matchElements = rawList.filter(obj => obj.source_id == parentId);
+    let classificador=table
     matchElements.forEach(element => {
+        if (element.koma){
+            classificador=element.koma==="PEPTIDES" ? "PEPTIDES" : "RAW READS"
+        }
         const listElement=document.createElement("button")
         listElement.className="list-group-item"
-        listElement.id=element.id
-        listElement.innerText=element.id
+        listElement.style.fontWeight="bold"
+        listElement.innerText=generarClasificador(parentId,element.id,classificador).toUpperCase()
         listContainer.appendChild(listElement)
         listElement.addEventListener("click",()=>{
             table.forEach(element =>{

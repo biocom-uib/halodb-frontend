@@ -1,5 +1,9 @@
 from .views_import import *
 
+from .send_email import send_email
+
+from .views_api import api_get_calls_simple
+
 from Forms.utils import *
 
 
@@ -59,6 +63,20 @@ def register_user(request,token):
 '''
 
 @csrf_exempt
+def verify_account(request):
+  uid=request.GET.get('uid')
+  date=request.GET.get('date').replace("T"," ")
+
+  full_url=URL+"verify/"
+
+  response=requests.put(full_url,json={"date":date,"uid":uid})
+  if response.status_code==200:
+    messages.success(request, 'Youre account has been verified succesfully!')
+    return redirect('login')
+  else:
+    return redirect('main')
+    
+@csrf_exempt
 def register_user(request):
   if request.method== "POST":
     full_url=URL+"user/"
@@ -75,7 +93,13 @@ def register_user(request):
         "password":password
       })
     if response.status_code==200:
-      messages.success(request, 'Register complete! Now, you can access to your profile view!')
+      uid=response.json()["message"]["user"]["uid"]    
+      parsed_data=json.loads(api_get_calls_simple(request=request,query_params="/users/").content)
+      for user in parsed_data:
+
+        if user["uid"]==uid:
+          send_email(email,uid,user["registration_time"])
+      messages.warning(request, 'To complete the register, please check your email and confirm the account')
       return redirect('login')
     else:
       messages.error(request, response.json()['message']['message'])

@@ -5,21 +5,9 @@
     {% endblock %}
 
   {% block content %}
-  <header class="d-flex justify-content-between">
-    <a href="{% url 'main' %}">
-      <img src="{% static 'src/img/icon.png' %}" style="max-width: 10dvw;">
-    </a>
-    
-    <div class="container d-flex justify-content-center align-items-center">
-      <h1>HaloFile Insert Section</h1>
-    </div>
-    <div class="container d-flex align-items-center" style="max-width: 10dvw;">
-      <a href="{% url 'profile' %}" class="btn btn-primary">Go to Profile</a>
-    </div>
-    
-  </header>
+
   <main>
-    <form method="POST" id="sampleForm" class="container d-flex justify-content-center" style="width: 80%;">
+    <form method="POST" id="sampleForm" class="container d-flex justify-content-center p-5" style="width: 80dvw; background: none;">
       {% csrf_token %}
         <div class="accordion w-100 mt-4" id="accordionExample">
           <div class="accordion-item">
@@ -151,14 +139,15 @@
                     <textarea class="form-control" id="sour" rows="3" maxlength="80"></textarea>
                   </div>
                 </div>
+                  <button id="" type="submit" class="btn btn-success w-100 mt-3">
+                    Create Sample
+                  </button>
+
               </div>
             </div>
           </div>
         </div>
-        <div class="container d-flex justify-content-end m-3">
-        <button id="" type="submit" class="btn btn-primary">
-          Create Sample
-        </button>
+
       </form>
   </main>
 
