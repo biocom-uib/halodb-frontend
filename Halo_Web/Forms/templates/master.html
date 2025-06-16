@@ -19,15 +19,16 @@
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body style="height: 100%;">
-    <header>
+    <header style="height: 10dvh;">
       <div class="container d-flex justify-content-between  align-items-center">
         <a href="{% url 'main' %}">
-          <img src="{% static 'src/img/icon.png' %}" style="max-width: 5dvw;" class="p-1">
+          <img src="{% static 'src/img/icon.png' %}" style="max-width: 4dvw; height: auto;" class="p-1">
         </a>
         
         <h1>HaloPhile Main Page</h1>
         <a class="btn btn-light" id="headerBtn" href="{% url 'login' %}">Log In</a>
       </div>
+          <div id="toast-container" class="end-0" style="position: fixed; z-index: 100;"></div>
     </header>
     {% block content %} {% endblock %}
 
@@ -60,6 +61,7 @@
     <script src="{% static 'JS/FORMS_BEHAVIOUR/setSampleSelector.js' '%}"></script>
     <script src="{% static 'JS/FORMS_BEHAVIOUR/goBack.js' '%}"></script>
     <script src="{% static 'JS/FORMS_BEHAVIOUR/configureSaveModal.js' '%}"></script>
+    <script src="{% static 'JS/FORMS_BEHAVIOUR/saveData.js' '%}"></script>
 
     <script src="{% static 'JS/INFO_DISPLAY/mapBehaivour.js' '%}"></script>
     <script src="{% static 'JS/INFO_DISPLAY/showConcretData.js' '%}"></script>
@@ -99,6 +101,8 @@
     <script src="{% static 'JS/UPDATE_FORM/detectKomaChanges.js' '%}"></script>
     <script src="{% static 'JS/UPDATE_FORM/getSelectItems.js' %}"></script>
     <script src="{% static 'JS/UPDATE_FORM/hiddenFields.js' %}"></script>
+    <script src="{% static 'JS/UPDATE_FORM/showToast.js' %}"></script>
+    <script src="{% static 'JS/UPDATE_FORM/updateSourceSelectors.js' %}"></script>
 
   </body>
 </html>

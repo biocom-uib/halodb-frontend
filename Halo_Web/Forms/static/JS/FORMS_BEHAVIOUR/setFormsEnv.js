@@ -5,6 +5,7 @@ let source_list
 async function setFormsEnv() {
 
   const goBackBtn=document.getElementById("goBack")
+  const saveBtn=document.getElementById("saveBtn")
   const formElement=document.getElementById("mainForm")
   const sequences=await fetchSecureFile("GET","sequences")
 
@@ -28,31 +29,27 @@ async function setFormsEnv() {
   goBackBtn.addEventListener("click", () =>
     goBack(localStorage.getItem("actualStep") - 1)
   );
+  saveBtn.addEventListener("click",()=>{
+    if (!element.hasAttribute("data-set")){
+      saveData(true)
+      element.setAttribute("data-set",null)
+    }else{
+      const myModal = new bootstrap.Modal(element)
+      configureSaveModal(element)
+      myModal.show()
+    }
+  })
   //Add main event manager to the form element
   formElement.addEventListener("submit", async(event) => {
     event.preventDefault();
-    const element = await generateModal()
-    configureNextModal(element)
-    //FormEventManagement();
+    FormEventManagement();
   });
 
-  document.getElementById("saveNext").addEventListener('click',()=>{
-    saveData(true)
-    FormEventManagement()
-  })
-
-  document.getElementById("saveBtn").addEventListener('click',()=>{
-    const myModal = new bootstrap.Modal(element);
-    myModal.show();
-  })
   //Init the Sample Selector
   setSampleSelector()
   //Add fileName detect event
   addFileInputEvent();
 
   const element = await generateModal()
-  configureSaveModal(element)
-
-
   }
   

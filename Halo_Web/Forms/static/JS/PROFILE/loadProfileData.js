@@ -26,11 +26,28 @@ async function loadProfileData(){
     generateKomaModalBody(element);
     element.id="chooseKoma"
     document.querySelector('main').appendChild(element);
+    const profileForm=document.getElementById("userDataForm")
 
-    SEQUENCES.forEach(element => {
-        EXP_LIST.appendChild(GenerateNavItems(element,element))
-    });
-    const BUTTONS=Array.from(EXP_LIST.getElementsByClassName("nav-link"))
-    BUTTONS.forEach((item)=>
-        item.addEventListener("click",()=>{loadUserKomaData(item.id)}))
-    }
+document.getElementById("editProfile").addEventListener("click",()=>{
+    profileForm.querySelectorAll("input").forEach(input=>{
+        input.removeAttribute("readonly")
+    })
+    profileForm.querySelector(".btn-success").removeAttribute("hidden")
+
+})
+
+    profileForm.addEventListener("submit",async (event)=>{
+        event.preventDefault();
+        //Store the sample data in local (faster reload data)
+        LocalStoreData("Profile",true,profileForm)
+        //Upload the data
+        const insertedData=await uploadOperation("Profile",null,"/api/put/user/")
+        if (insertedData)
+            showToast("Profile Updated Successfully!","success")
+        profileForm.querySelectorAll("input").forEach(input=>{
+        input.setAttribute("readonly",null)
+    })
+        profileForm.querySelector(".btn-success").setAttribute("hidden",null)
+    })
+
+}

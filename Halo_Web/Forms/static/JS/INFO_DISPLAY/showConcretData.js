@@ -7,8 +7,20 @@ function showData(table,id){
      */
 }
 
+let PARENT_NODES
+
 INFO_DISPLAY={
-    is_public:(value)=> value=="0" ? "No" : "YES",
+    public:(value)=> {
+        const container=document.getElementById("public").parentElement
+        if (value=="0"){
+            const span=container.querySelector("span")
+            span.style.color="red"
+            return "NO"
+        }else{
+            container.querySelector("button").setAttribute("hidden",null)
+            return "YES"
+        }
+    },
     created: (raw)=>raw.replace('T',' '),
     updated: (raw)=>raw.replace('T',' '),
     owned: (value)=>"You"
@@ -17,8 +29,8 @@ INFO_DISPLAY={
 NOT_DISPLAY_DATA=["shared_by_group","shared_by_others","group_id","group_relation","group_name","id","access_mode","project_id","is_public","user_id"]
 
 async function initInfoDisplay(){
-
-    const params=window.location.pathname.slice('/infoDisplay/'.length).split("/")
+    PARENT_NODES=[]
+    const params=window.location.pathname.slice('/halophile/infoDisplay/'.length).split("/")
     const table=params[0]
     const id=params[1]
     await displayStepInformation(id,table)
@@ -37,6 +49,10 @@ async function initInfoDisplay(){
 }
 
 async function displayStepInformation(id,table) {
+    if (table==="SAMPLE"){
+        localStorage.removeItem("koma")
+    }
+    const lastParent=PARENT_NODES[PARENT_NODES.length-1]
     const stepDataContainer=document.getElementById("stepDataContainer")
     stepDataContainer.innerHTML=""
     const stepList=await fetchSecureFile("GET",`user/list/${table}`)
@@ -50,7 +66,10 @@ async function displayStepInformation(id,table) {
         }else
             generateInputRO(key,value,stepDataContainer)               
     })
-    showLeafNode(id,table) 
+    if(document.getElementById("koma"))
+        localStorage.setItem("koma",document.getElementById("koma").value)
+    PARENT_NODES.push({id:id,table:table,UID:table==="SAMPLE" ? resultado.name : generarClasificador(lastParent.id,id,table)})
+    showLeafNode(PARENT_NODES[PARENT_NODES.length-1]) 
 }
 
 function generateInputRO(key,value,stepDataContainer){

@@ -44,7 +44,7 @@ def api_post_calls(request, table):
         return JsonResponse({"error": "Connection error to external API", "details": str(e)}, status=500)
 
 @csrf_exempt
-def api_put_calls(request, table):
+def api_put_calls(request, src):
     """
 
     """
@@ -55,7 +55,7 @@ def api_put_calls(request, table):
     body_unicode = request.body.decode('utf-8')
     body_unicode = json.loads(body_unicode)
 
-    full_url = f"{URL}{table.upper()}"
+    full_url = f"{URL}{src}"
     print(full_url)
     print(body_unicode)
     headers = {"Authorization": f"Bearer {token}"}

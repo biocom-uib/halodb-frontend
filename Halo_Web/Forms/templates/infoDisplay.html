@@ -8,13 +8,20 @@
     
     <main style="height: 100%;">
         <div class="container d-flex" style="background: none;">
-            <section id="leftZone" style="width: 25dvw;">
+            <section id="leftZone" class="p-2" style="width: 25dvw;">
                 <div id="metaInfo" class="container w-100" style="background-color:cadetblue; height: 55dvh; overflow-y: auto; border-radius: 1rem; border-color: black;">
                     <h2 class="d-flex justify-content-center">System Data</h2>
                     <ul class="list-group">
-                        <li class="list-group-item">Public? <span id="public" style="color: green; font-weight: bold; ">Yes</span><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+                        <li class="list-group-item"> 
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    Public?: <span id="public" style="color: green; font-weight: bold; ">Yes</span>
+                                </div>
+                                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" >
                             Publish
-                        </button></li>
+                        </button>
+                            </div>
+                        </li>
                         <li class="list-group-item">Owner: <span id="owned" style="font-weight: bold;">User</span></li>
                         <li class="list-group-item">Date of creation: <span id="created" style="font-weight: bold;">Yes</span></li>
                         <li class="list-group-item">Last Update: <span id="updated" style="font-weight: bold;">Yes</span></li>
@@ -35,12 +42,13 @@
                     </div>
 
                     <div class="container d-flex justify-content-between mt-2">
-                                        <button id="expBtn"class="btn btn-primary">
+                    <button id="expBtn"class="btn btn-primary">
                             Use for Experiments
                     </button>
-                        <button class="btn btn-primary mr-2">
-                            Edit <i class="bi bi-pencil-square"></i>
-                        </button>
+                    <button class="btn btn-success" hidden>Save</button>
+                    <button class="btn btn-secondary mr-2">
+                        Edit <i class="bi bi-pencil-square"></i>
+                    </button>
                     </div>
                 </div>
             </section>

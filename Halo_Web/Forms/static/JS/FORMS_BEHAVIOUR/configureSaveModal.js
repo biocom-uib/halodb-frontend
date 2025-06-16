@@ -1,5 +1,5 @@
 function configureSaveModal(modal){
-    if(!modal.hasAttribute("set")){
+    if(modal.hasAttribute("data-set")){
         const modalBody=modal.querySelector(".modal-body")
         const container=document.createElement("div")
         const saveBtn=document.createElement("button")
@@ -17,7 +17,6 @@ function configureSaveModal(modal){
             modifyBtn.removeAttribute("hidden")
         })    
         modifyBtn.innerText="Modify"
-        modifyBtn.setAttribute("hidden",null)
         modifyBtn.className="btn btn-primary"
         modifyBtn.setAttribute("data-bs-dismiss","modal")
         modifyBtn.addEventListener("click",()=>{

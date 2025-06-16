@@ -92,6 +92,7 @@ def register_user(request):
         "email":email,
         "password":password
       })
+
     if response.status_code==200:
       uid=response.json()["message"]["user"]["uid"]    
       parsed_data=json.loads(api_get_calls_simple(request=request,query_params="/users/").content)

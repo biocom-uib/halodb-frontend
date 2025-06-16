@@ -9,9 +9,10 @@ const FNAME_DICC={
     "pgenes":"pgenesname",
     "assembled":"assname"
 }
+const STATIC_STEPS=["Sample","Profile"]
 async function uploadOperation(table,id=null,route="upload") {
 
-    const step= table==="Sample" ? table:localStorage.getItem("actualStep") 
+    const step= STATIC_STEPS.includes(table) ? table:localStorage.getItem("actualStep") 
     const post_body=prepareBodyRequest(step,id,table==="PREDICTED GENES") 
     const header ={"Content-Type": "application/json"}
 

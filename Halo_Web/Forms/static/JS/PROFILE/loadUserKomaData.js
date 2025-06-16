@@ -21,7 +21,7 @@ async function loadUserKomaData(koma){
         stepContentSelector.addEventListener("change",()=>{
             if(stepContentSelector.value!="-1"){
                 const url= `${seq_step}/${stepContentSelector.value}`
-                fillStepData(url,stepContainer,seq_step)
+                fillStepData(generatePath(url),stepContainer,seq_step)
             }
 
         })
@@ -51,7 +51,7 @@ async function filterExperiments(source_id,koma,seq_step) {
     const USER_EXPERIMENTS= await fetchSecureFile("GET","user/list/"+seq_step)
     let src_list=[]
     USER_EXPERIMENTS.forEach(experiment=>{
-        if((experiment.koma && experiment.koma==koma) || checkSrcId(seq_step==="PREDICTED GENES",source_id,experiment.source_id)){
+        if((experiment.koma && experiment.koma==koma) || checkSrcId(seq_step==="PREDICTED GENES",source_id,experiment)){
             src_list.push(experiment.id) 
         }
     })

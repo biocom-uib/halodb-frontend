@@ -30,7 +30,8 @@ nav .container,
 #komaInfoContainer,
 
 #selectorsContainer,
-#contenedorForm{
+#contenedorForm,
+#sampleForm .accordion-body .container{
   background: none ;
 }
 
@@ -42,7 +43,6 @@ header,
 #registerFormCard,
 .card,
 #sampleForm .accordion-body,
-
 .card form{
   color:var(--main_font);
   background-color: var(--main) !important;
@@ -72,7 +72,7 @@ footer{
   min-height: 5dvh;
 }
 main{
-  background-image: url(/static/src/img/background.jpg);
+  background-image: url("https://bioinfo.uib.es/halophile/static/src/img/background.jpg");
   background-size: cover;
 }
 main .container{

@@ -16,4 +16,6 @@ async function LoadNextForm(step) {
   addFileInputEvent();
   if(modifyDict[STEPS_NAME[step]])
     modifyDict[STEPS_NAME[step]](localStorage.getItem('koma'))
+
+  updateSourceSelectors(step)
 }

@@ -10,7 +10,7 @@ async function addSampleCard(element,rowId,sampleModal,experimentCard=null){
     
     let container=document.createElement("a")
     container.classList.add("col")
-    container.href=`/infoDisplay/SAMPLE/${element.id}`
+    container.href=generatePath(`/infoDisplay/SAMPLE/${element.id}`)
     
     experimentCard ? ROW.append(container) : ROW.prepend(container);
     container.innerHTML=CARD

@@ -25,7 +25,7 @@ urlpatterns = [
     path('api/get/<path:query_params>', api_get_calls, name='api_get_calls'),
     path('api/put_file/<path:src>', api_put_file, name='api_put_file'),
     path('api/get_file/<path:src>', api_get_file, name='api_get_file'),
-    path('api/put/<path:src>', api_get_file, name='api_put_file'),
+    path('api/put/<path:src>', api_put_calls, name='api_put_file'),
     path('secure-static/<path:filename>/', get_static_file, name='secure_static'),
     path('infoDisplay/<path:filename>',load_info_display,name='load_info_display')
 ]

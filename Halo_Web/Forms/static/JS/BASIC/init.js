@@ -24,26 +24,26 @@ function init(){
   if (formsElement){
     setFormsEnv()
     headerBtn.innerText="Go Back"
-    headerBtn.href="/profile"
+    headerBtn.href=generatePath("/profile")
   }
     
   
   if(summaryElement){
     initSummary()
     headerBtn.innerText="Go Back"
-    headerBtn.href="/profile"
+    headerBtn.href=generatePath("/profile")
   }
 
   if(sampleElement){
     initSample(sampleElement)
     headerBtn.innerText="Go Back"
-    headerBtn.href="/profile"
+    headerBtn.href=generatePath("/profile")
   }
 
   if(infoDisplayElement){
     initInfoDisplay()
     headerBtn.innerText="Go Back"
-    headerBtn.href="/profile"
+    headerBtn.href=generatePath("/profile")
   }
 
 }

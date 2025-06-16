@@ -15,23 +15,22 @@
       <h2 id="Etapa">Sample</h2>
       <h2 id="komaLabel" data-selected="0">Kind of material:</h2>
     </div>
-    <div id="selectorsContainer" class="container p-5">
-      <label for="sourceId">Source:</label>
-      <select id="sourceId" name="sampleId" class="form-select">
-        <!--Each option is user's samples name-->
-      </select>
-      <label for="actId">Actual Step Data:</label>
-      <select id="actId" name="actId" class="form-select">
-        <!--Each option is user's samples name-->
-      </select>
+    <div class="container p-5" style="background: none;">
+      <div id="sourceSelectors" class="row row-cols-md-5" style="color: white;">
+        <div class="col">
+          <label for="sourceSample">Sample:</label>
+          <select id="sourceSample" name="sampleId" class="form-select"></select>
+        </div>
+      </div>
     </div>
+
 
     <div id="contenedorForm" class="container">
       <form id="mainForm" class="container">
         <div id="cardForm" class="card p-3">
           <!-- Data Fields-->
         </div>
-          <div id="botonera" class="row row-cols-md-4 g-2 w-100 pb-5 pt-2">
+          <div id="botonera" class="row row-cols-md-3 g-2 w-100 pb-5 pt-2">
             <div class="col">
             <button id="goBack" type="button" class="btn btn-secondary w-100" 
                     style="visibility: hidden">
@@ -43,9 +42,7 @@
                 Save <i class="bi bi-floppy"></i>
             </button>
             </div>
-            <div class="col">
-              <button class="btn btn-primary w-100" type="button" id="saveNext">Save & Next</button>
-            </div>
+
             <div class="col">
               <button type="submit" id="submit" class="btn btn-secondary w-100">
                   Next<i class="bi bi-arrow-right"></i>

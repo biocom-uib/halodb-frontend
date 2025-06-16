@@ -27,12 +27,8 @@ async function goBack(step) {
   etapaLabel.innerHTML = STEPS_NAME[step];
   if(step==0)
     setSampleSelector()
-  else{
-    let koma=localStorage.getItem("koma")
-    source_list=await filterExperiments(source_list,koma ? koma : null,STEPS_NAME[ACT_STEP])
-    generateSourceSelect(document.querySelector('select'),source_list)
-  }
-  hideFileFields()
+
+  //hideFileFields()
 }
 
 function hideFileFields(){
