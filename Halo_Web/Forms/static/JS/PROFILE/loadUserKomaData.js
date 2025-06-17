@@ -50,6 +50,7 @@ async function loadUserKomaData(koma){
 async function filterExperiments(source_id,koma,seq_step) {
     const USER_EXPERIMENTS= await fetchSecureFile("GET","user/list/"+seq_step)
     let src_list=[]
+    const filteredList=USER_EXPERIMENTS.filter((experiment)=>{(experiment.koma && experiment.koma==koma) || checkSrcId(seq_step==="PREDICTED GENES",source_id,experiment)})
     USER_EXPERIMENTS.forEach(experiment=>{
         if((experiment.koma && experiment.koma==koma) || checkSrcId(seq_step==="PREDICTED GENES",source_id,experiment)){
             src_list.push(experiment.id) 
@@ -62,7 +63,7 @@ function checkSrcId(isPredGens,source_id,experiment){
 return isPredGens ? (experiment.source_id_contigs==source_id || 
                                     experiment.source_id_genome==source_id || 
                                     experiment.source_id_single_cells==source_id || 
-                                    experiment.source_id_plasmid==source_id ) : source_id==experiment.id 
+                                    experiment.source_id_plasmid==source_id ) : source_id==experiment.source_id 
 }
 
 /**

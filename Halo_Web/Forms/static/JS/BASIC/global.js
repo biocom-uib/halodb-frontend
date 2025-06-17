@@ -22,9 +22,6 @@ const HOST_DICC ={
 
 const DEFULT_CARD_COLOR = "bg-white text-dark";
 
-const PAUSED_COLOR = "grey";
-
-const ACTIVE_COLOR = "green";
 
 const paramDict = {
   alti: "Altitude in meters where the sample was taken",

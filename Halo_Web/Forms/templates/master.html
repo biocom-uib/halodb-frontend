@@ -1,28 +1,23 @@
 {% load static%}
 <!DOCTYPE html>
-<html style="height: 100%;">
+<html style="height: 100%;" lang="en-En">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TFG proyect about: WebApp that allows to interact with a microorganism database">
     <link rel="icon" type="image/x-icon" href="{% static 'src/favicon.ico' %}">
     <link rel="stylesheet" href="{% static 'CSS/style.css'%}">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-     crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-     crossorigin=""></script>
+     crossorigin="" defer></script>
     {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %} 
-    <!-- Bootstrap Icons CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body style="height: 100%;">
     <header style="height: 10dvh;">
       <div class="container d-flex justify-content-between  align-items-center">
         <a href="{% url 'main' %}">
-          <img src="{% static 'src/img/icon.png' %}" style="max-width: 4dvw; height: auto;" class="p-1">
+          <img src="{% static 'src/img/icon.png' %}" alt="HaloPhiles Web Tool Logo" style="max-width: 4dvw; height: auto;" class="p-1">
         </a>
         
         <h1>HaloPhile Main Page</h1>
@@ -37,9 +32,11 @@
         <strong>&copy; 2025 Created by: Miquel Àngel Montero Pazmiño</strong>
 
       <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-        <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>
-        <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
-        <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
+     <!--
+           <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>
+          <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
+          <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
+      -->
       </ul>
     </footer>
     

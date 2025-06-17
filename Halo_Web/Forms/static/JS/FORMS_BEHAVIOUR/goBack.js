@@ -21,14 +21,10 @@ async function goBack(step) {
   UpdateColor("SVG_" + step, ACTIVE_COLOR);
   //Fill the inputs with the previous values
   RecoverFieldsData();
-  //Change submit button text(avoid check if its the last or not)
-  submit.innerText="Save & Next"
 
   etapaLabel.innerHTML = STEPS_NAME[step];
   if(step==0)
     setSampleSelector()
-
-  //hideFileFields()
 }
 
 function hideFileFields(){

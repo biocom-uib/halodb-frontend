@@ -21,9 +21,7 @@ def send_email(destiny,uid,date):
         <p>Welcome to HaloFiles!,</p>
         <p>To continue, please activate your account with the next link <strong>App Service</strong>.</p>
         <p>
-        <a href='http://bioinfo.uib.es/halophile/account/verify?uid={uid}&date={date}' style="padding:10px 15px;background-color:#28a745;color:white;text-decoration:none;border-radius:5px;">
-            Activate account
-        </a>
+        <a href='http://bioinfo.uib.es/halophile/account/verify?uid={uid}&date={date}'>Activate account</a>
         </p>
         <p>Thanks!</p>
     </body>

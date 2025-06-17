@@ -17,9 +17,6 @@ async function addSampleCard(element,rowId,sampleModal,experimentCard=null){
     container.id=element.id
     
     updateCardData(container,element)
-    container.addEventListener("click",()=>{
-        fillSampleCard(element,container,sampleModal)
-    })
     
 }
 

@@ -8,9 +8,12 @@ async function LoadNextForm(step) {
   const goBackButton = document.getElementById("goBack");
   cardForm.innerHTML = DATA;
   getSelectedItems(document.getElementsByTagName("select")) 
-  if (IS_LAST) 
-    isLastChanges()
-      
+  if (IS_LAST){
+    const submitButton = document.getElementById("submit");
+    submitButton.innerText="End Sequence"
+    submitButton.className="btn btn-info"
+  } 
+
   goBackButton.style.visibility = step == 0 ? "hidden" : "Visible";
 
   addFileInputEvent();

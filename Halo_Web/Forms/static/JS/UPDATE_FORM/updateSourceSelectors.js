@@ -13,7 +13,7 @@ async function updateSourceSelectors(step){
         let first=true
         while (diff>0){
             const stepName=STEPS_NAME[step-diff]
-            const previousSelect=document.getElementById(first ? "sourceSample":`select_${STEPS_NAME[STEPS_NAME.indexOf(stepName)-1]}`)
+            const previousSelect=document.getElementById(first ? "sourceSample":`select_${stepName}`)
             const newSourceSelect=await newSourceSelector(stepName,previousSelect.value)
             sourceCont.appendChild(newSourceSelect)
             previousSelect.addEventListener("change",()=>{

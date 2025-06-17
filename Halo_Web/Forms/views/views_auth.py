@@ -28,40 +28,6 @@ def logout_view(request):
   
   return render (request, "index.html")
 
-'''TO DO: Add SMTP or similar service to send automatic mails to users'''
-
-'''
-@csrf_exempt
-def start_registration(request):
-    if request.method=="POST":
-      data = json.loads(request.body)
-
-      token = store_user_temp(data)
-      send_confirmation_email(data['email'], token)
-
-      return JsonResponse({'message': 'Correo enviado para confirmar registro'})
-    
-    return render(request, "registration/register.html")
-    
-
-@csrf_exempt
-def register_user(request,token):
-  key = f'pending_user:{token}'
-  data = cache.get(key)
-
-  if not data:
-      return JsonResponse({'error': 'Token inválido o expirado'}, status=400)
-
-  url = URL + "user/"
-  response = requests.post(url, json=data)
-  
-  if response.status_code == 200:
-      cache.delete(key)  # Eliminar los datos después de usarlos
-      return redirect('login')
-  else:
-      return JsonResponse({'status':'error','message':'Error interno, sistema no operativo:'},status=405)
-'''
-
 @csrf_exempt
 def verify_account(request):
   uid=request.GET.get('uid')

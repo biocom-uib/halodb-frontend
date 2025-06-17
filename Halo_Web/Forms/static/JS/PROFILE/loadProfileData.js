@@ -20,8 +20,6 @@ async function loadProfileData(){
     //Keep it in session memory
     sessionStorage.setItem("userSamples",JSON.stringify(sampleUserDict))
 
-    const EXP_LIST=document.getElementById("myExperimentsList")
-
     const element=await generateModal();
     generateKomaModalBody(element);
     element.id="chooseKoma"

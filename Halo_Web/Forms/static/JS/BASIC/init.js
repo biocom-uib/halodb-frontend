@@ -2,7 +2,11 @@
  * Manage all DOMContentLoaded Events in the differents views
 */
 
+libraries=["https://unpkg.com/leaflet@1.9.4/dist/leaflet.css",
+            "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"]
+
 function init(){
+  libraries.forEach(link=>loadCSS(link))
   const headerBtn=document.getElementById("headerBtn")
   const profileElement=document.getElementById("profileSamples")
   const formsElement=document.getElementById("step-by-step")
@@ -48,3 +52,11 @@ function init(){
 
 }
 document.addEventListener("DOMContentLoaded",init)
+
+
+function loadCSS(href) {
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = href;
+  document.head.appendChild(link);
+}

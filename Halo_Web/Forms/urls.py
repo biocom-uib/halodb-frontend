@@ -5,6 +5,7 @@ from .views.views_auth import *
 from .views.views_profile import *
 from .views.views_api import *
 from .views.views_api_files import *
+from .views.views_extern import *
 
 
 urlpatterns = [
@@ -27,6 +28,7 @@ urlpatterns = [
     path('api/get_file/<path:src>', api_get_file, name='api_get_file'),
     path('api/put/<path:src>', api_put_calls, name='api_put_file'),
     path('secure-static/<path:filename>/', get_static_file, name='secure_static'),
-    path('infoDisplay/<path:filename>',load_info_display,name='load_info_display')
+    path('infoDisplay/<path:filename>',load_info_display,name='load_info_display'),
+    path('formUsability',load_usability_form,name='usability')
 ]
 

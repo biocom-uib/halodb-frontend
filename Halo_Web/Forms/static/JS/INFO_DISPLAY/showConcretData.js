@@ -1,12 +1,3 @@
-function showData(table,id){
-    /**
-     * 1. Make API call
-     * 2. Display Status information
-     * 3. Displlay <STEP> Data
-     * 4. Display Map coordenates
-     */
-}
-
 let PARENT_NODES
 
 INFO_DISPLAY={
@@ -26,11 +17,22 @@ INFO_DISPLAY={
     owned: (value)=>"You"
 }
 
-NOT_DISPLAY_DATA=["shared_by_group","shared_by_others","group_id","group_relation","group_name","id","access_mode","project_id","is_public","user_id"]
-
+NOT_DISPLAY_DATA=["shared_by_group",
+                    "shared_by_others",
+                    "group_id",
+                    "group_relation",
+                    "group_name",
+                    "id",
+                    "access_mode",
+                    "project_id",
+                    "is_public",
+                    "user_id"]
+/**
+ * Initalize the infoDispllay Page Basic Data
+ */
 async function initInfoDisplay(){
     PARENT_NODES=[]
-    const params=window.location.pathname.slice('/halophile/infoDisplay/'.length).split("/")
+    const params=window.location.pathname.slice(generatePath('/infoDisplay/').length).split("/")
     const table=params[0]
     const id=params[1]
     await displayStepInformation(id,table)
@@ -48,33 +50,45 @@ async function initInfoDisplay(){
     localStorage.setItem("sampleSrc",id)
 }
 
+/**
+ * Insert into a form, the data of an specific table row
+ * @param {Number} id 
+ * @param {String} table 
+ */
 async function displayStepInformation(id,table) {
+    const koma=localStorage.getItem("koma")
     if (table==="SAMPLE"){
         localStorage.removeItem("koma")
     }
     const lastParent=PARENT_NODES[PARENT_NODES.length-1]
     const stepDataContainer=document.getElementById("stepDataContainer")
-    stepDataContainer.innerHTML=""
     const stepList=await fetchSecureFile("GET",`user/list/${table}`)
-    const resultado = stepList.find(obj => obj.id == id);
-    const PARSED=Object.entries(resultado)
+    const PARSED = Object.entries(stepList.find(obj => obj.id == id));
+    stepDataContainer.innerHTML=""
     PARSED.forEach(([key,value]) =>{
         const stepData=document.getElementById(key)
-        if(stepData){
-            const realValue= INFO_DISPLAY[key] ? INFO_DISPLAY[key](value) : value
-            stepData.innerText=realValue
-        }else
-            generateInputRO(key,value,stepDataContainer)               
+        stepData ?
+            stepData.innerText= INFO_DISPLAY[key] ? INFO_DISPLAY[key](value) : value 
+            : stepDataContainer.appendChild(!NOT_DISPLAY_DATA.includes(key) &&
+                                                            generateInputRO(key,value))               
     })
-    if(document.getElementById("koma"))
-        localStorage.setItem("koma",document.getElementById("koma").value)
-    PARENT_NODES.push({id:id,table:table,UID:table==="SAMPLE" ? resultado.name : generarClasificador(lastParent.id,id,table)})
+    koma && localStorage.setItem("koma",document.getElementById("koma").value)
+    const parenNode={
+        id:id,
+        table:table,
+        UID:table==="SAMPLE" ? resultado.name 
+                            : generarClasificador(lastParent.id,id,table)
+    }
+    PARENT_NODES.push(parenNode)
     showLeafNode(PARENT_NODES[PARENT_NODES.length-1]) 
 }
-
-function generateInputRO(key,value,stepDataContainer){
-    if (NOT_DISPLAY_DATA.includes(key))
-        return
+/**
+ * Returns an Read Only input container 
+ * @param {String} key 
+ * @param {Object} value 
+ * @returns Container with read-only input wiht his specific label & value
+ */
+function generateInputRO(key,value){
     const container=document.createElement("div")
     const label=document.createElement("label")
     const input=document.createElement("input")
@@ -90,5 +104,5 @@ function generateInputRO(key,value,stepDataContainer){
 
     container.appendChild(label)
     container.appendChild(input)
-    stepDataContainer.appendChild(container)
+    return container
 }
