@@ -1,4 +1,8 @@
 /**
+ * @module LS
+ */
+
+/**
  *  Allows to recover data into inputs when you go back in sequence 
  */
 async function RecoverFieldsData() {

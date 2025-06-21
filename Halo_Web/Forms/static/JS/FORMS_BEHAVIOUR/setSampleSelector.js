@@ -1,8 +1,12 @@
 /**
+ * @module FORMS_BEHAIVOUR
+ */
+
+/**
  * Configure the Sample selector in Sequences forms
  */
 async function setSampleSelector(){
-    const DATA= await fetchSecureFile("GET","user/list/sample")
+    const DATA= fetchSecureFile("GET","user/list/sample")
     //Make a dict with only the source id and its name
     const sourceSelector=document.querySelector('select')
     sourceSelector.innerHTML=''

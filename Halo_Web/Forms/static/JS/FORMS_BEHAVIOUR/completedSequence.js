@@ -1,4 +1,8 @@
 /**
+ * @module FORMS_BEHAIVOUR
+ */
+
+/**
  * Changes realized when the las sequence form is submited
  * @param {Number} ACT_STEP - Actual Step of sequence 
  */

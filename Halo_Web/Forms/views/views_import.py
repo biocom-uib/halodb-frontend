@@ -2,6 +2,7 @@ import json
 import requests
 import os
 import ast
+import re
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.staticfiles import finders
@@ -15,8 +16,11 @@ from django.contrib import messages
 from django.conf import settings
 from django.core.mail import send_mail
 from urllib.parse import unquote
-import re
+from dotenv import load_dotenv
+from pathlib import Path
 
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(os.path.join(BASE_DIR, '.env'))
 
-URL="https://biocom.uib.es/halodb/"
+URL=os.getenv('DB_PATH')

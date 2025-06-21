@@ -1,4 +1,8 @@
 /**
+ * @module BASIC
+ */
+
+/**
  * Adjust the path used in static files with the actual envior
  * @param {*} path URL we want to use
  * @returns Adjusted URL

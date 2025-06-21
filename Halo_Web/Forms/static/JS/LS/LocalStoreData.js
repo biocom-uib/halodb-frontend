@@ -1,4 +1,8 @@
 /**
+ * @module LS
+ */
+
+/**
  * Store the actual form data in LocalStorage in JSONStiring form
  * @param {*} step - Actual step. Used as a part of ID
  * @param {boolean} isSample - Helps to detect if it's a sample or a sequence step

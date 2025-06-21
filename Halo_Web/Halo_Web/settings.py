@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-
+from dotenv import load_dotenv
 import os
 
 #
@@ -24,8 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-)0mp9_7nxcqlp^__$l_^2xiamft0_05p=h@(#5^_2ld(20-2c1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DJANGO_ENV= 'dev'
-DEBUG = DJANGO_ENV=='dev'
+load_dotenv(os.path.join(BASE_DIR, '.env'))
+DJANGO_ENV= os.getenv('ENV')
+DEBUG = DJANGO_ENV=='DEV'
 
 ALLOWED_HOSTS = ["bioinfo.uib.es/halophile",'127.0.0.1']
 

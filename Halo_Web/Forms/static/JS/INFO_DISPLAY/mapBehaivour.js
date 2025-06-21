@@ -1,4 +1,8 @@
 /**
+ * @module INFO_DISPLAY
+ */
+
+/**
  * Initialize a map with the coordenates introducid
  * @param {Number} lat 
  * @param {Number} lon 

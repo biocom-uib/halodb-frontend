@@ -1,18 +1,23 @@
 /**
+ * @module PROFILE
+ */
+
+/**
  * Generate a container with a link inside a container
  * @param {string} name - Link name 
  * @param {string} href - Path to go
- * @returns 
+ * @returns {HTMLDivElement} container with a koma button
  */
 function generateModalButton(name,href){
     let colors
-    if(COLOR_DICT[name])
-        colors=COLOR_DICT[name].split(" ")
     const container=document.createElement("div")
     const button=document.createElement("a")
+    
+    if(COLOR_DICT[name]) 
+        colors=COLOR_DICT[name].split(" ")
+
     container.classList.add('col')
-    if(colors)
-        button.classList.add('btn',colors[0],colors[1])
+    colors && button.classList.add('btn',colors[0],colors[1])
     button.href=generatePath(href)
     button.innerText=name
     button.addEventListener("click",()=>{

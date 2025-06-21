@@ -1,4 +1,8 @@
 /**
+ * @module LS
+ */
+
+/**
  * Remove all data stored in LS unless the env
  */
 function restoreStorage(){

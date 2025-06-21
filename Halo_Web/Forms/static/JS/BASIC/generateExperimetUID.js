@@ -1,4 +1,16 @@
-CLASSIFICADORS={
+/**
+ * @module BASIC
+ */
+
+/**
+ * Return an UID of the sample
+ * @param {Number} source_id 
+ * @param {Number} id 
+ * @param {String} table 
+ * @returns {String} UID
+ */
+function generarClasificador(source_id, id, table) {
+  CLASSIFICADORS={
     "RAW READS" : "RR",
     "TRIMMED READS" : "TR",
     "CONTIGS" : "CO",
@@ -9,8 +21,7 @@ CLASSIFICADORS={
     "PEPTIDES" : "PE",
     "SINGLE CELL GENOME" : "SC",
     "PLASMID" : "PL",
-}
-function generarClasificador(source_id, id, table) {
+  }
   function toBase36Padded(num) {
     return num.toString(36).padStart(4, '0');
   }

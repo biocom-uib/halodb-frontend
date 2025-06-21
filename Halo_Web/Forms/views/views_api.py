@@ -137,12 +137,11 @@ def api_get_calls(request, query_params):
 
     except requests.exceptions.RequestException as e:
         return JsonResponse({"error": "Connection error to external API", "details": str(e)}, status=500)
-    
+
+@csrf_exempt    
 def api_get_calls_simple(request, query_params):
     """
     Send a GET request to an external API and return the response as JSON.
-
-    Users must be authenticated via session token.
 
     Args:
         request (HttpRequest): The incoming HTTP request.
@@ -153,6 +152,7 @@ def api_get_calls_simple(request, query_params):
     """
 
     full_url = f"{URL}{unquote(query_params)}"
+
 
     try:
         print(full_url)

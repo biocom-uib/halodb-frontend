@@ -1,4 +1,8 @@
 /**
+ * @module SAMPLE
+ */
+
+/**
  * Insert & show informative modal about Sample insert. If the Sample has been uploaded
  * correctly, they would show a confirmation msg and allow to select a sequence
  * @param {string} ttl - Tittle of the modal
@@ -9,10 +13,10 @@ async function configureModal(ttl,msg,success){
     
     const element = await generateModal()
     
-    const modalTtl=element.getElementsByClassName("modal-title")[0]
-    const modalMsg=element.getElementsByClassName("modal-body")[0]
-    const modalFooterBtns=element.getElementsByClassName("modal-footer")[0].getElementsByTagName("button")
-    //element.id=modalId
+    const modalTtl=element.querySelector(".modal-title")
+    const modalMsg=element.querySelector(".modal-body")
+    const modalFooterBtns=element.querySelector(".modal-footer").querySelectorAll("button")
+
     modalTtl.innerText=ttl
 
     modalMsg.innerText=msg

@@ -1,4 +1,8 @@
 /**
+ * @module PROFILE
+ */
+
+/**
  * Allows to create a card for each sample the user has
  * @param {Object} element 
  * @param {string} rowId 

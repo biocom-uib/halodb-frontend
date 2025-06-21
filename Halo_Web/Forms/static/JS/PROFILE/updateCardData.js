@@ -1,4 +1,8 @@
 /**
+ * @module PROFILE
+ */
+
+/**
  * Set the element information to the card 
  * @param {HTMLElement} container 
  * @param {Object} element 

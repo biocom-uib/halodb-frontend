@@ -22,13 +22,14 @@ urlpatterns = [
     path('registration/logout/',logout_view,name="logout"),
     path('upload/<str:table>',api_post_calls,name="api_post"),
     path('mySamples/<int:sample_id>/<str:step_name>',get_step_info,name="mySamples"),
-    path('api/get/<path:query_params>', api_get_calls, name='api_get_calls'),
+    path('api/get/public/<path:query_params>', api_get_calls_simple, name='api_get_calls_simple'),
     path('api/get/<path:query_params>', api_get_calls, name='api_get_calls'),
     path('api/put_file/<path:src>', api_put_file, name='api_put_file'),
     path('api/get_file/<path:src>', api_get_file, name='api_get_file'),
     path('api/put/<path:src>', api_put_calls, name='api_put_file'),
     path('secure-static/<path:filename>/', get_static_file, name='secure_static'),
     path('infoDisplay/<path:filename>',load_info_display,name='load_info_display'),
-    path('formUsability',load_usability_form,name='usability')
+    path('formUsability',load_usability_form,name='usability'),
+    path('filter',load_filter,name='filter')
 ]
 

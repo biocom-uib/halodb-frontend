@@ -1,3 +1,11 @@
+/**
+ * @module FORMS_BEHAIVOUR
+ */
+
+/**
+ * Configurates an intruced Modal to show it as a Save Modal
+ * @param {HTMLElement} modal 
+ */
 function configureSaveModal(modal){
     if(modal.hasAttribute("data-set")){
         const modalBody=modal.querySelector(".modal-body")
@@ -30,6 +38,10 @@ function configureSaveModal(modal){
     }   
 }
 
+/**
+ * Configurates an intruced Modal to show it as a Next Modal
+ * @param {HTMLElement} modal 
+ */
 function configureNextModal(modal){
     if(!modal.hasAttribute("set")){
         const modalBody=modal.querySelector(".modal-body")

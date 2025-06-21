@@ -1,4 +1,11 @@
-document.getElementById("usability-form").addEventListener("submit", function (e) {
+/**
+ * @module External
+ */
+
+/**
+ * init Usability Form Behaiviour
+ */
+function initUsabilityForm(){document.getElementById("usability-form").addEventListener("submit", function (e) {
       e.preventDefault();
 
       let output = "<h5>Resultados:</h5><ul class='list-group'>";
@@ -20,4 +27,4 @@ document.getElementById("usability-form").addEventListener("submit", function (e
       }
 
       document.getElementById("resultados").innerHTML = output;
-    });
+    });}

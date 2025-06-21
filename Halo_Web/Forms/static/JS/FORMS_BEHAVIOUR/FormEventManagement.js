@@ -1,4 +1,8 @@
 /**
+ * @module FORMS_BEHAIVOUR
+ */
+
+/**
  * Controll all the changes according to load next sequences forms and detect if there 
  * are more elements to show or not
  */

@@ -1,4 +1,8 @@
 /**
+ * @module LS
+ */
+
+/**
  * Removes the Forms Sequence steps variables
  */
 function removeSteps(){

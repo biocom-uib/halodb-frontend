@@ -1,4 +1,8 @@
 /**
+ * @module PROFILE
+ */
+
+/**
  * Fill sampleModal with element data
  * @param {HTMLElement} element - Element that conatins displayable data
  * @param {HTMLElement} container -
@@ -22,6 +26,6 @@ function fillSampleCard(element,container,sampleModal){
   //Delete previous content
   modalBody.innerHTML=""
   //Configure classes(Maybe can be removed)
-  modalBody.appendChild(fillDataContainer(element))     
+  modalBody.appendChild(fillDataContainer(Object.entries(element)))     
 }
 

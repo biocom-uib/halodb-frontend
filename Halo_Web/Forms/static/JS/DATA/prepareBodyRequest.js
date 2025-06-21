@@ -1,4 +1,8 @@
 /**
+ * @module DATA
+ */
+
+/**
  * Change Date format to be compatible with BD
  * @param {Object} item Item to adapt
  * @param {Array} result list of Items 

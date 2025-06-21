@@ -1,3 +1,12 @@
+/**
+ * @module INFO_DISPLAY
+ */
+
+/**
+ * Generate a list of leaf nodes pending of a parent node
+ * @param {Object} parent 
+ * @returns -1 if error
+ */
 async function showLeafNode(parent){
     const koma=localStorage.getItem("koma")
     const listContainer=document.getElementById("appendNodes").querySelector("ul")
@@ -31,6 +40,10 @@ async function showLeafNode(parent){
     });
 }
 
+/**
+ * Shows only the actualls parent node of the most recent step
+ * @param {Object} parent 
+ */
 function updateParentList(parent){
     const parentContainer=document.getElementById("appendParentNodes").querySelector("ul")
     parentContainer.innerHTML=""

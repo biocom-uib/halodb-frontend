@@ -1,17 +1,14 @@
 /**
+ * @module DATA
+ */
+
+/**
  * Works as a API POST call. Returns data from the External API & from the static files
  * @param {string} table - Objective where make the call.
  * @returns {*} The result of the API call  
  */
-const FNAME_DICC={
-    "rreads":"rrname",
-    "treads":"trname",
-    "pgenes":"pgenesname",
-    "assembled":"assname"
-}
-const STATIC_STEPS=["Sample","Profile"]
 async function uploadOperation(table,id=null,route="upload") {
-
+    const STATIC_STEPS=["Sample","Profile"]
     const step= STATIC_STEPS.includes(table) ? table:localStorage.getItem("actualStep") 
     const post_body=prepareBodyRequest(step,id,table==="PREDICTED GENES") 
     const header ={"Content-Type": "application/json"}
@@ -26,8 +23,8 @@ async function uploadOperation(table,id=null,route="upload") {
     );
 
     if (!response.ok) {
-        configureModal("Unexpected Error!","Youre sampled could'nt be registered in"+
-            " HaloFilesDB. try it later and if this errors persist, please"+
+        configureModal("Unexpected Error!",`Your ${table} could'nt be registered in`+
+            " HaloFilesDB. Try it later and if this errors persist, please"+
             " contact with an adminstrator",false)
         return -1;
     }
@@ -41,7 +38,12 @@ async function uploadOperation(table,id=null,route="upload") {
         uploadFile(forms,stepID,table)
     return PARSED_RESPONSE.message ? PARSED_RESPONSE.message : PARSED_RESPONSE        
 }
-
+/**
+ * Upload Files into backend DB
+ * @param {HTMLFormElement} forms 
+ * @param {Number} id 
+ * @param {String} table 
+ */
 function uploadFile(forms,id,table){
     const inputFiles=forms.querySelectorAll('input[type="file"]')
     inputFiles.forEach(async element => {

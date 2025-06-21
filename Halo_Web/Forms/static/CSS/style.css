@@ -17,7 +17,8 @@
   background-color: var(--secondary);
   color: var(--main_font);
 }
-#rightZone .container{
+#rightZone .container,
+#filtroOffcanvas{
     color: var(--main_font);
   background-color: var(--main);
 }
@@ -32,8 +33,28 @@ nav .container,
 
 #selectorsContainer,
 #contenedorForm,
-#sampleForm .accordion-body .container{
+#sampleForm .accordion-body .container
+{
   background: none ;
+}
+#filterAccordion .accordion-item{
+  background: var(--main);
+  border-color: var(--main_font);
+  border-width: 0.05rem;
+}
+#filterAccordion .accordion-button{
+  background-color: var(--contrast_color);
+  color: var(--main_font);
+}
+
+#filterAccordion .accordion-button::after{
+  background-color: var(--contrast_color);
+  color: var(--main_font);
+}
+
+#filterAccordion .accordion-body{
+  color: var(--main_font);
+  background: none;
 }
 
 #profileSamples a{

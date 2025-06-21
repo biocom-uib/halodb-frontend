@@ -1,32 +1,9 @@
+/**
+ * @module INFO_DISPLAY
+ */
+
 let PARENT_NODES
 
-INFO_DISPLAY={
-    public:(value)=> {
-        const container=document.getElementById("public").parentElement
-        if (value=="0"){
-            const span=container.querySelector("span")
-            span.style.color="red"
-            return "NO"
-        }else{
-            container.querySelector("button").setAttribute("hidden",null)
-            return "YES"
-        }
-    },
-    created: (raw)=>raw.replace('T',' '),
-    updated: (raw)=>raw.replace('T',' '),
-    owned: (value)=>"You"
-}
-
-NOT_DISPLAY_DATA=["shared_by_group",
-                    "shared_by_others",
-                    "group_id",
-                    "group_relation",
-                    "group_name",
-                    "id",
-                    "access_mode",
-                    "project_id",
-                    "is_public",
-                    "user_id"]
 /**
  * Initalize the infoDispllay Page Basic Data
  */
@@ -61,25 +38,20 @@ async function displayStepInformation(id,table) {
         localStorage.removeItem("koma")
     }
     const lastParent=PARENT_NODES[PARENT_NODES.length-1]
-    const stepDataContainer=document.getElementById("stepDataContainer")
+   
     const stepList=await fetchSecureFile("GET",`user/list/${table}`)
-    const PARSED = Object.entries(stepList.find(obj => obj.id == id));
-    stepDataContainer.innerHTML=""
-    PARSED.forEach(([key,value]) =>{
-        const stepData=document.getElementById(key)
-        stepData ?
-            stepData.innerText= INFO_DISPLAY[key] ? INFO_DISPLAY[key](value) : value 
-            : stepDataContainer.appendChild(!NOT_DISPLAY_DATA.includes(key) &&
-                                                            generateInputRO(key,value))               
-    })
-    koma && localStorage.setItem("koma",document.getElementById("koma").value)
-    const parenNode={
+
+    updateStepDataContainer(Object.entries(stepList.find(obj => obj.id == id)))
+
+    if(!koma && document.getElementById("koma"))
+        localStorage.setItem("koma",document.getElementById("koma").value)
+    const parentNode={
         id:id,
         table:table,
-        UID:table==="SAMPLE" ? resultado.name 
+        UID:table==="SAMPLE" ? document.getElementById("name").value 
                             : generarClasificador(lastParent.id,id,table)
     }
-    PARENT_NODES.push(parenNode)
+    PARENT_NODES.push(parentNode)
     showLeafNode(PARENT_NODES[PARENT_NODES.length-1]) 
 }
 /**
@@ -105,4 +77,50 @@ function generateInputRO(key,value){
     container.appendChild(label)
     container.appendChild(input)
     return container
+}
+
+
+/**
+ * Create/Fill Step information with fetched data
+ * @param {Array} obejectiveData 
+ */
+function updateStepDataContainer(obejectiveData){
+    const INFO_DISPLAY={
+    public:(value)=> {
+        const container=document.getElementById("public").parentElement
+        if (value=="0"){
+            const span=container.querySelector("span")
+            span.style.color="red"
+            return "NO"
+        }else{
+            container.querySelector("button").setAttribute("hidden",null)
+            return "YES"
+        }
+    },
+    created: (raw)=>raw.replace('T',' '),
+    updated: (raw)=>raw.replace('T',' '),
+    owned: (value)=>"You"
+    }
+
+    const NOT_DISPLAY_DATA=["shared_by_group",
+                    "shared_by_others",
+                    "group_id",
+                    "group_relation",
+                    "group_name",
+                    "id",
+                    "access_mode",
+                    "project_id",
+                    "is_public",
+                    "user_id"]
+
+    const stepDataContainer=document.getElementById("stepDataContainer")
+    stepDataContainer.innerHTML=""
+
+    obejectiveData.forEach(([key,value]) =>{
+        const stepData=document.getElementById(key)
+        stepData ? stepData.innerText = INFO_DISPLAY[key] ? INFO_DISPLAY[key](value) 
+                                                        : value 
+                : !NOT_DISPLAY_DATA.includes(key) 
+                && stepDataContainer.appendChild(generateInputRO(key,value))               
+    })
 }

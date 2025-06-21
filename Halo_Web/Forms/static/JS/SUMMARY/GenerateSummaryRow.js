@@ -1,5 +1,22 @@
+/**
+ * @module SUMMARY
+ */
+
+/**
+ * Returns a new Summary Row contianer
+ * @param {HTMLElement} field 
+ * @returns {HTMLDivElement} Summary row
+ */
 function GenerateSummaryRow(field){
-    console.log("GenerateSummaryRow: Recibed par = "+field)
+    const typeSwitch={
+        "select-one":(field)=>{
+            value = field.id == "koma" ? value=document.createElement("span")
+                                    : value=document.createElement("span")
+            field.id != "koma" ? generateOptions(value,JSON.parse(field.options))
+                                : value.innerText=field.value
+        },
+        "radio":(field) =>value.classList.add("form-check-input")
+    }
     const row=document.createElement("div")
     const container_title=document.createElement("div")
     const container_value=document.createElement("div")
@@ -12,23 +29,8 @@ function GenerateSummaryRow(field){
     
     title.innerText=field.id
     title.classList.add("col-form-label")
-    if(field.type=="select-one"){
-        if(field.id=="koma"){
-            value=document.createElement("span")
-            value.innerText=field.value
-        }else{
-            value=document.createElement("select")
-            generateOptions(value,JSON.parse(field.options))
-            value.children=JSON.parse(field.options)
-        }
-        
-    }
-    else if(field.type=="radio"){
-        value.classList.add("form-check-input")
-    }
-    else{
-        value.classList.add("form-control")
-    }
+    typeSwitch[field.type] ? typeSwitch[field.type](field) 
+                            : value.classList.add("form-control")
 
     value.id=field.id
     value.name=field.id
@@ -46,14 +48,17 @@ function GenerateSummaryRow(field){
     return row;
 }
 
-function generateOptions(item,list){
-    var select;
-    
+/**
+ * Generate Options for a select item
+ * @param {HTMLSelectElement} select 
+ * @param {Array} list 
+ */
+function generateOptions(select,list){
+    var option;
     list.forEach(element => {
-        console.log(element)
-        select=document.createElement("option");
-        select.value=element.value;
-        select.innerText=element.text;
-        item.appendChild(select)
+        option=document.createElement("option");
+        option.value=element.value;
+        option.innerText=element.text;
+        select.appendChild(option)
     });
 }

@@ -1,4 +1,8 @@
 /**
+ * @module FORMS_BEHAIVOUR
+ */
+
+/**
  * Allows to move backwards to an specific previous step.
  * @param {Number} step - New Logical Possition.
  */
@@ -7,7 +11,6 @@ async function goBack(step) {
   
   const etapaLabel=document.getElementById("Etapa")
   const ACT_STEP = localStorage.getItem("actualStep")
-  const submit=document.getElementById("submit")
   
   //You can't go back to the same step
   if (ACT_STEP == step)

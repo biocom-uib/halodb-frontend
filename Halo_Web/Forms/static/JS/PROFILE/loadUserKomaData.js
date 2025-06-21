@@ -1,6 +1,10 @@
 /**
+ * @module PROFILE
+ */
+
+/**
  * Generate a grid container. Each column will represent each step of entried koma
- * @param {*} koma - Kind of material selected
+ * @param {String} koma - Kind of material selected
  */
 async function loadUserKomaData(koma){
 
@@ -37,6 +41,7 @@ async function loadUserKomaData(koma){
         generateSourceSelect(stepContentSelector,source_list)
     }
 }
+
 /**
  * Filters the list of sequence step entried and returns the list of id according to this rules:
  *  - First Sequence Step: Check koma value
@@ -44,21 +49,27 @@ async function loadUserKomaData(koma){
  * @param {Array} source_id - List of previous validated ids (sources)
  * @param {String} koma - Kind of material selected
  * @param {String} seq_step - Actual sequence step
- * @returns 
+ * @returns {Array} List of filtered experiments
  */
 
 async function filterExperiments(source_id,koma,seq_step) {
-    const USER_EXPERIMENTS= await fetchSecureFile("GET","user/list/"+seq_step)
+    const USER_EXPERIMENTS= fetchSecureFile("GET","user/list/"+seq_step)
     let src_list=[]
-    const filteredList=USER_EXPERIMENTS.filter((experiment)=>{(experiment.koma && experiment.koma==koma) || checkSrcId(seq_step==="PREDICTED GENES",source_id,experiment)})
     USER_EXPERIMENTS.forEach(experiment=>{
-        if((experiment.koma && experiment.koma==koma) || checkSrcId(seq_step==="PREDICTED GENES",source_id,experiment)){
-            src_list.push(experiment.id) 
-        }
+        const komaMatch=experiment.koma && experiment.koma==koma
+        const srcIdMatch=checkSrcId(seq_step==="PREDICTED GENES",source_id,experiment)
+        if(komaMatch || srcIdMatch) src_list.push(experiment.id) 
     })
     return src_list   
 }
 
+/**
+ * Evalute if the source id of a Sample is equals an input source_id
+ * @param {boolean} isPredGens 
+ * @param {Number} source_id 
+ * @param {Object} experiment 
+ * @returns {boolean} If inserted source_id is valid
+ */
 function checkSrcId(isPredGens,source_id,experiment){
 return isPredGens ? (experiment.source_id_contigs==source_id || 
                                     experiment.source_id_genome==source_id || 

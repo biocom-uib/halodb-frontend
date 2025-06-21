@@ -1,3 +1,7 @@
+/**
+ * @module SVG
+ */
+
 const PAUSED_COLOR = "grey";
 
 const ACTIVE_COLOR = "green";
@@ -37,8 +41,8 @@ async function configureSVG(svg,step,stepName) {
 }
 /**
  * Allows to modify the color of concret step
- * @param {*} id 
- * @param {*} color 
+ * @param {Number} id 
+ * @param {String} color 
  */
 function UpdateColor(id, color) {
   let svg = document.getElementById(id);

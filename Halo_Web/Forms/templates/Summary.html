@@ -5,29 +5,29 @@
     HaloFile WebApp 
 {% endblock %}
     {% block content %}
-    <main>
-        <section>
-            <div class="container d-flex justify-content-center">
-                <header>
-                    <h1>HaloPhile Summary</h1>
-                </header>
+<main id="summary">
+    <section>
+        <div class="container d-flex justify-content-center">
+            <header>
+                <h1>HaloPhile Summary</h1>
+            </header>
+        </div>
+    </section>
+    <section>
+        <div class="container d-flex justify-content-center">
+            <div id="SummaryCardNav" class="card">
+                <nav>
+                    <ul id="Tabs" class="nav nav-tabs">
+                    </ul>
+                </nav>
             </div>
-        </section>
-        <section>
-            <div class="container d-flex justify-content-center">
-                <div id="SummaryCardNav" class="card">
-                    <nav>
-                        <ul id="Tabs" class="nav nav-tabs">
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </section>
-        <section>
-            <div id="SummaryCardData" class="card d-flex"></div>
-        </section>
+        </div>
+    </section>
+    <section>
+        <div id="SummaryCardData" class="card d-flex"></div>
+    </section>
 
-            <a href="{% url 'profile' %}" class="btn btn-primary">Go Main Page</a>
+        <a href="{% url 'profile' %}" class="btn btn-primary">Go Main Page</a>
 
-    </main>    
-    {% endblock %}
+</main>    
+{% endblock %}

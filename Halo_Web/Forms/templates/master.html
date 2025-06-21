@@ -14,14 +14,14 @@
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body style="height: 100%;">
-    <header style="height: 10dvh;">
-      <div class="container d-flex justify-content-between  align-items-center">
+    <header class="w-100" style="min-height: 10dvh;">
+      <div class="d-flex justify-content-between  align-items-center">
         <a href="{% url 'main' %}">
           <img src="{% static 'src/img/icon.png' %}" alt="HaloPhiles Web Tool Logo" style="max-width: 4dvw; height: auto;" class="p-1">
         </a>
         
         <h1>HaloPhile Main Page</h1>
-        <a class="btn btn-light" id="headerBtn" href="{% url 'login' %}">Log In</a>
+        <a class="btn btn-light me-4 mt-2" id="headerBtn" href="{% url 'login' %}">Log In</a>
       </div>
           <div id="toast-container" class="end-0" style="position: fixed; z-index: 100;"></div>
     </header>
@@ -49,11 +49,14 @@
     <script src="{% static 'JS/DATA/fetchOperations.js' %}"></script>
     <script src="{% static 'JS/DATA/uploadOperation.js' %}"></script>
     <script src="{% static 'JS/DATA/prepareBodyRequest.js' '%}"></script>
+    
+    <script src="{% static 'JS/EXTERNAL/usabilityForm.js' '%}"></script>
+    
+    <script src="{% static 'JS/FILTER/initFilter.js' '%}"></script>
 
     <script src="{% static 'JS/FORMS_BEHAVIOUR/FormEventManagement.js' '%}"></script>
     <script src="{% static 'JS/FORMS_BEHAVIOUR/completedSequence.js' '%}"></script>
     <script src="{% static 'JS/FORMS_BEHAVIOUR/getFileName.js'%}"></script>
-    <script src="{% static 'JS/FORMS_BEHAVIOUR/isLastChanges.js' '%}"></script>
     <script src="{% static 'JS/FORMS_BEHAVIOUR/setFormsEnv.js'%}"></script>
     <script src="{% static 'JS/FORMS_BEHAVIOUR/setSampleSelector.js' '%}"></script>
     <script src="{% static 'JS/FORMS_BEHAVIOUR/goBack.js' '%}"></script>
@@ -81,21 +84,15 @@
     
 
     <script src="{% static 'JS/SUMMARY/LoadSummary.js' %}"></script>
-    <script src="{% static 'JS/SUMMARY/GenerateNavItems.js' %}"></script>
     <script src="{% static 'JS/SUMMARY/GenerateSummaryRow.js' %}"></script>
   
     <script src="{% static 'JS/SVG/AddStep.js' '%}"></script>
-    <script src="{% static 'JS/SVG/configureSVG.js' '%}"></script>
-    <script src="{% static 'JS/SVG/RemoveStep.js' '%}"></script>
-    <script src="{% static 'JS/SVG/UpdateColor.js' '%}"></script>
-    <script src="{% static 'JS/SVG/DeleteSteps.js' '%}"></script>
   
     <script src="{% static 'JS/SAMPLE/configureModal.js' '%}"></script>
     <script src="{% static 'JS/SAMPLE/generateKomaModalBody.js' '%}"></script>
     <script src="{% static 'JS/SAMPLE/initSample.js' '%}"></script>
 
     <script src="{% static 'JS/UPDATE_FORM/LoadNextForm.js' '%}"></script>
-    <script src="{% static 'JS/UPDATE_FORM/detectKomaChanges.js' '%}"></script>
     <script src="{% static 'JS/UPDATE_FORM/getSelectItems.js' %}"></script>
     <script src="{% static 'JS/UPDATE_FORM/hiddenFields.js' %}"></script>
     <script src="{% static 'JS/UPDATE_FORM/showToast.js' %}"></script>

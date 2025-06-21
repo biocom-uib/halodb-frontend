@@ -1,10 +1,14 @@
 /**
+ * @module PROFILE
+ */
+
+/**
  * Generate a HTMLDivElement whith one row of entry data JSON
  * @param {JSON} data - JSON object 
  * @returns HTMLDivElement with data information
  */
-const FILE_INPUTS=["rreads","rreads2","treads","assembled","pgenes"]
 function fillDataContainer(data,table){
+  const FILE_INPUTS=["rreads","rreads2","treads","assembled","pgenes"]
     let keyCol,valCol
     const container=document.createElement("div")
     container.classList.add(
@@ -19,24 +23,18 @@ function fillDataContainer(data,table){
     );  
     let id    
   //Add all element data into the Modal Card Body
-  Object.entries(data).forEach(([key, value]) => {
+  data.forEach(([key, value]) => {
+    const isId=key=="id"
       keyCol=document.createElement("div")
       keyCol.classList.add("col")
       keyCol.innerText=paramDict[key] ? paramDict[key] : key
 
-      if(key=="id")
-        id=value
+      if(isId) id = value
       valCol=document.createElement("div")
       keyCol.classList.add("col")
-      if(FILE_INPUTS.includes(key) && value)
-        valCol.append(addDownloadBtn(key,id,table))
-      else if(key=="public")
-        valCol.innerText=value==1 ? "Yes" : "No"
-      else if (value)
-        valCol.innerText=value
-      else
-        valCol.innerText="None"
-
+      if(FILE_INPUTS.includes(key) && value) valCol.append(addDownloadBtn(key,id,table))
+      valCol.innerText= key =="public" ? value==1 ? "Yes" : "No"
+                                        : value ? value : "None"
       container.append(keyCol)
       container.append(valCol)      
     });

@@ -1,4 +1,8 @@
 /**
+ * @module FORMS_BEHAIVOUR
+ */
+
+/**
  *  Set up necessary records, like actStep and the inital SVG
  */
 let source_list
@@ -51,7 +55,6 @@ async function setFormsEnv() {
   await setSampleSelector()
   //Add fileName detect event
   addFileInputEvent();
-  const sampleSelect=document.getElementById("sourceSample")
 
   const element = await generateModal()
   }

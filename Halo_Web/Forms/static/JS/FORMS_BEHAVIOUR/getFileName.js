@@ -1,4 +1,8 @@
 /**
+ * @module FORMS_BEHAIVOUR
+ */
+
+/**
  * Detect when a file is uploaded in a form and set the associated "fileName" input 
  */
 function addFileInputEvent(){
