@@ -1,5 +1,5 @@
 from .views_import import *
-
+from .responseController import responseController
 
 @csrf_exempt
 def api_post_calls(request, table):
@@ -19,27 +19,15 @@ def api_post_calls(request, table):
     if not token:
         return JsonResponse({"status": "error", "message": "User not authenticated"}, status=401)
 
-    body_unicode = request.body.decode('utf-8')
-    body_unicode = json.loads(body_unicode)
+    body_unicode = json.loads(request.body.decode('utf-8'))
 
     full_url = f"{URL}{table.upper()}"
-    print(body_unicode)
     headers = {"Authorization": f"Bearer {token}"}
 
     try:
         response = requests.post(full_url, headers=headers, json=body_unicode)
 
-        if response.status_code == 200:
-            return JsonResponse(response.json())
-        else:
-            err = response.json()
-            print(err)
-            print(response)
-            return JsonResponse(
-                {"error": err, "status_code": response.status_code},
-                status=response.status_code
-            )
-
+        responseController(response,"Failed in API POST!!")
     except requests.exceptions.RequestException as e:
         return JsonResponse({"error": "Connection error to external API", "details": str(e)}, status=500)
 
@@ -56,23 +44,11 @@ def api_put_calls(request, src):
     body_unicode = json.loads(body_unicode)
 
     full_url = f"{URL}{src}"
-    print(full_url)
-    print(body_unicode)
     headers = {"Authorization": f"Bearer {token}"}
 
     try:
         response = requests.put(full_url, headers=headers, json=body_unicode)
-
-        if response.status_code == 200:
-            return JsonResponse(response.json())
-        else:
-            err = response.json()
-            print(err)
-            print(response)
-            return JsonResponse(
-                {"error": err, "status_code": response.status_code},
-                status=response.status_code
-            )
+        responseController(response,"Failed in API POST!!")
 
     except requests.exceptions.RequestException as e:
         return JsonResponse({"error": "Connection error to external API", "details": str(e)}, status=500)
@@ -124,16 +100,8 @@ def api_get_calls(request, query_params):
     headers = {"Authorization": f"Bearer {token}"}
 
     try:
-        print(full_url)
         response = requests.get(full_url, headers=headers)
-
-        if response.status_code == 200:
-            return JsonResponse(response.json(), safe=False)
-        else:
-            return JsonResponse(
-                {"error": "External API error", "status_code": response.status_code},
-                status=response.status_code
-            )
+        responseController(response,"Failed in API POST!!")
 
     except requests.exceptions.RequestException as e:
         return JsonResponse({"error": "Connection error to external API", "details": str(e)}, status=500)
@@ -155,16 +123,8 @@ def api_get_calls_simple(request, query_params):
 
 
     try:
-        print(full_url)
         response = requests.get(full_url)
-
-        if response.status_code == 200:
-            return JsonResponse(response.json(), safe=False)
-        else:
-            return JsonResponse(
-                {"error": "External API error", "status_code": response.status_code},
-                status=response.status_code
-            )
+        responseController(response,"Failed in API POST!!")
 
     except requests.exceptions.RequestException as e:
         return JsonResponse({"error": "Connection error to external API", "details": str(e)}, status=500)

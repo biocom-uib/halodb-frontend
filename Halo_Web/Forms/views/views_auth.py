@@ -21,7 +21,7 @@ def profile(request):
   url=URL+"user/"
 
   response=requests.get(url,headers=headers)
-  userInf=response.json()["message"]
+  userInf=response.json()["data"]["message"]
   return render(request, "profile.html",{"user":userInf})
 
 def logout_view(request):

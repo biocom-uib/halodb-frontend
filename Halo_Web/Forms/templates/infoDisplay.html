@@ -17,9 +17,9 @@
                                 <div>
                                     Public?: <span id="public" style="color: green; font-weight: bold; ">Yes</span>
                                 </div>
-                                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" >
-                            Publish
-                        </button>
+                                <button id="publishBtn" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+                                    Publish
+                                </button>
                             </div>
                         </li>
                         <li class="list-group-item">Owner: <span id="owned" style="font-weight: bold;">User</span></li>
@@ -46,7 +46,7 @@
                             Use for Experiments
                     </button>
                     <button class="btn btn-success" hidden>Save</button>
-                    <button class="btn btn-secondary mr-2">
+                    <button id="editBtn" class="btn btn-secondary mr-2" hidden>
                         Edit <i class="bi bi-pencil-square"></i>
                     </button>
                     </div>

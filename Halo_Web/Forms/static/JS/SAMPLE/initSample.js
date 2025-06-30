@@ -28,7 +28,7 @@ async function initSample(){
         result=modalMsg[insertedData!=-1]
         configureModal(result.title,result.msg,insertedData!=-1)       
     });
-    
+    getSelectedItems(sampleForm.querySelectorAll("select"))
     //Change unit value label
     const ssizeunitSelect=document.getElementById("ssizeunit")
     ssizeunitSelect.addEventListener("change",()=>{

@@ -7,11 +7,14 @@
  */
 async function loadProfileData(){
     //Returns an array of SAMLPLEs in message field
-    const DATA= fetchSecureFile("GET","user/list/sample")
+    const DATA= await fetchSecureFile("GET","user/list/sample")
     restoreStorage()
     //Append a sampleCard for each sample
     DATA.forEach(element => {
-        addSampleCard(element,"profileSamples")
+        if (element.owned>0)
+            addSampleCard(element,"profileSamples")
+        else if(element.shared_by_group>0)
+            addSampleCard(element,"sharedSamples")
     });
 
     //Make a dict with only the source id and its name

@@ -14,7 +14,7 @@ function init(){
   //project:()=>{},
   "summary":()=> initSummary() ,
   "usability":()=>initUsabilityForm(),
-  "sample":()=> initSample(sampleElement)
+  "sample":()=> initSample()
   }
   const libraries=["https://unpkg.com/leaflet@1.9.4/dist/leaflet.css",
             "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"]

@@ -86,20 +86,27 @@ function generateInputRO(key,value){
  */
 function updateStepDataContainer(obejectiveData){
     const INFO_DISPLAY={
-    public:(value)=> {
-        const container=document.getElementById("public").parentElement
-        if (value=="0"){
-            const span=container.querySelector("span")
-            span.style.color="red"
-            return "NO"
-        }else{
-            container.querySelector("button").setAttribute("hidden",null)
-            return "YES"
+        public:(value)=> {
+            const container=document.getElementById("public").parentElement
+            if (value=="0"){
+                const span=container.querySelector("span")
+                span.style.color="red"
+                return "NO"
+            }else{
+                container.parentElement.querySelector("button").setAttribute("hidden",null)
+                return "YES"
+            }
+        },
+        created: (raw)=>raw.replace('T',' '),
+        updated: (raw)=>raw.replace('T',' '),
+        owned: (value)=>{
+            if(value==1) 
+                return "You"
+            else{
+                document.getElementById("publishBtn").setAttribute("hidden",null)
+                return "Others"
+            }
         }
-    },
-    created: (raw)=>raw.replace('T',' '),
-    updated: (raw)=>raw.replace('T',' '),
-    owned: (value)=>"You"
     }
 
     const NOT_DISPLAY_DATA=["shared_by_group",
@@ -117,6 +124,9 @@ function updateStepDataContainer(obejectiveData){
     stepDataContainer.innerHTML=""
 
     obejectiveData.forEach(([key,value]) =>{
+        const editBtn=document.getElementById("editBtn")
+        if(key==="access_mode" && value==="readwrite")
+            editBtn.removeAttribute("hidden")
         const stepData=document.getElementById(key)
         stepData ? stepData.innerText = INFO_DISPLAY[key] ? INFO_DISPLAY[key](value) 
                                                         : value 
