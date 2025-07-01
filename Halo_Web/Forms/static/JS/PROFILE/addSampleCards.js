@@ -7,7 +7,7 @@
  * @param {Object} element 
  * @param {string} rowId 
  */
-async function addSampleCard(element,rowId,sampleModal,experimentCard=null){
+async function addSampleCard(element,rowId,experimentCard=null,type){
     //Get the base html from static files
     const CARD=await fetchSecureFile("static","Profile/ProjectCard.html")
     const ROW=document.getElementById(rowId)
@@ -20,7 +20,7 @@ async function addSampleCard(element,rowId,sampleModal,experimentCard=null){
     container.innerHTML=CARD
     container.id=element.id
     
-    updateCardData(container,element)
+    updateCardData(container,element,type)
     
 }
 

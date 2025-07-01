@@ -5,7 +5,7 @@
  {% endblock %} 
 {% block content %}
 
-  <main id="profile">
+  <main id="profile" class="pb-5">
     <section id="userData" class="container d-flex justify-content-center p-3" style="background: none;">
       <form id="userDataForm" class="card" style="width: 87vw;">
         <div class="card-header">
@@ -40,7 +40,7 @@
       <h3 class="text-center"><strong>My Samples</strong></h3>
     </div>
     
-    <section id="userProjects" class="mt-5">
+    <section id="userProjects" class="pt-1">
       
       <div class="container justify-content-center p-3" style="background: none;">
         <div id="profileSamples" class="row d-flex justify-content-between row-cols-md-6 g-4">
@@ -56,12 +56,20 @@
         </div>
       </div>
     </section>
+    <div class="container" style="background: none;">
+      <h3 class="text-center"><strong>My Groups</strong></h3>
+    </div>
+    <section id="experimentsSection" class="pt-1">
+      <div class="container justify-content-center p-3" style="background: none;">
+        <div id="groupContainer" class="row d-flex justify-content-between row-cols-md-6 g-4"></div>
+      </div>
+    </section>
 
     <div class="container" style="background: none;">
       <h3 class="text-center"><strong>Shared with me</strong></h3>
     </div>
 
-    <section>
+    <section class="pt-1 pb-3">
       <div class="container justify-content-center p-3" style="background: none;">
         <div id="sharedSamples" class="row d-flex justify-content-between row-cols-md-6 g-4">
           <div class="col">
@@ -70,15 +78,6 @@
           </div>        
         </div>
       </div>
-    </section>
-      
-
-    <section id="experimentsSection" class="mt-5 ms-5">
-      
-      <ul id="myExperimentsList" class="nav nav-tabs"></ul>
-      <div id="expContainer" class="row">
-        
-      </div>    
     </section>
 
     <!--Modal-->

@@ -65,7 +65,10 @@ def register_user(request):
       for user in parsed_data:
 
         if user["uid"]==uid:
-          send_email(email,uid,user["registration_time"])
+          
+          send_email(email,"verification",{
+            "uid":uid,
+            "date":user["registration_time"]})
       messages.warning(request, 'To complete the register, please check your email and confirm the account')
       return redirect('login')
     else:

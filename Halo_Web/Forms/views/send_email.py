@@ -1,42 +1,45 @@
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+# Import necessary modules for sending emails and rendering templates
+from .views_import import *
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.conf import settings
 
-def send_email(destiny,uid,date):
-# Datos de tu cuenta
-    correo_origen = "halophiles.dev@gmail.com"
-    contraseña = "hmof ycdu mjht hvtq"
+# Define email templates and subjects for different email types
+EMAIL_TEMPLATES = {
+    "verification": {
+        "subject": "no-reply - Welcome to HaloFiles!",
+        "template": "emails/welcome.html",
+    },
+    "invitation": {
+        "subject": "no-reply - You've been invited to a group!",
+        "template": "emails/groupInvitation.html",
+    },
+}
 
-    # Crear el mensaje
-    mensaje = MIMEMultipart()
-    mensaje["From"] = 'HaloFile <no-reply@bioinfo.uib.es>'  # Nombre visible y dirección no-reply
-    mensaje["To"] = destiny
-    mensaje["Subject"] = "no-reply - Welcome to HaloFiles!"
-    mensaje["Reply-To"] = "no-reply@bioinfo.uib.es"  # Si alguien intenta responder, irá a esta dirección
+def send_email(destiny, email_type, context):
+    '''
+    Sends an HTML email to a specified recipient using a predefined template.
 
-    # Cuerpo del mensaje en HTML
-    cuerpo_html = f"""
-    <html>
-    <body>
-        <p>Welcome to HaloFiles!,</p>
-        <p>To continue, please activate your account with the next link <strong>App Service</strong>.</p>
-        <p>
-        <a href='http://bioinfo.uib.es/halophile/account/verify?uid={uid}&date={date}'>Activate account</a>
-        </p>
-        <p>Thanks!</p>
-    </body>
-    </html>
-    """
+    Parameters:
+    destiny (str): Recipient's email address.
+    email_type (str): The type of email to send. Must be a key in EMAIL_TEMPLATES.
+    context (dict): Context data to render into the email template.
 
-    mensaje.attach(MIMEText(cuerpo_html, "html"))
+    Returns:
+    None
+    '''
+    # Get the email configuration for the specified type
+    email_config = EMAIL_TEMPLATES.get(email_type)
+    
+    # Get the subject and template path
+    subject = email_config["subject"]
+    from_email = "HaloFile <no-reply@bioinfo.uib.es>"  # Sender's email
+    to = [destiny]  # Recipient's email in list form
 
-    try:
-        # Conexión con el servidor SMTP de Gmail
-        servidor = smtplib.SMTP("smtp.gmail.com", 587)
-        servidor.starttls()
-        servidor.login(correo_origen, contraseña)
-        servidor.sendmail(correo_origen, destiny, mensaje.as_string())
-        servidor.quit()
-        print("Correo enviado correctamente.")
-    except Exception as e:
-        print(f"Ocurrió un error: {e}")
+    # Render the HTML content using the provided context and template
+    html_content = render_to_string(email_config["template"], context)
+
+    # Create the email message with an HTML version
+    msg = EmailMultiAlternatives(subject, "", from_email, to)
+    msg.attach_alternative(html_content, "text/html")  # Attach the HTML content
+    msg.send()  # Send the email

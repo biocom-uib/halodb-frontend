@@ -1,4 +1,6 @@
 from .views_import import *
+from .responseController import responseController
+from .send_email import send_email
 
 def signup(request):
     template=loader.get_template('registration/register.html')
@@ -18,11 +20,7 @@ def get_user_data(request):
 
     response=requests.get(url,headers=headers)
 
-    if response.status_code == 200:
-        user_data = response.json()  # Obtener la respuesta en JSON
-        return JsonResponse({"status": "success", "user": user_data})
-    else:
-        return JsonResponse({"status": "error", "message": "No se pudo obtener la información del usuario"}, status=500)
+    return responseController(response=response,error_msg="Failed fetching user data!!!")
     
 def get_step_info(request,sample_id,step_name):
     token=request.session.get("auth_token")
@@ -32,19 +30,32 @@ def get_step_info(request,sample_id,step_name):
     
     url=URL+f"user/list/{step_name}/{sample_id}"
     headers={"Authorization":f"Bearer {token}"}
+    response = requests.get(url, headers=headers)
+    return responseController(response=response,error_msg="Failed fetching step info")
 
-    try:
-        # Hacer la petición GET a la API externa
-        response = requests.get(url, headers=headers)
-        print(f"url:{url}, response:{response.status_code}")
-        # Verificar si la respuesta es correcta (código 200)
-        if response.status_code == 200:
-            return JsonResponse(response.json())  # Devolver la respuesta de la API externa
-        else:
-            return JsonResponse(
-                {"error": "Error en la API externa", "status_code": response.status_code},
-                status=response.status_code
-            )
+def get_step_info(request,sample_id,step_name):
+    token=request.session.get("auth_token")
+
+    if not token:
+        return JsonResponse({"status":"error","message":"Usuario no autenticado"},status=401)   
     
-    except requests.exceptions.RequestException as e:
-        return JsonResponse({"error": "Error en la conexión a la API externa", "details": str(e)}, status=500)
+    url=URL+f"user/list/{step_name}/{sample_id}"
+    headers={"Authorization":f"Bearer {token}"}
+    response = requests.get(url, headers=headers)
+    return responseController(response=response,error_msg="Failed fetching step info")
+
+def send_group_invite(request,group_id,uid,email,group_name):
+    token=request.session.get("auth_token")
+
+    if not token:
+        return JsonResponse({"status":"error","message":"Usuario no autenticado"},status=401)   
+    
+    url=URL+f"group/{group_id}/invite/{uid}"
+    headers={"Authorization":f"Bearer {token}"}
+    response = requests.get(url, headers=headers)
+    if response.status_code==200:
+        send_email(email,"invitation",{
+            "id":uid,
+            "group":group_name
+        })
+    return responseController(response=response,error_msg="Failed fetching step info")

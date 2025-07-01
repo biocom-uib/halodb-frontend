@@ -94,7 +94,7 @@ footer{
   min-height: 5dvh;
 }
 main{
-  background-image: url("/static/src/img/background.webp");
+  background-image: url("/static/src/img/newBG.webp");
   background-size: cover;
 }
 main .container{

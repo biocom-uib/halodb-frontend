@@ -17,9 +17,9 @@ def responseController(response, error_msg):
         parsed_response = response.json()
         # If the response contains a 'data' key, return that data
         if "data" in parsed_response:
-            return JsonResponse(parsed_response["data"])
+            return JsonResponse(parsed_response["data"],safe=False)
         # Otherwise, return the entire parsed response
-        return JsonResponse(parsed_response)
+        return JsonResponse(parsed_response,safe=False)
     else:
         # If the response failed, return an error JSON with the status code
         return JsonResponse(

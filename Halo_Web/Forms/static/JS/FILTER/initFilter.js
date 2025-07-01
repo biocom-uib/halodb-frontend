@@ -11,6 +11,9 @@ async function initFilter(){
     setTextSearcher(document.getElementById("textFilterContainer"))
     setOffCanvasFilter("SAMPLE")
     showKomaSamples(sequences)
+    document.getElementById("textFilterContainer").querySelector("button").addEventListener('click',()=>{
+        filterSamples(document.getElementById("textFilterContainer").querySelector("input").value)
+    })
 }
 
 /**
@@ -122,4 +125,17 @@ async function updateFilterPage(table){
         experimentList.appendChild(listItem)
     })
     resultContianer.appendChild(experimentList)
+}
+
+async function filterSamples(inputText) {
+    const list=await fetchSecureFile('get',"public/sample")
+    const results = [];
+    const lowerInput = inputText.toLowerCase();
+
+    for (const item of list) {
+        if (item.name && item.name.toLowerCase().includes(lowerInput)) {
+        results.push(item);
+        }
+    }
+    return results
 }

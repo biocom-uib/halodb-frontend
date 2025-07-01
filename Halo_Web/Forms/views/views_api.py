@@ -27,7 +27,7 @@ def api_post_calls(request, table):
     try:
         response = requests.post(full_url, headers=headers, json=body_unicode)
 
-        responseController(response,"Failed in API POST!!")
+        return responseController(response,"Failed in API POST!!")
     except requests.exceptions.RequestException as e:
         return JsonResponse({"error": "Connection error to external API", "details": str(e)}, status=500)
 
@@ -48,7 +48,7 @@ def api_put_calls(request, src):
 
     try:
         response = requests.put(full_url, headers=headers, json=body_unicode)
-        responseController(response,"Failed in API POST!!")
+        return responseController(response,"Failed in API POST!!")
 
     except requests.exceptions.RequestException as e:
         return JsonResponse({"error": "Connection error to external API", "details": str(e)}, status=500)
@@ -101,7 +101,7 @@ def api_get_calls(request, query_params):
 
     try:
         response = requests.get(full_url, headers=headers)
-        responseController(response,"Failed in API POST!!")
+        return responseController(response,"Failed in API POST!!")
 
     except requests.exceptions.RequestException as e:
         return JsonResponse({"error": "Connection error to external API", "details": str(e)}, status=500)
@@ -124,7 +124,7 @@ def api_get_calls_simple(request, query_params):
 
     try:
         response = requests.get(full_url)
-        responseController(response,"Failed in API POST!!")
+        return responseController(response,"Failed in API POST!!")
 
     except requests.exceptions.RequestException as e:
         return JsonResponse({"error": "Connection error to external API", "details": str(e)}, status=500)

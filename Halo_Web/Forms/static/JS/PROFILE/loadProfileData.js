@@ -10,13 +10,17 @@ async function loadProfileData(){
     const DATA= await fetchSecureFile("GET","user/list/sample")
     restoreStorage()
     //Append a sampleCard for each sample
-    DATA.forEach(element => {
-        if (element.owned>0)
-            addSampleCard(element,"profileSamples")
-        else if(element.shared_by_group>0)
-            addSampleCard(element,"sharedSamples")
-    });
+    DATA.filter(item=>item.name).forEach(element => {
+        if(element.shared_by_group>0)
+            addSampleCard(element,"sharedSamples",null,"sharedSample")
+        else if (element.owned>0)
+            addSampleCard(element,"profileSamples",null,"sample")
 
+    });
+    const userGroups=await fetchSecureFile("GET","user/list/groups")
+    userGroups.forEach(element => {
+        addSampleCard(element,"groupContainer",null,"group")
+    })
     //Make a dict with only the source id and its name
     const sampleUserDict = Object.fromEntries(
         DATA.map(item => [item.id, item.name])

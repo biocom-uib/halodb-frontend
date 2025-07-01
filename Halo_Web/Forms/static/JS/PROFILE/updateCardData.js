@@ -7,16 +7,37 @@
  * @param {HTMLElement} container 
  * @param {Object} element 
  */
-async function updateCardData(container,element){
-    let card_data
-    if(element.koma){
-        const sample_list=await fetchSecureFile('GET','user/list/sample/')
-        card_data=sample_list.find(item => item.id === element.source_id);
+async function updateCardData(container,element,type){
+    const cardType={
+        sample:{
+            "h5":element.name,
+            "p":element.stype,
+            "span":element.updated
+        },
+        sharedSample:{
+            "h5":element.name,
+            "p":element.stype,
+            "span":element.updated
+        },
+        group:{
+
+            "h5":element.name,
+            "p":element.description,
+            "span":element.relation
+        }
     }
-    else{
-        card_data=element
+    const parsedObject=cardType[type]
+    container.querySelector("h5").innerText=parsedObject.h5
+    container.querySelector("p").innerText=parsedObject.p
+    container.querySelector("span").innerText=parsedObject.span
+    if(type=="group"){
+        container.href="#"
+        const inviteBtn=document.createElement("btn")
+        const body=container.querySelector(".card-body")
+        inviteBtn.className="btn btn-primary"
+        inviteBtn.innerText="Invite"
+        if(parsedObject.span=="owner")
+            inviteBtn.addEventListener("click",()=>{configureGroupModal(element.group_id,element.name)})
+        body.appendChild(inviteBtn)
     }
-    container.querySelector("h5").innerText=card_data.name
-    container.querySelector("p").innerText=card_data.stype
-    container.querySelector("span").innerText=card_data.updated
 }
