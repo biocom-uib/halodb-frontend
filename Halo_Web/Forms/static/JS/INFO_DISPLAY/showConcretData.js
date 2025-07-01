@@ -10,9 +10,14 @@ let PARENT_NODES
 async function initInfoDisplay(){
     PARENT_NODES=[]
     const params=window.location.pathname.slice(generatePath('/infoDisplay/').length).split("/")
-    const table=params[0]
-    const id=params[1]
-    await displayStepInformation(id,table)
+    const table=params[params.length-2]
+    const id=params[params.length-1]
+    const doiCont=document.querySelector(".modal-body")
+    const doiAdd=doiCont.querySelector("button")
+    const doiInput=doiCont.querySelector("input[type='text']")
+    const doiList=doiCont.querySelector("ul")
+    const doiSaveBtn=document.querySelector(".modal-footer").querySelector(".btn-success")
+    await displayStepInformation(id,table.toUpperCase())
     document.getElementById("expBtn").addEventListener("click",async ()=>{
         const element=await generateModal()
         generateKomaModalBody(element)
@@ -25,6 +30,19 @@ async function initInfoDisplay(){
     initMap(lat,long)
 
     localStorage.setItem("sampleSrc",id)
+
+    doiAdd.addEventListener("click",()=>{
+        const li=document.createElement("li")
+        li.innerText=doiInput.value
+        doiList.appendChild(li)
+    })
+
+    doiSaveBtn.addEventListener("click",()=>{
+        let list=[]
+        doiList.querySelectorAll("li").forEach(item=>list.push(item.innerText))
+        console.log(list)
+    })
+    
 }
 
 /**
@@ -38,8 +56,11 @@ async function displayStepInformation(id,table) {
         localStorage.removeItem("koma")
     }
     const lastParent=PARENT_NODES[PARENT_NODES.length-1]
-   
-    const stepList=await fetchSecureFile("GET",`user/list/${table}`)
+    let stepList
+    if(window.location.pathname.includes("public"))
+        stepList=await getFilterList(table)
+    else
+        stepList=await fetchSecureFile("GET",`user/list/${table}`)
 
     updateStepDataContainer(Object.entries(stepList.find(obj => obj.id == id)))
 
@@ -86,7 +107,7 @@ function generateInputRO(key,value){
  */
 function updateStepDataContainer(obejectiveData){
     const INFO_DISPLAY={
-        public:(value)=> {
+        is_public:(value)=>{
             const container=document.getElementById("public").parentElement
             if (value=="0"){
                 const span=container.querySelector("span")
@@ -96,9 +117,24 @@ function updateStepDataContainer(obejectiveData){
                 container.parentElement.querySelector("button").setAttribute("hidden",null)
                 return "YES"
             }
+
+        },
+        public:(value)=> {
+            const container=document.getElementById("public").parentElement
+            if (value=="0"){
+                container.parentElement.querySelector("button").removeAttribute("hidden")
+                const span=container.querySelector("span")
+                span.style.color="red"
+                return "NO"
+            }else
+                return "YES"
+
         },
         created: (raw)=>raw.replace('T',' '),
-        updated: (raw)=>raw.replace('T',' '),
+        updated: (raw)=>{
+            if(!window.location.pathname.includes("public"))
+                document.getElementById("updated").removeAttribute("hidden")
+            raw.replace('T',' ')},
         owned: (value)=>{
             if(value==1) 
                 return "You"
@@ -106,6 +142,13 @@ function updateStepDataContainer(obejectiveData){
                 document.getElementById("publishBtn").setAttribute("hidden",null)
                 return "Others"
             }
+        },
+        user_id:async(value)=>{
+            const owned=document.getElementById("owned")
+            const userList=await fetchSecureFile("GET","public/users/")
+            const owners=userList.filter(user=>user.id==value)
+            owned.innerText=owners[0].name.concat(" ",owners[0].surname)
+            return 0
         }
     }
 
@@ -118,6 +161,7 @@ function updateStepDataContainer(obejectiveData){
                     "access_mode",
                     "project_id",
                     "is_public",
+                    "updated",
                     "user_id"]
 
     const stepDataContainer=document.getElementById("stepDataContainer")
@@ -128,9 +172,10 @@ function updateStepDataContainer(obejectiveData){
         if(key==="access_mode" && value==="readwrite")
             editBtn.removeAttribute("hidden")
         const stepData=document.getElementById(key)
-        stepData ? stepData.innerText = INFO_DISPLAY[key] ? INFO_DISPLAY[key](value) 
-                                                        : value 
-                : !NOT_DISPLAY_DATA.includes(key) 
-                && stepDataContainer.appendChild(generateInputRO(key,value))               
+        if(stepData)
+            stepData.innerText = INFO_DISPLAY[key] ? INFO_DISPLAY[key](value) : value  
+        if(!NOT_DISPLAY_DATA.includes(key)) 
+            stepDataContainer.appendChild(generateInputRO(key,value))
+        INFO_DISPLAY[key]?.(value)               
     })
 }

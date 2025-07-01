@@ -26,6 +26,16 @@ function init(){
     localStorage.setItem("env",HOST_DICC[window.location.hostname])
   initActions[mainId]?.()
   mainId!=="main" && updateHeaderBtn(mainId)
+
+  if(mainId=="main"){
+    const searcherContainer=document.querySelector(".input-group")
+    const button=searcherContainer.querySelector("button")
+    const input=searcherContainer.querySelector("input")
+
+    button.addEventListener('click',()=>window.location.href = input.value ?
+                                                         `/filter/${input.value}`
+                                                        :'/filter')
+  }
 }
 
 /**
@@ -47,7 +57,9 @@ function updateHeaderBtn(id){
   const goLobbyList=["profile","filter","login","register"]
   const headerBtn=document.querySelector("header").querySelector(".btn")
   headerBtn.innerText= id=="profile" ? "Log Out" : "Go Back"
-  headerBtn.href= goLobbyList.includes(id) ? generatePath("/") : generatePath("profile")
+  headerBtn.href= goLobbyList.includes(id) ? generatePath("/") : generatePath("/profile")
+  if (id=="infoDisplay" && window.location.pathname.includes("public"))
+     headerBtn.href=generatePath("/filter")
 }
 
 

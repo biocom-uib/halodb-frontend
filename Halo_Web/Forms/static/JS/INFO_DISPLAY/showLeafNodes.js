@@ -22,7 +22,11 @@ async function showLeafNode(parent){
         if(stepList.length<=nextStep)
             return -1
     }
-    const rawList=await fetchSecureFile("GET",`user/list/${table}`)
+    let rawList
+    if(window.location.pathname.includes("public"))
+        rawList=await getFilterList(table)
+    else
+        rawList=await fetchSecureFile("GET",`user/list/${table.toLowerCase()}`)
     const matchElements = rawList.filter(obj => obj.source_id == parent.id);
     matchElements.forEach(element => {
         if (element.koma)

@@ -18,7 +18,7 @@
   color: var(--main_font);
 }
 #rightZone .container,
-#filtroOffcanvas{
+#filterOffcanvas{
     color: var(--main_font);
   background-color: var(--main);
 }
@@ -93,8 +93,15 @@ footer{
   color: var(--main_font);
   min-height: 5dvh;
 }
+
+footer a{
+  color: var(--main_font);
+  font-weight: bold;
+  text-decoration: none;
+}
+
 main{
-  background-image: url("/static/src/img/newBG.webp");
+  background-image: url("/static/src/img/background.webp");
   background-size: cover;
 }
 main .container{

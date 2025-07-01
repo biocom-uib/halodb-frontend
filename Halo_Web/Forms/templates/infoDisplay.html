@@ -17,15 +17,14 @@
                                 <div>
                                     Public?: <span id="public" style="color: green; font-weight: bold; ">Yes</span>
                                 </div>
-                                <button id="publishBtn" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+                                <button id="publishBtn" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" hidden>
                                     Publish
                                 </button>
                             </div>
                         </li>
                         <li class="list-group-item">Owner: <span id="owned" style="font-weight: bold;">User</span></li>
-                        <li class="list-group-item">Date of creation: <span id="created" style="font-weight: bold;">Yes</span></li>
-                        <li class="list-group-item">Last Update: <span id="updated" style="font-weight: bold;">Yes</span></li>
-                        <li class="list-group-item">Shared with groups: <span style="font-weight: bold;">None</span></li>
+                        <li class="list-group-item">Date of creation:<br> <span id="created" style="font-weight: bold;">Yes</span></li>
+                        <li class="list-group-item" hidden>Last Update: <span id="updated" style="font-weight: bold;">Yes</span></li>
                     </ul>
                 </div>
                 <div id="dataShow" class="pt-3">
@@ -69,31 +68,35 @@
         </section>
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="alert alert-warning" role="alert">
-                    <strong>After publish, you can't modify this information!</strong>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-warning" role="alert">
+                            <strong>After publish, you can't modify this information!</strong>
+                        </div>
+                        <div>
+                            <label for="addNotice">Wanna add an already published article to this sample?</label>
+                            <input type="checkbox" id="addNotice">
+                        </div>
+                        <div id="doiCont" class="col-4">
+                            <div class="input-group">
+                                <button class="btn btn-primary" type="button" id="addDOIButton">Add</button>
+                                <input type="text" class="form-control" id="doi" placeholder="Insert article DOI" aria-label="DOI input">
+                            </div>
+                        </div>
+                        <ul>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success">Save changes</button>
+                    </div>
                 </div>
-                <div>
-                    <label for="addNotice">Wanna add an already published article to this sample?</label>
-                    <input type="checkbox" id="addNotice">
-                </div>
-                <div id="doiCont" hidden>
-                    <label for="doi">Insert article DOI</label>
-                    <input type="text">
-                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-            </div>
-        </div>
         </div>
 
         </div>

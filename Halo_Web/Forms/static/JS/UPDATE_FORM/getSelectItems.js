@@ -7,16 +7,23 @@
  * @param {Array} selectList 
  */
 function getSelectedItems(selectList){
-    const COMPL_TABLES=["temperature","ph","salinity","method","dna","assembly","sequencing","binning","oxygen","fraction","target"]
+    const descriptionType={
+        keywords:(item)=>item.keyword
+        //hkgenes
+    }
+    const COMPL_TABLES=["temperature","ph","salinity","method","dna","assembly","sequencing","binning","oxygen","fraction","target","keywords"]
     selectList.forEach(async element => {
         if(element.name && COMPL_TABLES.includes(element.name)){
             element.className="form-select"
             const DATA=await fetchSecureFile("GET","public/query/"+element.name)
             
             DATA.forEach(item=>{
+                const pair=Object.entries(item)
                 let option=document.createElement("option");               
                 option.value=item.id;
-                option.innerText=item.description
+                option.innerText=descriptionType[element.name] 
+                                        ? descriptionType[element.name]?.(item)
+                                        : item.description
                 element.appendChild(option)
             })
         }

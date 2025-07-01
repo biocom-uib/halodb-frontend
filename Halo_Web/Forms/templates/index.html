@@ -3,10 +3,18 @@
 {% block content %}
     <main id="main">
       <section id="Searcher" class="p-2" >
-        <div class="container d-flex justify-content-center" style="background: none;">
-          <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-primary m-1" type="submit">Search</button>
-          <a class="btn btn-success m-1" href="{% url 'filter' %}">Advanced Search</a>      
+        <div class="container flex-column justify-content-center" style="background: none;">
+          <div class="input-group">
+            <input class="form-control" type="search" placeholder="Search" aria-describedby="Search">
+            <div class="input-group-append">
+              <button class="input-group-text btn-primary" id="Search" type="button"> 
+                <i class="bi bi-search"></i>
+              </button>
+            </div>
+          </div>
+          <div class="container d-flex justify-content-center" style="background: none;">
+            <a class="btn btn-success m-1" href="{% url 'filter' %}">Advanced Search</a>  
+          </div>    
         </div>
       </section>
 

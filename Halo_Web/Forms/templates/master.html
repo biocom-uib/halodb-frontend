@@ -1,6 +1,6 @@
 {% load static%}
 <!DOCTYPE html>
-<html style="height: 100%;" lang="en-En">
+<html style="height: 100dvh" lang="en-En">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,31 +13,35 @@
     {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %} 
     <title>{% block title %}{% endblock %}</title>
   </head>
-  <body style="height: 100%;">
+  <body style="height: 100dvh">
     <header class="w-100" style="min-height: 10dvh;">
-      <div class="d-flex justify-content-between  align-items-center">
-        <a href="{% url 'main' %}">
-          <img src="{% static 'src/img/icon.png' %}" alt="HaloPhiles Web Tool Logo" style="max-width: 4dvw; height: auto;" class="p-1">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="container d-flex d-flex justify-content-start align-items-center">
+          <a href="{% url 'main' %}">
+          <img src="{% static 'src/img/icon.png' %}" alt="HaloPhiles Web Tool Logo" style="max-width: 10dvw; height: auto;" class="p-1">
         </a>
-        
-        <h1>HaloPhile Main Page</h1>
-        <a class="btn btn-light me-4 mt-2" id="headerBtn" href="{% url 'login' %}">Log In</a>
+        </div>
+        <div class="container d-flex d-flex justify-content-center">
+          <h1>HaloPhile Main Page</h1>
+        </div>
+        <div class="container d-flex justify-content-end align-items-center">
+          <a class="btn btn-info me-4 mt-2" id="headerBtn" href="{% url 'login' %}" style="font-weight: bold;">Log In</a>  
+        </div>
       </div>
           <div id="toast-container" class="end-0" style="position: fixed; z-index: 100;"></div>
     </header>
     {% block content %} {% endblock %}
 
-    <footer class="d-flex border-top fixed-bottom ">
-      <div class="container d-flex align-items-center">
-        <strong>&copy; 2025 Created by: Miquel Àngel Montero Pazmiño</strong>
+    <footer class="d-flex border-top fixed-bottom">
+      <div class="container d-flex align-items-center justify-content-between w-100">
+        
 
-      <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-        <li>Your opinión is very important for us! Help us to improve!<a href="https://forms.gle/tXcLkpgGFLkCr16N8" target="_blank">Click</a></li>
-     <!--
-           <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>
-          <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
-          <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
-      -->
+      <ul class="nav flex-column">
+        <li class="nav-item"><strong>&copy; 2025 Created by: Miquel Àngel Montero Pazmiño</strong></li>
+        <li class="nav-item">Support contact: <strong>halophiles.dev@gmail.com</strong></li>
+      </ul>
+      <ul class="nav d-flex">
+        <li class="nav-item">Your opinión is very important for us! Help us to improve! <a href="https://forms.gle/tXcLkpgGFLkCr16N8" target="_blank" >Click</a></li>
       </ul>
     </footer>
     
@@ -52,6 +56,8 @@
     <script src="{% static 'JS/DATA/prepareBodyRequest.js' '%}"></script>
     
     <script src="{% static 'JS/FILTER/initFilter.js' '%}"></script>
+    <script src="{% static 'JS/FILTER/generateListElements.js' '%}"></script>
+    <script src="{% static 'JS/FILTER/offCanvasFilterbehaviour.js' '%}"></script>
 
     <script src="{% static 'JS/FORMS_BEHAVIOUR/FormEventManagement.js' '%}"></script>
     <script src="{% static 'JS/FORMS_BEHAVIOUR/completedSequence.js' '%}"></script>

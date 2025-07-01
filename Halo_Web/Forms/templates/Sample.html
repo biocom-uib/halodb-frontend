@@ -54,7 +54,7 @@
                     </div>
                     <div class="col">
                       <label for="keywords" class="form-label">Aditional Information</label>
-                      <input class="form-control" id="keywords"/>
+                      <select class="form-control" id="keywords" name="keywords" multiple></select>
                     </div>    
                   </div>  
                 </div>
@@ -101,17 +101,19 @@
                   </div>
                   <!-- Altitud eover sea level-->
                   <div class="col-4">
-                    <label for="alti" class="col-form-label"
-                      >Altitude over level at sea(m)</label
-                    >
-                    <input type="number" step="any" class="form-control" id="alti" />
+                    <label for="alti" class="col-form-label">Altitude over level at sea</label>
+                    <div class="input-group">
+                      <input type="number" step="any" class="form-control" id="alti" />
+                      <span class="input-group-text">m</span>
+                    </div>
                   </div>
-                  <!-- Depth in meters -->
+
                   <div class="col-4">
-                    <label for="dept" class="col-form-label"
-                      >Depth where the sample was taken(m)</label
-                    >
-                    <input type="number" step="any" class="form-control" id="dept" />
+                    <label for="dept" class="col-form-label">Depth where the sample was taken</label>
+                    <div class="input-group">
+                      <input type="number" step="any" class="form-control" id="dept" />
+                      <span class="input-group-text">m</span>
+                    </div>
                   </div>
                 </div>
                 
