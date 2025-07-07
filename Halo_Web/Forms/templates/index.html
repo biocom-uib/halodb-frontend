@@ -2,6 +2,11 @@
 {% load static %}
 {% block content %}
     <main id="main">
+      <div class="container d-flex justify-content-end" style="background: none;">
+        <button id="helpBtn" class="btn btn-dark">Page guide 
+          <i class="bi bi-question-square-fill"></i>
+        </button>
+      </div>
       <section id="Searcher" class="p-2" >
         <div class="container flex-column justify-content-center" style="background: none;">
           <div class="input-group">
@@ -13,7 +18,7 @@
             </div>
           </div>
           <div class="container d-flex justify-content-center" style="background: none;">
-            <a class="btn btn-success m-1" href="{% url 'filter' %}">Advanced Search</a>  
+            <a id="advancedSearch" class="btn btn-success m-1" href="{% url 'filter' %}">Advanced Search</a>  
           </div>    
         </div>
       </section>

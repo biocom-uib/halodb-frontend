@@ -11,8 +11,8 @@
 #leftZone .container{
   background-color: var(--contrast_color);
     color: var(--main_font);
-  
 }
+
 #midZone .container{
   background-color: var(--secondary);
   color: var(--main_font);
@@ -23,6 +23,21 @@
   background-color: var(--main);
 }
 
+.driver-popover{
+  background-color: var(--secondary) !important;
+}
+.driver-popover header{
+  background: none !important;
+}
+.driver-popover div{
+  color: var(--main_font) !important;
+}
+
+.alert-error{
+  background-color: red;
+}
+
+
 nav,
 #mainForm,
 #botonera,
@@ -30,9 +45,10 @@ form .container,
 nav .container,
 #step-by-step,
 #komaInfoContainer,
-
+.driver-popover-title,
 #selectorsContainer,
 #contenedorForm,
+#registerCardTtl,
 #sampleForm .accordion-body .container
 {
   background: none ;
@@ -91,7 +107,8 @@ h3,
 footer{
   background-color: var(--secondary);
   color: var(--main_font);
-  min-height: 5dvh;
+  max-height: 5dvh;
+  font-size: 0.6rem;
 }
 
 footer a{
@@ -101,7 +118,7 @@ footer a{
 }
 
 main{
-  background-image: url("/static/src/img/background.webp");
+  background-image: url("/halofiles/static/src/img/background.webp");
   background-size: cover;
 }
 main .container{
@@ -152,7 +169,7 @@ main .container{
 }
 
 .plasmidLetter{
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 .star-rating {
@@ -175,4 +192,16 @@ main .container{
 .star-rating label:hover,
 .star-rating label:hover ~ label {
   color: #ffc107;
+}
+
+@media (width<720px) {
+ footer{
+  font-size: 0.3rem;
+ }
+ #headerBtn{
+  font-size: 0.6rem;
+ }
+ h1{
+  font-size: 1.5rem !important;
+ } 
 }

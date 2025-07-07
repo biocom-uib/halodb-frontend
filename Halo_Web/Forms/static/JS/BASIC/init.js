@@ -17,7 +17,8 @@ function init(){
   "sample":()=> initSample()
   }
   const libraries=["https://unpkg.com/leaflet@1.9.4/dist/leaflet.css",
-            "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"]
+            "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css",
+          "https://cdn.jsdelivr.net/npm/driver.js@latest/dist/driver.css"]
   const mainId=document.querySelector("main").id
   
   libraries.forEach(link=>loadCSS(link))
@@ -36,6 +37,7 @@ function init(){
                                                          `/filter/${input.value}`
                                                         :'/filter')
   }
+  initDriver(mainId)
 }
 
 /**

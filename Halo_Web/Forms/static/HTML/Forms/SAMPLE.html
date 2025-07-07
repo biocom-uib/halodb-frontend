@@ -1,3 +1,66 @@
+
+
+        <div class="accordion w-100 mt-4" id="accordionExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <h2>Sample Generic Information</h2>
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <div class="container">
+                  <div class="row row-cols-md-2">
+                    <div class="col" hidden>
+                      <label for="project_id" class="form-label" multiple>Project</label>
+                      <select id="project_id" class="form-control"></select>
+                    </div>
+
+                    <div class="col">
+                      <label for="name" class="form-label">Sample Name(*)</label>
+                      <input type="text" name="name" id="name" class="form-control" />
+                    </div>
+                    
+                    <div class="col">
+                      <label for="stype" class="form-label">Description</label>
+                      <input type="text" class="form-control" id="stype"/>
+                    </div>
+  
+                    <div class="col">
+                      <label for="ssize" class="form-label">Sample Size</label>
+                      <div class="input-group">
+                        <input type="number" name="ssize" id="ssize" class="form-control" step="0.01" min="0.01">
+                        <select name="ssizeunit" id="ssizeunit" form="Sample" 
+                          class="input-group-text">
+                          <option value="ml">ml</option>
+                          <option value="l">l</option>
+                          <option value="g">g</option>
+                          <option value="Kg">Kg</option>
+                        </select>
+                      </div>           
+                    </div>
+                    <div class="col">
+                      <label for="target_id" class="form-label" multiple>Target nucleic acids</label>
+                      <select id="target_id" class="form-control" name="target"></select>
+                    </div>
+                    <div class="col">
+                      <label for="keywords" class="form-label">Aditional Information</label>
+                      <select class="form-control" id="keywords" name="keywords" multiple></select>
+                    </div>    
+                  </div>  
+                </div>
+                
+               
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <h2>Sample Metadata Information</h2>
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
                 <div class="row">
                   <!-- Country of origin -->
                   <div class="col">
@@ -29,17 +92,19 @@
                   </div>
                   <!-- Altitud eover sea level-->
                   <div class="col-4">
-                    <label for="alti" class="col-form-label"
-                      >Altitude over level at sea(m)</label
-                    >
-                    <input type="number" step="any" class="form-control" id="alti" />
+                    <label for="alti" class="col-form-label">Altitude over level at sea</label>
+                    <div class="input-group">
+                      <input type="number" step="any" class="form-control" id="alti" />
+                      <span class="input-group-text">m</span>
+                    </div>
                   </div>
-                  <!-- Depth in meters -->
+
                   <div class="col-4">
-                    <label for="dept" class="col-form-label"
-                      >Depth where the sample was taken(m)</label
-                    >
-                    <input type="number" step="any" class="form-control" id="dept" />
+                    <label for="dept" class="col-form-label">Depth where the sample was taken</label>
+                    <div class="input-group">
+                      <input type="number" step="any" class="form-control" id="dept" />
+                      <span class="input-group-text">m</span>
+                    </div>
                   </div>
                 </div>
                 
@@ -67,3 +132,13 @@
                     <textarea class="form-control" id="sour" rows="3" maxlength="80"></textarea>
                   </div>
                 </div>
+                  <button id="" type="submit" class="btn btn-success w-100 mt-3">
+                    Create Sample
+                  </button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+

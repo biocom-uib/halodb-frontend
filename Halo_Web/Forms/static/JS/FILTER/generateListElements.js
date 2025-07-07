@@ -13,7 +13,7 @@ async function generateListElements(table, filter = null) {
     tableList.forEach(item => {
         const listItem = document.createElement("li");
         const link = document.createElement("a");
-        link.href = `/public/infoDisplay/${table}/${item.id}`;
+        link.href = generatePath(`/public/infoDisplay/${table}/${item.id}`);
         link.innerText = item.name ? item.name : generarClasificador(table, item.source_id, item.id);
         listItem.className = "list-group-item";
         listItem.append(link);

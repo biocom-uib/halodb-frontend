@@ -36,7 +36,7 @@ load_dotenv(os.path.join(BASE_DIR, '.env'))
 DJANGO_ENV= os.getenv('ENV')
 DEBUG = DJANGO_ENV=='DEV'
 
-ALLOWED_HOSTS = ["bioinfo.uib.es/halophile",'127.0.0.1']
+ALLOWED_HOSTS = ["bioinfo.uib.es/halofiles",'127.0.0.1']
 
 CSRF_TRUSTED_ORIGINS = ["https://bioinfo.uib.es",'https://127.0.0.1:8000']
 
@@ -56,14 +56,10 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'Forms.middelware.TokenRequiredMiddleware'
 ]
 
 ROOT_URLCONF = 'Halo_Web.urls'
@@ -174,8 +170,8 @@ if DEBUG:
     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'Forms/static'),]
     STATIC_URL = '/static/'
 else:
-    STATIC_URL = '/halophile/static/'
-    FORCE_SCRIPT_NAME = '/halophile'
+    STATIC_URL = '/halofiles/static/'
+    FORCE_SCRIPT_NAME = '/halofiles'
 
 #
 

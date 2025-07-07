@@ -59,3 +59,31 @@ function uploadFile(forms,id,table){
         } 
     });
 }
+
+/**
+ * Works as a API POST call. Returns data from the External API & from the static files
+ * @param {string} table - Objective where make the call.
+ * @returns {*} The result of the API call  
+ */
+async function updateStep(table,id,fields) {
+
+    const path= generatePath(`/api/put/${table}/${id}`) 
+    const bodyRequest=updateBodyRequest(fields)
+    let response = await fetch(path,{
+        headers: {"Content-Type": "application/json"},
+        method:"POST",
+        body: bodyRequest
+        }
+    );
+
+    if (!response.ok) {
+        configureModal("Unexpected Error!",`Your ${table} could'nt be updated in`+
+            " HaloFilesDB. Try it later and if this errors persist, please"+
+            " contact with an adminstrator",false)
+        return -1;
+    }
+
+    const RESPONSE = await (response.text());
+    const PARSED_RESPONSE=JSON.parse(RESPONSE)
+    return PARSED_RESPONSE.message ? PARSED_RESPONSE.message : PARSED_RESPONSE        
+}

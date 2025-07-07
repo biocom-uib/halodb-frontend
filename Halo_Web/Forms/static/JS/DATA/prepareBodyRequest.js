@@ -80,3 +80,20 @@ function prepareBodyRequest(step, source = null, isPredictedGenes=false) {
 
   return JSON.stringify(result, null, 2);
 }
+
+function updateBodyRequest(fields) {
+  let result = {};
+  const koma=localStorage.getItem("koma")
+  // 1. Recorremos y procesamos los campos
+  fields.filter(item => item.id).forEach(item => {
+      if(!inputTypeFormat[item.type] && item.value)
+        result[item.id] = item.value;
+      inputTypeFormat[item.type]?.(item,result)
+    });
+
+  if (koma) {result["sequence"]=koma}
+
+
+  return JSON.stringify(result, null, 2);
+}
+

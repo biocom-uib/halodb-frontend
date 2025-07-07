@@ -7,6 +7,12 @@
   {% block content %}
 
   <main id="sample">
+      <div class="container d-flex justify-content-end" style="background: none;">
+        <button id="helpBtn" class="btn btn-dark">Page guide 
+          <i class="bi bi-question-square-fill"></i>
+        </button>
+      </div>
+
     <form method="POST" id="sampleForm" class="container d-flex justify-content-center p-5" style="width: 80dvw; background: none;">
       {% csrf_token %}
         <div class="accordion w-100 mt-4" id="accordionExample">

@@ -2,18 +2,21 @@
 {% load static %} 
 {% block title %} HaloFile WebApp {% endblock %} 
 {% block content %}
-  <main id="register">
+  <main id="register" style="height: 100dvh;">
     <section class="d-flex justify-content-center align-items-center">
-      <div id="registerFormCard" class="card p-3 m-3">
+      <div id="registerFormCard" class="card mb-5 m-3">
+        <div class="container d-flex align-items-center justify-content-center card-title" id="registerCardTtl">
+          <h2>Register</h2>
+        </div>
         <div class="card-body">
           {% if messages %}
-          <div class="alert alert-danger mt-3" role="alert">
+          <div class="alert alert-{{ message.tags }} mt-3" role="alert">
               {% for message in messages %}
                   <p>{{ message }}</p>
               {% endfor %}
           </div>
           {% endif %}
-          <h5 class="card-title d-flex justify-content-center">Register</h5>
+          
           <form id="registerForm" method="POST">
             {% csrf_token %}
             <div class="row p-3">
@@ -28,12 +31,19 @@
 
             <div class="row p-3">
               <label for="email" class="form-label">Email address *</label>
-              <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+              <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required autocomplete="email">
             </div>
             
             <div class="row p-3">
               <label for="password" class="form-label">Password *</label>
-              <input type="password" class="form-control" id="password" name="password" required>
+              <input type="password" class="form-control" id="password" name="password"
+              data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Your password must have 8 characters, 1 digit & 1 capital letter"
+              required autocomplete="new-password">
+            </div>
+
+            <div class="row p-3">
+              <label for="confirmPassword" class="form-label">Confirm Password *</label>
+              <input type="password" class="form-control" id="confirmPassword" name="password" required autocomplete="new-password">
             </div>
             <div class="row p-3">
               <input type="submit" class="btn btn-success" value="Confirm">
@@ -43,4 +53,37 @@
       </div> 
     </section>  
 </main>
+<script>
+    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+    return new bootstrap.Popover(popoverTriggerEl)
+  })
+  document.addEventListener("submit",()=>{
+    const password=document.getElementById("password").value
+    const confirmPassword=document.getElementById("confirmPassword").value
+    const container=document.querySelector(".card-body")
+    let msgContianer=document.getElementById(".alert")
+    if(msgContianer)
+      msgContianer.innerHTML=""
+    else
+      {msgContianer=document.createElement("div")
+      msgContianer.className="alert alert-danger mt-3"
+
+      }
+    const regex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+    if (!regex.test(password)) {
+      event.preventDefault()
+      msgContianer.innerText = "Your password must have 8 characters, 1 digit & 1 capital letter";
+      container.prepend(msgContianer)
+      return;
+    }
+    if (password !== confirmPassword) {
+      event.preventDefault()
+      msgContianer.innerText = "Password doesn't match!";
+      container.prepend(msgContianer)
+      return;
+  }
+  document.querySelector("form").submit()
+  })
+</script>
 {% endblock %} 

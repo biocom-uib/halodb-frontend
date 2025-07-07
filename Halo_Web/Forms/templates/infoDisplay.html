@@ -7,6 +7,12 @@
   {% block content %}
     
     <main id="infoDisplay" style="height: 100%;">
+      <div class="container d-flex justify-content-end" style="background: none;">
+        <button id="helpBtn" class="btn btn-dark">Page guide 
+          <i class="bi bi-question-square-fill"></i>
+        </button>
+      </div>
+
         <div class="container d-flex" style="background: none;">
             <section id="leftZone" class="p-2" style="width: 25dvw;">
                 <div id="metaInfo" class="container w-100" style="background-color:cadetblue; height: 55dvh; overflow-y: auto; border-radius: 1rem; border-color: black;">
@@ -44,7 +50,7 @@
                     <button id="expBtn"class="btn btn-primary">
                             Use for Experiments
                     </button>
-                    <button class="btn btn-success" hidden>Save</button>
+                    <button id="saveBtn"class="btn btn-success" hidden>Save</button>
                     <button id="editBtn" class="btn btn-secondary mr-2" hidden>
                         Edit <i class="bi bi-pencil-square"></i>
                     </button>

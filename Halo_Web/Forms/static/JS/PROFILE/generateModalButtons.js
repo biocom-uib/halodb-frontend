@@ -17,7 +17,7 @@ function generateModalButton(name,href){
         colors=COLOR_DICT[name].split(" ")
 
     container.classList.add('col')
-    colors && button.classList.add('btn',colors[0],colors[1])
+    button.className=`container flex-column h-100 justify-content-center btn ${colors[0]} ${colors[1]}`
     button.href=generatePath(href)
     button.innerText=name
     button.addEventListener("click",()=>{

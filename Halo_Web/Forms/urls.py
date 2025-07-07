@@ -29,7 +29,7 @@ urlpatterns = [
     path('api/put/<path:src>', api_put_calls, name='api_put_file'),
     path('secure-static/<path:filename>/', get_static_file, name='secure_static'),
     path('infoDisplay/<path:filename>',load_info_display,name='load_info_display'),
-    path('public/infoDisplay/<path:filename>',load_info_display,name='load_info_display'),
+    path('public/infoDisplay/<path:filename>',load_info_display,name='load_public_info_display'),
     path('filter',load_filter,name='filter'),
     path('filter/<str:id>',load_filter,name='filter')
 ]

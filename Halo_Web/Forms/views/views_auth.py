@@ -25,7 +25,7 @@ def profile(request):
   return render(request, "profile.html",{"user":userInf})
 
 def logout_view(request):
-  
+  del request.session["auth_token"]
   return render (request, "index.html")
 
 @csrf_exempt
@@ -50,7 +50,7 @@ def register_user(request):
     surname= request.POST.get("surname")
     email = request.POST.get("email")
     password = request.POST.get("password")
-  
+
     response=requests.post(full_url,
       json={
         "name":name,
@@ -69,8 +69,8 @@ def register_user(request):
           send_email(email,"verification",{
             "uid":uid,
             "date":user["registration_time"]})
-      messages.warning(request, 'To complete the register, please check your email and confirm the account')
-      return redirect('login')
+          messages.warning(request, 'To complete the register, please check your email and confirm the account')
+          return redirect('login')
     else:
       messages.error(request, response.json()['message']['message'])
     
@@ -88,6 +88,7 @@ def login_manual(request):
       url=URL+"login"
       
       response=requests.post(url,json=data)
+      
       if response.status_code == 200:
         response_data = response.json()
         token = response_data.get("token")
@@ -99,6 +100,5 @@ def login_manual(request):
         else:
           messages.error(request, response.json()['message'])
       else:
-        print(response.json())
         messages.error(request, response.json()['message'])
   return render(request, "registration/login.html")

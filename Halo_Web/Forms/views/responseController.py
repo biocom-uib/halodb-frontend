@@ -26,21 +26,3 @@ def responseController(response, error_msg):
             {"error": error_msg, "status_code": response.status_code},
             status=response.status_code
         )
-
-def middelWare(request):
-    '''
-    Middleware-like function to check if the user is authenticated.
-
-    Parameters:
-    request (HttpRequest): The incoming HTTP request object.
-
-    Returns:
-    HttpResponse or None: If no token is found in the session, renders the 'profile' page.
-                          Otherwise, does nothing (implicitly returns None).
-    '''
-    # Get the authentication token from the session
-    token = request.session.get("auth_token")
-    
-    # If no token is found, redirect the user to the 'profile' view
-    if not token:
-        return render(request,"profile")  # This may need a request argument: render(request, "profile.html")

@@ -10,6 +10,7 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
      crossorigin="" defer></script>
+     <script src="https://cdn.jsdelivr.net/npm/driver.js@latest/dist/driver.js.iife.js"></script>
     {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %} 
     <title>{% block title %}{% endblock %}</title>
   </head>
@@ -54,11 +55,12 @@
     <script src="{% static 'JS/DATA/fetchOperations.js' %}"></script>
     <script src="{% static 'JS/DATA/uploadOperation.js' %}"></script>
     <script src="{% static 'JS/DATA/prepareBodyRequest.js' '%}"></script>
+
+    <script src="{% static 'JS/DRIVER/initDriver.js' '%}"></script>
     
     <script src="{% static 'JS/FILTER/initFilter.js' '%}"></script>
     <script src="{% static 'JS/FILTER/generateListElements.js' '%}"></script>
-    <script src="{% static 'JS/FILTER/offCanvasFilterbehaviour.js' '%}"></script>
-
+    
     <script src="{% static 'JS/FORMS_BEHAVIOUR/FormEventManagement.js' '%}"></script>
     <script src="{% static 'JS/FORMS_BEHAVIOUR/completedSequence.js' '%}"></script>
     <script src="{% static 'JS/FORMS_BEHAVIOUR/getFileName.js'%}"></script>
@@ -71,6 +73,7 @@
     <script src="{% static 'JS/INFO_DISPLAY/mapBehaivour.js' '%}"></script>
     <script src="{% static 'JS/INFO_DISPLAY/showConcretData.js' '%}"></script>
     <script src="{% static 'JS/INFO_DISPLAY/showLeafNodes.js' '%}"></script>
+    <script src="{% static 'JS/INFO_DISPLAY/updateBehaviour.js' '%}"></script>
 
     <script src="{% static 'JS/LS/RecoverFieldsData.js' '%}"></script>
     <script src="{% static 'JS/LS/LocalStoreData.js' '%}"></script>

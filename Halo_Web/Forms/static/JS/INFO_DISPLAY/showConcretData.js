@@ -17,6 +17,7 @@ async function initInfoDisplay(){
     const doiInput=doiCont.querySelector("input[type='text']")
     const doiList=doiCont.querySelector("ul")
     const doiSaveBtn=document.querySelector(".modal-footer").querySelector(".btn-success")
+
     await displayStepInformation(id,table.toUpperCase())
     document.getElementById("expBtn").addEventListener("click",async ()=>{
         const element=await generateModal()
@@ -27,7 +28,8 @@ async function initInfoDisplay(){
     })
     const lat=document.getElementById("lati").value
     const long=document.getElementById("long").value
-    initMap(lat,long)
+    if(lat && long)
+        initMap(lat,long)
 
     localStorage.setItem("sampleSrc",id)
 
@@ -40,9 +42,14 @@ async function initInfoDisplay(){
     doiSaveBtn.addEventListener("click",()=>{
         let list=[]
         doiList.querySelectorAll("li").forEach(item=>list.push(item.innerText))
-        console.log(list)
+        const updateBody=
+        [    {id:"is_public",value:"1"},
+            {id:"dois",value:list}
+        ]
+        const actualNode=PARENT_NODES.pop()
+        updateStep(actualNode.table,actualNode.id,updateBody)
+        displayStepInformation(actualNode.id,actualNode.table)
     })
-    
 }
 
 /**
@@ -73,7 +80,8 @@ async function displayStepInformation(id,table) {
                             : generarClasificador(lastParent.id,id,table)
     }
     PARENT_NODES.push(parentNode)
-    showLeafNode(PARENT_NODES[PARENT_NODES.length-1]) 
+    showLeafNode(PARENT_NODES[PARENT_NODES.length-1])
+    updateInfoDipslayBtn(PARENT_NODES) 
 }
 /**
  * Returns an Read Only input container 
