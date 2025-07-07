@@ -22,8 +22,8 @@ async function saveData(isNewRegister=true){
   if (backend_response.status!="success")
     return -1
   
-  const stepUID= isNewRegister ? generarClasificador(srcId,backend_response.step.id,STEPS_NAME[ACT_STEP]) : generarClasificador(srcId,stepId,STEPS_NAME[ACT_STEP])
-  showFormsToast(stepUID,isNewRegister)
+  //const stepUID= isNewRegister ? generarClasificador(srcId,backend_response.step.id,STEPS_NAME[ACT_STEP]) : generarClasificador(srcId,stepId,STEPS_NAME[ACT_STEP])
+  showFormsToast(STEPS_NAME[ACT_STEP],isNewRegister)
   document.getElementById("step-by-step").scrollIntoView();
   source_list[ACT_STEP]=backend_response.step.id
   return source_list[ACT_STEP]

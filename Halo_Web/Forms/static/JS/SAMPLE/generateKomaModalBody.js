@@ -22,6 +22,6 @@ function generateKomaModalBody(modal){
  */
 function generateSequenceItems(container){
         SEQUENCES.forEach(element => {
-            container.appendChild(generateModalButton(element,"/Forms"))
+            container.appendChild(generateModalButton(element,"/Forms/"))
         }); 
 }
