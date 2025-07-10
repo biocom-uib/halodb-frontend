@@ -9,8 +9,7 @@ from Forms.utils import *
 
 
 def main(request):
-  template = loader.get_template('index.html')
-  return HttpResponse(template.render())
+  return render(request,"index.html")
 
 def profile(request):
   token = request.session.get("auth_token")

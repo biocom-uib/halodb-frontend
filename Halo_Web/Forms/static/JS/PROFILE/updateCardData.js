@@ -34,10 +34,24 @@ async function updateCardData(container,element,type){
         container.href="#"
         const inviteBtn=document.createElement("btn")
         const body=container.querySelector(".card-body")
-        inviteBtn.className="btn btn-primary"
-        inviteBtn.innerText="Invite"
-        if(parsedObject.span=="owner")
+        inviteBtn.className="btn btn-info"
+        inviteBtn.innerHTML=`Invite <i class="bi bi-send-fill"></i>`
+        if(parsedObject.span=="owner"){
             inviteBtn.addEventListener("click",()=>{configureGroupModal(element.group_id,element.name)})
-        body.appendChild(inviteBtn)
+            body.appendChild(inviteBtn)}
+        else if(parsedObject.span=="invite"){
+            const accpetBtn=document.createElement("button")
+            const declineBtn=document.createElement("button")
+            
+            accpetBtn.innerHTML='<i class="bi bi-check-square-fill"></i>'
+            declineBtn.innerHTML='<i class="bi bi-x-square-fill"></i>'
+
+            accpetBtn.className="btn btn-success"
+            declineBtn.className="btn btn-danger"
+
+            body.appendChild(accpetBtn)
+            body.appendChild(declineBtn)
+        }
+        
     }
 }

@@ -39,6 +39,7 @@
 
 
 nav,
+.card,
 #mainForm,
 #botonera,
 form .container,
@@ -51,16 +52,26 @@ nav .container,
 #registerCardTtl,
 #sampleForm .accordion-body .container
 {
-  background: none ;
+  background: none;
 }
 #filterAccordion .accordion-item{
   background: var(--main);
   border-color: var(--main_font);
   border-width: 0.05rem;
 }
-#filterAccordion .accordion-button{
-  background-color: var(--contrast_color);
-  color: var(--main_font);
+#filterAccordion .accordion-button,
+.card-header,
+.card-footer{
+  background-color: var(--contrast_color) !important;
+  color: var(--main_font) !important;
+}
+
+#index div{
+  background-color: var(--main_font);
+  opacity: 0.9;
+}
+#Searcher div{
+  opacity: 1;
 }
 
 #filterAccordion .accordion-button::after{
@@ -73,17 +84,18 @@ nav .container,
   background: none;
 }
 
-#profileSamples a{
-  color: var(--main_font) !important;
-  text-decoration: none !important;
+#profileSample a{
+  text-decoration: none;
+  color: var(--main_font) m !important;
 }
+
 header,
-#registerFormCard,
-.card,
+.card-body,
+.card-body form,
 #sampleForm .accordion-body,
 .card form{
   color:var(--main_font);
-  background-color: var(--main) !important;
+  background-color: var(--main);
 }
 
 #selectorsContainer label,
@@ -118,11 +130,8 @@ footer a{
 }
 
 main{
-  background-image: url("/halofiles/static/src/img/background.webp");
+  background-image: url("https://bioinfo.uib.es/halofiles/static/src/img/background.webp");
   background-size: cover;
-}
-main .container{
-  background-color: var(--main_font);
 }
 
 .projectCard{
@@ -135,10 +144,14 @@ main .container{
 
 .addButon{
   background-color: var(--secondary);
+  color: var(--main_font);
+  border: none;
   border-radius: 10rem;
-  
 }
 
+.addButon:hover{
+  color: var(--main_font);
+}
 
 .modal-header{
   min-height: 10dvh; 

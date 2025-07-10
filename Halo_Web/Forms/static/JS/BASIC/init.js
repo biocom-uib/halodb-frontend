@@ -14,7 +14,8 @@ function init(){
   //project:()=>{},
   "summary":()=> initSummary() ,
   "usability":()=>initUsabilityForm(),
-  "sample":()=> initSample()
+  "sample":()=> initSample(),
+  "register":()=>initRegister()
   }
   const libraries=["https://unpkg.com/leaflet@1.9.4/dist/leaflet.css",
             "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css",
@@ -26,16 +27,16 @@ function init(){
   if(localStorage.getItem("env")===null)
     localStorage.setItem("env",HOST_DICC[window.location.hostname])
   initActions[mainId]?.()
-  mainId!=="main" && updateHeaderBtn(mainId)
+  mainId!=="index" && updateHeaderBtn(mainId)
 
-  if(mainId=="main"){
+  if(mainId=="index"){
     const searcherContainer=document.querySelector(".input-group")
     const button=searcherContainer.querySelector("button")
     const input=searcherContainer.querySelector("input")
 
     button.addEventListener('click',()=>window.location.href = input.value ?
-                                                         `/filter/${input.value}`
-                                                        :'/filter')
+                                                         generatePath(`/filter/${input.value}`)
+                                                        :generatePath('/filter'))
   }
   initDriver(mainId)
 }
@@ -63,8 +64,5 @@ function updateHeaderBtn(id){
   if (id=="infoDisplay" && window.location.pathname.includes("public"))
      headerBtn.href=generatePath("/filter")
 }
-
-
-
 
 document.addEventListener("DOMContentLoaded",init)

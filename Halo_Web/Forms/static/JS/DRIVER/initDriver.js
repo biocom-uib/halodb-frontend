@@ -1,7 +1,7 @@
 function initDriver(mainId) {
 
     const stepsDict={
-        main:[
+        index:[
             {
                 element: '#Searcher',
                 popover: {

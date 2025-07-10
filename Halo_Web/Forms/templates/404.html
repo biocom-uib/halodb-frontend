@@ -1,0 +1,16 @@
+{% extends "master.html" %} {% block title %} HaloPhile WebApp {% endblock %} 
+{% load static %}
+{% block content %}
+<main id="main">
+    <section id="BadRoute" >
+    <div class="container d-flex flex-column p-3 mb-3" style="border-radius: 1rem;">
+        <h2 class="text-center">You're going to nowhere...</h2>
+        <p class="m-3"> Ops! Your trying to access to a non existing resource. Please check the url</p>
+
+    </div>
+    </section>
+
+    <script> document.addEventListener("DOMContentLoaded",localStorage.clear())</script>
+</main>
+
+{% endblock %}
