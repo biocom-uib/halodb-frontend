@@ -11,7 +11,7 @@
 async function saveData(isNewRegister=true){
   const ACT_STEP = localStorage.getItem("actualStep")
   LocalStoreData(ACT_STEP)
-  const srcSelector= ACT_STEP==0? "sourceSample" : `selec_${STEPS_NAME[ACT_STEP-1]}`
+  const srcSelector= ACT_STEP==0? "sourceSample" : `select_${STEPS_NAME[ACT_STEP-1]}`
   const srcId=document.getElementById(srcSelector).value
   const stepId=source_list[ACT_STEP]
   const updatRoute=`/api/put/${STEPS_NAME[ACT_STEP]}/${stepId}`

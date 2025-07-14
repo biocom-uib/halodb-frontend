@@ -10,7 +10,7 @@ let PARENT_NODES
 async function initInfoDisplay(){
     PARENT_NODES=[]
     const params=window.location.pathname.slice(generatePath('/infoDisplay/').length).split("/")
-    const table=params[params.length-2]
+    const table=params[params.length-2].toUpperCase()
     const id=params[params.length-1]
     const doiCont=document.querySelector(".modal-body")
     const doiAdd=doiCont.querySelector("button")
@@ -18,7 +18,8 @@ async function initInfoDisplay(){
     const doiList=doiCont.querySelector("ul")
     const doiSaveBtn=document.querySelector(".modal-footer").querySelector(".btn-success")
 
-    await displayStepInformation(id,table.toUpperCase())
+    await displayStepInformation(id,table)
+    document.getElementById("midZone").querySelector("span").innerText=table
     document.getElementById("expBtn").addEventListener("click",async ()=>{
         const element=await generateModal()
         generateKomaModalBody(element)

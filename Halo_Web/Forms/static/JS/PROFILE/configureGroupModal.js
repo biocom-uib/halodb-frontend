@@ -48,18 +48,12 @@ async function configureGroupModal(group_id,groupName){
         const optionsList=document.querySelectorAll("li")
         optionsList.forEach(listItem=>{
             const check=listItem.querySelector("input[type='checkbox']")
-            if(check.checked){
+            if(check && check.checked){
                 const mail=listItem.querySelector("label").innerText
                 const uid=check.id
                 console.log(`User ${mail} with ${uid} invited to group ${group_id}`)
-                uploadOperationV2("group_invite",
-                    {
-                    "groupId":group_id,
-                    "userMail":mail,
-                    "groupName":groupName,
-                    "uid":uid
-                    },
-                    false)
+                uploadOperation(null,null,
+                    `/group/${group_id}/invite/${uid}/${groupName}/${mail}`)
             }
         })
     })

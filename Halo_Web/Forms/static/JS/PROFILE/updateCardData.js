@@ -39,18 +39,31 @@ async function updateCardData(container,element,type){
         if(parsedObject.span=="owner"){
             inviteBtn.addEventListener("click",()=>{configureGroupModal(element.group_id,element.name)})
             body.appendChild(inviteBtn)}
-        else if(parsedObject.span=="invite"){
-            const accpetBtn=document.createElement("button")
+        else if(parsedObject.span=="invited"){
+            const btnContainer=document.createElement("div")
+            const acceptBtn=document.createElement("button")
             const declineBtn=document.createElement("button")
             
-            accpetBtn.innerHTML='<i class="bi bi-check-square-fill"></i>'
-            declineBtn.innerHTML='<i class="bi bi-x-square-fill"></i>'
+            btnContainer.id=element.id
+            btnContainer.className="container d-flex justify-content-between"
 
-            accpetBtn.className="btn btn-success"
+            acceptBtn.innerHTML='Accept <i class="bi bi-check-square-fill"></i>'
+            declineBtn.innerHTML='Refuse <i class="bi bi-x-square-fill"></i>'
+
+            acceptBtn.className="btn btn-success"
             declineBtn.className="btn btn-danger"
 
-            body.appendChild(accpetBtn)
-            body.appendChild(declineBtn)
+            acceptBtn.addEventListener("click",async()=>{
+                await uploadOperation(null,null,`/group/accept/${element.group_id}`)
+            })
+            declineBtn.addEventListener("click",async()=>{
+                await uploadOperation(null,null,`/group/decline/${element.group_id}`)
+            })
+
+            btnContainer.appendChild(acceptBtn)
+            btnContainer.appendChild(declineBtn)
+
+            body.appendChild(btnContainer)
         }
         
     }

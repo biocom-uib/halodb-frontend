@@ -18,8 +18,8 @@ function init(){
   "register":()=>initRegister()
   }
   const libraries=["https://unpkg.com/leaflet@1.9.4/dist/leaflet.css",
-            "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css",
-          "https://cdn.jsdelivr.net/npm/driver.js@latest/dist/driver.css"]
+              "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css",
+            "https://cdn.jsdelivr.net/npm/driver.js@latest/dist/driver.css"] 
   const mainId=document.querySelector("main").id
   
   libraries.forEach(link=>loadCSS(link))
@@ -30,10 +30,10 @@ function init(){
   mainId!=="index" && updateHeaderBtn(mainId)
 
   if(mainId=="index"){
+    localStorage.clear()
     const searcherContainer=document.querySelector(".input-group")
     const button=searcherContainer.querySelector("button")
     const input=searcherContainer.querySelector("input")
-
     button.addEventListener('click',()=>window.location.href = input.value ?
                                                          generatePath(`/filter/${input.value}`)
                                                         :generatePath('/filter'))

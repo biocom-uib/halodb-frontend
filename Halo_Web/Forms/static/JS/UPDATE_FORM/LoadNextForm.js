@@ -19,7 +19,11 @@ async function LoadNextForm(step) {
     const submitButton = document.getElementById("submit");
     submitButton.innerText="End Sequence"
     submitButton.className="btn btn-info"
-  } 
+  }
+  
+  if(stepName=="GENOME"){
+    getMagnitudeCategories()
+  }
 
   goBackButton.style.visibility = step == 0 ? "hidden" : "Visible";
 

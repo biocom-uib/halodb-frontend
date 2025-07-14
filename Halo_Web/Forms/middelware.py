@@ -34,16 +34,13 @@ class TokenRequiredMiddleware:
         #return self.get_response(request)
         path = request.path
         
-        print(f"[Middleware] ENV: {'DEV' if self.is_dev else 'PROD'}")
-        print(f"[Middleware] PATH: {path}")
-        
         if any(path.startswith(p) for p in self.excluded_paths):
             return self.get_response(request)
         
         token = request.session.get('auth_token')
 
-        print(f"[Middleware] TOKEN: {token}")
         if not token:
+            print(f"[Middleware] PATH: {path}")
             return redirect(reverse('login'))  # Asegúrate de que esté bien definido
 
         return self.get_response(request)

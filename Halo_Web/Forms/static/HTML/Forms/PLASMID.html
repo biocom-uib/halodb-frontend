@@ -12,10 +12,8 @@ Number of contigs                               contignumber        INT
 <div class="row">
   <!-- Alternative housekeeping genes -->
   <div class="col">
-    <label for="hkgn" class="col-form-label"
-      >Alternative housekeeping genes</label
-    >
-    <input type="number" step="1" min="0" class="form-control" id="hkgn" />
+    <label for="hkgn" class="col-form-label">Alternative housekeeping genes</label>
+    <select name="hkgenes" class="form-control" id="hkgn"></select>
   </div>
 
   <!-- Molar % of Guanine and Cytosine in DNA -->
@@ -63,7 +61,7 @@ Number of contigs                               contignumber        INT
   <!-- Name of original file containing the assembly -->
   <div class="col">
     <label for="assname" class="col-form-label"
-      >Original filename containing the assembly</label
+      >Assembly filename</label
     >
     <input type="text" maxlength="100" class="form-control" id="assname" />
   </div>

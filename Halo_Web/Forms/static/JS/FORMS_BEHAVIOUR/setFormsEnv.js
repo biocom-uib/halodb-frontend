@@ -57,5 +57,7 @@ async function setFormsEnv() {
   addFileInputEvent();
 
   const element = await generateModal()
+
+  document.body.appendChild(element)
   }
   

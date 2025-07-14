@@ -24,6 +24,7 @@ async function FormEventManagement() {
   //Store in LS last data
   LocalStoreData(ACT_STEP);
 
+
   //saveData(ACT_STEP,PROGRESS)
   if (!PROGRESS && saveResult>0){
     localStorage.setItem("actualStep",ACT_STEP)

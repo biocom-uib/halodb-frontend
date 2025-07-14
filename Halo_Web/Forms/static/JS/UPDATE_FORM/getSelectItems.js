@@ -8,10 +8,10 @@
  */
 function getSelectedItems(selectList){
     const descriptionType={
-        keywords:(item)=>item.keyword
-        //hkgenes
+        keywords:(item)=>item.keyword,
+        hkgenes:(item)=>item.gene
     }
-    const COMPL_TABLES=["temperature","ph","salinity","method","dna","assembly","sequencing","binning","oxygen","fraction","target","keywords"]
+    const COMPL_TABLES=["temperature","ph","salinity","method","dna","assembly","sequencing","binning","oxygen","fraction","target","keywords","hkgenes"]
     selectList.forEach(async element => {
         if(element.name && COMPL_TABLES.includes(element.name)){
             element.className="form-select"

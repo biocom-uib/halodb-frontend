@@ -28,6 +28,11 @@ async function goBack(step) {
   etapaLabel.innerHTML = STEPS_NAME[step];
   if(step==0)
     setSampleSelector()
+  
+  const modal=document.body.querySelector(".modal")
+  if(modal){
+    modal.removeAttribute("data-set")
+  }
 }
 
 function hideFileFields(){

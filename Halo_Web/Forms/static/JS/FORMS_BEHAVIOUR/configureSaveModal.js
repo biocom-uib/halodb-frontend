@@ -7,12 +7,12 @@
  * @param {HTMLElement} modal 
  */
 function configureSaveModal(modal){
-    if(modal.hasAttribute("data-set")){
+    if(!modal.hasAttribute("data-ready")){
         const modalBody=modal.querySelector(".modal-body")
         const container=document.createElement("div")
         const saveBtn=document.createElement("button")
         const message=document.createElement("p")
-        message.innerText="Choose if you wanna create a ner register or modify the las one inserted"
+        message.innerText="Choose if you want to create a new register o modify the last one inserted"
         container.className="container d-flex justify-content-end align-items-end"
         const modifyBtn=document.createElement("button")
         
@@ -34,7 +34,7 @@ function configureSaveModal(modal){
         container.appendChild(saveBtn)
         container.appendChild(modifyBtn)
         modalBody.appendChild(container)
-        modal.setAttribute("data-set",null)
+        modal.setAttribute("data-ready",null)
     }   
 }
 
@@ -43,12 +43,12 @@ function configureSaveModal(modal){
  * @param {HTMLElement} modal 
  */
 function configureNextModal(modal){
-    if(!modal.hasAttribute("set")){
+    if(!modal.hasAttribute("data-ready")){
         const modalBody=modal.querySelector(".modal-body")
         const container=document.createElement("div")
         const saveBtn=document.createElement("button")
         const message=document.createElement("p")
-        message.innerText="Choose if you wanna create a ner register or modify the las one inserted"
+        message.innerText="Choose if you want to create a new register o modify the last one inserted"
         container.className="container d-flex justify-content-end align-items-end"
         const modifyBtn=document.createElement("button")
         
@@ -71,6 +71,6 @@ function configureNextModal(modal){
         container.appendChild(saveBtn)
         container.appendChild(modifyBtn)
         modalBody.appendChild(container)
-        modal.setAttribute("data-set",null)
+        modal.setAttribute("data-ready",null)
     }   
 }

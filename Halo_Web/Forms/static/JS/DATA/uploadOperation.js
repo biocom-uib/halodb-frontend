@@ -9,18 +9,17 @@
  */
 async function uploadOperation(table,id=null,route="upload") {
     const STATIC_STEPS=["Sample","Profile"]
-    const step= STATIC_STEPS.includes(table) ? table:localStorage.getItem("actualStep") 
-    const post_body=prepareBodyRequest(step,id,table==="PREDICTED GENES") 
+    const step= STATIC_STEPS.includes(table) ? table:localStorage.getItem("actualStep")
     const header ={"Content-Type": "application/json"}
-
     const path= route ==="upload" ? "/upload/"+table : route
-    
-    let response = await fetch(generatePath(path),{
-        headers: header,
-        method:"POST",
-        body: post_body
-        }
-    );
+    let post_body
+    let configs={headers: header,method:"POST"}
+    if (id){
+        post_body=prepareBodyRequest(step,id,table==="PREDICTED GENES") 
+        configs={ headers: header,method:"POST",body: post_body}
+    }
+
+    let response = await fetch(generatePath(path),configs);
 
     if (!response.ok) {
         configureModal("Unexpected Error!",`Your ${table} could'nt be registered in`+

@@ -25,13 +25,13 @@ Number of contigs                                   contignumber        INT
 <button id="showFiles" class="btn btn-primary" hidden>Change File</button>
 <div class="row fileContainer">
   <div class="col">
-    <label for="assembled" class="col-form-label">Assemble File</label>
+    <label for="assembled" class="col-form-label">Assembly File</label>
     <input type="file" class="form-control" id="assembled"/>
   </div>
   
   <div class="col">
     <label for="assname" class="col-form-label">
-      Name of the original file containing the assembly
+      Assembly filename
       </label>
     <input type="text" maxlength="100" class="form-control" id="assname" />
   </div>
@@ -41,8 +41,7 @@ Number of contigs                                   contignumber        INT
   <div class="col">
     <label for="asize" class="col-form-label">Assembly size</label>
     <div class="input-group">
-      <input type="number" class="form-control" id="asize" aria-label="Assembly size"
-              min="0" max="9999.99"/>
+      <input type="number" class="form-control" id="asize" aria-label="Assembly size"min="0" step="1"/>
       <div class="input-group-append">
         <span class="input-group-text">bp</span>
       </div>
