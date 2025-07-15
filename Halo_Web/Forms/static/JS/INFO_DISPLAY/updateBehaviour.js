@@ -18,14 +18,13 @@ function updateInfoDipslayBtn(PARENT_NODES){
         const auxForm=document.createElement("div")
         auxForm.innerHTML=tableForm
         const inputList=Array.from(sampleInfo.querySelectorAll("input,select"))
-        const formsField=Array.from(auxForm.querySelectorAll("input"))
+        const formsField=Array.from(auxForm.querySelectorAll("input,select"))
         const newInputs=formsField.filter(item=>item.type!="file")
 
         inputList.forEach(input=>{
             input.removeAttribute("readonly")
         })
         newInputs.forEach(input=>{
-            console.log(input.id)
             if(!document.getElementById(input.id)){
                 const container=document.createElement("div")
                 const label=document.createElement("label")
@@ -35,9 +34,15 @@ function updateInfoDipslayBtn(PARENT_NODES){
                 container.appendChild(input)
                 sampleInfo.appendChild(container)
             }
-
-                
+            if(input.tagName=="SELECT"){
+                const actInput=document.getElementById(input.id)
+                const inputContainer=actInput.parentNode
+                inputContainer.removeChild(actInput)
+                inputContainer.appendChild(input)
+            }    
         })
+        getSelectedItems(sampleInfo.querySelectorAll("select")
+    )
         saveBtn.removeAttribute("hidden")
         saveBtn.addEventListener("click",async ()=>{
             const completeInputList=Array.from(sampleInfo.querySelectorAll("input,select"))

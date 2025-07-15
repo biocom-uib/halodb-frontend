@@ -41,9 +41,7 @@ function fillDataContainer(data,table){
     return container
 }
 
-function addDownloadBtn(item,id,table){
-  const btn=document.createElement("button")
-  btn.className="btn btn-primary"
+function addDownloadBtn(item,id,table,btn){
   btn.addEventListener("click",async ()=>{
     try {
       const response = await fetch(generatePath(`/api/get_file/${table}/${id}/${item}/`));  // Cambia la URL según tu endpoint
@@ -75,6 +73,6 @@ function addDownloadBtn(item,id,table){
       alert("No se pudo descargar el archivo.");
     }
   })
-  btn.innerText="Download"
+  btn.innerHTML='Download <i class="bi bi-file-earmark-arrow-down"></i>'
   return btn
 }

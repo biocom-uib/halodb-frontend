@@ -58,7 +58,8 @@ async function filterExperiments(source_id,koma,seq_step) {
     USER_EXPERIMENTS.forEach(experiment=>{
         const komaMatch=experiment.koma && experiment.koma==koma
         const srcIdMatch=checkSrcId(seq_step==="PREDICTED GENES",source_id,experiment)
-        if(komaMatch || srcIdMatch) src_list.push(experiment.id) 
+        if(komaMatch || srcIdMatch) 
+            src_list.push(experiment.id) 
     })
     return src_list   
 }

@@ -82,13 +82,20 @@ function prepareBodyRequest(step, source = null, isPredictedGenes=false) {
 }
 
 function updateBodyRequest(fields) {
+  const idTypeDict={
+    dats:(item,result)=>inputTypeFormat["date"](item,result),
+    dati:(item,result)=>inputTypeFormat["date"](item,result),
+    hocs:(item,result)=>inputTypeFormat["time"](item,result),
+    ccsu:(item,result)=>inputTypeFormat["checkbox"](item,result),
+    typn:(item,result)=>inputTypeFormat["checkbox"](item,result),
+  }
   let result = {};
   const koma=localStorage.getItem("koma")
   // 1. Recorremos y procesamos los campos
   fields.filter(item => item.id).forEach(item => {
-      if(!inputTypeFormat[item.type] && item.value)
+      if(!idTypeDict[item.id] && item.value)
         result[item.id] = item.value;
-      inputTypeFormat[item.type]?.(item,result)
+      idTypeDict[item.id]?.(item,result)
     });
 
   if (koma) {result["sequence"]=koma}

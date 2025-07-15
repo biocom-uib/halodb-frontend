@@ -8,7 +8,7 @@
  */
 async function updateSourceSelectors(step){
     const sourceCont=document.getElementById("sourceSelectors")
-    const actSelectors=sourceCont.querySelectorAll(".col")
+    const actSelectors=sourceCont.querySelectorAll("select")
     //Case 1: We are going back in the sequence
     if(actSelectors.length-1>step){
         let diff=actSelectors.length-1-step
@@ -19,19 +19,18 @@ async function updateSourceSelectors(step){
     //Case 2: We are going forward in the sequence
     }else if(actSelectors.length-1<step){
         let diff=step-actSelectors.length+1
-        let first=true
+        let previousSelect=actSelectors[actSelectors.length-1]
         while (diff>0){
             const stepName=STEPS_NAME[step-diff]
             //Get the Parent Node to asociate the evento to update all sequence flow
-            const previousSelect=document.getElementById(first ? "sourceSample":`select_${stepName}`)
             const newSourceSelect=await newSourceSelector(stepName,previousSelect.value)
             sourceCont.appendChild(newSourceSelect)
             //Important! whitouth this, the selected source may has any consistence in BD!
             previousSelect.addEventListener("change",()=>{
                 updateSourceOptions(newSourceSelect.querySelector("select"),previousSelect.value,stepName)
             })
+            previousSelect=newSourceSelect.querySelector("select")
             diff=diff-1
-            first=false
         }
     }
 }

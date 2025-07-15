@@ -70,7 +70,7 @@ async function displayStepInformation(id,table) {
     else
         stepList=await fetchSecureFile("GET",`user/list/${table}`)
 
-    updateStepDataContainer(Object.entries(stepList.find(obj => obj.id == id)))
+    updateStepDataContainer(Object.entries(stepList.find(obj => obj.id == id)),table,id)
 
     if(!koma && document.getElementById("koma"))
         localStorage.setItem("koma",document.getElementById("koma").value)
@@ -90,22 +90,32 @@ async function displayStepInformation(id,table) {
  * @param {Object} value 
  * @returns Container with read-only input wiht his specific label & value
  */
-function generateInputRO(key,value){
+function generateInputRO(key,value,object=null){
     const container=document.createElement("div")
     const label=document.createElement("label")
-    const input=document.createElement("input")
+    let input=document.createElement("input")
 
     label.innerText=paramDict[key]
     label.setAttribute("for",key)
     label.className="form-label"
 
-    input.setAttribute("readonly",null)
-    input.value=value
-    input.className="form-control"
+
+    
+    if(object){
+        input=document.createElement("button")
+        addDownloadBtn(key,object.id,object.table,input)
+        input.className="btn btn-primary"
+        container.className="d-flex justify-content-between align-items-center"
+    }else{
+        input.setAttribute("readonly",null)
+        input.value=value
+        input.className="form-control"
+    }
     input.id=key
 
     container.appendChild(label)
     container.appendChild(input)
+    
     return container
 }
 
@@ -114,7 +124,7 @@ function generateInputRO(key,value){
  * Create/Fill Step information with fetched data
  * @param {Array} obejectiveData 
  */
-function updateStepDataContainer(obejectiveData){
+function updateStepDataContainer(obejectiveData,table,id){
     const INFO_DISPLAY={
         is_public:(value)=>{
             const container=document.getElementById("public").parentElement
@@ -160,6 +170,7 @@ function updateStepDataContainer(obejectiveData){
             return 0
         }
     }
+    const FILE_INPUTS=["rreads","rreads2","treads","assembled","pgenes"]
 
     const NOT_DISPLAY_DATA=["shared_by_group",
                     "shared_by_others",
@@ -170,6 +181,8 @@ function updateStepDataContainer(obejectiveData){
                     "access_mode",
                     "project_id",
                     "is_public",
+                    "owned",
+                    "public",
                     "updated",
                     "user_id"]
 
@@ -177,14 +190,18 @@ function updateStepDataContainer(obejectiveData){
     stepDataContainer.innerHTML=""
 
     obejectiveData.forEach(([key,value]) =>{
+        let object=null
         const editBtn=document.getElementById("editBtn")
         if(key==="access_mode" && value==="readwrite")
             editBtn.removeAttribute("hidden")
         const stepData=document.getElementById(key)
         if(stepData)
             stepData.innerText = INFO_DISPLAY[key] ? INFO_DISPLAY[key](value) : value  
-        if(!NOT_DISPLAY_DATA.includes(key)) 
-            stepDataContainer.appendChild(generateInputRO(key,value))
+        if(!NOT_DISPLAY_DATA.includes(key)){
+             if(FILE_INPUTS.includes(key) && value)
+                object={"id":id,"table":table}
+            stepDataContainer.appendChild(generateInputRO(key,value,object))}
+       
         INFO_DISPLAY[key]?.(value)               
     })
 }
