@@ -31,7 +31,7 @@ async function uploadOperation(table,id=null,route="upload") {
     const RESPONSE = await (response.text());
     const PARSED_RESPONSE=JSON.parse(RESPONSE)
 
-    const stepID= route==="upload" ? PARSED_RESPONSE.message.step.id : id
+    const stepID= route==="upload" ? await getLastId(table) : id
     const forms=document.getElementById("cardForm")
      if(forms)
         uploadFile(forms,stepID,table)
@@ -86,3 +86,8 @@ async function updateStep(table,id,fields) {
     const PARSED_RESPONSE=JSON.parse(RESPONSE)
     return PARSED_RESPONSE.message ? PARSED_RESPONSE.message : PARSED_RESPONSE        
 }
+
+async function getLastId(table){
+    const response=await fetchSecureFile("GET",`user/list/${table}`)
+    return response[response.length-1].id
+}   
