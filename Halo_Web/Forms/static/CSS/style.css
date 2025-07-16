@@ -209,7 +209,19 @@ main{
 
 @media (width<720px) {
  footer{
-  font-size: 0.3rem;
+  font-size: 0.5rem;
+ }
+ #headerBtn{
+  font-size: 0.6rem;
+ }
+ h1{
+  font-size: 1.5rem !important;
+ } 
+}
+
+@media (width<420px){
+   footer{
+  font-size: 0.4rem;
  }
  #headerBtn{
   font-size: 0.6rem;

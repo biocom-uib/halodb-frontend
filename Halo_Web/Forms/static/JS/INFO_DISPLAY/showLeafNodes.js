@@ -27,7 +27,7 @@ async function showLeafNode(parent){
         rawList=await getFilterList(table)
     else
         rawList=await fetchSecureFile("GET",`user/list/${table.toLowerCase()}`)
-    const matchElements = rawList.filter(obj => obj.source_id == parent.id);
+    const matchElements = rawList.filter(obj => getSourceid(obj) == parent.id);
     matchElements.forEach(element => {
         if (element.koma)
             table=element.koma==="PROTEOMICS" ? "PEPTIDES" : "RAW READS"
@@ -68,4 +68,15 @@ function updateParentList(parent){
         updateParentList(lastParent)
     })
     parentContainer.appendChild(parentButton) 
+}
+
+function getSourceid(obj){
+    const pgSources=["source_id_contigs","source_id_genome","source_id_single_cells","source_id_plasmid"]
+    if ('source_id' in obj)
+        return obj.source_id;
+
+    for (const source of pgSources) {
+        if (source in obj)
+            return obj[source];
+  }
 }

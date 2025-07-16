@@ -1,6 +1,6 @@
 {% load static%}
 <!DOCTYPE html>
-<html style="height: 100dvh" lang="en-US">
+<html lang="en-US">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +14,7 @@
     {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %} 
     <title>{% block title %}{% endblock %}</title>
   </head>
-  <body style="height: 100dvh">
+  <body>
     <header class="w-100" style="min-height: 10dvh;">
       <div class="d-flex justify-content-between align-items-center">
         <div class="container d-flex d-flex justify-content-start align-items-center">
@@ -33,17 +33,17 @@
     </header>
     {% block content %} {% endblock %}
 
-    <footer class="d-flex border-top fixed-bottom">
+    <footer class="d-flex border-top fixed-bot">
       <div class="container d-flex align-items-center justify-content-between w-100">
-        
+        <ul class="nav flex-column d-flex">
+          <li class="nav-item"><strong>&copy; 2025 Created by: Miquel Àngel Montero Pazmiño</strong></li>
+          <li class="nav-item">Support contact: <strong>halophiles.dev@gmail.com</strong></li>
+        </ul>
+        <ul class="nav d-flex">
+          <li class="nav-item">Your opinión is very important for us! Help us to improve! <a href="https://forms.gle/tXcLkpgGFLkCr16N8" target="_blank" >Click here</a></li>
+        </ul>
+      </div>
 
-      <ul class="nav flex-column">
-        <li class="nav-item"><strong>&copy; 2025 Created by: Miquel Àngel Montero Pazmiño</strong></li>
-        <li class="nav-item">Support contact: <strong>halophiles.dev@gmail.com</strong></li>
-      </ul>
-      <ul class="nav d-flex">
-        <li class="nav-item">Your opinión is very important for us! Help us to improve! <a href="https://forms.gle/tXcLkpgGFLkCr16N8" target="_blank" >Click here</a></li>
-      </ul>
     </footer>
     
     <script src="{% static 'JS/BASIC/global.js' %}"></script>

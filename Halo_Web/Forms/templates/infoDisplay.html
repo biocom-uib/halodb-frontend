@@ -13,11 +13,11 @@
         </button>
       </div>
 
-        <div class="container d-flex" style="background: none;">
-            <section id="leftZone" class="p-2" style="width: 25dvw;">
-                <div id="metaInfo" class="container w-100" style="background-color:cadetblue; height: 55dvh; overflow-y: auto; border-radius: 1rem; border-color: black;">
+        <div class="container" style="background: none;">
+            <section id="leftZone" class="p-2 w-100" style="width: 25dvw;">
+                <div id="metaInfo" class="container" style="background-color:cadetblue; overflow-y: auto; border-radius: 1rem; border-color: black;">
                     <h2 class="d-flex justify-content-center">System Data</h2>
-                    <ul class="list-group">
+                    <ul class="list-group pb-3">
                         <li class="list-group-item"> 
                             <div class="d-flex justify-content-between">
                                 <div>
@@ -33,11 +33,8 @@
                         <li class="list-group-item" hidden>Last Update: <span id="updated" style="font-weight: bold;">Yes</span></li>
                     </ul>
                 </div>
-                <div id="dataShow" class="pt-3">
-                    <div id="map" style="height: 25dvh; border-radius: 1rem;"></div>
-                </div>
             </section>
-            <section id="midZone" class="w-100 h-100 p-2">
+            <section id="midZone" class="p-2">
                 <div id="dataShow" class="container w-100" style=" height: 83dvh; overflow-y: auto; border-radius: 1dvw;">
                     <div class="d-flex justify-content-center">
                         <h2><span>Step</span> information</h2>
@@ -56,8 +53,12 @@
                     </button>
                     </div>
                 </div>
+                <div id="dataShow" class="pt-3">
+                    <div id="map" style="height: 25dvh; border-radius: 1rem;"></div>
+                </div>
             </section>
-        <section id="rightZone">
+            
+        <section id="rightZone" class="p-2">
             <div id="appendNodes" class="container w-100 mt-2 mb-3 pt-1" style="max-height: 50dvh;height: 40dvh; border-radius: 1dvw;">
                 <h2 class="d-flex justify-content-center">Experiments</h2>
                 <ul class="list-group" style="overflow-y: auto;max-height: 30dvh;">

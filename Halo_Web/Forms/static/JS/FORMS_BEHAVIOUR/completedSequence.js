@@ -10,5 +10,5 @@
 function completedSequence(ACT_STEP){
     localStorage.setItem("StepsNameList",JSON.stringify(STEPS_NAME))
     LocalStoreData(ACT_STEP);
-    window.location.assign(generatePath("/Summary/"));
+    window.location.assign(generatePath("/Profile/"));
 }
