@@ -14,7 +14,7 @@ async function uploadOperation(table,id=null,route="upload") {
     const path= route ==="upload" ? "/upload/"+table : route
     let post_body
     let configs={headers: header,method:"POST"}
-    if (id){
+    if (id ||table=="Sample"){
         post_body=prepareBodyRequest(step,id,table==="PREDICTED GENES") 
         configs={ headers: header,method:"POST",body: post_body}
     }

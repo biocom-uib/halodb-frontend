@@ -46,7 +46,6 @@ def api_put_calls(request, src):
     full_url = f"{URL}{src}"
     headers = {"Authorization": f"Bearer {token}"}
 
-    print(body_unicode)
     try:
         response = requests.put(full_url, headers=headers, json=body_unicode)
         return responseController(response,"Failed in API POST!!")

@@ -15,6 +15,7 @@ def responseController(response, error_msg):
     # Check if the response was successful (status code 200)
     if response.status_code == 200:
         parsed_response = response.json()
+
         # If the response contains a 'data' key, return that data
         if "data" in parsed_response:
             return JsonResponse(parsed_response["data"],safe=False)
