@@ -3,6 +3,8 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from dotenv import load_dotenv
 
+from Halo_Web.settings import PROD_BASE_URL
+
 # Cargar .env (hazlo aquí si no estás seguro de si se cargó en settings.py)
 load_dotenv()
 
@@ -24,9 +26,9 @@ class TokenRequiredMiddleware:
             '/static/',
         ]
 
-        # Prefijar con /halofiles si no es entorno DEV
+        # Prefijar con '/'+PROD_BASE_URL si no es entorno DEV
         if not self.is_dev:
-            self.excluded_paths = ['/halofiles' + path for path in base_paths]
+            self.excluded_paths = ['/' + PROD_BASE_URL + path for path in base_paths]
         else:
             self.excluded_paths = base_paths
 

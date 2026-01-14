@@ -1,0 +1,66 @@
+.ip { font-family: system-ui, sans-serif; max-width: 680px; }
+.ip-row { display: flex; gap: .5rem; align-items: center; flex-wrap: wrap; }
+
+.ip-chips {
+  display: flex; flex-wrap: wrap; gap: .5rem;
+  padding: .25rem; border: 1px solid #ccc; border-radius: .5rem;
+  min-height: 42px; flex: 1; background: #fff;
+}
+.ip-chip {
+  display: inline-flex; align-items: center; gap: .35rem;
+  padding: .25rem .5rem; border-radius: 999px; border: 1px solid #ddd;
+  background: #f9f9f9;
+}
+.ip-chip button {
+  border: 0; background: none; cursor: pointer; font-size: 16px; line-height: 1;
+}
+
+.ip-toolbar { display: flex; gap: .5rem; align-items: center; flex-wrap: wrap; }
+.ip-controls { display: flex; gap: .5rem; align-items: center; flex-wrap: wrap; }
+.ip-controls.hidden { display: none; }
+
+.ip-icon-btn {
+  width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center;
+  border: 1px solid #ccc; border-radius: 50%; background: #f8f8f8; cursor: pointer; transition: background .2s;
+  padding: 0;
+}
+.ip-icon-btn svg { fill: #333; }
+.ip-icon-btn:hover { background: #e8e8e8; }
+.ip-icon-btn.active { border-color: #0b5cff; background: #eef4ff; }
+.ip-icon-btn.active svg { fill: #0b5cff; }
+
+.ip-btn {
+  padding: .5rem .75rem; border: 1px solid #ccc; border-radius: .5rem; background: #f8f8f8; cursor: pointer;
+}
+.ip-add {
+  flex: 1; min-width: 220px; padding: .5rem .6rem; border: 1px solid #ccc; border-radius: .5rem;
+}
+
+.ip-dropdown { position: relative; display: inline-block; }
+.ip-panel {
+  position: absolute; top: 44px; left: 0; z-index: 20; width: 340px; max-height: 280px; overflow: auto;
+  border: 1px solid #ccc; background: #fff; border-radius: .5rem; box-shadow: 0 8px 28px rgba(0,0,0,.12);
+  display: none;
+}
+.ip-panel.open { display: block; }
+
+.ip-search { position: sticky; top: 0; background: #fff; padding: .5rem; border-bottom: 1px solid #eee; }
+.ip-search input { width: 100%; padding: .45rem .55rem; border: 1px solid #ddd; border-radius: .35rem; }
+
+.ip-list { list-style: none; margin: 0; padding: .25rem .5rem; }
+.ip-list li { display: flex; align-items: center; gap: .5rem; padding: .35rem .25rem; }
+.ip-empty { padding: .75rem; color: #666; }
+
+.ip-readonly .ip-chip button { display: none; }
+.ip-readonly .ip-toolbar { display: none; }
+
+.ip {
+    color: #004080;       /* your main text color */
+}
+.ip .ip-chip {
+    border-color: #004080;
+    background: #e6f0ff;
+}
+.ip .ip-chip button {
+    color: #004080;
+}

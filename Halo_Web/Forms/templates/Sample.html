@@ -58,14 +58,30 @@
                       <label for="target_id" class="form-label" multiple>Target nucleic acids</label>
                       <select id="target_id" class="form-control" name="target"></select>
                     </div>
-                  <!--<div class="col">
+                      <div class="col">
+                        <!--
                       <label for="keywords" class="form-label">Keywords</label>
                       <select class="form-control" id="keywords" name="keywords" multiple></select>
-                    </div>-->  
+                      -->
+                          <label for="keywords-widget" class="form-label">Keywords</label>
+                          <div id="keywords-widget"></div>
+                          <input type="hidden" id="keywords" name="keywords" value="">
+                      <script>
+                          const keywords = new ItemPicker(
+                              document.getElementById('keywords-widget'), {
+                                  hiddenInput: document.getElementById('keywords'),
+                                  options: [],
+                                  initial: [],
+                                  optionIdKey: 'id',
+                                  optionLabelKey: 'keyword',
+                                  multiple: true,            // <-- multiple selection
+                                  collapsed: true,
+                              });
+                      </script>
+                  </div>
                   </div>  
                 </div>
-                
-               
+              </div>
             </div>
           </div>
           <div class="accordion-item">
@@ -97,15 +113,30 @@
                 <div class="row">
                   <!-- Latitude -->
                   <div class="col">
+                      <!--
                     <label for="lati" class="col-form-label">Latitude</label>
-                    <input type="number" step="any" class="form-control" id="lati" />
+                    <input type="text" step="any" class="form-control" id="lati" onblur="formatLat(this)">
+                        -->
+
+                      <label for="lati_view" class="col-form-label">latitude</label>
+                      <input type="text" step="any" class="form-control" id="lati_view" onblur="formatLat(this)"/>
+                      <input type="hidden" class="form-control" id="lati" />
+
+
                   </div>
                   <!-- Longitude -->
                   <div class="col">
+                      <!--
                     <label for="long" class="col-form-label">Longitude</label>
-                    <input type="number" step="any" class="form-control" id="long" />
+                    <input type="text" step="any" class="form-control" id="long" onblur="formatLon(this)"/>
+                        -->
+
+                      <label for="long_view" class="col-form-label">Longitude</label>
+                      <input type="text" step="any" class="form-control" id="long_view" onblur="formatLon(this)"/>
+                      <input type="hidden" class="form-control" id="long" />
+
                   </div>
-                  <!-- Altitud eover sea level-->
+                  <!-- Altitud over sea level-->
                   <div class="col-4">
                     <label for="alti" class="col-form-label">Altitude over level at sea</label>
                     <div class="input-group">

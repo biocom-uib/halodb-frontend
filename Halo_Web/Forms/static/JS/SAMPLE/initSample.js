@@ -29,6 +29,9 @@ async function initSample(){
         configureModal(result.title,result.msg,insertedData!=-1)       
     });
     getSelectedItems(sampleForm.querySelectorAll("select"))
+    getValuesForItemList("keywords");
+    //const keywords_hidden = document.getElementById('keywords');
+
     //Change unit value label
     const ssizeunitSelect=document.getElementById("ssizeunit")
     ssizeunitSelect.addEventListener("change",()=>{

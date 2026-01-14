@@ -27,12 +27,14 @@ async function initInfoDisplay(){
         const myModal = new bootstrap.Modal(element);
         myModal.show();
     })
-    const lat=document.getElementById("lati").value
-    const long=document.getElementById("long").value
-    if(lat && long)
-        initMap(lat,long)
+    const lat=document.getElementById("lati").value;
+    const long=document.getElementById("long").value;
 
-    localStorage.setItem("sampleSrc",id)
+    if(lat && long)
+        initMap(calculateLat(lat),
+                calculateLon(long));
+
+    localStorage.setItem("sampleSrc",id);
 
     doiAdd.addEventListener("click",()=>{
         const li=document.createElement("li")
@@ -67,8 +69,8 @@ async function displayStepInformation(id,table) {
     let stepList
     if(window.location.pathname.includes("public"))
         stepList=await getFilterList(table)
-    else
-        stepList=await fetchSecureFile("GET",`user/list/${table}`)
+    else // TODO: change to query only the table with the id provided `${table}/${id}`
+        stepList=await fetchSecureFile("GET",`user/list/${table}/`)
 
     updateStepDataContainer(Object.entries(stepList.find(obj => obj.id == id)),table,id)
 
@@ -122,9 +124,9 @@ function generateInputRO(key,value,object=null){
 
 /**
  * Create/Fill Step information with fetched data
- * @param {Array} obejectiveData 
+ * @param {Array} objectiveData
  */
-function updateStepDataContainer(obejectiveData,table,id){
+function updateStepDataContainer(objectiveData,table,id){
     const INFO_DISPLAY={
         is_public:(value)=>{
             const container=document.getElementById("public").parentElement
@@ -168,7 +170,22 @@ function updateStepDataContainer(obejectiveData,table,id){
             const owners=userList.filter(user=>user.id==value)
             owned.innerText=owners[0].name.concat(" ",owners[0].surname)
             return 0
-        }
+        },
+        lati: (raw) => {
+            // const view = document.getElementById("lati_view")
+            if (raw) {
+            //    view.value=formatLatLon(raw, true);
+                return formatLatLon(raw, true);
+            }
+        },
+        long: (raw) => {
+            // const view = document.getElementById("long_view")
+            if (raw) {
+            //    view.value=formatLatLon(raw, false);
+            }
+            return formatLatLon(raw, false);
+        },
+        // TODO: keywords and hkgenes should be fetch from the server.
     }
     const FILE_INPUTS=["rreads","rreads2","treads","assembled","pgenes"]
 
@@ -189,7 +206,7 @@ function updateStepDataContainer(obejectiveData,table,id){
     const stepDataContainer=document.getElementById("stepDataContainer")
     stepDataContainer.innerHTML=""
 
-    obejectiveData.forEach(([key,value]) =>{
+    objectiveData.forEach(([key,value]) =>{
         let object=null
         const editBtn=document.getElementById("editBtn")
         if(key==="access_mode" && value==="readwrite")
@@ -200,6 +217,8 @@ function updateStepDataContainer(obejectiveData,table,id){
         if(!NOT_DISPLAY_DATA.includes(key)){
              if(FILE_INPUTS.includes(key) && value)
                 object={"id":id,"table":table}
+             if (key==="lati" || key==="long")
+                value=INFO_DISPLAY[key](value)
             stepDataContainer.appendChild(generateInputRO(key,value,object))}
        
         INFO_DISPLAY[key]?.(value)               

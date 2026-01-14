@@ -76,9 +76,9 @@ async function updateStep(table,id,fields) {
     );
 
     if (!response.ok) {
-        configureModal("Unexpected Error!",`Your ${table} could'nt be updated in`+
+        configureModal("Unexpected Error!",`Your ${table} couldn't be updated in`+
             " HaloFilesDB. Try it later and if this errors persist, please"+
-            " contact with an adminstrator",false)
+            " contact with an administrator",false)
         return -1;
     }
 
@@ -88,6 +88,6 @@ async function updateStep(table,id,fields) {
 }
 
 async function getLastId(table){
-    const response=await fetchSecureFile("GET",`user/list/${table}`)
+    const response=await fetchSecureFile("GET",`user/list/${table}/`)
     return response[response.length-1].id
 }   

@@ -1,0 +1,4 @@
+
+cd WebApp/Halo_Web/
+docker stop halophiles_container_v0.5.3.1;docker rm halophiles_container_v0.5.3.1 ; docker rmi halophiles_img_v0.5.3.1:latest
+docker build -t halophiles_img_v0.5.3.1 . ; docker run -d --name halophiles_container_v0.5.3.1 -p 8000:8000 -v /home/halophile/public_html:/app/static halophiles_img_v0.5.3.1 ; docker logs -f halophiles_container_v0.5.3.1

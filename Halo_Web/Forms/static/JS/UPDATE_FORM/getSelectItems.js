@@ -29,3 +29,21 @@ function getSelectedItems(selectList){
         }
     });
 }
+
+
+/**
+ * Check all select items looking for that ones that appear in COMPL_TABLES
+ * @param {string} listname
+ */
+function getValuesForItemList(listname){
+    const elementList = [{name: listname}];
+
+    const COMPL_TABLES=["temperature","ph","salinity","method","dna","assembly","sequencing","binning","oxygen","fraction","target","keywords","hkgenes"]
+    elementList.forEach(async element => {
+        if(element.name && COMPL_TABLES.includes(element.name)){
+            const DATA=await fetchSecureFile("GET","public/query/"+element.name);
+
+            document.getElementById(listname).itemPicker.setOptions(DATA);
+        }
+    });
+}

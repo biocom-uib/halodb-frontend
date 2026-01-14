@@ -7,7 +7,7 @@
  */
 async function loadProfileData(){
     //Returns an array of SAMLPLEs in message field
-    const DATA= await fetchSecureFile("GET","user/list/sample")
+    const DATA= await fetchSecureFile("GET","user/list/sample/")
     restoreStorage()
     //Append a sampleCard for each sample
     DATA.filter(item=>item.name).forEach(element => {
@@ -17,7 +17,7 @@ async function loadProfileData(){
             addSampleCard(element,"profileSamples",null,"sample")
 
     });
-    const userGroups=await fetchSecureFile("GET","user/list/groups")
+    const userGroups=await fetchSecureFile("GET","user/list/groups/")
     userGroups.forEach(element => {
         addSampleCard(element,"groupContainer",null,"group")
     })

@@ -16,6 +16,9 @@ import os
 
 load_dotenv()
 
+PROD_BASE_URL = "halofiles"
+BASE_URL = "/" + PROD_BASE_URL + "/"
+
 #
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.getenv('EMAIL_HOST')
@@ -23,23 +26,23 @@ EMAIL_PORT = int(os.getenv('EMAIL_PORT', 587))
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS') == 'True'
-DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'no-reply@bioinfo.uib.es')
+DEFAULT_FROM_EMAIL = os.getenv('EMAIL_FROM', 'no-reply@bioinfo.uib.es')
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-)0mp9_7nxcqlp^__$l_^2xiamft0_05p=h@(#5^_2ld(20-2c1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 load_dotenv(os.path.join(BASE_DIR, '.env'))
-DJANGO_ENV= os.getenv('ENV')
-DEBUG = DJANGO_ENV=='DEV'
+DJANGO_ENV = os.getenv('ENV', 'DEV')
+#DEBUG = True
+DEBUG = DJANGO_ENV == 'DEV'
 
-ALLOWED_HOSTS = ["bioinfo.uib.es/halofiles",'127.0.0.1']
+ALLOWED_HOSTS = ["bioinfo.uib.es/"+PROD_BASE_URL, '127.0.0.1']
 
-CSRF_TRUSTED_ORIGINS = ["https://bioinfo.uib.es",'https://127.0.0.1:8000']
-
+CSRF_TRUSTED_ORIGINS = ["https://bioinfo.uib.es", 'https://127.0.0.1:8000']
 
 # Application definition
 
@@ -64,7 +67,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',   
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 ROOT_URLCONF = 'Halo_Web.urls'
@@ -85,7 +88,6 @@ TEMPLATES = [
     },
 ]
 
-
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
@@ -96,7 +98,6 @@ CACHES = {
     }
 }
 WSGI_APPLICATION = 'Halo_Web.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
@@ -124,8 +125,6 @@ LOGGING = {
     },
 }
 
-
-
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -144,7 +143,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
@@ -156,10 +154,8 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
-
 
 
 # Default primary key field type
@@ -169,14 +165,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
-STATIC_ROOT = '/home/halophile/public_html/'
+
+#STATIC_ROOT = '/home/halophile/public_html/'
+STATIC_ROOT = BASE_DIR / 'public_html'
+
+APPEND_SLASH = True
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'Forms', 'static'), ]
 
 if DEBUG:
-    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'Forms/static'),]
     STATIC_URL = '/static/'
 else:
-    STATIC_URL = '/halofiles/static/'
-    FORCE_SCRIPT_NAME = '/halofiles'
+    STATIC_URL = BASE_URL + 'static/'
+    FORCE_SCRIPT_NAME = '/' + PROD_BASE_URL
 
 #
-

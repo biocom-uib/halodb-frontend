@@ -6,12 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="TFG proyect about: WebApp that allows to interact with a microorganism database">
     <link rel="icon" type="image/x-icon" href="{% static 'src/favicon.ico' %}">
-    <link rel="stylesheet" href="{% static 'CSS/style.css'%}">
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      <link rel="stylesheet" href="{% static 'CSS/style.css'%}">
+      <link rel="stylesheet" href="{% static 'itempicker/itempicker.css'%}">
+      <script type="text/javascript" src="{% static 'itempicker/itempicker.js' %}"></script>
+
+      <script type="text/javascript" src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
      crossorigin="" defer></script>
-     <script src="https://cdn.jsdelivr.net/npm/driver.js@latest/dist/driver.js.iife.js"></script>
-    {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %} 
+     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/driver.js@latest/dist/driver.js.iife.js"></script>
+
+      {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
+
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body>
@@ -40,76 +45,78 @@
           <li class="nav-item">Support contact: <strong>halophiles.dev@gmail.com</strong></li>
         </ul>
         <ul class="nav d-flex">
-          <li class="nav-item">Your opinión is very important for us! Help us to improve! <a href="https://forms.gle/tXcLkpgGFLkCr16N8" target="_blank" >Click here</a></li>
+          <li class="nav-item">Your opinion is very important for us! Help us to improve! <a href="https://forms.gle/tXcLkpgGFLkCr16N8" target="_blank" >Click here</a></li>
         </ul>
       </div>
 
     </footer>
     
-    <script src="{% static 'JS/BASIC/global.js' %}"></script>
-    <script src="{% static 'JS/BASIC/init.js' %}"></script>
-    <script src="{% static 'JS/BASIC/generatePath.js' %}"></script>
-    <script src="{% static 'JS/BASIC/generateModal.js' %}"></script>
-    <script src="{% static 'JS/BASIC/generateExperimetUID.js' %}"></script>
+    <script type="text/javascript" src="{% static 'JS/BASIC/global.js' %}"></script>
+    <script type="text/javascript" src="{% static 'JS/BASIC/init.js' %}"></script>
+    <script type="text/javascript" src="{% static 'JS/BASIC/generatePath.js' %}"></script>
+    <script type="text/javascript" src="{% static 'JS/BASIC/generateModal.js' %}"></script>
+    <script type="text/javascript" src="{% static 'JS/BASIC/generateExperimetUID.js' %}"></script>
 
-    <script src="{% static 'JS/DATA/fetchOperations.js' %}"></script>
-    <script src="{% static 'JS/DATA/uploadOperation.js' %}"></script>
-    <script src="{% static 'JS/DATA/prepareBodyRequest.js' '%}"></script>
+    <script type="text/javascript" src="{% static 'JS/DATA/fetchOperations.js' %}"></script>
+    <script type="text/javascript" src="{% static 'JS/DATA/uploadOperation.js' %}"></script>
+    <script type="text/javascript" src="{% static 'JS/DATA/prepareBodyRequest.js' '%}"></script>
 
-    <script src="{% static 'JS/DRIVER/initDriver.js' '%}"></script>
+    <script type="text/javascript" src="{% static 'JS/DRIVER/initDriver.js' '%}"></script>
     
-    <script src="{% static 'JS/FILTER/initFilter.js' '%}"></script>
-    <script src="{% static 'JS/FILTER/generateListElements.js' '%}"></script>
+    <script type="text/javascript" src="{% static 'JS/FILTER/initFilter.js' '%}"></script>
+    <script type="text/javascript" src="{% static 'JS/FILTER/generateListElements.js' '%}"></script>
     
-    <script src="{% static 'JS/FORMS_BEHAVIOUR/FormEventManagement.js' '%}"></script>
-    <script src="{% static 'JS/FORMS_BEHAVIOUR/completedSequence.js' '%}"></script>
-    <script src="{% static 'JS/FORMS_BEHAVIOUR/getFileName.js'%}"></script>
-    <script src="{% static 'JS/FORMS_BEHAVIOUR/setFormsEnv.js'%}"></script>
-    <script src="{% static 'JS/FORMS_BEHAVIOUR/setSampleSelector.js' '%}"></script>
-    <script src="{% static 'JS/FORMS_BEHAVIOUR/goBack.js' '%}"></script>
-    <script src="{% static 'JS/FORMS_BEHAVIOUR/configureSaveModal.js' '%}"></script>
-    <script src="{% static 'JS/FORMS_BEHAVIOUR/saveData.js' '%}"></script>
-        <script src="{% static 'JS/FORMS_BEHAVIOUR/getSequenceSteps.js' '%}"></script>
+    <script type="text/javascript" src="{% static 'JS/FORMS_BEHAVIOUR/FormEventManagement.js' '%}"></script>
+    <script type="text/javascript" src="{% static 'JS/FORMS_BEHAVIOUR/completedSequence.js' '%}"></script>
+    <script type="text/javascript" src="{% static 'JS/FORMS_BEHAVIOUR/getFileName.js'%}"></script>
+    <script type="text/javascript" src="{% static 'JS/FORMS_BEHAVIOUR/setFormsEnv.js'%}"></script>
+    <script type="text/javascript" src="{% static 'JS/FORMS_BEHAVIOUR/setSampleSelector.js' '%}"></script>
+    <script type="text/javascript" src="{% static 'JS/FORMS_BEHAVIOUR/goBack.js' '%}"></script>
+    <script type="text/javascript" src="{% static 'JS/FORMS_BEHAVIOUR/configureSaveModal.js' '%}"></script>
+    <script type="text/javascript" src="{% static 'JS/FORMS_BEHAVIOUR/saveData.js' '%}"></script>
+    <script type="text/javascript" src="{% static 'JS/FORMS_BEHAVIOUR/getSequenceSteps.js' '%}"></script>
 
-    <script src="{% static 'JS/INFO_DISPLAY/mapBehaivour.js' '%}"></script>
-    <script src="{% static 'JS/INFO_DISPLAY/showConcretData.js' '%}"></script>
-    <script src="{% static 'JS/INFO_DISPLAY/showLeafNodes.js' '%}"></script>
-    <script src="{% static 'JS/INFO_DISPLAY/updateBehaviour.js' '%}"></script>
+    <script type="text/javascript" src="{% static 'JS/INFO_DISPLAY/mapBehaivour.js' '%}"></script>
+    <script type="text/javascript" src="{% static 'JS/INFO_DISPLAY/showConcretData.js' '%}"></script>
+    <script type="text/javascript" src="{% static 'JS/INFO_DISPLAY/showLeafNodes.js' '%}"></script>
+    <script type="text/javascript" src="{% static 'JS/INFO_DISPLAY/updateBehaviour.js' '%}"></script>
 
-    <script src="{% static 'JS/LS/RecoverFieldsData.js' '%}"></script>
-    <script src="{% static 'JS/LS/LocalStoreData.js' '%}"></script>
-    <script src="{% static 'JS/LS/removeSteps.js' '%}"></script>
-    <script src="{% static 'JS/LS/restartLS.js' '%}"></script>
+    <script type="text/javascript" src="{% static 'JS/LS/RecoverFieldsData.js' '%}"></script>
+    <script type="text/javascript" src="{% static 'JS/LS/LocalStoreData.js' '%}"></script>
+    <script type="text/javascript" src="{% static 'JS/LS/removeSteps.js' '%}"></script>
+    <script type="text/javascript" src="{% static 'JS/LS/restartLS.js' '%}"></script>
 
 
-    <script src="{% static 'JS/PROFILE/loadProfileData.js' '%}"></script>
-    <script src="{% static 'JS/PROFILE/fillSampleCard.js' '%}"></script>
-    <script src="{% static 'JS/PROFILE/addSampleCards.js' '%}"></script>
-    <script src="{% static 'JS/PROFILE/generateModalButtons.js' '%}"></script>
-    <script src="{% static 'JS/PROFILE/loadUserKomaData.js' '%}"></script>
-    <script src="{% static 'JS/PROFILE/updateCardData.js' '%}"></script>
-    <script src="{% static 'JS/PROFILE/fillDataContainer.js' '%}"></script>
-    <script src="{% static 'JS/PROFILE/fillStepData.js' '%}"></script>
-    <script src="{% static 'JS/PROFILE/configureGroupModal.js' '%}"></script>
+    <script type="text/javascript" src="{% static 'JS/PROFILE/loadProfileData.js' '%}"></script>
+    <script type="text/javascript" src="{% static 'JS/PROFILE/fillSampleCard.js' '%}"></script>
+    <script type="text/javascript" src="{% static 'JS/PROFILE/addSampleCards.js' '%}"></script>
+    <script type="text/javascript" src="{% static 'JS/PROFILE/generateModalButtons.js' '%}"></script>
+    <script type="text/javascript" src="{% static 'JS/PROFILE/loadUserKomaData.js' '%}"></script>
+    <script type="text/javascript" src="{% static 'JS/PROFILE/updateCardData.js' '%}"></script>
+    <script type="text/javascript" src="{% static 'JS/PROFILE/fillDataContainer.js' '%}"></script>
+    <script type="text/javascript" src="{% static 'JS/PROFILE/fillStepData.js' '%}"></script>
+    <script type="text/javascript" src="{% static 'JS/PROFILE/configureGroupModal.js' '%}"></script>
 
-    <script src="{% static 'JS/REGISTER/initRegisterConfig.js' %}"></script>
+    <script type="text/javascript" src="{% static 'JS/REGISTER/initRegisterConfig.js' %}"></script>
     
 
-    <script src="{% static 'JS/SUMMARY/LoadSummary.js' %}"></script>
-    <script src="{% static 'JS/SUMMARY/GenerateSummaryRow.js' %}"></script>
+    <script type="text/javascript" src="{% static 'JS/SUMMARY/LoadSummary.js' %}"></script>
+    <script type="text/javascript" src="{% static 'JS/SUMMARY/GenerateSummaryRow.js' %}"></script>
   
-    <script src="{% static 'JS/SVG/AddStep.js' '%}"></script>
+    <script type="text/javascript" src="{% static 'JS/SVG/AddStep.js' %}"></script>
   
-    <script src="{% static 'JS/SAMPLE/configureModal.js' '%}"></script>
-    <script src="{% static 'JS/SAMPLE/generateKomaModalBody.js' '%}"></script>
-    <script src="{% static 'JS/SAMPLE/initSample.js' '%}"></script>
+    <script type="text/javascript" src="{% static 'JS/SAMPLE/configureModal.js' %}"></script>
+    <script type="text/javascript" src="{% static 'JS/SAMPLE/generateKomaModalBody.js' %}"></script>
+    <script type="text/javascript" src="{% static 'JS/SAMPLE/initSample.js' %}"></script>
 
-    <script src="{% static 'JS/UPDATE_FORM/LoadNextForm.js' '%}"></script>
-    <script src="{% static 'JS/UPDATE_FORM/getMagnitudeCategories.js' '%}"></script>
-    <script src="{% static 'JS/UPDATE_FORM/getSelectItems.js' %}"></script>
-    <script src="{% static 'JS/UPDATE_FORM/hiddenFields.js' %}"></script>
-    <script src="{% static 'JS/UPDATE_FORM/showToast.js' %}"></script>
-    <script src="{% static 'JS/UPDATE_FORM/updateSourceSelectors.js' %}"></script>
+    <script type="text/javascript" src="{% static 'JS/SAMPLE/lat_lon.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'JS/UPDATE_FORM/LoadNextForm.js' %}"></script>
+    <script type="text/javascript" src="{% static 'JS/UPDATE_FORM/getMagnitudeCategories.js' %}"></script>
+    <script type="text/javascript" src="{% static 'JS/UPDATE_FORM/getSelectItems.js' %}"></script>
+    <script type="text/javascript" src="{% static 'JS/UPDATE_FORM/hiddenFields.js' %}"></script>
+    <script type="text/javascript" src="{% static 'JS/UPDATE_FORM/showToast.js' %}"></script>
+    <script type="text/javascript" src="{% static 'JS/UPDATE_FORM/updateSourceSelectors.js' %}"></script>
 
   </body>
 </html>

@@ -3,7 +3,7 @@
  */
 
 /**
- * Manage all DOMContentLoaded Events in the differents views
+ * Manage all DOMContentLoaded Events in the different views
 */
 function init(){
   const initActions={

@@ -16,8 +16,8 @@ const URL_DICC = {
 };
 
 const HOST_DICC ={
-  "127.0.0.1":"dev",
-  "bioinfo.uib.es":"prod"
+  "127.0.0.1":"DEV",
+  "bioinfo.uib.es":"PROD"
 }
 
 const DEFULT_CARD_COLOR = "bg-white text-dark";
@@ -47,7 +47,7 @@ const paramDict = {
   cult: "Is the sample cultured or uncultured?",
   dati: "Date of isolation",
   dats: "Sampling date",
-  dept: "Depth with respect altitud",
+  dept: "Depth with respect to altitude",
   dnae: "DNA extraction method",
   elac: "Terminal electron acceptor",
   emet: "Energy metabolism",
@@ -66,7 +66,9 @@ const paramDict = {
   keywords_id: "Keywords",
   koma: "Kind of material",
   lati: "Latitude",
+  lati_view: "Latitude",
   long: "Longitude",
+  long_view: "Longitude",
   meca: "INSDC metagenome accession number",
   method_id: "Method used to estimate the integrity and contamination of the sample",
   nagoya: "Information related to the Nagoya Protocol",

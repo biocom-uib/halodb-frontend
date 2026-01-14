@@ -53,7 +53,7 @@ async function loadUserKomaData(koma){
  */
 
 async function filterExperiments(source_id,koma,seq_step) {
-    const USER_EXPERIMENTS= await fetchSecureFile("GET","user/list/"+seq_step)
+    const USER_EXPERIMENTS= await fetchSecureFile("GET","user/list/"+seq_step+"/")
     let src_list=[]
     USER_EXPERIMENTS.forEach(experiment=>{
         const komaMatch=experiment.koma && experiment.koma==koma

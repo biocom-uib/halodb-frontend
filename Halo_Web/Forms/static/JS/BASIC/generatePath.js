@@ -8,5 +8,5 @@
  * @returns Adjusted URL
  */
 function generatePath(path){
-    return localStorage.getItem("env")==="dev" ? path : "/halofiles"+path
+    return localStorage.getItem("env")==="DEV" ? path : "/halofiles"+path
 }

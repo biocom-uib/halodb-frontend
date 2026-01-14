@@ -28,7 +28,7 @@ def get_step_info(request,sample_id,step_name):
     if not token:
         return JsonResponse({"status":"error","message":"Usuario no autenticado"},status=401)   
     
-    url=URL+f"user/list/{step_name}/{sample_id}"
+    url=URL+f"user/list/{step_name}/{sample_id}/"
     headers={"Authorization":f"Bearer {token}"}
     response = requests.get(url, headers=headers)
     return responseController(response=response,error_msg="Failed fetching step info")
