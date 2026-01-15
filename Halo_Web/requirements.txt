@@ -1,5 +1,8 @@
-Django~=5.2.7
-requests~=2.32.3
-dotenv~=0.9.9
-python-dotenv~=1.2.1
+Django
+requests
+dotenv
+python-dotenv
 django-bootstrap-v5
+django-bootstrap5
+gunicorn
+whitenoise
