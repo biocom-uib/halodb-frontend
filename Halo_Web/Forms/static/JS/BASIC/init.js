@@ -69,7 +69,7 @@ function updateHeaderBtn(id){
 
   // test if id is in the goLobbyList array
   const found = goLobbyList.indexOf(id) !== -1;
-  headerBtn.href = found ? generatePath("/") : generatePath("/profile");
+  headerBtn.href = !found ? generatePath("/") : generatePath("/profile");
 
   if (id=="infoDisplay" && window.location.pathname.includes("public"))
      headerBtn.href=generatePath("/filter");

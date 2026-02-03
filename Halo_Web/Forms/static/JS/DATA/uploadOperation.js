@@ -66,7 +66,7 @@ function uploadFile(forms,id,table){
  */
 async function updateStep(table,id,fields) {
 
-    const path= generatePath(`/api/put/${table}/${id}`) 
+    const path= generatePath(`/api/put/${table}/${id}`)
     const bodyRequest=updateBodyRequest(fields)
     let response = await fetch(path,{
         headers: {"Content-Type": "application/json"},
