@@ -14,7 +14,7 @@ function initDriver(mainId) {
                 element: '#advancedSearch',
                 popover: {
                     title: 'Advanced Searcher',
-                    description: 'Navigate into HaloFiles public Sample repositori with sofisticated filters',
+                    description: 'Navigate into HaloFiles public Sample repositori with sophisticated filters',
                     position: 'right'
                 }
             },
