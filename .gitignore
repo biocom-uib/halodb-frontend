@@ -37,7 +37,8 @@ DOCS/
 AUX_Form.html
 
 # IDE
-.vscode/
+.vscode/*
+!.vscode/launch.json
 .idea/
 *.swp
 *.swo
