@@ -9,7 +9,14 @@ let PARENT_NODES
  */
 async function initInfoDisplay(){
     PARENT_NODES=[]
-    const params=window.location.pathname.slice(generatePath('/infoDisplay/').length).split("/")
+
+    //const params=window.location.pathname.slice(generatePath('/infoDisplay/').length).split("/")
+
+    /** Get the id and table from the URL. The URL has the format /infoDisplay/{table}/{id} */
+    const params=window.location.pathname.split("/")
+    /** remove trailing empty element if the URL ends with a slash */
+    if(params[params.length-1]=="")
+        params.pop()
     const table=params[params.length-2].toUpperCase()
     const id=params[params.length-1]
     const doiCont=document.querySelector(".modal-body")
