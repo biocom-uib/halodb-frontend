@@ -1,9 +1,68 @@
-HaloEnv
-AUX_Form.html
-/DEV
-staticfiles
+# Virtual Environments
+HaloEnv/
+.HaloEnv/
+venv/
+env/
+ENV/
+*.venv
+
+# Django
 *.pyc
-.HaloEnv
+__pycache__/
+*.pyo
+*.pyd
+db.sqlite3
+db.sqlite3-journal
+*.log
+local_settings.py
+staticfiles/
+public_html/
+
+# Logs
+logs/*.log
+logs/*.log.*
+!logs/.gitkeep
+
+# Environment variables
 .env
-DOCS
+.env.*
+!.env.example
+
+# Documentation (si contiene información sensible)
+DOCS/
+*.pdf
+
+# Development
+/DEV
+AUX_Form.html
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Media files
+media/
 *.jpg
+*.jpeg
+*.png
+*.gif
+*.mp4
+
+# Backups
+*.bak
+*.backup
+*.old
+
+# Build artifacts
+out/
+build/
+dist/
+*.egg-info/

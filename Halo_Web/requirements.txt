@@ -1,8 +1,7 @@
-Django
-requests
-dotenv
-python-dotenv
-django-bootstrap-v5
-django-bootstrap5
-gunicorn
-whitenoise
+Django==5.2.9
+requests==2.32.4
+python-dotenv==1.0.1
+django-bootstrap5==24.3
+gunicorn==23.0.0
+whitenoise==6.8.2
+django-redis==5.4.0

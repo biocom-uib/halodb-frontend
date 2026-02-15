@@ -1,23 +1,49 @@
 FROM python:3.12-slim as base
 
-# Definir el directorio de trabajo dentro del contenedor
+# Set environment variables
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
+
+# Set working directory
 WORKDIR /app
 
-# Copiar los archivos del proyecto Django al contenedor
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements first for better caching
+COPY requirements.txt .
+
+# Install Python dependencies
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+# Copy project files
 COPY . /app
 
-# Instalar dependencias
-RUN pip install --no-cache-dir --upgrade pip \
-    && pip install -r requirements.txt
+# Create static files directory and collect static files
+RUN mkdir -p /app/public_html && \
+    python manage.py collectstatic --noinput
 
-# Recoger archivos estáticos (servidos por Apache)
-RUN python manage.py collectstatic --noinput
+# Create non-root user for security
+RUN useradd -m -u 1000 halouser && \
+    chown -R halouser:halouser /app
 
-ENV PYTHONUNBUFFERED=1
+# Switch to non-root user
+USER halouser
 
-# Exponer el puerto en el que correrá Gunicorn
+# Expose port
 EXPOSE 8000
 
-# Comando para ejecutar Gunicorn y servir Django
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "Halo_Web.wsgi:application"]
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+    CMD curl -f http://localhost:8000/ || exit 1
+
+# Run Gunicorn
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "3", "--timeout", "60", "Halo_Web.wsgi:application"]
+
 

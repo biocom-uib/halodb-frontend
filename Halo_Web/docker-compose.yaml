@@ -1,12 +1,32 @@
+version: '3.8'
+
 services:
   web:
     build: .
-    container_name: django_app
+    container_name: django_halofiles_app
     restart: always
+    env_file:
+      - .env
+    environment:
+      - PYTHONUNBUFFERED=1
     ports:
       - "8000:8000"
     volumes:
-      - static_volume:/app/staticfiles
+      - static_volume:/app/public_html
+      - ./:/app
+    networks:
+      - halo_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  halo_network:
+    driver: bridge
 
 volumes:
   static_volume:
+
