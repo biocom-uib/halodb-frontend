@@ -10,7 +10,7 @@ services:
     environment:
       - PYTHONUNBUFFERED=1
     ports:
-      - "10800:8000"
+      - "127.0.0.1:10800:8000"
     volumes:
       - static_volume:/app/public_html
       - logs_volume:/app/logs
@@ -30,4 +30,3 @@ networks:
 volumes:
   static_volume:
   logs_volume:
-
