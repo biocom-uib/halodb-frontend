@@ -37,13 +37,36 @@ function getSelectedItems(selectList){
  */
 function getValuesForItemList(listname){
     const elementList = [{name: listname}];
+    const LABEL_BY_TABLE={
+        keywords:"keyword",
+        hkgenes:"gene"
+    }
 
     const COMPL_TABLES=["temperature","ph","salinity","method","dna","assembly","sequencing","binning","oxygen","fraction","target","keywords","hkgenes"]
     elementList.forEach(async element => {
         if(element.name && COMPL_TABLES.includes(element.name)){
-            const DATA=await fetchSecureFile("GET","public/query/"+element.name);
+            const endpoint = "public/query/" + element.name;
+            const DATA=await fetchSecureFile("GET", endpoint);
+            const input=document.getElementById(listname)
+            const widget=document.getElementById(`${listname}-widget`)
+            let picker=widget?._itempicker || null
+            if (!picker && widget && typeof ItemPicker !== "undefined" && typeof ItemPicker.mount === "function"){
+                picker = ItemPicker.mount(widget, { hiddenInput: input || undefined })
+            }
+            if (!picker) return
 
-            document.getElementById(listname).itemPicker.setOptions(DATA);
+            const labelKey=LABEL_BY_TABLE[element.name]
+            const normalized=(DATA || []).map(item=>{
+                if (typeof item === "string") {
+                    return { id: null, label: item };
+                }
+                return {
+                    id: item?.id ?? null,
+                    label: labelKey ? item?.[labelKey] : (item?.description ?? item?.label)
+                };
+            }).filter(item=>item.label)
+
+            picker.setOptions(normalized);
         }
     });
 }

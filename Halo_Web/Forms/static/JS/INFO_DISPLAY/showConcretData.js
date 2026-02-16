@@ -10,15 +10,14 @@ let PARENT_NODES
 async function initInfoDisplay(){
     PARENT_NODES=[]
 
-    //const params=window.location.pathname.slice(generatePath('/infoDisplay/').length).split("/")
-
     /** Get the id and table from the URL. The URL has the format /infoDisplay/{table}/{id} */
-    const params=window.location.pathname.split("/")
+    const params=window.location.pathname.slice(generatePath('/infoDisplay/').length).split("/")
     /** remove trailing empty element if the URL ends with a slash */
-    if(params[params.length-1]=="")
-        params.pop()
-    const table=params[params.length-2].toUpperCase()
-    const id=params[params.length-1]
+
+    //const table=params[params.length-2].toUpperCase()
+    //const id=params[params.length-1]
+    const table=params[0].toUpperCase()
+    const id=params[1]
     const doiCont=document.querySelector(".modal-body")
     const doiAdd=doiCont.querySelector("button")
     const doiInput=doiCont.querySelector("input[type='text']")
@@ -76,10 +75,14 @@ async function displayStepInformation(id,table) {
     let stepList
     if(window.location.pathname.includes("public"))
         stepList=await getFilterList(table)
-    else // TODO: change to query only the table with the id provided `${table}/${id}`
-        stepList=await fetchSecureFile("GET",`user/list/${table}/`)
+    else
+        // TODO: change this endpoint to get the specific object instead of the whole list. This is a temporal solution to avoid make another API call to get the object information, since we already have the list in the filter page.
+         // stepList=await fetchSecureFile("GET",`user/list/${table}/`)
+        stepList=await fetchSecureFile("GET", `${table}/${id}`)
 
-    updateStepDataContainer(Object.entries(stepList.find(obj => obj.id == id)),table,id)
+    //updateStepDataContainer(Object.entries(stepList.find(obj => obj.id == id)),table,id)
+
+    updateStepDataContainer(Object.entries(stepList.SAMPLE), table, id)
 
     if(!koma && document.getElementById("koma"))
         localStorage.setItem("koma",document.getElementById("koma").value)
@@ -108,8 +111,6 @@ function generateInputRO(key,value,object=null){
     label.setAttribute("for",key)
     label.className="form-label"
 
-
-    
     if(object){
         input=document.createElement("button")
         addDownloadBtn(key,object.id,object.table,input)
@@ -126,6 +127,55 @@ function generateInputRO(key,value,object=null){
     container.appendChild(input)
     
     return container
+}
+
+function generateReadonlyItemPicker(key, value, readonly = true, url = '') {
+    const container = document.createElement("div");
+    const label = document.createElement("label");
+    label.innerText = paramDict[key] || key;
+    label.setAttribute("for", key);
+    label.className = "form-label";
+
+    const mount = document.createElement("div");
+    mount.id = `${key}-readonly-widget`;
+
+    const rawList = Array.isArray(value)
+        ? value
+        : (value ? String(value).split(",").map(item => item.trim()).filter(Boolean) : []);
+
+    const normalized = rawList.map(item => {
+        if (item && typeof item === "object") {
+            const id = item.id ?? item.keyword ?? item.label ?? item.description ?? "";
+            const text = item.label ?? item.keyword ?? item.description ?? id;
+            return { id: String(id), label: String(text) };
+        }
+        return { id: String(item), label: String(item) };
+    });
+
+    const selected = normalized.map(item => item.id);
+
+    container.appendChild(label);
+    container.appendChild(mount);
+
+    if (typeof ItemPicker === "undefined") {
+        const fallback = document.createElement("input");
+        fallback.setAttribute("readonly", null);
+        fallback.className = "form-control";
+        fallback.value = normalized.map(item => item.label).join(", ");
+        container.appendChild(fallback);
+        return container;
+    }
+
+    const picker = new ItemPicker(mount, {
+        options: normalized,
+        values: selected,
+        multiple: true,
+        readonly: true,
+        collapsed: true,
+        allowCreate: false
+    });
+    mount._itempicker = picker;
+    return container;
 }
 
 
@@ -192,6 +242,8 @@ function updateStepDataContainer(objectiveData,table,id){
             }
             return formatLatLon(raw, false);
         },
+        keywords: (list) => Array.isArray(list) ? list.join(", ") : (list || "")
+
         // TODO: keywords and hkgenes should be fetch from the server.
     }
     const FILE_INPUTS=["rreads","rreads2","treads","assembled","pgenes"]
@@ -213,6 +265,20 @@ function updateStepDataContainer(objectiveData,table,id){
     const stepDataContainer=document.getElementById("stepDataContainer")
     stepDataContainer.innerHTML=""
 
+    /**
+     * La intenció de tot això és donar valor als camps a partir de les dades recollides.
+     *
+     * Si el camp té una funció de format dins de INFO_DISPLAY, s'aplica aquesta funció al valor abans de mostrar-lo. Si no, es mostra el valor tal qual.
+     * A més, només es mostren els camps que no estan inclosos a NOT_DISPLAY_DATA. Per als camps que són fitxers (definits a FILE_INPUTS), en lloc de mostrar el valor directament, es genera un botó de descàrrega utilitzant la funció generateInputRO amb un objecte que conté l'id i la taula corresponent.
+     *
+     * Tot això s'ha de redissenyar. El servidor ja dona les dades que s'han de mostrar, així que no cal aplicar formats específics ni tenir una llista de camps a no mostrar. Hauríem de confiar en el servidor per proporcionar les dades correctes i només mostrar-les tal com són, o aplicar formats genèrics
+     * si és necessari (per exemple, per a dates o coordenades). Això simplificaria molt el codi i evitaria problemes de manteniment a llarg termini.
+     *
+     * Només s'ha de revisar alguns camps. I fer que siguin de només lectura inicialment, perquè es suposa que
+     * les dades es mostren tal com són i no s'han de modificar. Si es volen modificar, s'ha de fer a través d'un
+     * botó d'edició que permeti canviar els camps a editables, i després guardar els canvis al servidor.
+     */
+
     objectiveData.forEach(([key,value]) =>{
         let object=null
         const editBtn=document.getElementById("editBtn")
@@ -222,12 +288,19 @@ function updateStepDataContainer(objectiveData,table,id){
         if(stepData)
             stepData.innerText = INFO_DISPLAY[key] ? INFO_DISPLAY[key](value) : value  
         if(!NOT_DISPLAY_DATA.includes(key)){
-             if(FILE_INPUTS.includes(key) && value)
-                object={"id":id,"table":table}
-             if (key==="lati" || key==="long")
-                value=INFO_DISPLAY[key](value)
-            stepDataContainer.appendChild(generateInputRO(key,value,object))}
-       
-        INFO_DISPLAY[key]?.(value)               
+             if (key==="keywords"){
+                stepDataContainer.appendChild(generateReadonlyItemPicker(key, value, true, ''))
+
+             } else {
+                 if (FILE_INPUTS.includes(key) && value)
+                     object = {"id": id, "table": table}
+                 if (key === "lati" || key === "long")
+                     value = INFO_DISPLAY[key](value)
+                 stepDataContainer.appendChild(generateInputRO(key, value, object))
+
+                 INFO_DISPLAY[key]?.(value)
+             }
+        }
+
     })
 }

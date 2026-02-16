@@ -44,25 +44,13 @@
                       <select id="target_id" class="form-control" name="target"></select>
                     </div>
                     <div class="col">
-                        <!--
-                      <label for="keywords" class="form-label">Additional Information</label>
-                      <select class="form-control" id="keywords" name="keywords" multiple></select>
-                        -->
                         <label for="keywords-widget" class="form-label">Keywords</label>
-                        <div id="keywords-widget"></div>
-                        <input type="hidden" id="keywords" name="keywords" value="">
-                        <script>
-                            const keywords = new ItemPicker(
-                            document.getElementById('keywords-widget'), {
-                                hiddenInput: document.getElementById('keywords'),
-                                options: [],
-                                initial: [],
-                                optionIdKey: 'id',
-                                optionLabelKey: 'keyword',
-                                multiple: true,            // <-- multiple selection
-                                collapsed: true,
-                            });
-                        </script>
+                        <div
+                          id="keywords-widget"
+                          data-itempicker='{"multiple":true,"collapsed":true,"hiddenInputMode":"ids"}'
+                        >
+                          <input type="hidden" id="keywords" name="keywords" value="">
+                        </div>
                     </div>    
                   </div>  
                 </div>

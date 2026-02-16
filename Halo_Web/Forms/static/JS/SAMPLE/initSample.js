@@ -5,15 +5,41 @@
 /**
  * Set up the Sample forms behaviour
  */
+function ensureSampleItemPickers() {
+    const keywordsWidget = document.getElementById("keywords-widget");
+    const keywordsInput = document.getElementById("keywords");
+    if (!keywordsWidget || !keywordsInput || typeof ItemPicker === "undefined") {
+        return null;
+    }
+
+    if (keywordsWidget._itempicker) {
+        return keywordsWidget._itempicker;
+    }
+
+    if (typeof ItemPicker.mount === "function") {
+        return ItemPicker.mount(keywordsWidget, { hiddenInput: keywordsInput });
+    }
+
+    const picker = new ItemPicker(keywordsWidget, {
+        hiddenInput: keywordsInput,
+        options: [],
+        values: [],
+        multiple: true,
+        collapsed: true,
+    });
+    keywordsWidget._itempicker = picker;
+    return picker;
+}
+
 async function initSample(){
     const modalMsg={
         true:{title:"Sample uploaded successfully!",
-                msg:"Your Sample has been registred in HaloFiles!",
+                msg:"Your Sample has been registered in HaloFiles!",
                 bool: true},
         false:{
             title:"Unexpected Error!",
-            msg:"Youre sampled could'nt be registered in HaloFilesDB. try it later and if"
-            +"this errors persist, please contact with an adminstrator",
+            msg:"Your sample could not be registered in HaloFilesDB. Try it again later and if "
+            +"this error persist, please contact with an administrator.",
             bool:false}
     }
     const sampleForm=document.querySelector("form")
@@ -28,6 +54,7 @@ async function initSample(){
         result=modalMsg[insertedData!=-1]
         configureModal(result.title,result.msg,insertedData!=-1)       
     });
+    ensureSampleItemPickers();
     getSelectedItems(sampleForm.querySelectorAll("select"))
     getValuesForItemList("keywords");
     //const keywords_hidden = document.getElementById('keywords');
