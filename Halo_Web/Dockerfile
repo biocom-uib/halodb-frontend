@@ -25,8 +25,8 @@ RUN pip install --no-cache-dir --upgrade pip && \
 # Copy project files
 COPY . /app
 
-# Create static files directory and collect static files
-RUN mkdir -p /app/public_html && \
+# Create runtime directories and collect static files
+RUN mkdir -p /app/public_html /app/logs && \
     python manage.py collectstatic --noinput
 
 # Create non-root user for security

@@ -1,8 +1,8 @@
-version: '3.8'
-
 services:
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: django_halofiles_app
     restart: always
     env_file:
@@ -10,10 +10,10 @@ services:
     environment:
       - PYTHONUNBUFFERED=1
     ports:
-      - "8000:8000"
+      - "10800:8000"
     volumes:
       - static_volume:/app/public_html
-      - ./:/app
+      - logs_volume:/app/logs
     networks:
       - halo_network
     healthcheck:
@@ -29,4 +29,5 @@ networks:
 
 volumes:
   static_volume:
+  logs_volume:
 
