@@ -25,16 +25,15 @@ RUN pip install --no-cache-dir --upgrade pip && \
 # Copy project files
 COPY . /app
 
-# Create runtime directories and collect static files
-RUN mkdir -p /app/public_html /app/logs && \
-    python manage.py migrate --noinput && \
-    python manage.py collectstatic --noinput
-
-RUN rm -rf /app/logs/*
+# Create runtime directories
+RUN mkdir -p /app/public_html /app/logs
 
 # Create non-root user for security
 RUN useradd -m -u 1000 halouser && \
     chown -R halouser:halouser /app
+
+# Prepare entrypoint
+RUN chmod +x /app/docker-entrypoint.sh
 
 # Switch to non-root user
 USER halouser
@@ -42,11 +41,8 @@ USER halouser
 # Expose port
 EXPOSE 8000
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
-    CMD curl -f http://localhost:8000/ || exit 1
-
 # Run Gunicorn
+ENTRYPOINT ["/app/docker-entrypoint.sh"]
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "3", "--timeout", "60", "Halo_Web.wsgi:application"]
 
 

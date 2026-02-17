@@ -1,5 +1,8 @@
 from .views_import import *
 from .responseController import responseController
+import logging
+
+logger = logging.getLogger(__name__)
 
 @csrf_exempt
 def api_post_calls(request, table):
@@ -27,7 +30,7 @@ def api_post_calls(request, table):
     try:
         response = requests.post(full_url, headers=headers, json=body_unicode)
 
-        return responseController(response,"Failed in API POST!!")
+        return responseController(response,"Failed in API POST!! "+full_url)
     except requests.exceptions.RequestException as e:
         return JsonResponse({"error": "Connection error to external API", "details": str(e)}, status=500)
 
@@ -48,7 +51,7 @@ def api_put_calls(request, src):
 
     try:
         response = requests.put(full_url, headers=headers, json=body_unicode)
-        return responseController(response,"Failed in API POST!!")
+        return responseController(response,"Failed in API PUT!! "+full_url)
 
     except requests.exceptions.RequestException as e:
         return JsonResponse({"error": "Connection error to external API", "details": str(e)}, status=500)
@@ -76,7 +79,7 @@ def get_static_file(request, filename):
             content = file.read()
         return JsonResponse({"message": content})
     else:
-        print(f"File not found: {static_path}")
+        logger.warning("Static file not found: %s", static_path)
         raise Http404("File not found.")
 
 def api_get_calls(request, query_params):
@@ -101,7 +104,7 @@ def api_get_calls(request, query_params):
 
     try:
         response = requests.get(full_url, headers=headers)
-        return responseController(response,"Failed in API POST!!")
+        return responseController(response,"Failed in API GET!! "+full_url)
 
     except requests.exceptions.RequestException as e:
         return JsonResponse({"error": "Connection error to external API", "details": str(e)}, status=500)
@@ -124,7 +127,7 @@ def api_get_calls_simple(request, query_params):
 
     try:
         response = requests.get(full_url)
-        return responseController(response,"Failed in API POST!!")
+        return responseController(response,"Failed in API GET simple!! "+full_url)
 
     except requests.exceptions.RequestException as e:
         return JsonResponse({"error": "Connection error to external API", "details": str(e)}, status=500)

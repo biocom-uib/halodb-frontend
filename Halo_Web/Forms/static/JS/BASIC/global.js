@@ -17,6 +17,7 @@ const URL_DICC = {
 
 const HOST_DICC ={
   "127.0.0.1":"DEV",
+  "localhost":"DEV",
   "bioinfo.uib.es":"PROD"
 }
 

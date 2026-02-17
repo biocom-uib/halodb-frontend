@@ -1,5 +1,8 @@
 # Import everything from the views_import module
 from .views_import import *  
+import logging
+
+logger = logging.getLogger(__name__)
 
 # Define the base directory of the project
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,6 +32,5 @@ def login_logic(data):
         response_data = response.json()
         return {"token": response_data.get("token")}
 
-    # Print the error response for debugging
-    print(response.json())
+    logger.debug("Login failed response: %s", response.text)
     return response.json()

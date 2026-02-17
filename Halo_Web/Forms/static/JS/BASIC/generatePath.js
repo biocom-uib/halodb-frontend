@@ -8,5 +8,11 @@
  * @returns Adjusted URL
  */
 function generatePath(path){
-    return localStorage.getItem("env")==="DEV" ? path : "/halofiles"+path
+    const hostEnv = HOST_DICC[window.location.hostname] || "DEV";
+    if (hostEnv === "DEV") {
+        return path;
+    }
+
+    const currentEnv = localStorage.getItem("env") || hostEnv;
+    return currentEnv === "PROD" ? "/halofiles" + path : path;
 }

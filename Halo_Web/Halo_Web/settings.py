@@ -43,7 +43,10 @@ DEBUG = DJANGO_ENV == 'DEV'
 
 ALLOWED_HOSTS = ["bioinfo.uib.es", f"bioinfo.uib.es/{PROD_BASE_URL}", '127.0.0.1', 'localhost']
 
-CSRF_TRUSTED_ORIGINS = ["https://bioinfo.uib.es", 'https://127.0.0.1:8000']
+if DEBUG:
+    CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000', 'http://localhost:8000']
+else:
+    CSRF_TRUSTED_ORIGINS = ["https://bioinfo.uib.es"]
 
 # Application definition
 
@@ -89,15 +92,23 @@ TEMPLATES = [
     },
 ]
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://127.0.0.1:6379/1',  # Puedes cambiar a tu configuración si usas otro puerto o base de datos
-        'OPTIONS': {
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+if DEBUG:
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+            'LOCATION': 'haloweb-dev-cache',
         }
     }
-}
+else:
+    CACHES = {
+        'default': {
+            'BACKEND': 'django_redis.cache.RedisCache',
+            'LOCATION': os.getenv('REDIS_URL', 'redis://127.0.0.1:6379/1'),
+            'OPTIONS': {
+                'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            }
+        }
+    }
 WSGI_APPLICATION = 'Halo_Web.wsgi.application'
 
 # Database
@@ -139,7 +150,7 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['console', 'file'],
-            'level': 'INFO' if not DEBUG else 'DEBUG',
+            'level': 'INFO',
             'propagate': True,
         },
         'Forms': {
@@ -236,4 +247,5 @@ CSRF_COOKIE_SAMESITE = 'Lax'
 # File upload settings
 FILE_UPLOAD_MAX_MEMORY_SIZE = 5242880  # 5MB
 DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880  # 5MB
+
 

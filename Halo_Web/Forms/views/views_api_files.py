@@ -1,4 +1,7 @@
 from .views_import import *
+import logging
+
+logger = logging.getLogger(__name__)
 
 @csrf_exempt
 def api_put_file(request, src):
@@ -12,8 +15,7 @@ def api_put_file(request, src):
     file= request.FILES.get('file')
     sequence=request.POST.get('sequence')
     fName=request.POST.get('fName')
-    print(f"file:{file}\nsequence:{sequence}\nfName:{fName}")
-    print(request.POST)
+    logger.debug("Uploading file with sequence=%s and fName=%s", sequence, fName)
 
     files = {
         'file': (fName, file.file, file.content_type)
