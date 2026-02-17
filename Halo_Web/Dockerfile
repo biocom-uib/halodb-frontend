@@ -27,6 +27,7 @@ COPY . /app
 
 # Create runtime directories and collect static files
 RUN mkdir -p /app/public_html /app/logs && \
+    python manage.py migrate --noinput && \
     python manage.py collectstatic --noinput
 
 # Create non-root user for security

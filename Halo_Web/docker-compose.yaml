@@ -12,7 +12,7 @@ services:
     ports:
       - "127.0.0.1:10800:8000"
     volumes:
-      - static_volume:/app/public_html
+      - ./Forms/static:/app/public_html
       - logs_volume:/app/logs
     networks:
       - halo_network
@@ -28,5 +28,4 @@ networks:
     driver: bridge
 
 volumes:
-  static_volume:
   logs_volume:
