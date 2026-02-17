@@ -10,7 +10,7 @@
  */
 async function fetchSecureFile(type, param) {
     //const url= type === "GET" ? generatePath(URL_DICC[type]) + encodeURIComponent(param) : generatePath(URL_DICC[type]) + param
-    const prefix = type === "GET" ? URL_DICC[type] : generatePath(URL_DICC[type])
+    const prefix = type === "GET" ? 'http://127.0.0.1:8000/' + URL_DICC[type] : generatePath(URL_DICC[type])
     const url= prefix + param
     //const url= generatePath(URL_DICC[type]) + param
 
