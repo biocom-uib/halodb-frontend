@@ -30,6 +30,8 @@ RUN mkdir -p /app/public_html /app/logs && \
     python manage.py migrate --noinput && \
     python manage.py collectstatic --noinput
 
+RUN rm -rf /app/logs/*
+
 # Create non-root user for security
 RUN useradd -m -u 1000 halouser && \
     chown -R halouser:halouser /app
