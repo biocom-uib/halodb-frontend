@@ -8,7 +8,7 @@
  * @param {HTMLDivElement} stepContainer - Sequence container 
  */
 async function fillStepData(url,seqContainer,seq_step){
-    const stepInfo= fetchSecureFile("GET",url)
+    const stepInfo = await fetchSecureFile("GET",url)
     let container=seqContainer.querySelector("div")
     container && seqContainer.removeChild(container)  
     seqContainer.appendChild(fillDataContainer(Object.entries(stepInfo[seq_step]),seq_step))

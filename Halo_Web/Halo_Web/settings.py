@@ -13,11 +13,20 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 from dotenv import load_dotenv
 import os
+import mimetypes
 
-load_dotenv()
+# On some Windows setups, .js is resolved as text/plain.
+mimetypes.add_type("application/javascript", ".js", True)
+mimetypes.add_type("application/javascript", ".mjs", True)
 
-PROD_BASE_URL = "halofiles"
-BASE_URL = "/" + PROD_BASE_URL + "/"
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Load environment variables
+load_dotenv(os.path.join(BASE_DIR, '.env'))
+
+PROD_BASE_URL = "/halofiles"
+BASE_URL = PROD_BASE_URL + "/"
 
 #
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -28,20 +37,14 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS') == 'True'
 DEFAULT_FROM_EMAIL = os.getenv('EMAIL_FROM', 'no-reply@bioinfo.uib.es')
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-# Load environment variables
-load_dotenv(os.path.join(BASE_DIR, '.env'))
-DJANGO_ENV = os.getenv('ENV', 'DEV')
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-default-key-change-this-in-production')
 
 # SECURITY WARNING: don't run with debug turned on in production!
+DJANGO_ENV = os.getenv('ENV', 'DEV')
 DEBUG = DJANGO_ENV == 'DEV'
 
-ALLOWED_HOSTS = ["bioinfo.uib.es", f"bioinfo.uib.es/{PROD_BASE_URL}", '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ["bioinfo.uib.es", f"bioinfo.uib.es{PROD_BASE_URL}", '127.0.0.1', 'localhost']
 
 if DEBUG:
     CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000', 'http://localhost:8000']
@@ -63,7 +66,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'Forms.middleware.TokenRequiredMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -71,6 +73,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'Forms.middleware.TokenRequiredMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
@@ -79,7 +82,7 @@ ROOT_URLCONF = 'Halo_Web.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'Forms', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -184,7 +187,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+#TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Madrid'
 
 USE_I18N = True
 
@@ -213,7 +217,7 @@ if DEBUG:
     STATIC_URL = '/static/'
 else:
     STATIC_URL = BASE_URL + 'static/'
-    FORCE_SCRIPT_NAME = '/' + PROD_BASE_URL
+    FORCE_SCRIPT_NAME = PROD_BASE_URL
 
 # Security settings for production
 if not DEBUG:

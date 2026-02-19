@@ -9,15 +9,14 @@
  * @returns {Array} The result of the API call  
  */
 async function fetchSecureFile(type, param) {
-    const url= type === "GET" ? generatePath(URL_DICC[type]) + encodeURI(param) : generatePath(URL_DICC[type]) + param
-    //const prefix = type === "GET" ? + URL_DICC[type] : generatePath(URL_DICC[type])
-    //const url= prefix + param
-    //const url= generatePath(URL_DICC[type]) + param
-
+    //const url= type === "GET" ? generatePath(URL_DICC[type]) + encodeURIComponent(param) : generatePath(URL_DICC[type]) + param
+    const url= generatePath(URL_DICC[type]) + param
     const response = await fetch(url);
 
-    if (!response.ok) 
-        throw new Error("fetchOperation failed!. Reason:"+response.message);
+    if (!response.ok) {
+        const errorBody = await response.text();
+        throw new Error(`fetchOperation failed (${response.status}) at ${url} (final: ${response.url}) body: ${errorBody}`);
+    }
     
     const RESPONSE = await (response.text());
     

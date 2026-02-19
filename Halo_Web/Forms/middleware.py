@@ -12,6 +12,13 @@ logger = logging.getLogger(__name__)
 # Load environment variables
 load_dotenv()
 
+class TraceRequestsMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        print("TRACE", request.method, request.path, "SCRIPT_NAME=", request.META.get("SCRIPT_NAME"), "PATH_INFO=", request.META.get("PATH_INFO"))
+        return self.get_response(request)
 
 class TokenRequiredMiddleware:
     """
@@ -41,7 +48,7 @@ class TokenRequiredMiddleware:
 
         # Add PROD_BASE_URL prefix if not in DEV environment
         if not self.is_dev:
-            self.excluded_paths = ['/' + PROD_BASE_URL + path for path in base_paths]
+            self.excluded_paths = [PROD_BASE_URL + path for path in base_paths]
         else:
             self.excluded_paths = base_paths
 
@@ -49,11 +56,25 @@ class TokenRequiredMiddleware:
         path = request.path
         
         # Allow access to excluded paths without authentication
-        if any(path.startswith(p) for p in self.excluded_paths):
+        for excluded_path in self.excluded_paths:
+            if excluded_path == '/':
+                if path == '/':
+                    return self.get_response(request)
+            elif path.startswith(excluded_path):
+                return self.get_response(request)
+
+        # In some deployments (proxy/script-name), static files can keep the
+        # production prefix even in DEV.
+        if path.startswith(f"{PROD_BASE_URL}/static/"):
             return self.get_response(request)
         
         # Check for authentication token
-        token = request.session.get('auth_token')
+        session = getattr(request, "session", None)
+        if session is None:
+            logger.warning("[TokenMiddleware] Session not available for path: %s", path)
+            return self.get_response(request)
+
+        token = session.get('auth_token')
 
         if not token:
             logger.warning(f"[TokenMiddleware] Unauthorized access attempt to: {path}")
