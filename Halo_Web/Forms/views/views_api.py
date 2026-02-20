@@ -99,7 +99,7 @@ def api_get_calls(request, query_params):
     if not token:
         return JsonResponse({"status": "error", "message": "User not authenticated"}, status=401)
 
-    full_url = f"{URL}{unquote(query_params)}"
+    full_url = build_backend_url(query_params, ensure_trailing_slash=True)
     headers = {"Authorization": f"Bearer {token}"}
 
     try:
@@ -122,7 +122,7 @@ def api_get_calls_simple(request, query_params):
         JsonResponse: Response from the external API, or error if the request fails.
     """
 
-    full_url = f"{URL}{unquote(query_params)}"
+    full_url = build_backend_url(query_params, ensure_trailing_slash=True)
 
 
     try:

@@ -24,3 +24,27 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 URL=os.getenv('DB_PATH')
+
+
+def build_backend_url(endpoint, ensure_trailing_slash=True):
+    """
+    Build a backend URL from DB_PATH and an endpoint path.
+    Django path converters drop the trailing slash from captured parameters,
+    so we can restore it when needed.
+    """
+    base = (URL or "").rstrip("/")
+    target = unquote((endpoint or "")).lstrip("/")
+
+    if ensure_trailing_slash and target:
+        if "?" in target:
+            path, query = target.split("?", 1)
+            if path and not path.endswith("/"):
+                path = f"{path}/"
+            target = f"{path}?{query}"
+        elif not target.endswith("/"):
+            target = f"{target}/"
+
+    if not target:
+        return f"{base}/"
+
+    return f"{base}/{target}"
