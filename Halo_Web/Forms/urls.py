@@ -39,7 +39,7 @@ urlpatterns = [
     path('group/decline/<int:group_id>/', decline_group_invite, name="decline_invitation"),
     
     # API endpoints
-    path('upload/<str:table>/', api_post_calls, name="api_post"),
+    path('upload/<table>/', api_post_calls, name="api_post"),
     path('api/get/public/<path:query_params>/', api_get_calls_simple, name='api_get_calls_simple'),
     path('api/get/<path:query_params>/', api_get_calls, name='api_get_calls'),
     path('api/put_file/<path:src>/', api_put_file, name='api_put_file'),

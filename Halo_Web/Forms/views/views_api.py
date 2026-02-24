@@ -5,7 +5,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 @csrf_exempt
-def api_post_calls(request, table):
+def api_post_calls(request, table:str):
     """
     Send a POST request to an external API with the provided JSON data.
 
